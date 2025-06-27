@@ -4,13 +4,13 @@ import { useEffect, useState, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Particles from "@/app/components/Shares/Particles";
 
-const DEFAULT_IMAGES = [
+const images = [
   { src: "/images/s3.jpg", alt: "IEEE Student Branch GUB - Advancing Technology for Humanity", priority: true },
   { src: "/images/s1.jpg", alt: "IEEE Student Branch GUB - Innovation and Excellence", priority: false },
   { src: "/images/s4.jpg", alt: "IEEE Student Branch GUB - Future Engineers and Leaders", priority: false },
 ];
 
-const DEFAULT_PARTICLE_CONFIG = {
+const particleConfig = {
   colors: ["#006400", "#00B894", "#ffffff"],
   count: 150,
   spread: 12,
@@ -21,15 +21,13 @@ const DEFAULT_PARTICLE_CONFIG = {
   rotation: false,
 };
 
-const Banner = ({
-  images = DEFAULT_IMAGES,
-  autoSlideInterval = 5000,
-  className = "",
-  title = "IEEE Student Branch GUB",
-  subtitle = "Advancing Technology for Humanity • Building Tomorrow's Engineers",
-  tagline = "Green University of Bangladesh",
-  particleConfig = DEFAULT_PARTICLE_CONFIG,
-}) => {
+const Banner = () => {
+  const autoSlideInterval = 5000;
+  const title = "IEEE Student Branch GUB";
+  const subtitle = "Advancing Technology for Humanity • Building Tomorrow's Engineers";
+
+
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -42,7 +40,7 @@ const Banner = ({
     moveParticlesOnHover: particleConfig.moveOnHover,
     alphaParticles: particleConfig.alpha,
     disableRotation: !particleConfig.rotation,
-  }), [particleConfig]);
+  }), []);
 
   const handleSlideChange = useCallback((index) => {
     if (index === currentImageIndex || isAnimating) return;
@@ -57,7 +55,7 @@ const Banner = ({
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
     }, autoSlideInterval);
     return () => clearInterval(interval);
-  }, [autoSlideInterval, images.length]);
+  }, []);
 
   useEffect(() => {
     const styleId = 'banner-animations';
@@ -97,10 +95,10 @@ const Banner = ({
         if (document.head.contains(link)) document.head.removeChild(link);
       };
     }
-  }, [currentImageIndex, images]);
+  }, [currentImageIndex]);
 
   return (
-    <section className={`relative w-full h-screen overflow-hidden ${className}`} role="banner" aria-label="IEEE Student Branch GUB Banner">
+    <section className="relative w-full h-screen overflow-hidden" role="banner" aria-label="IEEE Student Branch GUB Banner">
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <Particles {...particleProps} />
       </div>
@@ -127,7 +125,6 @@ const Banner = ({
 
         <div className="relative z-30 max-w-7xl h-full mx-auto px-6 flex flex-col justify-center text-white">
           <div className="banner-content-animation">
-
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-lg leading-tight">
               <span className="text-white">{title.split(' ').slice(0, 2).join(' ')}</span>
               <br />
@@ -161,9 +158,8 @@ const Banner = ({
                 <button
                   key={index}
                   onClick={() => handleSlideChange(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/50 ${
-                    currentImageIndex === index ? "bg-white scale-110" : "bg-green-400 hover:bg-green-300"
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black/50 ${currentImageIndex === index ? "bg-white scale-110" : "bg-green-400 hover:bg-green-300"
+                    }`}
                   role="tab"
                   aria-selected={currentImageIndex === index}
                   aria-label={`Go to slide ${index + 1}`}

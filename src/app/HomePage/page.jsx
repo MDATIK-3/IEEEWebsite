@@ -4,7 +4,7 @@ import AllEvent from "./events/page";
 import ModeratorMessages from "./ModeratorMessages/page"
 import Feature from "./Feature/page";
 import AllPhoto from "./Gallery/page";
-function page() {
+function Page() {
     return (
         <>
             <Banner />
@@ -17,4 +17,4 @@ function page() {
     )
 }
 
-export default page
+export default Page
