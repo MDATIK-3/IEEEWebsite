@@ -100,7 +100,6 @@ const AllEvent = () => {
 
   return (
     <div className="py-12 px-4 max-w-7xl mx-auto border-t border-green-200">
-      {/* Header Section */}
       <div className="text-center mb-12">
         <div className="relative inline-block">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-700 bg-clip-text text-transparent mb-4">
@@ -116,10 +115,8 @@ const AllEvent = () => {
         )}
       </div>
 
-      {/* Search and Filter Section - Only on full page */}
-      {(isFullPage ) && (
+      {(isFullPage) && (
         <div className="mb-12 space-y-8">
-          {/* Search Bar */}
           <div className="max-w-2xl mx-auto">
             <div className={`relative transition-all duration-300 ${isSearchFocused ? 'transform scale-105' : ''}`}>
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -151,7 +148,6 @@ const AllEvent = () => {
             </div>
           </div>
 
-          {/* Filter Tabs */}
           <div className="flex justify-center">
             <div className="bg-green-50/80 backdrop-blur-sm border border-green-200 rounded-2xl p-2 shadow-lg">
               <div className="flex space-x-1">
@@ -164,16 +160,16 @@ const AllEvent = () => {
                     key={filter.key}
                     onClick={() => setFilterType(filter.key)}
                     className={`relative px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 transform ${filterType === filter.key
-                        ? "bg-green-600 text-white shadow-lg shadow-green-600/25 scale-105"
-                        : "text-green-700 hover:bg-green-100 hover:scale-102"
+                      ? "bg-green-600 text-white shadow-lg shadow-green-600/25 scale-105"
+                      : "text-green-700 hover:bg-green-100 hover:scale-102"
                       }`}
                     aria-pressed={filterType === filter.key}
                   >
                     <span className="relative z-10">
                       {filter.label}
                       <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${filterType === filter.key
-                          ? "bg-green-500 text-white"
-                          : "bg-green-200 text-green-800"
+                        ? "bg-green-500 text-white"
+                        : "bg-green-200 text-green-800"
                         }`}>
                         {filter.count}
                       </span>
@@ -184,14 +180,13 @@ const AllEvent = () => {
             </div>
           </div>
 
-          {/* Results Summary */}
           {searchText && (
             <div className="text-center">
               <p className="text-green-700 bg-green-50 border border-green-200 rounded-full px-6 py-2 inline-flex items-center space-x-2">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Found {filteredEvents.length} event{filteredEvents.length !== 1 ? 's' : ''} matching "{searchText}"</span>
+                <span>Found {filteredEvents.length} event{filteredEvents.length !== 1 ? 's' : ''} matching &quot;{searchText}&quot;</span>
               </p>
             </div>
           )}
