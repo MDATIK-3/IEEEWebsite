@@ -122,7 +122,7 @@ const Footer = () => {
 
             <div className="space-y-3">
               <p className="text-sm sm:text-base font-medium text-gray-700">
-                Built with ❤️ by the following GUCC Members:
+                Built with ❤️ by the following IEEE Members:
               </p>
 
               <div className="flex justify-center items-center flex-wrap gap-2 sm:gap-3">

@@ -22,14 +22,14 @@ const AllPhoto = () => {
     fetchPhotos();
   }, []);
 
-  const previewPhotos = photos.slice(0, 8);
+  const previewPhotos = photos.slice(0, 6);
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
       <div className="absolute inset-0 pointer-events-none z-0" style={{
         backgroundImage: `
-          linear-gradient(to right, rgba(16,185,129,0.08) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(16,185,129,0.08) 1px, transparent 1px)
+          linear-gradient(to right, rgba(16,185,129,0.1) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(16,185,129,0.1) 1px, transparent 1px)
         `,
         backgroundSize: '40px 40px'
       }} />
@@ -47,7 +47,7 @@ const AllPhoto = () => {
         </div>
 
         <div className="mb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14">
             {previewPhotos.map((photo, index) => (
               <PhotoCard key={photo.id} photo={photo} index={index} photos={previewPhotos} />
             ))}
