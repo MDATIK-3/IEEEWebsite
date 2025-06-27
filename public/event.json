@@ -1,0 +1,133 @@
+[
+  {
+    "id": 1,
+    "image": "images/e1.jpg",
+    "eventName": "Webinar on Cyber Existence of Professional Skills for a Graduate",
+    "date": "2025-05-25",
+    "time": "10:00 PM",
+    "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
+    "specialGuest": "Dr. Sultana Marzia, Dean, Faculty of Science and IT",
+    "eventArea": "Online via Zoom",
+    "eventType": "Webinar",
+    "participant": 120,
+    "organizer": "GUB Career Club"
+  },
+  
+  {
+    "id": 3,
+    "image": "images/e3.jpg",
+    "eventName": "GUB Logic Battle 2025 (Beginner IDPC & IDMO)",
+    "date": "2025-03-09",
+    "time": "Day Long",
+    "guest": "Dr. Muhammad Aminur Rahaman, Chairperson, Dept. of CSE, GUB",
+    "specialGuest": "Dr. Md. Mostafijur Rahman, Chairperson, SWE",
+    "eventArea": "Green University, Multi-Purpose Hall",
+    "eventType": "Competition",
+    "participant": 130,
+    "organizer": "GUCC & GUB Programming Arena"
+  },
+  {
+    "id": 4,
+    "image": "images/c1.png",
+    "eventName": "Women in Tech Panel",
+    "date": "2025-06-28",
+    "time": "2:00 PM",
+    "guest": "Nusrat Chowdhury",
+    "specialGuest": "Dr. Fahmida Sultana",
+    "eventArea": "TechHub Auditorium, GUB",
+    "eventType": "Panel Discussion",
+    "participant": 90,
+    "organizer": "Women in Tech GUB"
+  },
+  {
+    "id": 5,
+    "image": "https://picsum.photos/seed/5/300/200",
+    "eventName": "Startup Launchpad",
+    "date": "2025-03-4",
+    "time": "11:00 AM",
+    "guest": "Anik Rahman",
+    "specialGuest": "Sharmin Jahan, Startup Bangladesh",
+    "eventArea": "Business Incubation Lab, GUB",
+    "eventType": "Workshop",
+    "participant": 75,
+    "organizer": "Entrepreneurship Club"
+  },
+  {
+    "id": 6,
+    "image": "https://picsum.photos/seed/6/300/200",
+    "eventName": "Cybersecurity Essentials",
+    "date": "2025-03-3",
+    "time": "3:00 PM",
+    "guest": "Colonel Tanvir Ahmed",
+    "specialGuest": "Lt. Col. Shahriar Hasan",
+    "eventArea": "Digital Security Lab, GUB",
+    "eventType": "Seminar",
+    "participant": 100,
+    "organizer": "GUB Cyber Club"
+  },
+
+
+  {
+    "id": 7,
+    "image": "https://picsum.photos/seed/7/300/200",
+    "eventName": "UI/UX Masterclass",
+    "date": "2024-07-22",
+    "guest": "Laila Noor"
+  },
+  {
+    "id": 8,
+    "image": "https://picsum.photos/seed/8/300/200",
+    "eventName": "Robotics Expo 2025",
+    "date": "2025-02-28",
+    "guest": "Dr. Firoz Kabir"
+  },
+  {
+    "id": 9,
+    "image": "https://picsum.photos/seed/9/300/200",
+    "eventName": "NextGen Developers Meetup",
+    "date": "2025-02-18",
+    "guest": "Aritra Dey"
+  },
+  {
+    "id": 10,
+    "image": "https://picsum.photos/seed/10/300/200",
+    "eventName": "Quantum Computing Talk",
+    "date": "2025-02-01",
+    "guest": "Prof. Henry Zhao"
+  },
+  {
+    "id": 11,
+    "image": "https://picsum.photos/seed/11/300/200",
+    "eventName": "Digital Marketing Trends",
+    "date": "2025-01-10",
+    "guest": "Sarah Jahan"
+  },
+  {
+    "id": 12,
+    "image": "https://picsum.photos/seed/12/300/200",
+    "eventName": "Gaming & Esports Fest",
+    "date": "2025-02-22",
+    "guest": "Nayeem Bhuiyan"
+  },
+  {
+    "id": 13,
+    "image": "https://picsum.photos/seed/13/300/200",
+    "eventName": "CSE Alumni Reunion",
+    "date": "2025-01-12",
+    "guest": "Dr. Faheem Ali"
+  },
+  {
+    "id": 14,
+    "image": "https://picsum.photos/seed/14/300/200",
+    "eventName": "Climate Tech Workshop",
+    "date": "2025-02-28",
+    "guest": "Tasnim Zaman"
+  },
+  {
+    "id": 15,
+    "image": "https://picsum.photos/seed/15/300/200",
+    "eventName": "Mobile App Showcase",
+    "date": "2025-01-05",
+    "guest": "Mehedi Hasan"
+  }
+]
