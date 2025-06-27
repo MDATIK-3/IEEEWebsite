@@ -1,241 +1,241 @@
 [
   {
     "id": 1,
-    "image": "/Images/1.jpg",
+    "image": "/images/1.jpg",
     "date": "2025-06-01",
     "name": "Tech Summit 2025"
   },
   {
     "id": 2,
-    "image": "/Images/2.jpg",
+    "image": "/images/2.jpg",
     "date": "2025-06-03",
     "name": "AI & Robotics Expo"
   },
   {
     "id": 3,
-    "image": "/Images/3.jpg",
+    "image": "/images/3.jpg",
     "date": "2025-06-05",
     "name": "Web Dev Conference"
   },
   {
     "id": 4,
-    "image": "/Images/4.jpg",
+    "image": "/images/4.jpg",
     "date": "2025-06-06",
     "name": "Cyber Security Forum"
   },
   {
     "id": 5,
-    "image": "/Images/5.jpg",
+    "image": "/images/5.jpg",
     "date": "2025-06-08",
     "name": "Green Tech Meetup"
   },
   {
     "id": 6,
-    "image": "/Images/6.jpg",
+    "image": "/images/6.jpg",
     "date": "2025-06-10",
     "name": "Data Science Bootcamp"
   },
   {
     "id": 7,
-    "image": "/Images/7.jpg",
+    "image": "/images/7.jpg",
     "date": "2025-06-12",
     "name": "Startup Pitch Night"
   },
   {
     "id": 8,
-    "image": "/Images/8.jpg",
+    "image": "/images/8.jpg",
     "date": "2025-06-13",
     "name": "Cloud Tech Summit"
   },
   {
     "id": 9,
-    "image": "/Images/25.jpg",
+    "image": "/images/25.jpg",
     "date": "2025-06-14",
     "name": "Gaming Dev Fest"
   },
   {
     "id": 10,
-    "image": "/Images/10.jpg",
+    "image": "/images/10.jpg",
     "date": "2025-06-15",
     "name": "Mobile App Hackathon"
   },
   {
     "id": 11,
-    "image": "/Images/11.jpg",
+    "image": "/images/11.jpg",
     "date": "2025-06-16",
     "name": "Digital Marketing Seminar"
   },
   {
     "id": 12,
-    "image": "/Images/12.jpg",
+    "image": "/images/12.jpg",
     "date": "2025-06-17",
     "name": "Blockchain & Finance Talk"
   },
   {
     "id": 13,
-    "image": "/Images/13.jpg",
+    "image": "/images/13.jpg",
     "date": "2025-06-18",
     "name": "VR/AR Expo"
   },
   {
     "id": 14,
-    "image": "/Images/13.1.jpg",
+    "image": "/images/13.1.jpg",
     "date": "2025-06-19",
     "name": "Women in Tech Panel"
   },
   {
     "id": 15,
-    "image": "/Images/14.jpg",
+    "image": "/images/14.jpg",
     "date": "2025-06-20",
     "name": "UI/UX Design Workshop"
   },
   {
     "id": 16,
-    "image": "/Images/15.jpg",
+    "image": "/images/15.jpg",
     "date": "2025-06-21",
     "name": "Open Source Community Day"
   },
   {
     "id": 17,
-    "image": "/Images/16.jpg",
+    "image": "/images/16.jpg",
     "date": "2025-06-22",
     "name": "Cloud Certification Camp"
   },
   {
     "id": 18,
-    "image": "/Images/17.jpg",
+    "image": "/images/17.jpg",
     "date": "2025-06-23",
     "name": "Smart City Innovation Fair"
   },
   {
     "id": 19,
-    "image": "/Images/18.jpg",
+    "image": "/images/18.jpg",
     "date": "2025-06-24",
     "name": "DevOps Meetup"
   },
   {
     "id": 20,
-    "image": "/Images/19.jpg",
+    "image": "/images/19.jpg",
     "date": "2025-06-25",
     "name": "Quantum Computing Talk"
   },
   {
     "id": 21,
-    "image": "/Images/20.jpg",
+    "image": "/images/20.jpg",
     "date": "2025-06-01",
     "name": "Tech Summit 2025"
   },
   {
     "id": 22,
-    "image": "/Images/23.jpg",
+    "image": "/images/23.jpg",
     "date": "2025-06-03",
     "name": "AI & Robotics Expo"
   },
   {
     "id": 23,
-    "image": "/Images/21.jpg",
+    "image": "/images/21.jpg",
     "date": "2025-06-05",
     "name": "Web Dev Conference"
   },
   {
     "id": 24,
-    "image": "/Images/22.jpg",
+    "image": "/images/22.jpg",
     "date": "2025-06-06",
     "name": "Cyber Security Forum"
   },
   {
     "id": 25,
-    "image": "/Images/24.jpg",
+    "image": "/images/24.jpg",
     "date": "2025-06-08",
     "name": "Green Tech Meetup"
   },
   {
     "id": 26,
-    "image": "/Images/26.jpg",
+    "image": "/images/26.jpg",
     "date": "2025-06-10",
     "name": "Data Science Bootcamp"
   },
   {
     "id": 27,
-    "image": "/Images/27.jpg",
+    "image": "/images/27.jpg",
     "date": "2025-06-12",
     "name": "Startup Pitch Night"
   },
   {
     "id": 28,
-    "image": "/Images/28.jpg",
+    "image": "/images/28.jpg",
     "date": "2025-06-13",
     "name": "Cloud Tech Summit"
   },
   {
     "id": 29,
-    "image": "/Images/29.jpg",
+    "image": "/images/29.jpg",
     "date": "2025-06-14",
     "name": "Gaming Dev Fest"
   },
   {
     "id": 30,
-    "image": "/Images/30.jpg",
+    "image": "/images/30.jpg",
     "date": "2025-06-15",
     "name": "Mobile App Hackathon"
   },
   {
     "id": 31,
-    "image": "/Images/31.jpg",
+    "image": "/images/31.jpg",
     "date": "2025-06-16",
     "name": "Digital Marketing Seminar"
   },
   {
     "id": 32,
-    "image": "/Images/32.jpg",
+    "image": "/images/32.jpg",
     "date": "2025-06-17",
     "name": "Blockchain & Finance Talk"
   },
   {
     "id": 33,
-    "image": "/Images/33.jpg",
+    "image": "/images/33.jpg",
     "date": "2025-06-18",
     "name": "VR/AR Expo"
   },
   {
     "id": 34,
-    "image": "/Images/34.jpg",
+    "image": "/images/34.jpg",
     "date": "2025-06-19",
     "name": "Women in Tech Panel"
   },
   {
     "id": 35,
-    "image": "/Images/35.jpg",
+    "image": "/images/35.jpg",
     "date": "2025-06-20",
     "name": "UI/UX Design Workshop"
   },
   {
     "id": 36,
-    "image": "/Images/36.jpg",
+    "image": "/images/36.jpg",
     "date": "2025-06-21",
     "name": "Open Source Community Day"
   },
   {
     "id": 37,
-    "image": "/Images/37.jpg",
+    "image": "/images/37.jpg",
     "date": "2025-06-22",
     "name": "Cloud Certification Camp"
   },
   {
     "id": 38,
-    "image": "/Images/38.jpg",
+    "image": "/images/38.jpg",
     "date": "2025-06-23",
     "name": "Smart City Innovation Fair"
   },
   {
     "id": 39,
-    "image": "/Images/39.jpg",
+    "image": "/images/39.jpg",
     "date": "2025-06-24",
     "name": "DevOps Meetup"
   },
   {
     "id": 40,
-    "image": "/Images/40.jpg",
+    "image": "/images/40.jpg",
     "date": "2025-06-25",
     "name": "Quantum Computing Talk"
   }

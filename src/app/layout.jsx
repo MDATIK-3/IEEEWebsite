@@ -7,7 +7,6 @@ export const metadata = {
   description: 'Official website of IEEE Student Branch, Green University of Bangladesh',
   keywords: ['IEEE', 'Green University', 'GUB', 'IEEE Student Branch', 'Bangladesh'],
   authors: [{ name: 'IEEE GUB Team', url: 'https://ieee-gub.org' }],
-  viewport: 'width=device-width, initial-scale=1',
   icons: {
     icon: '/images/IEEE_SB.png',
     shortcut: '/images/IEEE_SB.png',
@@ -18,6 +17,13 @@ export const metadata = {
     'google-site-verification': 'your-google-site-verification-code',
     author: 'IEEE GUB',
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({ children }) {
