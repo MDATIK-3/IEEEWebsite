@@ -1,12 +1,8 @@
-import { Facebook, Linkedin, Mail, ExternalLink } from 'lucide-react';
-import Image from 'next/image';
+'use client';
 
-const teamMembers = [
-  { name: 'Atikur Rahman', img: '/images/Atikur_Rahman.jpg' },
-  { name: 'Md Atik', img: '/images/ATIKHASAN.png' },
-  { name: 'Ashraful', img: '/images/Ashraful.png' },
-  { name: 'Promod Chandra Das', img: '/images/Promod Chandra Das .jpg' },
-];
+import { Facebook, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import Contributors from './Contributors';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -88,7 +84,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-4 text-center md:text-left lg:col-span-1 md:col-span-2 lg:col-span-1">
+          <div className="space-y-4 text-center md:text-left lg:col-span-1 md:col-span-2">
             <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Contact Us</h3>
             <div className="space-y-3">
               <div className="text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -113,58 +109,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <Contributors />
 
-        <div className="border-t border-gray-200 mt-4 lg:mt-6 pt-6">
-          <div className="text-center">
-            <p className="text-xs sm:text-sm text-gray-600">
-              © {new Date().getFullYear()} Green University IEEE Student Branch. All rights reserved.
-            </p>
-
-            <div className="space-y-3">
-              <p className="text-sm sm:text-base font-medium text-gray-700">
-                Built with ❤️ by the following IEEE Members:
-              </p>
-
-              <div className="flex justify-center items-center flex-wrap gap-2 sm:gap-3">
-                {teamMembers.map((member, index) => (
-                  <div
-                    key={index}
-                    className="group relative"
-                    title={member.name}
-                  >
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 relative rounded-full overflow-hidden border-2 border-gray-300 shadow-sm hover:border-gray-500 transition-all duration-200 hover:scale-110">
-                      <Image
-                        src={member.img}
-                        alt={member.name}
-                        fill
-                        sizes="(max-width: 640px) 32px, (max-width: 1024px) 40px, 48px"
-                        className="object-cover"
-                        priority
-                      />
-                    </div>
-
-                    {/* Tooltip for larger screens */}
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden sm:block">
-                      {member.name}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Names list for mobile */}
-              <div className="block sm:hidden">
-                <p className="text-xs text-gray-500 leading-relaxed">
-                  {teamMembers.map((member, index) => (
-                    <span key={index}>
-                      {member.name}
-                      {index < teamMembers.length - 1 ? ', ' : ''}
-                    </span>
-                  ))}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </footer>
   );
