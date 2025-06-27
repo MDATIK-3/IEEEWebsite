@@ -159,7 +159,7 @@ const AllEvent = () => {
                   <button
                     key={filter.key}
                     onClick={() => setFilterType(filter.key)}
-                    className={`relative px-6 py-3 rounded-xl text-sm font-semibold transition-transform transition-colors duration-300 transform ${filterType === filter.key
+                    className={`relative px-6 py-3 rounded-xl text-sm font-semibold transition-transform duration-300 transform ${filterType === filter.key
                       ? "bg-green-600 text-white shadow-lg shadow-green-600/40 scale-110"
                       : "text-green-700 hover:bg-green-200 hover:scale-105 hover:brightness-105"
                       }`}
@@ -199,7 +199,7 @@ const AllEvent = () => {
           {displayedEvents.map((event, index) => (
             <div
               key={event.id}
-              className="transform transition-transform transition-shadow duration-300 hover:scale-110 hover:shadow-lg animate-fade-in"
+              className="transform transition-shadow duration-300 hover:scale-110 hover:shadow-lg animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <EVECA event={event} now={now} />

@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/events', label: 'Events' },
+  { href: '/Events', label: 'Events' },
   { href: '/Executives', label: 'Executives' },
-  { href: '/gal', label: 'Gallery' },
+  { href: '/Gallery', label: 'Gallery' },
 ];
 
 const cx = (...classes) => classes.filter(Boolean).join(' ');
