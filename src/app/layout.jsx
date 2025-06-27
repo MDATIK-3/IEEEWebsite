@@ -1,5 +1,6 @@
 import Navbar from '@/app/components/Shares/NavBar/page';
 import Footer from '@/app/components/Shares/Footer/page';
+import FeedbackButton from '@/app/components/Shares/FeedbackButton/page';
 import './globals.css';
 
 export const metadata = {
@@ -35,7 +36,8 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-white text-gray-900 antialiased" suppressHydrationWarning>
         <Navbar />
-        <main>{children}</main>
+        <main className="flex-grow">{children}</main>
+        <FeedbackButton />
         <Footer />
       </body>
     </html>
