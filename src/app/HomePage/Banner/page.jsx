@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 import Image from "next/image";
-import Particles from "../../Shares/Particles";
+import Particles from "@/app/components/Shares/Particles";
 
 const DEFAULT_IMAGES = [
   { src: "/images/s3.jpg", alt: "IEEE Student Branch GUB - Advancing Technology for Humanity", priority: true },

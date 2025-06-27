@@ -1,14 +1,13 @@
 import { IoMdTimer } from "react-icons/io";
-import { IoMdPeople } from "react-icons/io"; // Correct
+import { IoMdPeople } from "react-icons/io"; 
 
 
 import { CiCalendar } from "react-icons/ci";
-import Link from "next/link"; // Use Next.js Link
+import Link from "next/link";
 
 const Card = ({ event, now }) => {
   const { id, image, eventName, date, guest, time } = event;
 
-  // Countdown Logic
   const eventDate = new Date(date);
   const timeDiff = eventDate - now;
 
@@ -38,7 +37,6 @@ const Card = ({ event, now }) => {
       <div className="p-5 space-y-3">
         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">{eventName}</h2>
 
-        {/* Show guest only if available */}
         {guest && (
           <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-base">
             <IoMdPeople className="text-xl" />

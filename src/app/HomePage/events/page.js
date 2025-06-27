@@ -58,15 +58,6 @@ const AllEvent = () => {
   const upcomingCount = events.filter(event => new Date(event.date) > now).length;
   const pastCount = events.filter(event => new Date(event.date) < now).length;
 
-  const getFilterCount = (type) => {
-    switch (type) {
-      case "upcoming": return upcomingCount;
-      case "past": return pastCount;
-      case "all":
-      default: return events.length;
-    }
-  };
-
   const clearSearch = () => {
     setSearchText("");
   };
@@ -247,7 +238,6 @@ const AllEvent = () => {
         </div>
       )}
 
-      {/* See More Button - Only on homepage when there are more events */}
       {!isFullPage && filteredEvents.length > 6 && (
         <div className="flex justify-center mt-12">
           <Link href="/events">
@@ -264,7 +254,6 @@ const AllEvent = () => {
         </div>
       )}
 
-      {/* Floating Stats - Only on full page */}
       {isFullPage && events.length > 0 && (
         <div className="fixed bottom-6 right-6 bg-white/90 backdrop-blur-sm border border-green-200 rounded-2xl shadow-xl p-4 z-10">
           <div className="flex items-center space-x-4 text-sm">
