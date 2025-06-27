@@ -23,7 +23,7 @@ const Card = ({ event, now }) => {
   }
 
   return (
-    <div className="w-96 bg-gray-200 dark:bg-base-200 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+    <div className="w-96  dark:bg-base-200 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
       <figure className="h-56 overflow-hidden">
         <Link href={`/details/${id}`}>
           <img
