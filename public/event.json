@@ -12,7 +12,12 @@
     "participant": 120,
     "organizer": "GUB Career Club"
   },
-  
+  {
+    "id": 2,
+    "image": "images/e2.png",
+    "eventName": "Announcement of IEEE Executive Committee of 2025!",
+    "date": "2025-05-19"
+  },
   {
     "id": 3,
     "image": "images/e3.jpg",
@@ -28,106 +33,93 @@
   },
   {
     "id": 4,
-    "image": "images/c1.png",
-    "eventName": "Women in Tech Panel",
-    "date": "2025-06-28",
-    "time": "2:00 PM",
-    "guest": "Nusrat Chowdhury",
-    "specialGuest": "Dr. Fahmida Sultana",
-    "eventArea": "TechHub Auditorium, GUB",
-    "eventType": "Panel Discussion",
-    "participant": 90,
-    "organizer": "Women in Tech GUB"
+    "image": "images/e4.jpg",
+    "eventName": "CSE Carnival - Tech Based Debate Contest",
+    "date": "2024-10-03",
+    "time": "02:00 PM to 04:15 PM",
+    "guest": "Mr. Humayan Kabir Rana, Mr. Saurav Chandra Das, Mr. Md Mubashwir Moshwan",
+    "specialGuest": "",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Debate",
+    "participant": 80,
+    "organizer": "IEEE CS SBC GUB"
   },
   {
     "id": 5,
-    "image": "https://picsum.photos/seed/5/300/200",
-    "eventName": "Startup Launchpad",
-    "date": "2025-03-4",
-    "time": "11:00 AM",
-    "guest": "Anik Rahman",
-    "specialGuest": "Sharmin Jahan, Startup Bangladesh",
-    "eventArea": "Business Incubation Lab, GUB",
-    "eventType": "Workshop",
-    "participant": 75,
-    "organizer": "Entrepreneurship Club"
+    "image": "images/e2.jpg",
+    "eventName": "How Industry-Academia Collaboration Could Benefit CSE Graduates in 2024",
+    "date": "2024-10-04",
+    "time": "10:00 AM to 11:30 AM",
+    "guest": "Professor Dr. Md. Abdur Razzaque, Azmat Iqbal, Sajib Shikder, Md. Rezwan Hossain",
+    "specialGuest": "",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Seminar",
+    "participant": 110,
+    "organizer": "IEEE CS SBC GUB"
   },
   {
     "id": 6,
-    "image": "https://picsum.photos/seed/6/300/200",
-    "eventName": "Cybersecurity Essentials",
-    "date": "2025-03-3",
-    "time": "3:00 PM",
-    "guest": "Colonel Tanvir Ahmed",
-    "specialGuest": "Lt. Col. Shahriar Hasan",
-    "eventArea": "Digital Security Lab, GUB",
-    "eventType": "Seminar",
-    "participant": 100,
-    "organizer": "GUB Cyber Club"
+    "image": "images/e6.jpg",
+    "eventName": "CSE Carnival - IT Olympiad",
+    "date": "2024-10-04",
+    "time": "10:00 AM to 11:00 AM",
+    "guest": "",
+    "specialGuest": "",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Olympiad",
+    "participant": 52,
+    "organizer": "IEEE CS SBC GUB"
   },
-
-
   {
     "id": 7,
-    "image": "https://picsum.photos/seed/7/300/200",
-    "eventName": "UI/UX Masterclass",
-    "date": "2024-07-22",
-    "guest": "Laila Noor"
+    "image": "images/e4.jpg",
+    "eventName": "Panel Discussion on ‘How Industry-Academia Collaboration Could Benefit CSE Graduates in 2024",
+    "date": "2024-10-04",
+    "time": "11:00 AM to 01:00 PM",
+    "guest": "Md. Abdur Razzaque, Azmat Iqbal, Sajib Shikder, Md. Rezwan Hossain",
+    "specialGuest": "Professor Dr. Md. Golam Samdani Fakir, Professor Dr. Md. Sharif Uddin",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Panel Discussion",
+    "participant": 160,
+    "organizer": "IEEE CS SBC GUB"
   },
   {
     "id": 8,
-    "image": "https://picsum.photos/seed/8/300/200",
-    "eventName": "Robotics Expo 2025",
-    "date": "2025-02-28",
-    "guest": "Dr. Firoz Kabir"
+    "image": "images/e5.jpg",
+    "eventName": "Revolution of Robotics Technology and Artificial Intelligence",
+    "date": "2024-10-04",
+    "time": "11:30 AM to 12:45 PM",
+    "guest": "Prof. Dr. Saifuddin Md. Tareeq",
+    "specialGuest": "Md. Solaiman Mia",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Seminar",
+    "participant": 95,
+    "organizer": "IEEE CS SBC GUB"
   },
   {
     "id": 9,
-    "image": "https://picsum.photos/seed/9/300/200",
-    "eventName": "NextGen Developers Meetup",
-    "date": "2025-02-18",
-    "guest": "Aritra Dey"
+    "image": "images/e6.jpg",
+    "eventName": "Career Guideline Workshop on Full-Stack Development with MERN",
+    "date": "2024-10-17",
+    "time": "08:00 PM to 11:30 PM",
+    "guest": "Shohan Ean, Din Islam",
+    "specialGuest": "",
+    "eventArea": "Online via Zoom",
+    "eventType": "Workshop",
+    "participant": 250,
+    "organizer": "IEEE CS SBC GUB"
   },
   {
     "id": 10,
-    "image": "https://picsum.photos/seed/10/300/200",
-    "eventName": "Quantum Computing Talk",
-    "date": "2025-02-01",
-    "guest": "Prof. Henry Zhao"
-  },
-  {
-    "id": 11,
-    "image": "https://picsum.photos/seed/11/300/200",
-    "eventName": "Digital Marketing Trends",
-    "date": "2025-01-10",
-    "guest": "Sarah Jahan"
-  },
-  {
-    "id": 12,
-    "image": "https://picsum.photos/seed/12/300/200",
-    "eventName": "Gaming & Esports Fest",
-    "date": "2025-02-22",
-    "guest": "Nayeem Bhuiyan"
-  },
-  {
-    "id": 13,
-    "image": "https://picsum.photos/seed/13/300/200",
-    "eventName": "CSE Alumni Reunion",
-    "date": "2025-01-12",
-    "guest": "Dr. Faheem Ali"
-  },
-  {
-    "id": 14,
-    "image": "https://picsum.photos/seed/14/300/200",
-    "eventName": "Climate Tech Workshop",
-    "date": "2025-02-28",
-    "guest": "Tasnim Zaman"
-  },
-  {
-    "id": 15,
-    "image": "https://picsum.photos/seed/15/300/200",
-    "eventName": "Mobile App Showcase",
-    "date": "2025-01-05",
-    "guest": "Mehedi Hasan"
+    "image": "images/e7.jpg",
+    "eventName": "Introduction to Kaggle: A Beginner’s Guide for Aspiring Data Science & Machine Learning Enthusiasts",
+    "date": "2024-10-15",
+    "time": "02:15 PM to 04:15 PM",
+    "guest": "Mir Tahmid Hossain",
+    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Seminar",
+    "participant": 125,
+    "organizer": "IEEE CS SBC GUB"
   }
 ]
