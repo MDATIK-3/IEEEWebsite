@@ -1,6 +1,6 @@
 import Navbar from '@/app/components/Shares/NavBar/page';
 import Footer from '@/app/components/Shares/Footer/page';
-import FeedbackButton from '@/app/components/Shares/FeedbackButton/page';
+import FeedbackButton from '@/app/components/FeedbackButton/page';
 import './globals.css';
 
 export const metadata = {

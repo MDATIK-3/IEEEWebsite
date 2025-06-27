@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 
 import {
@@ -13,6 +14,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+=======
+'use client';
+
+import { Facebook, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import Contributors from './Contributors';
+import Image from 'next/image';
+>>>>>>> 04753e315af6eb3e53d595bc6697ef2154eab443
 
 const Footer = () => {
   const customLinks = [
@@ -65,6 +73,7 @@ const Footer = () => {
             </div>
           </div>
 
+<<<<<<< HEAD
           {/* Quick Links */}
           <div className="space-y-6">
             <h3 className="text-lg font-semibold text-gray-900 flex justify-center md:justify-start items-center">
@@ -77,6 +86,25 @@ const Footer = () => {
                   key={index}
                   href={link.href}
                   className="flex items-center justify-center md:justify-start space-x-2 hover:text-blue-600 transition-colors duration-200"
+=======
+          <div className="space-y-4 text-center md:text-left lg:col-span-1 md:col-span-2">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Contact Us</h3>
+            <div className="space-y-3">
+              <div className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                <p className="font-medium text-gray-700 mb-2">Address:</p>
+                <div className="space-y-1">
+                  <p>Green University of Bangladesh</p>
+                  <p>Purbachal American City, Kanchan</p>
+                  <p>Rupganj, Narayanganj-1461</p>
+                </div>
+              </div>
+
+              <div className="text-sm flex items-center gap-2 text-gray-700">
+                <span className="font-medium">Email:</span>
+                <a
+                  href="mailto:ieee_sb@green.edu.bd"
+                  className="text-gray-600 hover:text-gray-800 transition-colors duration-200 flex items-center gap-1"
+>>>>>>> 04753e315af6eb3e53d595bc6697ef2154eab443
                 >
                   <ChevronRight className="h-4 w-4 text-gray-500" />
                   <span>{link.label}</span>
@@ -84,6 +112,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
+<<<<<<< HEAD
 
           {/* Contact Info */}
           <div className="space-y-6">
@@ -162,6 +191,11 @@ const Footer = () => {
           </div>
         </div>
 
+=======
+        </div>
+        <Contributors />
+
+>>>>>>> 04753e315af6eb3e53d595bc6697ef2154eab443
       </div>
     </footer>
   );

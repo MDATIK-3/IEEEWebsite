@@ -1,8 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import {ZoomIn } from 'lucide-react';
 import Modal from './Modal';
+import Image from 'next/image';
 
 const PhotoCard = ({ photo, index, photos }) => {
   const [showModal, setShowModal] = useState(false);
@@ -50,7 +51,7 @@ const PhotoCard = ({ photo, index, photos }) => {
           )}
 
           {!imageError ? (
-            <img
+            <Image
               src={photo.image}
               alt={photo.name}
               className={`w-full h-full object-cover transition-all duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -61,6 +62,8 @@ const PhotoCard = ({ photo, index, photos }) => {
                 setImageLoaded(true);
               }}
               loading="lazy"
+              width={800}
+              height={600}
             />
           ) : (
             <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-500">
@@ -68,7 +71,6 @@ const PhotoCard = ({ photo, index, photos }) => {
             </div>
           )}
 
-          {/* Hover Zoom Icon */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition">
             <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-200">
               <div className="bg-white/80 p-2 rounded-full shadow backdrop-blur-sm hover:scale-110 transform transition">
@@ -78,7 +80,6 @@ const PhotoCard = ({ photo, index, photos }) => {
           </div>
         </div>
 
-        {/* Info section */}
         <div className="p-4">
           <h3 className="text-lg font-semibold text-gray-800 truncate">
             {photo.name}
