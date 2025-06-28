@@ -1,50 +1,35 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import {ZoomIn } from 'lucide-react';
-import Modal from './Modal';
+import { useEffect, useRef, useState } from 'react';
+import { ZoomIn } from 'lucide-react';
+import Modal from "@/app/components/Shares/Modal";
 import Image from 'next/image';
 
 const PhotoCard = ({ photo, index, photos }) => {
-  const [showModal, setShowModal] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(index);
+  const modalRef = useRef();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-
-  const handleOpenModal = useCallback(() => {
-    setCurrentIndex(index);
-    setShowModal(true);
-  }, [index]);
-
-  const handleCloseModal = useCallback(() => setShowModal(false), []);
-
-  const handlePrev = () =>
-    setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
-  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % photos.length);
+  const [showModal, setShowModal] = useState(false);
+  const [pendingIndex, setPendingIndex] = useState(null);
 
   useEffect(() => {
-    if (!showModal) return;
-    const handleKey = (e) => {
-      if (e.key === 'Escape') handleCloseModal();
-      if (e.key === 'ArrowLeft') handlePrev();
-      if (e.key === 'ArrowRight') handleNext();
-    };
-    document.addEventListener('keydown', handleKey);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', handleKey);
-      document.body.style.overflow = 'unset';
-    };
-  }, [showModal]);
+    if (showModal && modalRef.current && pendingIndex !== null) {
+      modalRef.current.open(pendingIndex);
+      setPendingIndex(null);
+    }
+  }, [showModal, pendingIndex]);
 
-  const currentPhoto = photos[currentIndex];
+  const handleClick = () => {
+    setPendingIndex(index);
+    setShowModal(true);
+  };
 
   return (
     <>
       <div className="group relative bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
         <div
           className="relative aspect-[4/3] cursor-pointer overflow-hidden"
-          onClick={handleOpenModal}
+          onClick={handleClick}
         >
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gray-100 animate-pulse" />
@@ -54,8 +39,7 @@ const PhotoCard = ({ photo, index, photos }) => {
             <Image
               src={photo.image}
               alt={photo.name}
-              className={`w-full h-full object-cover transition-all duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'
-                } group-hover:scale-105`}
+              className={`w-full h-full object-cover transition-all duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'} group-hover:scale-105`}
               onLoad={() => setImageLoaded(true)}
               onError={() => {
                 setImageError(true);
@@ -87,16 +71,8 @@ const PhotoCard = ({ photo, index, photos }) => {
         </div>
       </div>
 
-      {showModal && (
-        <Modal
-          currentPhoto={currentPhoto}
-          handleCloseModal={handleCloseModal}
-          handlePrev={handlePrev}
-          handleNext={handleNext}
-        />
-      )}
+      {showModal && <Modal ref={modalRef} photos={photos} />}
     </>
-
   );
 };
 

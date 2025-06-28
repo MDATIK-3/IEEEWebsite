@@ -1,100 +1,122 @@
 'use client';
 
-import { useEffect, useState, useMemo, useRef } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import PhotoGrid from "@/app/HomePage/Gallery/PhotoGrid";
+import { useState, useMemo, useEffect, useRef } from "react";
+import { useGalleryData } from "../hooks/useGalleryData";
+import GalleryControls from "./components/GalleryControls";
+import PhotoCard from "./components/PhotoCard";
+import Pagination from "./components/Pagination";
+import EmptyState from "./components/EmptyState";
+import LoadingSpinner from "../components/LoadingSpinner";
+import Modal from "@/app/components/Shares/Modal";
 
 const ITEMS_PER_PAGE = 18;
 
 const GalleryFull = () => {
-  const [photos, setPhotos] = useState([]);
-  const photosCache = useRef(null);
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const currentPage = parseInt(searchParams.get("page") || "1", 10);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [viewMode, setViewMode] = useState('grid');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [showModal, setShowModal] = useState(false);
+    const [pendingIndex, setPendingIndex] = useState(null);
+    const modalRef = useRef();
 
-  useEffect(() => {
-    if (photosCache.current) {
-      setPhotos(photosCache.current);
-      return;
-    }
+    const { filteredPhotos, loading } = useGalleryData(searchQuery, selectedCategory);
 
-    const fetchPhotos = async () => {
-      try {
-        const res = await fetch("/photos.json");
-        const data = await res.json();
-        const sorted = data.sort((a, b) => a.id - b.id);
-        photosCache.current = sorted;
-        setPhotos(sorted);
-      } catch (err) {
-        console.error("Failed to fetch photos:", err);
-      }
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, selectedCategory]);
+
+    useEffect(() => {
+        if (showModal && modalRef.current && pendingIndex !== null) {
+            modalRef.current.open(pendingIndex);
+            setPendingIndex(null);
+        }
+    }, [showModal, pendingIndex]);
+
+    const totalPages = useMemo(
+        () => Math.ceil(filteredPhotos.length / ITEMS_PER_PAGE),
+        [filteredPhotos]
+    );
+
+    const pagedPhotos = useMemo(() => {
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        return filteredPhotos.slice(start, start + ITEMS_PER_PAGE);
+    }, [filteredPhotos, currentPage]);
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     };
 
-    fetchPhotos();
-  }, []);
+    const handlePhotoClick = (photo) => {
+        const indexInFiltered = filteredPhotos.findIndex(p => p.id === photo.id);
+        if (indexInFiltered !== -1) {
+            setPendingIndex(indexInFiltered);
+            setShowModal(true);
+        }
+    };
 
-  const totalPages = useMemo(() => Math.ceil(photos.length / ITEMS_PER_PAGE), [photos.length]);
-  const pagedPhotos = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return photos.slice(start, start + ITEMS_PER_PAGE);
-  }, [photos, currentPage]);
+    if (loading) return <LoadingSpinner />;
 
-  const handlePageChange = (page) => {
-    if (page !== currentPage) router.push(`/Gallery?page=${page}`);
-  };
+    return (
+        <div className="relative bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/25 pt-20">
+            <div
+                className="absolute inset-0 pointer-events-none z-0"
+                style={{
+                    backgroundImage: `linear-gradient(to right, rgba(79, 70, 229, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(79, 70, 229, 0.05) 1px, transparent 1px)`,
+                    backgroundSize: '40px 40px',
+                }}
+            />
+            <div className="relative z-10">
+                <GalleryControls
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                    selectedCategory={selectedCategory}
+                    setSelectedCategory={setSelectedCategory}
+                    viewMode={viewMode}
+                    setViewMode={setViewMode}
+                />
 
-  return (
-    <section className="relative bg-gradient-to-b from-emerald-50 to-white min-h-screen py-24 px-4 sm:px-6 lg:px-12">
-      <div
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(16,185,129,0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(16,185,129,0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    {filteredPhotos.length === 0 ? (
+                        <EmptyState />
+                    ) : (
+                        <>
+                            <div className="mb-8 text-center">
+                                <p className="text-slate-600">
+                                    Showing {pagedPhotos.length } of {filteredPhotos.length} photos
+                                    {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+                                    {searchQuery && ` matching "${searchQuery}"`}
+                                </p>
+                            </div>
 
-      <div className="relative max-w-7xl mx-auto">
-        <header className="mb-20 text-center">
-          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-900 via-emerald-700 to-teal-700 drop-shadow-md">
-            IEEE GUB Photo Gallery
-          </h1>
-          <p className="mt-6 text-lg text-emerald-900 max-w-xl mx-auto leading-relaxed">
-            Explore {photos.length} unforgettable moments captured from our events, seminars, and celebrations.
-          </p>
-        </header>
+                            <div className={`grid gap-6 mb-12 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 lg:grid-cols-2'}`}>
+                                {pagedPhotos.map((photo, index) => (
+                                    <PhotoCard
+                                        key={photo.id}
+                                        photo={photo}
+                                        viewMode={viewMode}
+                                        index={index}
+                                        onClick={() => handlePhotoClick(photo)}
+                                    />
+                                ))}
+                            </div>
 
-        <PhotoGrid photos={pagedPhotos} cardClassName="rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer" />
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={handlePageChange}
+                            />
+                        </>
+                    )}
+                </main>
+            </div>
 
-        {totalPages > 1 && (
-          <nav
-            aria-label="Pagination"
-            className="mt-14 flex justify-center flex-wrap gap-3 select-none"
-          >
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page)}
-                aria-current={currentPage === page ? "page" : undefined}
-                className={`px-5 py-2 rounded-full font-semibold text-sm transition-colors duration-300
-                  ${
-                    currentPage === page
-                      ? "bg-emerald-700 text-white shadow-lg"
-                      : "bg-white text-emerald-700 border border-emerald-300 hover:bg-emerald-100"
-                  }
-                `}
-              >
-                {page}
-              </button>
-            ))}
-          </nav>
-        )}
-      </div>
-    </section>
-  );
+            {showModal && <Modal ref={modalRef} photos={filteredPhotos} onClose={() => setShowModal(false)} />}
+        </div>
+    );
 };
 
 export default GalleryFull;

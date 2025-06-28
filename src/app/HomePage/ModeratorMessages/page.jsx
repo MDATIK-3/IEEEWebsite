@@ -36,7 +36,6 @@ export default function ModeratorMessages() {
 
   return (
     <section className="relative py-16 px-4 bg-white min-h-screen overflow-hidden">
-      {/* Background Grid */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
