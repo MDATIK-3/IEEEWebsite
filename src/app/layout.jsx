@@ -9,9 +9,9 @@ export const metadata = {
   keywords: ['IEEE', 'Green University', 'GUB', 'IEEE Student Branch', 'Bangladesh'],
   authors: [{ name: 'IEEE GUB Team', url: 'https://ieee-gub.org' }],
   icons: {
-    icon: '/images/IEEE_SB.png',
-    shortcut: '/images/IEEE_SB.png',
-    apple: '/images/IEEE_SB.png',
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
   },
   robots: 'index, follow',
   other: {
