@@ -56,7 +56,7 @@ const Modal = forwardRef(({ photos }, ref) => {
           className="max-w-full max-h-full object-contain rounded-lg"
         />
 
-        <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 text-white">
+        <div className="absolute bottom-4 left-4 right-4 sm:bg-black/50 sm:backdrop-blur-sm rounded-lg p-4 text-white">
           <h3 className="text-xl font-bold mb-2">{photo.name || `Photo ${photo.id}`}</h3>
           <div className="flex items-center gap-4 text-sm flex-wrap">
             <span className="px-4 py-2 flex items-center gap-2 rounded-2xl text-white font-medium bg-gradient-to-r from-emerald-500 to-emerald-600 hover:brightness-110">
