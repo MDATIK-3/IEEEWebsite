@@ -1,8 +1,5 @@
-'use client';
-
+'use client'
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 
 function Contributors() {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -43,7 +40,7 @@ function Contributors() {
 
           <div className="flex justify-center items-center flex-wrap gap-2 sm:gap-3 md:flex-nowrap md:gap-2">
             {teamMembers.map((member) => (
-              <Link
+              <a
                 key={member.id}
                 href={member.html_url}
                 target="_blank"
@@ -55,7 +52,7 @@ function Contributors() {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-green-500 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition duration-500 scale-110"></div>
                   <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg group-hover:shadow-2xl transition-transform duration-300 group-hover:scale-110 group-hover:border-blue-200">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Image
+                    <img
                       src={member.avatar_url}
                       alt={member.login}
                       fill
@@ -71,7 +68,7 @@ function Contributors() {
                 <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden sm:block">
                   {member.login}
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
