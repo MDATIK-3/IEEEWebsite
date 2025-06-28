@@ -45,15 +45,22 @@ function Contributors() {
                 className="group relative"
                 title={member.login}
               >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 relative rounded-full overflow-hidden border-2 border-gray-300 shadow-sm hover:border-gray-500 transition-all duration-200 hover:scale-110">
-                  <Image
-                    src={member.avatar_url}
-                    alt={member.login}
-                    fill
-                    sizes="(max-width: 640px) 32px, (max-width: 1024px) 40px, 48px"
-                    className="object-cover"
-                    priority
-                  />
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-green-500 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500 scale-110"></div>
+                  <div className="relative w-16 h-16 lg:w-12 lg:h-12 rounded-full overflow-hidden border-3 border-white shadow-lg group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:border-blue-200">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <Image
+                      src={member.avatar_url}
+                      alt={member.login}
+                      fill
+                      sizes="(max-width: 1024px) 64px, 80px"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      priority
+                    />
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                    {member.contributions}
+                  </div>
                 </div>
 
                 <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap hidden sm:block">
