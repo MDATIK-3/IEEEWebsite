@@ -1,0 +1,208 @@
+import React, { useMemo, useCallback } from 'react';
+import { IoMdTimer, IoMdPeople } from "react-icons/io";
+import { CiCalendar } from "react-icons/ci";
+import Link from "next/link";
+import { useEvent } from '@/app/context/EventContext';
+
+const calculateCountdown = (timeDiff) => {
+  if (timeDiff <= 0) return null;
+  
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+  const seconds = Math.floor((timeDiff / 1000) % 60);
+  
+  return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+};
+
+const formatDate = (dateString) => {
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return dateString;
+    }
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  } catch (error) {
+    console.warn('Date formatting error:', error);
+    return dateString;
+  }
+};
+
+const EventCard = ({ event, now, onError }) => {
+  const { setSelectedEvent } = useEvent();
+  
+  if (!event) {
+    console.error('EventCard: event prop is required');
+    return null;
+  }
+
+  const {
+    id,
+    image,
+    eventName,
+    date,
+    guest,
+    time,
+    specialGuest,
+    eventArea,
+    eventType,
+    participant,
+    organizer
+  } = event;
+
+  const countdown = useMemo(() => {
+    if (!date || !now) return null;
+    
+    try {
+      const eventDate = new Date(date);
+      if (isNaN(eventDate.getTime())) {
+        console.warn('Invalid date provided:', date);
+        return null;
+      }
+      
+      const timeDiff = eventDate - now;
+      return calculateCountdown(timeDiff);
+    } catch (error) {
+      console.warn('Countdown calculation error:', error);
+      onError?.(error);
+      return null;
+    }
+  }, [date, now, onError]);
+
+  const formattedDate = useMemo(() => formatDate(date), [date]);
+
+  const handleClick = useCallback(() => {
+    try {
+      setSelectedEvent?.(event);
+      
+      if (typeof window !== 'undefined' && window.localStorage) {
+        try {
+          localStorage.setItem('selectedEvent', JSON.stringify(event));
+        } catch (storageError) {
+          console.warn('localStorage error:', storageError);
+        }
+      }
+    } catch (error) {
+      console.error('EventCard click handler error:', error);
+      onError?.(error);
+    }
+  }, [event, setSelectedEvent, onError]);
+
+  const handleImageError = useCallback((e) => {
+    console.warn('Image failed to load:', image);
+    e.target.style.display = 'none';
+  }, [image]);
+
+  const tags = useMemo(() => {
+    const tagList = [];
+    
+    if (eventArea) tagList.push({ label: eventArea, type: 'area' });
+    if (eventType) tagList.push({ label: eventType, type: 'type' });
+    if (participant !== undefined && participant !== null) {
+      tagList.push({ label: `${participant} Participants`, type: 'participant' });
+    }
+    if (organizer) tagList.push({ label: `Organizer: ${organizer}`, type: 'organizer' });
+    
+    return tagList;
+  }, [eventArea, eventType, participant, organizer]);
+
+  return (
+    <article 
+      className="w-full h-full bg-white dark:bg-base-200 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden"
+      role="article"
+      aria-label={`Event: ${eventName || 'Untitled Event'}`}
+    >
+      {image && (
+        <figure className="max-h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
+          <Link 
+            href={`/details/${id}`} 
+            onClick={handleClick}
+            aria-label={`View details for ${eventName || 'this event'}`}
+          >
+            <img
+              src={image}
+              alt={eventName ? `${eventName} event image` : 'Event image'}
+              className="inline-block object-contain transition-transform duration-300 hover:scale-105"
+              onError={handleImageError}
+              loading="lazy"
+            />
+          </Link>
+        </figure>
+      )}
+
+      <div className="p-5 space-y-3">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 line-clamp-2 mb-3">
+          {eventName || 'Untitled Event'}
+        </h2>
+
+        {countdown && (
+          <div className="text-sm font-medium text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 px-3 py-1 rounded-full inline-block mb-3 w-fit">
+            {countdown}
+          </div>
+        )}
+
+        <div className="flex-grow space-y-3">
+          {guest && (
+            <div className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
+              <IoMdPeople className="text-xl flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <span className="text-sm line-clamp-2">
+                <span className="font-semibold">Guests:</span> {guest}
+              </span>
+            </div>
+          )}
+
+          {specialGuest && (
+            <div className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
+              <span className="text-sm line-clamp-2">
+                <span className="font-semibold">Special Guest:</span> {specialGuest}
+              </span>
+            </div>
+          )}
+
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 overflow-hidden max-h-20">
+              {tags.slice(0, 4).map((tag, index) => (
+                <span
+                  key={`${tag.type}-${index}`}
+                  className="px-3 py-1 bg-green-100 dark:bg-green-700 text-green-800 dark:text-green-100 rounded-full text-xs font-medium truncate max-w-[120px]"
+                  title={tag.label}
+                >
+                  {tag.label}
+                </span>
+              ))}
+              {tags.length > 4 && (
+                <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs font-medium">
+                  +{tags.length - 4} more
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
+          {date && (
+            <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-full">
+              <CiCalendar className="text-lg flex-shrink-0" aria-hidden="true" />
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                {formattedDate}
+              </span>
+            </div>
+          )}
+
+          {time && (
+            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+              <IoMdTimer className="text-lg flex-shrink-0" aria-hidden="true" />
+              <span className="text-sm font-medium">{time}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+export default React.memo(EventCard);
