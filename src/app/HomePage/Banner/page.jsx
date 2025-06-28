@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useMotion } from './useMotion';
 import BackgroundBlobs from './BackgroundBlobs';
 import RadialBackground from './RadialBackground';
@@ -28,7 +28,9 @@ const HeroSection = () => {
           <HeroText motion={motion} />
           <div className="relative">
             <HeroCard smoothedPosition={smoothedPosition} motion={motion} />
-            <FloatingDecorations motion={motion} />
+            <Suspense fallback={null}>
+              <FloatingDecorations motion={motion} />
+            </Suspense>
             <div
               className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-blue-500/30 rounded-3xl blur-2xl transition-all duration-700"
               style={motion(12, 12)}

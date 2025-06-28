@@ -45,7 +45,7 @@ const PhotoCard = ({ photo, index, photos }) => {
                 setImageError(true);
                 setImageLoaded(true);
               }}
-              loading="lazy"
+              loading={index === 0 ? 'eager' : 'lazy'}
               width={800}
               height={600}
             />
