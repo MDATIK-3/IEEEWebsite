@@ -79,9 +79,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900 flex justify-center md:justify-start items-center">
           <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center justify-center md:justify-start">
               <BookOpen className="h-5 w-5 mr-2 text-gray-700" />
@@ -93,10 +90,6 @@ const Footer = () => {
                 <Link
                   key={index}
                   href={link.href}
-                  className="flex items-center justify-center md:justify-start space-x-2 hover:text-blue-600 transition-colors duration-200"
-                >
-                  <ChevronRight className="h-4 w-4 text-gray-500" />
-                  <span>{link.label}</span>
                   className="transition-all duration-200 hover:text-green-600 hover:underline underline-offset-4 hover:scale-[1.03]"
                 >
                   {link.label}
@@ -161,33 +154,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Footer Bottom */}
-        <div className="border-t border-gray-200 mt-16 pt-8">
-          <div className="flex flex-col items-center text-center md:flex-row md:justify-between md:items-center md:text-left gap-4">
-            <p className="text-gray-500 text-xs md:text-sm">
-              © {new Date().getFullYear()} IEEE Student Branch, Green University of Bangladesh. All rights reserved.
-            </p>
-
-            {/* Team Avatars */}
-            <div className="flex items-center gap-2">
-              {[
-                "images/Atikur_Rahman.jpg",
-                "images/ATIKHASAN.png",
-                "images/Ashraful.png"
-              ].map((src, index) => (
-                <div key={index} className="w-12 h-12 rounded-full overflow-hidden border border-gray-300 shadow-sm">
-                  <img
-                    src={src}
-                    alt={`Contributor ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
+        <Contributors />
       </div>
     </footer>
   );

@@ -4,7 +4,7 @@ import EventCard from './EventCard';
 const EventsGrid = ({ events, now, onError }) => {
   if (!Array.isArray(events) || events.length === 0) {
     return (
-      <div className="flex items-center justify-center py-16">
+      <div className="flex items-center justify-center py-16 h-full min-h-[300px]">
         <p className="text-gray-500 dark:text-gray-400 text-lg">
           No events to display
         </p>
@@ -24,17 +24,13 @@ const EventsGrid = ({ events, now, onError }) => {
           return (
             <div
               key={event.id}
-              className="flex justify-center animate-fade-in"
+              className="animate-fade-in h-full"
               style={{
                 animationDelay: `${index * 100}ms`,
                 animationFillMode: 'both',
               }}
             >
-              <div className="w-full h-[600px]">
-                <div className="w-full h-full transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
-                  <EventCard event={event} now={now} onError={onError} />
-                </div>
-              </div>
+              <EventCard event={event} now={now} onError={onError} />
             </div>
           );
         })}

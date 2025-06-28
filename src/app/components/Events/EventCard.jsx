@@ -112,12 +112,12 @@ const EventCard = ({ event, now, onError }) => {
 
   return (
     <article 
-      className="w-full h-full bg-white dark:bg-base-200 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden"
+      className="w-full  bg-white dark:bg-base-200 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden"
       role="article"
       aria-label={`Event: ${eventName || 'Untitled Event'}`}
     >
       {image && (
-        <figure className="max-h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <figure className="h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
           <Link 
             href={`/details/${id}`} 
             onClick={handleClick}
@@ -155,51 +155,28 @@ const EventCard = ({ event, now, onError }) => {
             </div>
           )}
 
-          {specialGuest && (
-            <div className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
-              <span className="text-sm line-clamp-2">
-                <span className="font-semibold">Special Guest:</span> {specialGuest}
-              </span>
-            </div>
-          )}
+         
 
-          {tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 overflow-hidden max-h-20">
-              {tags.slice(0, 4).map((tag, index) => (
-                <span
-                  key={`${tag.type}-${index}`}
-                  className="px-3 py-1 bg-green-100 dark:bg-green-700 text-green-800 dark:text-green-100 rounded-full text-xs font-medium truncate max-w-[120px]"
-                  title={tag.label}
-                >
-                  {tag.label}
-                </span>
-              ))}
-              {tags.length > 4 && (
-                <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs font-medium">
-                  +{tags.length - 4} more
-                </span>
-              )}
-            </div>
-          )}
+         
         </div>
 
-        <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
-          {date && (
-            <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-full">
-              <CiCalendar className="text-lg flex-shrink-0" aria-hidden="true" />
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
-                {formattedDate}
-              </span>
-            </div>
-          )}
+       <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
+  {date && (
+    <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900 px-3 py-2 rounded-full">
+      <CiCalendar className="text-lg text-green-700 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
+      <span className="text-sm font-medium text-green-700 dark:text-green-300">
+        {formattedDate}
+      </span>
+    </div>
+  )}
 
-          {time && (
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-              <IoMdTimer className="text-lg flex-shrink-0" aria-hidden="true" />
-              <span className="text-sm font-medium">{time}</span>
-            </div>
-          )}
-        </div>
+  {time && (
+    <div className="flex items-center gap-2 text-green-600 dark:text-green-300">
+      <IoMdTimer className="text-lg flex-shrink-0" aria-hidden="true" />
+      <span className="text-sm font-medium">{time}</span>
+    </div>
+  )}
+</div>
       </div>
     </article>
   );
