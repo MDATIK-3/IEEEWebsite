@@ -112,7 +112,7 @@ const EventCard = ({ event, now, onError }) => {
 
   return (
     <article 
-      className="w-full  bg-white dark:bg-base-200 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden"
+      className="w-full h-full  bg-white dark:bg-base-200 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden"
       role="article"
       aria-label={`Event: ${eventName || 'Untitled Event'}`}
     >
