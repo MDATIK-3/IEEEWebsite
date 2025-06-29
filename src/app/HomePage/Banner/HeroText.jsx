@@ -3,13 +3,10 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 
-export default function HeroText({ motion }) {
+export default function HeroText() {
   return (
     <div className="relative text-left">
-      <h1
-        className="text-3xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-6xl xl:text-7xl transition-all duration-500 ease-out"
-        style={motion(15, 10)}
-      >
+      <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-6xl xl:text-7xl transition-all duration-500 ease-out">
         Pioneering Tomorrow's{' '}
         <span className="relative inline-block mt-2">
           <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
@@ -19,14 +16,11 @@ export default function HeroText({ motion }) {
         </span>
       </h1>
 
-      <p
-        className="mt-8 text-lg leading-relaxed text-gray-600 lg:text-xl max-w-2xl transition-all duration-700 ease-out"
-        style={motion(8, 5)}
-      >
+      <p className="mt-8 text-lg leading-relaxed text-gray-600 lg:text-xl max-w-2xl transition-all duration-700 ease-out">
         Join Bangladesh's premier IEEE Student Branch at Green University of Bangladesh, one of the leading private universities driving innovation in Computer Science, Engineering, and sustainable technology solutions.
       </p>
 
-      <div className="mt-10 transition-all duration-700 ease-out" style={motion(5, 3)}>
+      <div className="mt-10 transition-all duration-700 ease-out">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <Link
             href="/contact"

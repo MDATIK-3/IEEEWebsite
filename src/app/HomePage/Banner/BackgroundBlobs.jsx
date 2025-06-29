@@ -1,11 +1,8 @@
 'use client';
 
-export default function BackgroundBlobs({ motion }) {
+export default function BackgroundBlobs() {
   return (
-    <div
-      className="absolute inset-0 will-change-transform"
-      style={{ ...motion(40, 40), transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)' }}
-    >
+    <div className="absolute inset-0 will-change-transform transition-transform duration-700">
       <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-green-400/30 to-emerald-500/30 rounded-full blur-3xl animate-pulse" />
       <div
         className="absolute top-60 right-32 w-80 h-80 bg-gradient-to-br from-blue-400/30 to-cyan-500/30 rounded-full blur-3xl animate-pulse"

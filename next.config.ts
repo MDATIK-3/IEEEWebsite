@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -17,7 +21,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*).(jpg|jpeg|png|gif|webp|avif|svg|ico)',
+        source: '/(.*)\\.(jpg|jpeg|png|gif|webp|avif|svg|ico)',
         headers: [
           {
             key: 'Cache-Control',
@@ -29,4 +33,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

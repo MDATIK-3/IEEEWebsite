@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
-import { useMotion } from './useMotion';
 import BackgroundBlobs from './BackgroundBlobs';
 import RadialBackground from './RadialBackground';
 import HeroText from './HeroText';
@@ -9,7 +8,6 @@ import HeroCard from './HeroCard';
 import FloatingDecorations from './FloatingDecorations';
 
 const HeroSection = () => {
-  const { smoothedPosition, motion } = useMotion();
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -20,20 +18,19 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-green-50/40 to-blue-50/50 pt-10 pb-12">
-      <BackgroundBlobs motion={motion} />
+      <BackgroundBlobs />
       <RadialBackground />
 
       <div className="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 pt-20">
         <div className="grid max-w-lg grid-cols-1 mx-auto lg:max-w-full lg:items-center lg:grid-cols-2 gap-y-12 lg:gap-x-16">
-          <HeroText motion={motion} />
+          <HeroText />
           <div className="relative">
-            <HeroCard smoothedPosition={smoothedPosition} motion={motion} />
+            <HeroCard />
             <Suspense fallback={null}>
-              <FloatingDecorations motion={motion} />
+              <FloatingDecorations />
             </Suspense>
             <div
               className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-blue-500/30 rounded-3xl blur-2xl transition-all duration-700"
-              style={motion(12, 12)}
             ></div>
           </div>
         </div>
