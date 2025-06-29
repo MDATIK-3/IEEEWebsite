@@ -81,10 +81,10 @@ const MemberCard = ({ member, isFaculty = false, onClick }) => {
                 </div>
 
                 <div className={`flex justify-center  gap-2 transition-all duration-300 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
-                    <SocialLink href={member.linkedin} icon={Linkedin} label="LinkedIn" colorClass="bg-emerald-600 hover:bg-emerald-700" disabled={!member.linkedin} />
-                    <SocialLink href={`mailto:${member.email}`} icon={Mail} label="Email" colorClass="bg-red-600 hover:bg-red-700" disabled={!member.email} />
-                    <SocialLink href={member.facebook} icon={Facebook} label="Facebook" colorClass="bg-blue-600 hover:bg-blue-700" disabled={!member.facebook} />
-                    <SocialLink href={`tel:${member.phone}`} icon={Phone} label="Phone" colorClass="bg-green-600 hover:bg-green-700" disabled={!member.phone} />
+                    <SocialLink href={member.social.linkedin} icon={Linkedin} label="LinkedIn" colorClass="bg-emerald-600 hover:bg-emerald-700" disabled={!member.social.linkedin} />
+                    <SocialLink href={`mailto:${member.social.email}`} icon={Mail} label="Email" colorClass="bg-red-600 hover:bg-red-700" disabled={!member.social.email} />
+                    <SocialLink href={member.social.facebook} icon={Facebook} label="Facebook" colorClass="bg-blue-600 hover:bg-blue-700" disabled={!member.social.facebook} />
+                   
                 </div>
             </div>
         </div>

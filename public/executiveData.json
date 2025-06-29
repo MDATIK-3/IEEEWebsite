@@ -3,121 +3,336 @@
         "SB": {
             "faculty": [
                 {
-                    "name": "Dr.Aminur Rahman",
-                    "role": "BRANCH COUNSRLOR",
-                    "img": "images/AMN.jpg"
+                    "name": "Dr. Aminur Rahman",
+                    "role": "BRANCH COUNSELOR",
+                    "img": "images/AMN.jpg",
+                    "social": {
+                        "facebook": "https://facebook.com/aminur.rahman",
+                        "linkedin": "https://linkedin.com/in/aminurrahman",
+                        "email": "mailto:aminur.rahman@example.com"
+                    }
                 },
                 {
-                    "name": "Dr.Ahmed Al Mansur",
+                    "name": "Dr. Ahmed Al Mansur",
                     "role": "MENTOR",
-                    "img": "images/AHMED.jpg"
+                    "img": "images/AHMED.jpg",
+                    "social": {
+                        "facebook": "https://facebook.com/ahmed.mansur",
+                        "linkedin": "https://linkedin.com/in/ahmedmansur",
+                        "email": "mailto:ahmed.mansur@example.com"
+                    }
                 },
                 {
-                    "name": "MD.Rajibul Palas",
+                    "name": "MD. Rajibul Palas",
                     "role": "MENTOR",
-                    "img": "images/RJBUL.jpg"
+                    "img": "images/RJBUL.jpg",
+                    "social": {
+                        "facebook": "https://facebook.com/rajibul.palas",
+                        "linkedin": "https://linkedin.com/in/rajibulpalas",
+                        "email": "mailto:rajibul.palas@example.com"
+                    }
                 }
             ],
             "students": [
                 {
                     "name": "Faysal Hossain Tomal",
                     "role": "Chair",
-                    "img": "images/Faysal Hossain Tomal No BG.png"
+                    "img": "images/1.png",
+                    "social": {
+                        "facebook": "https://facebook.com/faysal.tomal",
+                        "linkedin": "https://linkedin.com/in/faysaltomal",
+                        "email": "mailto:faysal.tomal@example.com"
+                    }
                 },
                 {
                     "name": "S. M Shakib Mahmud Shefat",
                     "role": "Vice-chair (Activity)",
-                    "img": "images/Sakib Mahmud.jpeg"
+                    "img": "images/2.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.shefat",
+                        "linkedin": "https://linkedin.com/in/shakibshefat",
+                        "email": "mailto:shakib.shefat@example.com"
+                    }
                 },
                 {
                     "name": "Fahim Mahmud",
                     "role": "Vice-chair (Technical)",
-                    "img": "images/Fahim Mahmud.jpg"
+                    "img": "images/3.png",
+                    "social": {
+                        "facebook": "https://facebook.com/fahim.mahmud",
+                        "linkedin": "https://linkedin.com/in/fahimmahmud",
+                        "email": "mailto:fahim.mahmud@example.com"
+                    }
                 },
                 {
                     "name": "Shahadat Hosen Nishan",
                     "role": "General Secretary",
-                    "img": "images/Shahadat Hosen Nishan.jpg"
+                    "img": "images/4.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shahadat.nishan",
+                        "linkedin": "https://linkedin.com/in/shahadatnishan",
+                        "email": "mailto:shahadat.nishan@example.com"
+                    }
                 },
                 {
                     "name": "Esrat Ahmed Eva",
                     "role": "Joint Secretary",
-                    "img": "images/Eva.JPG"
+                    "img": "images/5.png",
+                    "social": {
+                        "facebook": "https://facebook.com/esrat.eva",
+                        "linkedin": "https://linkedin.com/in/esrateva",
+                        "email": "mailto:esrat.eva@example.com"
+                    }
                 },
                 {
                     "name": "Md. Abu Rayhan Imran",
                     "role": "Treasurer",
-                    "img": "images/Md. Abu Rayhan Imran No BG.png"
+                    "img": "images/6.png",
+                    "social": {
+                        "facebook": "https://facebook.com/rayhan.imran",
+                        "linkedin": "https://linkedin.com/in/rayhanimran",
+                        "email": "mailto:rayhan.imran@example.com"
+                    }
                 },
                 {
                     "name": "Pritam Saha Turja",
                     "role": "Organizing Secretary",
-                    "img": "images/Pritam Saha Turja.jpg"
+                    "img": "images/7.png",
+                    "social": {
+                        "facebook": "https://facebook.com/pritam.turja",
+                        "linkedin": "https://linkedin.com/in/pritamturja",
+                        "email": "mailto:pritam.turja@example.com"
+                    }
                 },
                 {
                     "name": "Antu Marma",
                     "role": "Joint Organizing Secretary",
-                    "img": "images/antumarma.jpg"
+                    "img": "images/8.jpg",
+                    "social": {
+                        "facebook": "https://facebook.com/antu.marma",
+                        "linkedin": "https://linkedin.com/in/antumarma",
+                        "email": "mailto:antu.marma@example.com"
+                    }
                 },
                 {
                     "name": "Nasibul Hasan Naem",
                     "role": "Publication Secretary",
-                    "img": "images/Nasibul Hasan Naem.jpeg"
+                    "img": "images/9.png",
+                    "social": {
+                        "facebook": "https://facebook.com/nasibul.naem",
+                        "linkedin": "https://linkedin.com/in/nasibulnaem",
+                        "email": "mailto:nasibul.naem@example.com"
+                    }
                 },
                 {
                     "name": "Dip Barman",
                     "role": "Programme Co-Ordinator",
-                    "img": "images/Dip Barman.png"
+                    "img": "images/10.png",
+                    "social": {
+                        "facebook": "https://facebook.com/dip.barman",
+                        "linkedin": "https://linkedin.com/in/dipbarman",
+                        "email": "mailto:dip.barman@example.com"
+                    }
                 },
                 {
                     "name": "Md. Rifat Bin Hasan",
                     "role": "Programme Co-Ordinator",
-                    "img": "images/Screenshot 2025-06-22 235847.png"
+                    "img": "images/11.png",
+                    "social": {
+                        "facebook": "https://facebook.com/rifat.hasan",
+                        "linkedin": "https://linkedin.com/in/rifathasan",
+                        "email": "mailto:rifat.hasan@example.com"
+                    }
                 },
                 {
                     "name": "Promod Chandra Das",
                     "role": "Membership Development Co-Ordinator",
-                    "img": "images/Promod Chandra Das .jpg"
+                    "img": "images/12.png",
+                    "social": {
+                        "facebook": "https://facebook.com/promod.das",
+                        "linkedin": "https://linkedin.com/in/promoddas",
+                        "email": "mailto:promod.das@example.com"
+                    }
                 },
                 {
                     "name": "Afsa Akter Shawla",
                     "role": "Student Activity Co-Ordinator",
-                    "img": "images/Afsa Akter Shawla.jpeg"
+                    "img": "images/13.png",
+                    "social": {
+                        "facebook": "https://facebook.com/afsa.shawla",
+                        "linkedin": "https://linkedin.com/in/afsashawla",
+                        "email": "mailto:afsa.shawla@example.com"
+                    }
                 },
                 {
-                    "name": "Md.Mainul Islam Nerob",
+                    "name": "Md. Mainul Islam Nerob",
                     "role": "Publicity Co-Ordinator",
-                    "img": "images/Md.Mainul Islam Nerob.jpg"
+                    "img": "images/14.png",
+                    "social": {
+                        "facebook": "https://facebook.com/mainul.nerob",
+                        "linkedin": "https://linkedin.com/in/mainulnerob",
+                        "email": "mailto:mainul.nerob@example.com"
+                    }
                 },
                 {
                     "name": "Atikur Rahman",
                     "role": "Information Secretary",
-                    "img": "images/Atikur_Rahman (1).jpg"
+                    "img": "images/15.png",
+                    "social": {
+                        "facebook": "https://facebook.com/atikur.rahman",
+                        "linkedin": "https://linkedin.com/in/atikurrahman",
+                        "email": "mailto:atikur.rahman@example.com"
+                    }
                 },
                 {
                     "name": "S M Naymuzzaman Nahid",
                     "role": "Graphics Designer",
-                    "img": "images/S M Naymuzzaman Nahid .jpg"
+                    "img": "images/16.png",
+                    "social": {
+                        "facebook": "https://facebook.com/naymuzzaman.nahid",
+                        "linkedin": "https://linkedin.com/in/naymuzzamannahid",
+                        "email": "mailto:naymuzzaman.nahid@example.com"
+                    }
                 },
                 {
                     "name": "Md Miadul Islam Nizzan",
                     "role": "Asst Graphics Designer",
-                    "img": "images/Miadul Islam Nizzan.jpg"
+                    "img": "images/17.png",
+                    "social": {
+                        "facebook": "https://facebook.com/miadul.nizzan",
+                        "linkedin": "https://linkedin.com/in/miadulnizzan",
+                        "email": "mailto:miadul.nizzan@example.com"
+                    }
                 },
                 {
                     "name": "Maheer Jabin Priya",
                     "role": "Web master & Newsletter editor",
-                    "img": "images/Maheer Jabin Priya.jpg"
+                    "img": "images/18.png",
+                    "social": {
+                        "facebook": "https://facebook.com/maheer.priya",
+                        "linkedin": "https://linkedin.com/in/maheerpriya",
+                        "email": "mailto:maheer.priya@example.com"
+                    }
                 },
                 {
                     "name": "Tonmoy Kanti Das",
                     "role": "Executive Member",
-                    "img": "images/Tonmoy Das.jpeg"
+                    "img": "images/19.png",
+                    "social": {
+                        "facebook": "https://facebook.com/tonmoy.das",
+                        "linkedin": "https://linkedin.com/in/tonmoydas",
+                        "email": "mailto:tonmoy.das@example.com"
+                    }
                 },
                 {
                     "name": "Shakib Hasan",
                     "role": "Executive Member",
-                    "img": "images/IMG_20250519_223416.jpg"
+                    "img": "images/20.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Sire Anik Kumar Haldar",
+                    "role": "Executive Member",
+                    "img": "images/21.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Mehraz Khandaka",
+                    "role": "Executive Member",
+                    "img": "images/22.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Abdullah Md Galib",
+                    "role": "Volunteer",
+                    "img": "images/23.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Nujhat Tabassum Faria",
+                    "role": "Volunteer",
+                    "img": "images/24.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Md Abusufiyan Rafayet",
+                    "role": "Volunteer",
+                    "img": "images/25.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Mehreen Jerin Khan",
+                    "role": "Volunteer",
+                    "img": "images/26.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Mst. Rifah Zakia",
+                    "role": "Volunteer",
+                    "img": "images/27.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Swapnil Saha",
+                    "role": "Volunteer",
+                    "img": "images/28.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Gazi Md. Faysal Hossain Raju",
+                    "role": "Volunteer",
+                    "img": "images/29.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
+                },
+                {
+                    "name": "Meherin Afrin Muna",
+                    "role": "Volunteer",
+                    "img": "images/30.png",
+                    "social": {
+                        "facebook": "https://facebook.com/shakib.hasan",
+                        "linkedin": "https://linkedin.com/in/shakibhasan",
+                        "email": "mailto:shakib.hasan@example.com"
+                    }
                 }
             ]
         },
@@ -126,30 +341,50 @@
                 {
                     "name": "Dr. Ahmed Al Mansur",
                     "role": "Mentor",
-                    "img": "images/AHMED.jpg"
+                    "img": "images/AHMED.jpg",
+                    "social": {
+                        "facebook": "https://facebook.com/ahmed.mansur.cs",
+                        "linkedin": "https://linkedin.com/in/ahmedmansur-cs",
+                        "email": "mailto:ahmed.mansur.cs@example.com"
+                    }
                 }
             ],
             "students": [
                 {
                     "name": "Md. Abu Rayhan Imran",
                     "role": "Treasurer",
-                    "img": "images/Md. Abu Rayhan Imran No BG.png"
+                    "img": "images/Md. Abu Rayhan Imran No BG.png",
+                    "social": {
+                        "facebook": "https://facebook.com/rayhan.imran.cs",
+                        "linkedin": "https://linkedin.com/in/rayhanimran-cs",
+                        "email": "mailto:rayhan.imran.cs@example.com"
+                    }
                 }
             ]
         },
         "MAIN": {
             "faculty": [
                 {
-                    "name": "MD.Rajibul Palas",
+                    "name": "MD. Rajibul Palas",
                     "role": "Mentor",
-                    "img": "images/RJBUL.jpg"
+                    "img": "images/RJBUL.jpg",
+                    "social": {
+                        "facebook": "https://facebook.com/rajibul.palas.main",
+                        "linkedin": "https://linkedin.com/in/rajibulpalas-main",
+                        "email": "mailto:rajibul.palas.main@example.com"
+                    }
                 }
             ],
             "students": [
                 {
                     "name": "Esrat Ahmed Eva",
                     "role": "Joint Secretary",
-                    "img": "images/Eva.JPG"
+                    "img": "images/Eva.JPG",
+                    "social": {
+                        "facebook": "https://facebook.com/esrat.eva.main",
+                        "linkedin": "https://linkedin.com/in/esrateva-main",
+                        "email": "mailto:esrat.eva.main@example.com"
+                    }
                 }
             ]
         }
@@ -160,14 +395,24 @@
                 {
                     "name": "Dr. Rifat Jahan",
                     "role": "Moderator",
-                    "img": "https://i.imgur.com/Wm4FSlO.png"
+                    "img": "https://i.imgur.com/Wm4FSlO.png",
+                    "social": {
+                        "facebook": "https://facebook.com/rifat.jahan",
+                        "linkedin": "https://linkedin.com/in/rifatjahan",
+                        "email": "mailto:rifat.jahan@example.com"
+                    }
                 }
             ],
             "students": [
                 {
                     "name": "Zahid Khan",
                     "role": "President",
-                    "img": "https://i.imgur.com/qCN5WwL.png"
+                    "img": "https://i.imgur.com/qCN5WwL.png",
+                    "social": {
+                        "facebook": "https://facebook.com/zahid.khan",
+                        "linkedin": "https://linkedin.com/in/zahidkhan",
+                        "email": "mailto:zahid.khan@example.com"
+                    }
                 }
             ]
         },
@@ -177,7 +422,12 @@
                 {
                     "name": "Fatema Ruma",
                     "role": "Vice President",
-                    "img": "https://i.imgur.com/2GwCzFy.png"
+                    "img": "https://i.imgur.com/2GwCzFy.png",
+                    "social": {
+                        "facebook": "https://facebook.com/fatema.ruma",
+                        "linkedin": "https://linkedin.com/in/fatemaruma",
+                        "email": "mailto:fatema.ruma@example.com"
+                    }
                 }
             ]
         },
@@ -192,14 +442,24 @@
                 {
                     "name": "Dr. Rifat Jahan",
                     "role": "Moderator",
-                    "img": "https://i.imgur.com/Wm4FSlO.png"
+                    "img": "https://i.imgur.com/Wm4FSlO.png",
+                    "social": {
+                        "facebook": "https://facebook.com/rifat.jahan.2023",
+                        "linkedin": "https://linkedin.com/in/rifatjahan-2023",
+                        "email": "mailto:rifat.jahan.2023@example.com"
+                    }
                 }
             ],
             "students": [
                 {
                     "name": "Zahid Khan",
                     "role": "President",
-                    "img": "https://i.imgur.com/qCN5WwL.png"
+                    "img": "https://i.imgur.com/qCN5WwL.png",
+                    "social": {
+                        "facebook": "https://facebook.com/zahid.khan.2023",
+                        "linkedin": "https://linkedin.com/in/zahidkhan-2023",
+                        "email": "mailto:zahid.khan.2023@example.com"
+                    }
                 }
             ]
         },
@@ -209,7 +469,12 @@
                 {
                     "name": "Fatema Ruma",
                     "role": "Vice President",
-                    "img": "https://i.imgur.com/2GwCzFy.png"
+                    "img": "https://i.imgur.com/2GwCzFy.png",
+                    "social": {
+                        "facebook": "https://facebook.com/fatema.ruma.2023",
+                        "linkedin": "https://linkedin.com/in/fatemaruma-2023",
+                        "email": "mailto:fatema.ruma.2023@example.com"
+                    }
                 }
             ]
         },
@@ -224,14 +489,24 @@
                 {
                     "name": "Dr. Rifat Jahan",
                     "role": "Moderator",
-                    "img": "https://i.imgur.com/Wm4FSlO.png"
+                    "img": "https://i.imgur.com/Wm4FSlO.png",
+                    "social": {
+                        "facebook": "https://facebook.com/rifat.jahan.2022",
+                        "linkedin": "https://linkedin.com/in/rifatjahan-2022",
+                        "email": "mailto:rifat.jahan.2022@example.com"
+                    }
                 }
             ],
             "students": [
                 {
                     "name": "Zahid Khan",
                     "role": "President",
-                    "img": "https://i.imgur.com/qCN5WwL.png"
+                    "img": "https://i.imgur.com/qCN5WwL.png",
+                    "social": {
+                        "facebook": "https://facebook.com/zahid.khan.2022",
+                        "linkedin": "https://linkedin.com/in/zahidkhan-2022",
+                        "email": "mailto:zahid.khan.2022@example.com"
+                    }
                 }
             ]
         },
@@ -241,7 +516,12 @@
                 {
                     "name": "Fatema Ruma",
                     "role": "Vice President",
-                    "img": "https://i.imgur.com/2GwCzFy.png"
+                    "img": "https://i.imgur.com/2GwCzFy.png",
+                    "social": {
+                        "facebook": "https://facebook.com/fatema.ruma.2022",
+                        "linkedin": "https://linkedin.com/in/fatemaruma-2022",
+                        "email": "mailto:fatema.ruma.2022@example.com"
+                    }
                 }
             ]
         },
@@ -256,14 +536,24 @@
                 {
                     "name": "Dr. Rifat Jahan",
                     "role": "Moderator",
-                    "img": "https://i.imgur.com/Wm4FSlO.png"
+                    "img": "https://i.imgur.com/Wm4FSlO.png",
+                    "social": {
+                        "facebook": "https://facebook.com/rifat.jahan.2021",
+                        "linkedin": "https://linkedin.com/in/rifatjahan-2021",
+                        "email": "mailto:rifat.jahan.2021@example.com"
+                    }
                 }
             ],
             "students": [
                 {
                     "name": "Zahid Khan",
                     "role": "President",
-                    "img": "https://i.imgur.com/qCN5WwL.png"
+                    "img": "https://i.imgur.com/qCN5WwL.png",
+                    "social": {
+                        "facebook": "https://facebook.com/zahid.khan.2021",
+                        "linkedin": "https://linkedin.com/in/zahidkhan-2021",
+                        "email": "mailto:zahid.khan.2021@example.com"
+                    }
                 }
             ]
         },
@@ -273,7 +563,12 @@
                 {
                     "name": "Fatema Ruma",
                     "role": "Vice President",
-                    "img": "https://i.imgur.com/2GwCzFy.png"
+                    "img": "https://i.imgur.com/2GwCzFy.png",
+                    "social": {
+                        "facebook": "https://facebook.com/fatema.ruma.2021",
+                        "linkedin": "https://linkedin.com/in/fatemaruma-2021",
+                        "email": "mailto:fatema.ruma.2021@example.com"
+                    }
                 }
             ]
         },
