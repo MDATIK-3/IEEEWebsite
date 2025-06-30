@@ -2,114 +2,117 @@
 
 import { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { X, ChevronLeft, ChevronRight, Calendar, Download } from 'lucide-react';
+import Image from 'next/image';
 
 const Modal = forwardRef(({ photos }, ref) => {
   const [currentIndex, setCurrentIndex] = useState(null);
   const showModal = currentIndex !== null;
 
-  const handleCloseModal = () => setCurrentIndex(null);
+  const photo = showModal && photos?.[currentIndex] || null;
+  const imageUrl = photo ? (typeof photo === 'string' ? photo : photo.image) : null;
 
-  const handlePrev = () =>
-    setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
-
-  const handleNext = () =>
-    setCurrentIndex((prev) => (prev + 1) % photos.length);
+  const closeModal = () => setCurrentIndex(null);
+  const prevPhoto = () => setCurrentIndex((i) => (i - 1 + photos.length) % photos.length);
+  const nextPhoto = () => setCurrentIndex((i) => (i + 1) % photos.length);
 
   const handleDownload = async () => {
-    if (!photos || currentIndex === null) return;
-    
-    const photo = photos[currentIndex];
-    const photoName = photo.name || `Photo_${photo.id}`;
-    
+    if (!photo) return;
+    const photoUrl = typeof photo === 'string' ? photo : photo.image;
+    const photoName = photo.name || `Photo_${photo.id || currentIndex}`;
+
     try {
-      const response = await fetch(photo.image);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      
+      const res = await fetch(photoUrl);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = `${photoName}.jpg`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Download failed:', error);
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error('Download failed:', e);
     }
   };
 
   useImperativeHandle(ref, () => ({
-    open: (index) => setCurrentIndex(index),
+    open: setCurrentIndex,
   }));
 
   useEffect(() => {
     if (!showModal) return;
 
-    const handleKey = (e) => {
-      if (e.key === 'Escape') handleCloseModal();
-      if (e.key === 'ArrowLeft') handlePrev();
-      if (e.key === 'ArrowRight') handleNext();
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') closeModal();
+      else if (e.key === 'ArrowLeft') prevPhoto();
+      else if (e.key === 'ArrowRight') nextPhoto();
     };
 
-    document.addEventListener('keydown', handleKey);
+    document.addEventListener('keydown', onKeyDown);
     document.body.style.overflow = 'hidden';
 
     return () => {
-      document.removeEventListener('keydown', handleKey);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
     };
-  }, [showModal]);
+  }, [showModal, photos]);
 
-  if (!showModal || !photos || !photos.length) return null;
+  if (!showModal || !photos?.length) return null;
 
-  const photo = photos[currentIndex];
+  const isValidDate = photo?.date && !isNaN(new Date(photo.date).getTime());
 
   return (
     <div
       className="fixed inset-0 top-10 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-      onClick={handleCloseModal}
+      onClick={closeModal}
     >
       <div
         className="relative w-[90vw] h-[80vh] max-w-4xl bg-black/20 rounded-lg overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
-          src={photo.image}
-          alt={photo.name || `Photo ${photo.id}`}
+        <Image
+          src={imageUrl}
+          alt={typeof photo === 'string' ? `Photo ${currentIndex + 1}` : (photo.name || `Photo ${photo.id}`)}
+          width={400}
+          height={300}
           className="w-full h-full object-contain"
         />
 
-        <div className="absolute bottom-4 left-4 right-4 sm:bg-black/50 sm:backdrop-blur-sm rounded-lg p-4 text-white">
-          <h3 className="text-xl font-bold mb-2">{photo.name || `Photo ${photo.id}`}</h3>
-          <div className="flex items-center gap-4 text-sm flex-wrap">
-            <span className="px-4 py-2 flex items-center gap-2 rounded-2xl text-white font-medium bg-gradient-to-r from-emerald-500 to-emerald-600 hover:brightness-110">
-              <Calendar className="w-4 h-4" />
-              {new Date(photo.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </span>
+        {isValidDate && (
+          <div className="absolute bottom-4 left-4 right-4 sm:bg-black/50 sm:backdrop-blur-sm rounded-lg p-4 text-white">
+            <h3 className="text-xl font-bold mb-2">{photo.name || null}</h3>
+            <div className="flex items-center gap-4 text-sm flex-wrap">
+              <span className="px-4 py-2 flex items-center gap-2 rounded-2xl font-medium text-white bg-gradient-to-r from-emerald-500 to-emerald-600 hover:brightness-110">
+                <Calendar className="w-4 h-4" />
+                {new Date(photo.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
         <button
-          onClick={handleCloseModal}
-          className="absolute top-4 right-4 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-colors duration-200"
+          onClick={closeModal}
+          className="absolute top-4 right-4 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors duration-200"
+          aria-label="Close"
         >
           <X className="w-5 h-5" />
         </button>
 
         <button
           onClick={handleDownload}
-          className="absolute top-4 right-16 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-colors duration-200"
+          className="absolute top-4 right-16 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors duration-200"
           aria-label="Download"
         >
           <Download className="w-5 h-5" />
         </button>
 
         <button
-          onClick={handlePrev}
+          onClick={prevPhoto}
           className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 backdrop-blur-md p-2 rounded-full text-white hover:bg-black/70 transition-all shadow-lg"
           aria-label="Previous"
         >
@@ -117,7 +120,7 @@ const Modal = forwardRef(({ photos }, ref) => {
         </button>
 
         <button
-          onClick={handleNext}
+          onClick={nextPhoto}
           className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 backdrop-blur-md p-2 rounded-full text-white hover:bg-black/70 transition-all shadow-lg"
           aria-label="Next"
         >

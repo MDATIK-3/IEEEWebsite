@@ -3,28 +3,32 @@
     "id": 1,
     "image": "images/e1.jpg",
     "eventName": "Webinar on Cyber Existence of Professional Skills for a Graduate",
+    "description": "Join us for an in-depth exploration of how cyber skills can enhance professional development...",
     "date": "2025-07-03",
     "time": "10:00 PM",
     "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
+    "guestBio": "A leading expert in computer science...",
     "specialGuest": "Dr. Sultana Marzia, Dean, Faculty of Science and IT",
+    "specialGuestBio": "Distinguished academic leader...",
     "eventArea": "Online via Zoom",
     "eventType": "Webinar",
     "participant": 120,
-    "organizer": "GUB Career Club"
+    "organizer": "GUB Career Club",
+    "highlights": [
+      "Expert Speaker",
+      "Q&A Session",
+      "Networking",
+      "Interactive Content"
+    ],
+    "gallery": [
+      "images/1.jpg",
+      "images/2.jpg",
+      "images/3.jpg",
+      "images/4.jpg"
+    ],
+    "registrationLink": "https://googleform.com/register..dsafdas.f.a.."
   },
-  {
-    "id": 2,
-    "image": "images/e2.png",
-    "eventName": "Announcement of IEEE Executive Committee of 2025!",
-    "date": "2025-05-19",
-    "time": "N/A",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh",
-    "eventType": "Announcement",
-    "participant": 0,
-    "organizer": "IEEE CS SBC GUB"
-  },
+
   {
     "id": 3,
     "image": "images/e3.jpg",
@@ -36,7 +40,13 @@
     "eventArea": "Green University, Multi-Purpose Hall",
     "eventType": "Competition",
     "participant": 130,
-    "organizer": "GUCC & GUB Programming Arena"
+    "organizer": "GUCC & GUB Programming Arena",
+    "gallery": [
+      "/images/1.jpg",
+      "/images/2.jpg",
+      "/images/3.jpg",
+      "/images/4.jpg"
+    ]
   },
   {
     "id": 4,
@@ -49,7 +59,13 @@
     "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
     "eventType": "Debate",
     "participant": 80,
-    "organizer": "IEEE CS SBC GUB"
+    "organizer": "IEEE CS SBC GUB",
+     "gallery": [
+      "/images/1.jpg",
+      "/images/2.jpg",
+      "/images/3.jpg",
+      "/images/4.jpg"
+    ]
   },
   {
     "id": 5,
