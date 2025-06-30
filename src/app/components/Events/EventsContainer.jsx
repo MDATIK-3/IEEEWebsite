@@ -5,35 +5,16 @@ import EventsFilter from "./EventsFilter";
 import EventsGrid from "./EventsGrid";
 import LoadingSpinner from "../LoadingSpinner";
 import ErrorDisplay from "../../Executives/components/ErrorDisplay";
+import { useEvent } from '@/app/context/EventContext';
 
 const EventsContainer = ({ isFullPage }) => {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { events, loading, error } = useEvent();
   const [now, setNow] = useState(new Date());
   const [searchText, setSearchText] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("/event.json");
-        if (!response.ok) throw new Error("Failed to fetch events");
-        const data = await response.json();
-        const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-        setEvents(sorted);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEvents();
-
     const interval = setInterval(() => {
       setNow(new Date());
     }, 1000);

@@ -4,14 +4,13 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useEvent } from '@/app/context/EventContext';
 import { Calendar, Clock, MapPin, Users, User, Award, Globe, ArrowLeft, Share2, Heart } from 'lucide-react';
+import LoadingState from '@/app/components/LoadingSpinner';
 
 const DetailsPage = () => {
   const router = useRouter();
   const [id, setId] = useState(null);
-  const { selectedEvent } = useEvent();
+  const { events, selectedEvent, loading, error } = useEvent();
   const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
 
@@ -24,77 +23,41 @@ const DetailsPage = () => {
   }, []);
 
   useEffect(() => {
-    const fetchEvent = async () => {
-      setLoading(true);
-      setError(null);
+    if (!id) return;
 
-      try {
-        if (selectedEvent && selectedEvent.id.toString() === id) {
-          setEvent(selectedEvent);
-        } else if (id) {
-          const response = await fetch('/event.json');
-          if (!response.ok) {
-            throw new Error('Failed to fetch event data');
-          }
-          const data = await response.json();
-          const foundEvent = data.find((e) => e.id.toString() === id.toString());
-          
-          if (!foundEvent) {
-            throw new Error('Event not found');
-          }
-          
-          setEvent(foundEvent);
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEvent();
-  }, [id, selectedEvent]);
+    if (selectedEvent && selectedEvent.id.toString() === id) {
+      setEvent(selectedEvent);
+    } else {
+      const foundEvent = events.find((e) => e.id.toString() === id.toString());
+      setEvent(foundEvent || null);
+    }
+  }, [id, selectedEvent, events]);
 
   const handleBack = () => {
     router.back();
   };
 
   const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: event.eventName,
-        text: event.description || 'Join this amazing event!',
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      // You could add a toast notification here
+    if (event) {
+      if (navigator.share) {
+        navigator.share({
+          title: event.eventName,
+          text: event.description || 'Join this amazing event!',
+          url: window.location.href,
+        });
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+      }
     }
   };
 
   const toggleFavorite = () => {
     setIsFavorited(!isFavorited);
-    // Here you would typically save to localStorage or send to API
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br  from-green-50 to-emerald-50">
-        <div className="container mx-auto px-4 py-8">
-          <div className="animate-pulse">
-            <div className="h-8 bg-green-200 rounded w-1/4 mb-6"></div>
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <div className="h-8 bg-green-200 rounded w-3/4 mb-6"></div>
-              <div className="h-64 bg-green-200 rounded-xl mb-6"></div>
-              <div className="space-y-4">
-                <div className="h-4 bg-green-200 rounded w-full"></div>
-                <div className="h-4 bg-green-200 rounded w-3/4"></div>
-                <div className="h-4 bg-green-200 rounded w-1/2"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     <LoadingState/>
     );
   }
 
@@ -152,9 +115,7 @@ const DetailsPage = () => {
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-          {/* Event Image */}
           <div className="relative h-80 bg-gradient-to-r from-green-400 to-emerald-500">
             <img
               src={event.image?.startsWith('/') ? event.image : `/${event.image}`}
@@ -174,8 +135,7 @@ const DetailsPage = () => {
               </div>
             )}
             
-            {/* Event Type Badge */}
-            <div className="absolute top-6 left-6">
+=            <div className="absolute top-6 left-6">
               <span className="bg-white/90 backdrop-blur-sm text-green-800 px-4 py-2 rounded-full font-semibold text-sm">
                 {event.eventType || 'Event'}
               </span>
@@ -183,13 +143,11 @@ const DetailsPage = () => {
           </div>
 
           <div className="p-8">
-            {/* Event Title */}
-            <h1 className="text-4xl font-bold text-gray-800 mb-6 leading-tight">
+=            <h1 className="text-4xl font-bold text-gray-800 mb-6 leading-tight">
               {event.eventName}
             </h1>
 
-            {/* Event Details Grid */}
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
+=            <div className="grid md:grid-cols-2 gap-6 mb-8">
               {event.date && (
                 <div className="flex items-center gap-3 p-4 bg-green-50 rounded-xl">
                   <div className="p-2 bg-green-100 rounded-lg">
@@ -250,8 +208,7 @@ const DetailsPage = () => {
               )}
             </div>
 
-            {/* Speakers Section */}
-            {(event.guest || event.specialGuest) && (
+=            {(event.guest || event.specialGuest) && (
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Featured Speakers</h2>
                 <div className="space-y-4">
