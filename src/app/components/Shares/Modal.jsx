@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
-import { X, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Calendar, Download } from 'lucide-react';
 
 const Modal = forwardRef(({ photos }, ref) => {
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -14,6 +14,29 @@ const Modal = forwardRef(({ photos }, ref) => {
 
   const handleNext = () =>
     setCurrentIndex((prev) => (prev + 1) % photos.length);
+
+  const handleDownload = async () => {
+    if (!photos || currentIndex === null) return;
+    
+    const photo = photos[currentIndex];
+    const photoName = photo.name || `Photo_${photo.id}`;
+    
+    try {
+      const response = await fetch(photo.image);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${photoName}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
+  };
 
   useImperativeHandle(ref, () => ({
     open: (index) => setCurrentIndex(index),
@@ -47,13 +70,13 @@ const Modal = forwardRef(({ photos }, ref) => {
       onClick={handleCloseModal}
     >
       <div
-        className="relative max-w-4xl max-h-full"
+        className="relative w-[90vw] h-[80vh] max-w-4xl bg-black/20 rounded-lg overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <img
           src={photo.image}
           alt={photo.name || `Photo ${photo.id}`}
-          className="max-w-full max-h-full object-contain rounded-lg"
+          className="w-full h-full object-contain"
         />
 
         <div className="absolute bottom-4 left-4 right-4 sm:bg-black/50 sm:backdrop-blur-sm rounded-lg p-4 text-white">
@@ -72,14 +95,22 @@ const Modal = forwardRef(({ photos }, ref) => {
 
         <button
           onClick={handleCloseModal}
-          className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+          className="absolute top-4 right-4 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-colors duration-200"
         >
           <X className="w-5 h-5" />
         </button>
 
         <button
+          onClick={handleDownload}
+          className="absolute top-4 right-16 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-colors duration-200"
+          aria-label="Download"
+        >
+          <Download className="w-5 h-5" />
+        </button>
+
+        <button
           onClick={handlePrev}
-          className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/20 backdrop-blur-md p-2 rounded-full text-black hover:bg-white/30 transition-all shadow-lg"
+          className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 backdrop-blur-md p-2 rounded-full text-white hover:bg-black/70 transition-all shadow-lg"
           aria-label="Previous"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -87,7 +118,7 @@ const Modal = forwardRef(({ photos }, ref) => {
 
         <button
           onClick={handleNext}
-          className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/20 backdrop-blur-md p-2 rounded-full text-black hover:bg-white/30 transition-all shadow-lg"
+          className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 backdrop-blur-md p-2 rounded-full text-white hover:bg-black/70 transition-all shadow-lg"
           aria-label="Next"
         >
           <ChevronRight className="w-6 h-6" />
@@ -97,5 +128,4 @@ const Modal = forwardRef(({ photos }, ref) => {
   );
 });
 
-Modal.displayName = 'Modal';
 export default Modal;
