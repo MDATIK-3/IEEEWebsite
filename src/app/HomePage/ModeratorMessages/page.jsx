@@ -7,7 +7,7 @@ const moderators = [
   {
     id: 1,
     name: "Dr. Ahmed Al Mansur",
-    title: "Head of Sustainability",
+    title: "Professor and Director, GCiA",
     image: "/images/AHMED.jpg",
     message:
       "IEEE Green University represents our commitment to sustainable education. Through innovative programs, we're training the next generation of eco-conscious engineers who will lead the green revolution.",
@@ -22,8 +22,8 @@ const moderators = [
   },
   {
     id: 3,
-    name: "Eng. Montaser Quader",
-    title: "Dr. Muhammad Aminur Rahaman",
+    name: "Dr. Muhammad Aminur Rahaman",
+    title: "Chairperson of GUB",
     image: "/images/AMN.jpg",
     message:
       "At IEEE Green University, we combine technical education with environmental stewardship. Our students develop solutions that address real-world sustainability challenges.",
