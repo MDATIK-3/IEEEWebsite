@@ -5,7 +5,7 @@
                 {
                     "name": "Dr. Md. Ahsan Habib",
                     "role": "BRANCH COUNSELOR",
-                    "img": "images/AMN.jpg",
+                    "img": "images/Ahsan_Habib_Tareq.png",
                     "social": {
                         "facebook": "https://www.facebook.com/ahsanhabib.tareq",
                         "linkedin": "https://www.linkedin.com/in/md-ahsan-habib-bb774723",
@@ -27,9 +27,9 @@
                     "role": "MENTOR",
                     "img": "images/RJBUL.jpg",
                     "social": {
-                        "facebook": "https://facebook.com/rajibul.palas",
-                        "linkedin": "https://linkedin.com/in/rajibulpalas",
-                        "email": "mailto:rajibul.palas@example.com"
+                        "facebook": "https://www.facebook.com/rajibulpalas",
+                        "linkedin": "https://www.linkedin.com/in/mdrajibulpalas/",
+                        "email": "mailto:rajibul@cse.green.edu.bd"
                     }
                 }
             ],
@@ -245,7 +245,7 @@
                     }
                 },
                 {
-                    "name": "Mehraz Khandaka",
+                    "name": "Mehraz Khandakar",
                     "role": "Executive Member",
                     "img": "images/22.png",
                     "social": {
