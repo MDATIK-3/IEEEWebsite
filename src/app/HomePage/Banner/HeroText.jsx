@@ -12,7 +12,7 @@ export default function HeroText() {
           <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
             Technology
           </span>
-          <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 rounded-full animate-pulse" />
+          <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 rounded-full motion-safe:animate-pulse" />
         </span>
       </h1>
 

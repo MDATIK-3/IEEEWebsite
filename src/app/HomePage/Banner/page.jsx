@@ -1,21 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
-import BackgroundBlobs from './BackgroundBlobs';
+import dynamic from 'next/dynamic';
 import RadialBackground from './RadialBackground';
 import HeroText from './HeroText';
 import HeroCard from './HeroCard';
-import FloatingDecorations from './FloatingDecorations';
+const BackgroundBlobs = dynamic(() => import('./BackgroundBlobs'), { ssr: false });
+const FloatingDecorations = dynamic(() => import('./FloatingDecorations'), { ssr: false });
 
-const HeroSection = () => {
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  if (!hasMounted) return null;
-
+export default function HeroSection() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-green-50/40 to-blue-50/50 pt-10 pb-12">
       <BackgroundBlobs />
@@ -26,17 +18,11 @@ const HeroSection = () => {
           <HeroText />
           <div className="relative">
             <HeroCard />
-            <Suspense fallback={null}>
-              <FloatingDecorations />
-            </Suspense>
-            <div
-              className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-blue-500/30 rounded-3xl blur-2xl transition-all duration-700"
-            ></div>
+            <FloatingDecorations />
+            <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-3xl blur-xl transition-all duration-700" />
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default HeroSection;
+}
