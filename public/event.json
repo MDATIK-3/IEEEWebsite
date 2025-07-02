@@ -3,40 +3,76 @@
     "id": 1,
     "image": "images/e1.jpg",
     "eventName": "Webinar on Cyber Existence of Professional Skills for a Graduate",
-    "date": "2025-05-25",
+    "description": "Join us for an in-depth exploration of how cyber skills can enhance professional development...",
+    "date": "2025-07-03",
     "time": "10:00 PM",
     "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
-    "specialGuest": "Dr. Sultana Marzia, Dean, Faculty of Science and IT",
+    "guestBio": "Dr. Ahsan Habib is a renowned academician and cybersecurity expert with over 20 years of experience in higher education and research. He has guided numerous students and professionals in aligning technical knowledge with career growth. His work focuses on secure system design, ethical hacking, and digital literacy for future graduates. As a key mentor and thought leader at Green University, he is actively involved in bridging the gap between academia and industry.",
+    "specialGuest": "Dr. Ahmed Al Mansur, Professor and Director, GCiA",
+    "specialGuestBio": "Dr. Ahmed Al Mansur is the Director of the Green Center for Innovation & Advancement (GCiA) and a respected voice in digital transformation and academic leadership. With a distinguished career spanning more than 25 years, Dr. Mansur has played pivotal roles in research-driven innovation, student skill development, and fostering industry-academic collaboration. His insights into employability, professional growth, and strategic education policy have made lasting impacts across educational institutions.",
     "eventArea": "Online via Zoom",
     "eventType": "Webinar",
     "participant": 120,
-    "organizer": "GUB Career Club"
-  },
-  {
-    "id": 2,
-    "image": "images/e2.png",
-    "eventName": "Announcement of IEEE Executive Committee of 2025!",
-    "date": "2025-05-19",
-    "time": "N/A",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh",
-    "eventType": "Announcement",
-    "participant": 0,
-    "organizer": "IEEE CS SBC GUB"
+    "organizer": "GUB Career Club",
+    "speakers": [
+      {
+        "name": "Dr. Ahsan Habib",
+        "designation": "Professor, Dept. of CSE, GUB",
+        "image": "images/ahsan.png"
+      },
+      {
+        "name": "Dr. Ahmed Al Mansur",
+        "designation": "Professor and Director, GCiA",
+        "image": "images/AMN.jpg"
+      }
+    ],
+    "highlights": [
+      "Expert Speaker",
+      "Q&A Session",
+      "Networking",
+      "Interactive Content"
+    ],
+    "gallery": [
+      "images/1.jpg",
+      "images/2.jpg",
+      "images/3.jpg",
+      "images/4.jpg"
+    ],
+    "registrationLink": "https://googleform.com/register..dsafdas.f.a.."
   },
   {
     "id": 3,
     "image": "images/e3.jpg",
-    "eventName": "GUB Logic Battle 2025 (Beginner IDPC & IDMO)",
-    "date": "2025-03-09",
-    "time": "Day Long",
-    "guest": "Dr. Muhammad Aminur Rahaman, Chairperson, Dept. of CSE, GUB",
-    "specialGuest": "Dr. Md. Mostafijur Rahman, Chairperson, SWE",
-    "eventArea": "Green University, Multi-Purpose Hall",
-    "eventType": "Competition",
-    "participant": 130,
-    "organizer": "GUCC & GUB Programming Arena"
+    "eventName": "Webinar on Cyber Existence of Professional Skills for a Graduate",
+    "description": "Join us for an in-depth exploration of how cyber skills can enhance professional development...",
+    "date": "2025-06-03",
+    "time": "10:00 PM",
+    "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
+    "guestBio": "Dr. Ahsan Habib is a renowned academician and cybersecurity expert with over 20 years of experience in higher education and research. He has guided numerous students and professionals in aligning technical knowledge with career growth. His work focuses on secure system design, ethical hacking, and digital literacy for future graduates. As a key mentor and thought leader at Green University, he is actively involved in bridging the gap between academia and industry.",
+    "specialGuest": "Dr. Ahmed Al Mansur, Professor and Director, GCiA",
+    "specialGuestBio": "Dr. Ahmed Al Mansur is the Director of the Green Center for Innovation & Advancement (GCiA) and a respected voice in digital transformation and academic leadership. With a distinguished career spanning more than 25 years, Dr. Mansur has played pivotal roles in research-driven innovation, student skill development, and fostering industry-academic collaboration. His insights into employability, professional growth, and strategic education policy have made lasting impacts across educational institutions.",
+    "eventArea": "Online via Zoom",
+    "eventType": "Webinar",
+    "participant": 120,
+    "organizer": "GUB Career Club",
+    "speakers": [
+      {
+        "name": "Dr. Ahsan Habib",
+        "designation": "Professor, Dept. of CSE, GUB",
+        "image": "images/ahsan.png"
+      },
+      {
+        "name": "Dr. Ahmed Al Mansur",
+        "designation": "Professor and Director, GCiA",
+        "image": "images/AMN.jpg"
+      }
+    ],
+    "gallery": [
+      "/images/1.jpg",
+      "/images/2.jpg",
+      "/images/3.jpg",
+      "/images/4.jpg"
+    ]
   },
   {
     "id": 4,
@@ -49,7 +85,13 @@
     "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
     "eventType": "Debate",
     "participant": 80,
-    "organizer": "IEEE CS SBC GUB"
+    "organizer": "IEEE CS SBC GUB",
+    "gallery": [
+      "/images/1.jpg",
+      "/images/2.jpg",
+      "/images/3.jpg",
+      "/images/4.jpg"
+    ]
   },
   {
     "id": 5,

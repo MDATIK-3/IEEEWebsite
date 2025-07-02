@@ -35,7 +35,7 @@ const About = () => {
   return (
     <section
       ref={sectionRef}
-      className="pt-24 pb-20 bg-gradient-to-b from-green-50/70 via-green-50/40 to-green-50/50 text-gray-800 overflow-hidden"
+      className="pt-24 pb-20 bg-gradient-to-b from-green-50/70 via-green-50/40 to-green-50/50 text-gray-800 overflow-hidden min-h-[600px]"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 transition-all">
         <div className="flex-1 flex flex-col justify-center">

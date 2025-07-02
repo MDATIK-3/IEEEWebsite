@@ -6,9 +6,9 @@ import { useState } from 'react';
 const moderators = [
   {
     id: 1,
-    name: "Dr. Ayesha Ahmed",
-    title: "Head of Sustainability",
-    image: "/images/Sakib Mahmud.jpeg",
+    name: "Dr. Ahmed Al Mansur",
+    title: "Professor and Director, GCiA",
+    image: "/images/AHMED.jpg",
     message:
       "IEEE Green University represents our commitment to sustainable education. Through innovative programs, we're training the next generation of eco-conscious engineers who will lead the green revolution.",
   },
@@ -22,9 +22,9 @@ const moderators = [
   },
   {
     id: 3,
-    name: "Eng. Montaser Quader",
-    title: "Renewable Energy Lead",
-    image: "/images/Tonmoy Das.jpeg",
+    name: "Dr. Muhammad Aminur Rahaman",
+    title: "Chairperson of GUB",
+    image: "/images/AMN.jpg",
     message:
       "At IEEE Green University, we combine technical education with environmental stewardship. Our students develop solutions that address real-world sustainability challenges.",
   },
@@ -62,11 +62,9 @@ export default function ModeratorMessages() {
           {moderators.map((moderator, index) => (
             <div
               key={moderator.id}
-              className={`bg-gray-50 rounded-xl p-6 border border-transparent transform duration-300 hover:scale-105 hover:shadow-lg hover:border-1 hover:border-green-400/50 ${
-                hoveredCard === moderator.id ? 'shadow-md ring-1 ring-green-200' : ''
-              } ${
-                activeCard === moderator.id ? 'ring-2 ring-green-500 bg-green-50 shadow-lg' : ''
-              }`}
+              className={`bg-gray-50 rounded-xl p-6 border border-transparent transform duration-300 hover:scale-105 hover:shadow-lg hover:border-1 hover:border-green-400/50 ${hoveredCard === moderator.id ? 'shadow-md ring-1 ring-green-200' : ''
+                } ${activeCard === moderator.id ? 'ring-2 ring-green-500 bg-green-50 shadow-lg' : ''
+                }`}
               onMouseEnter={() => setHoveredCard(moderator.id)}
               onMouseLeave={() => setHoveredCard(null)}
               onClick={() => setActiveCard(activeCard === moderator.id ? null : moderator.id)}
@@ -94,9 +92,8 @@ export default function ModeratorMessages() {
               </div>
 
               <div
-                className={`text-center transition-opacity duration-300 ${
-                  activeCard === moderator.id ? 'opacity-100' : 'opacity-90 hover:opacity-100'
-                }`}
+                className={`text-center transition-opacity duration-300 ${activeCard === moderator.id ? 'opacity-100' : 'opacity-90 hover:opacity-100'
+                  }`}
               >
                 <blockquote className="text-gray-700 leading-relaxed">
                   "{moderator.message}"

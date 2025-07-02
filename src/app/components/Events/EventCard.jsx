@@ -6,12 +6,12 @@ import { useEvent } from '@/app/context/EventContext';
 
 const calculateCountdown = (timeDiff) => {
   if (timeDiff <= 0) return null;
-  
+
   const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
   const seconds = Math.floor((timeDiff / 1000) % 60);
-  
+
   return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 };
 
@@ -34,7 +34,7 @@ const formatDate = (dateString) => {
 
 const EventCard = ({ event, now, onError }) => {
   const { setSelectedEvent } = useEvent();
-  
+
   if (!event) {
     console.error('EventCard: event prop is required');
     return null;
@@ -47,23 +47,18 @@ const EventCard = ({ event, now, onError }) => {
     date,
     guest,
     time,
-    specialGuest,
-    eventArea,
-    eventType,
-    participant,
-    organizer
   } = event;
 
   const countdown = useMemo(() => {
     if (!date || !now) return null;
-    
+
     try {
       const eventDate = new Date(date);
       if (isNaN(eventDate.getTime())) {
         console.warn('Invalid date provided:', date);
         return null;
       }
-      
+
       const timeDiff = eventDate - now;
       return calculateCountdown(timeDiff);
     } catch (error) {
@@ -78,7 +73,7 @@ const EventCard = ({ event, now, onError }) => {
   const handleClick = useCallback(() => {
     try {
       setSelectedEvent?.(event);
-      
+
       if (typeof window !== 'undefined' && window.localStorage) {
         try {
           localStorage.setItem('selectedEvent', JSON.stringify(event));
@@ -97,29 +92,16 @@ const EventCard = ({ event, now, onError }) => {
     e.target.style.display = 'none';
   }, [image]);
 
-  const tags = useMemo(() => {
-    const tagList = [];
-    
-    if (eventArea) tagList.push({ label: eventArea, type: 'area' });
-    if (eventType) tagList.push({ label: eventType, type: 'type' });
-    if (participant !== undefined && participant !== null) {
-      tagList.push({ label: `${participant} Participants`, type: 'participant' });
-    }
-    if (organizer) tagList.push({ label: `Organizer: ${organizer}`, type: 'organizer' });
-    
-    return tagList;
-  }, [eventArea, eventType, participant, organizer]);
-
   return (
-    <article 
+    <article
       className="w-full h-full  bg-white dark:bg-base-200 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden"
       role="article"
       aria-label={`Event: ${eventName || 'Untitled Event'}`}
     >
       {image && (
         <figure className="h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
-          <Link 
-            href={`/details/${id}`} 
+          <Link
+            href={`/details/${id}`}
             onClick={handleClick}
             aria-label={`View details for ${eventName || 'this event'}`}
           >
@@ -154,29 +136,25 @@ const EventCard = ({ event, now, onError }) => {
               </span>
             </div>
           )}
-
-         
-
-         
         </div>
 
-       <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
-  {date && (
-    <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900 px-3 py-2 rounded-full">
-      <CiCalendar className="text-lg text-green-700 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
-      <span className="text-sm font-medium text-green-700 dark:text-green-300">
-        {formattedDate}
-      </span>
-    </div>
-  )}
+        <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
+          {date && (
+            <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900 px-3 py-2 rounded-full">
+              <CiCalendar className="text-lg text-green-700 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
+              <span className="text-sm font-medium text-green-700 dark:text-green-300">
+                {formattedDate}
+              </span>
+            </div>
+          )}
 
-  {time && (
-    <div className="flex items-center gap-2 text-green-600 dark:text-green-300">
-      <IoMdTimer className="text-lg flex-shrink-0" aria-hidden="true" />
-      <span className="text-sm font-medium">{time}</span>
-    </div>
-  )}
-</div>
+          {time && (
+            <div className="flex items-center gap-2 text-green-600 dark:text-green-300">
+              <IoMdTimer className="text-lg flex-shrink-0" aria-hidden="true" />
+              <span className="text-sm font-medium">{time}</span>
+            </div>
+          )}
+        </div>
       </div>
     </article>
   );

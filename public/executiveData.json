@@ -3,13 +3,13 @@
         "SB": {
             "faculty": [
                 {
-                    "name": "Dr. Aminur Rahman",
+                    "name": "Dr. Md. Ahsan Habib",
                     "role": "BRANCH COUNSELOR",
-                    "img": "images/AMN.jpg",
+                    "img": "images/Ahsan_Habib_Tareq.png",
                     "social": {
-                        "facebook": "https://facebook.com/aminur.rahman",
-                        "linkedin": "https://linkedin.com/in/aminurrahman",
-                        "email": "mailto:aminur.rahman@example.com"
+                        "facebook": "https://www.facebook.com/ahsanhabib.tareq",
+                        "linkedin": "https://www.linkedin.com/in/md-ahsan-habib-bb774723",
+                        "email": "mailto:mahabib@cse.green.edu.bd"
                     }
                 },
                 {
@@ -19,7 +19,7 @@
                     "social": {
                         "facebook": "https://facebook.com/ahmed.mansur",
                         "linkedin": "https://linkedin.com/in/ahmedmansur",
-                        "email": "mailto:ahmed.mansur@example.com"
+                        "email": "mailto:mansur@eee.green.edu.bd"
                     }
                 },
                 {
@@ -27,9 +27,9 @@
                     "role": "MENTOR",
                     "img": "images/RJBUL.jpg",
                     "social": {
-                        "facebook": "https://facebook.com/rajibul.palas",
-                        "linkedin": "https://linkedin.com/in/rajibulpalas",
-                        "email": "mailto:rajibul.palas@example.com"
+                        "facebook": "https://www.facebook.com/rajibulpalas",
+                        "linkedin": "https://www.linkedin.com/in/mdrajibulpalas/",
+                        "email": "mailto:rajibul@cse.green.edu.bd"
                     }
                 }
             ],
@@ -39,9 +39,9 @@
                     "role": "Chair",
                     "img": "images/1 (1).png",
                     "social": {
-                        "facebook": "https://facebook.com/faysal.tomal",
+                        "facebook": "https://facebook.com/FaysalHT02",
                         "linkedin": "https://linkedin.com/in/faysaltomal",
-                        "email": "mailto:faysal.tomal@example.com"
+                        "email": "mailto:faysaltomal02@gmail.com"
                     }
                 },
                 {
@@ -49,9 +49,9 @@
                     "role": "Vice-chair (Activity)",
                     "img": "images/2.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.shefat",
+                        "facebook": "https://web.facebook.com/sakib1sefat",
                         "linkedin": "https://linkedin.com/in/shakibshefat",
-                        "email": "mailto:shakib.shefat@example.com"
+                        "email": "mailto:sakib1sefat@gmail.com"
                     }
                 },
                 {
@@ -59,9 +59,9 @@
                     "role": "Vice-chair (Technical)",
                     "img": "images/3.png",
                     "social": {
-                        "facebook": "https://facebook.com/fahim.mahmud",
-                        "linkedin": "https://linkedin.com/in/fahimmahmud",
-                        "email": "mailto:fahim.mahmud@example.com"
+                        "facebook": "https://web.facebook.com/fah.mahmud",
+                        "linkedin": "https://www.linkedin.com/in/fahim-mahmud-5185b91a4/",
+                        "email": "mailto:fahimmahmudd17@gmail.com"
                     }
                 },
                 {
@@ -69,9 +69,9 @@
                     "role": "General Secretary",
                     "img": "images/4.png",
                     "social": {
-                        "facebook": "https://facebook.com/shahadat.nishan",
-                        "linkedin": "https://linkedin.com/in/shahadatnishan",
-                        "email": "mailto:shahadat.nishan@example.com"
+                        "facebook": "https://web.facebook.com/nishan979",
+                        "linkedin": "https://linkedin.com/in/nishan979",
+                        "email": "mailto:nishanshish@gmail.com"
                     }
                 },
                 {
@@ -79,9 +79,9 @@
                     "role": "Joint Secretary",
                     "img": "images/5.png",
                     "social": {
-                        "facebook": "https://facebook.com/esrat.eva",
+                        "facebook": "https://facebook.com/EsratAhmedEva",
                         "linkedin": "https://linkedin.com/in/esrateva",
-                        "email": "mailto:esrat.eva@example.com"
+                        "email": "mailto:esratahmedeva19@gmail.com"
                     }
                 },
                 {
@@ -89,9 +89,9 @@
                     "role": "Treasurer",
                     "img": "images/6.png",
                     "social": {
-                        "facebook": "https://facebook.com/rayhan.imran",
-                        "linkedin": "https://linkedin.com/in/rayhanimran",
-                        "email": "mailto:rayhan.imran@example.com"
+                        "facebook": "https://www.facebook.com/share/16cDSpzfFC/",
+                        "linkedin": "https://www.linkedin.com/in/md-abu-rayhan-imran-6262b61b6",
+                        "email": "mailto:aburayhan2550@gmail.com"
                     }
                 },
                 {
@@ -99,9 +99,9 @@
                     "role": "Organizing Secretary",
                     "img": "images/7.png",
                     "social": {
-                        "facebook": "https://facebook.com/pritam.turja",
-                        "linkedin": "https://linkedin.com/in/pritamturja",
-                        "email": "mailto:pritam.turja@example.com"
+                        "facebook": "https://www.facebook.com/pritamsaha.turja",
+                        "linkedin": "https://www.linkedin.com/in/pritam-saha-turja-083308337/",
+                        "email": "mailto:pritamsahaturja1@gmail.com"
                     }
                 },
                 {
@@ -109,9 +109,9 @@
                     "role": "Joint Organizing Secretary",
                     "img": "images/8.png",
                     "social": {
-                        "facebook": "https://facebook.com/antu.marma",
-                        "linkedin": "https://linkedin.com/in/antumarma",
-                        "email": "mailto:antu.marma@example.com"
+                        "facebook": "https://web.facebook.com/antu.marma",
+                        "linkedin": "https://www.linkedin.com/in/antumarma",
+                        "email": "mailto:antu.marma969@gmail.com"
                     }
                 },
                 {
@@ -119,9 +119,9 @@
                     "role": "Publication Secretary",
                     "img": "images/9.png",
                     "social": {
-                        "facebook": "https://facebook.com/nasibul.naem",
-                        "linkedin": "https://linkedin.com/in/nasibulnaem",
-                        "email": "mailto:nasibul.naem@example.com"
+                        "facebook": "https://www.facebook.com/share/1AsdBiy2v9/",
+                        "linkedin": "https://bd.linkedin.com/in/nasibul-hasan-871497278",
+                        "email": "mailto:221001013@student.green.edu.bd"
                     }
                 },
                 {
@@ -129,9 +129,9 @@
                     "role": "Programme Co-Ordinator",
                     "img": "images/10.png",
                     "social": {
-                        "facebook": "https://facebook.com/dip.barman",
-                        "linkedin": "https://linkedin.com/in/dipbarman",
-                        "email": "mailto:dip.barman@example.com"
+                        "facebook": "https://web.facebook.com/dip.barman.118",
+                        "linkedin": "https://linkedin.com/in/DipBarman",
+                        "email": "mailto:dipbarman1212@gmail.com"
                     }
                 },
                 {
@@ -139,9 +139,9 @@
                     "role": "Programme Co-Ordinator",
                     "img": "images/11.png",
                     "social": {
-                        "facebook": "https://facebook.com/rifat.hasan",
-                        "linkedin": "https://linkedin.com/in/rifathasan",
-                        "email": "mailto:rifat.hasan@example.com"
+                        "facebook": "https://www.facebook.com/rifatbinhassan.hassan",
+                        "linkedin": " www.linkedin.com/in/rifat-hassan-837473365",
+                        "email": "mailto: rifathassan01716@gmail.com"
                     }
                 },
                 {
@@ -149,9 +149,9 @@
                     "role": "Membership Development Co-Ordinator",
                     "img": "images/12.png",
                     "social": {
-                        "facebook": "https://facebook.com/promod.das",
-                        "linkedin": "https://linkedin.com/in/promoddas",
-                        "email": "mailto:promod.das@example.com"
+                        "facebook": "https://www.facebook.com/promod.das.85656",
+                        "linkedin": "https://www.linkedin.com/in/promod-chandra-das-894b32275/",
+                        "email": "mailto:promodd23@gmail.com"
                     }
                 },
                 {
@@ -159,9 +159,9 @@
                     "role": "Student Activity Co-Ordinator",
                     "img": "images/13.png",
                     "social": {
-                        "facebook": "https://facebook.com/afsa.shawla",
+                        "facebook": "https://www.facebook.com/share/1MhUJDoLVy/",
                         "linkedin": "https://linkedin.com/in/afsashawla",
-                        "email": "mailto:afsa.shawla@example.com"
+                        "email": "mailto:shawla.cse@gmail.com"
                     }
                 },
                 {
@@ -169,9 +169,9 @@
                     "role": "Publicity Co-Ordinator",
                     "img": "images/14.png",
                     "social": {
-                        "facebook": "https://facebook.com/mainul.nerob",
-                        "linkedin": "https://linkedin.com/in/mainulnerob",
-                        "email": "mailto:mainul.nerob@example.com"
+                        "facebook": "https://www.facebook.com/share/1C4U5xD7yB/",
+                        "linkedin": "https://www.linkedin.com/in/md-mainul-islam-nerob",
+                        "email": "mailto:mdmainulislamnerob52@gmail.com"
                     }
                 },
                 {
@@ -189,9 +189,9 @@
                     "role": "Graphics Designer",
                     "img": "images/16.png",
                     "social": {
-                        "facebook": "https://facebook.com/naymuzzaman.nahid",
+                        "facebook": "https://www.facebook.com/share/1CMD7k6ym2/",
                         "linkedin": "https://linkedin.com/in/naymuzzamannahid",
-                        "email": "mailto:naymuzzaman.nahid@example.com"
+                        "email": "mailto:naymuzzamannahid65@gmail.com"
                     }
                 },
                 {
@@ -199,9 +199,9 @@
                     "role": "Asst Graphics Designer",
                     "img": "images/17.png",
                     "social": {
-                        "facebook": "https://facebook.com/miadul.nizzan",
-                        "linkedin": "https://linkedin.com/in/miadulnizzan",
-                        "email": "mailto:miadul.nizzan@example.com"
+                        "facebook": "https://www.facebook.com/miadul.islam.16",
+                        "linkedin": "https://www.linkedin.com/in/md-miadul-islam-nizzan-450b70262",
+                        "email": "mailto:nijjon12@gmail.com"
                     }
                 },
                 {
@@ -209,9 +209,9 @@
                     "role": "Web master & Newsletter editor",
                     "img": "images/18.png",
                     "social": {
-                        "facebook": "https://facebook.com/maheer.priya",
-                        "linkedin": "https://linkedin.com/in/maheerpriya",
-                        "email": "mailto:maheer.priya@example.com"
+                        "facebook": "https://www.facebook.com/ruhani.islam.121",
+                        "linkedin": "https://www.linkedin.com/in/maheer-jabin-priya-773161369/",
+                        "email": "mailto:maheerjabinpriya@gmail.com"
                     }
                 },
                 {
@@ -219,9 +219,9 @@
                     "role": "Executive Member",
                     "img": "images/19.png",
                     "social": {
-                        "facebook": "https://facebook.com/tonmoy.das",
-                        "linkedin": "https://linkedin.com/in/tonmoydas",
-                        "email": "mailto:tonmoy.das@example.com"
+                        "facebook": "https://www.facebook.com/share/1EjRZLKr2F/",
+                        "linkedin": "https://www.linkedin.com/in/tonmoy-das-4a90772aa",
+                        "email": "mailto:tonmoydas052@gmail.com"
                     }
                 },
                 {
@@ -231,7 +231,7 @@
                     "social": {
                         "facebook": "https://facebook.com/shakib.hasan",
                         "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "email": "mailto:shakibhasan1040@gmail.com"
                     }
                 },
                 {
@@ -239,19 +239,19 @@
                     "role": "Executive Member",
                     "img": "images/21.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
-                        "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "facebook": "https://www.facebook.com/aniket.anik.84622",
+                        "linkedin": "https://www.linkedin.com/in/anik-haldar-740a43371",
+                        "email": "mailto:anikhaldar221002227@gmail.com"
                     }
                 },
                 {
-                    "name": "Mehraz Khandaka",
+                    "name": "Mehraz Khandakar",
                     "role": "Executive Member",
                     "img": "images/22.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
+                        "facebook": "https://web.facebook.com/trippie.444",
                         "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "email": "mailto:mehrazz2459@gmail.com"
                     }
                 },
                 {
@@ -259,9 +259,9 @@
                     "role": "Volunteer",
                     "img": "images/23.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
-                        "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "facebook": "https://facebook.com/a.md.galib",
+                        "linkedin": "https://linkedin.com/in/abdullahmdgalib",
+                        "email": "mailto:mail.mdgalib@gmail.com"
                     }
                 },
                 {
@@ -271,7 +271,7 @@
                     "social": {
                         "facebook": "https://facebook.com/shakib.hasan",
                         "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "email": "mailto:tabassumfaria1616@gmail.com"
                     }
                 },
                 {
@@ -279,9 +279,9 @@
                     "role": "Volunteer",
                     "img": "images/25.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
-                        "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "facebook": "https://facebook.com/rafayetraf",
+                        "linkedin": "https://linkedin.com/in/md-abuufiyan-rafayet-1096a9244",
+                        "email": "mailto:mdasrafayet@gmail.com"
                     }
                 },
                 {
@@ -289,9 +289,9 @@
                     "role": "Volunteer",
                     "img": "images/26.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
-                        "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "facebook": "https://facebook.com/zzerryy",
+                        "linkedin": "https://linkedin.com/in/mehreen-jerin-khan-a89330351",
+                        "email": "mailto:mehreenjerinkhan@gmail.com"
                     }
                 },
                 {
@@ -299,9 +299,9 @@
                     "role": "Volunteer",
                     "img": "images/27.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
-                        "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "facebook": "https://www.facebook.com/share/1Ca4CtceLo/",
+                        "linkedin": "https://linkedin.com/in/rifah-zakia-63a6b41b5",
+                        "email": "mailto:rifah.gub.com@gmail.com"
                     }
                 },
                 {
@@ -309,9 +309,9 @@
                     "role": "Volunteer",
                     "img": "images/28.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
-                        "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "facebook": "https://www.facebook.com/share/19ABStumyp/",
+                        "linkedin": "https://linkedin.com/in/swapnil-saha-4892b336b",
+                        "email": "mailto:swapnilsaha443@gmail.com"
                     }
                 },
                 {
@@ -319,9 +319,9 @@
                     "role": "Volunteer",
                     "img": "images/29.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
-                        "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "facebook": "https://www.facebook.com/share/1FWoMcbTCE/",
+                        "linkedin": "https://linkedin.com/in/faysal-hossain-raju-2a839436b/",
+                        "email": "mailto:faysalhossainraju403@gmail.com"
                     }
                 },
                 {
@@ -329,9 +329,9 @@
                     "role": "Volunteer",
                     "img": "images/30.png",
                     "social": {
-                        "facebook": "https://facebook.com/shakib.hasan",
+                        "facebook": "https://facebook.com/afroja.khanam.7315",
                         "linkedin": "https://linkedin.com/in/shakibhasan",
-                        "email": "mailto:shakib.hasan@example.com"
+                        "email": "mailto:meherinmuna29@gmail.com"
                     }
                 }
             ]

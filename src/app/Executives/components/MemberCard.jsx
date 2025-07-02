@@ -4,7 +4,6 @@ import {
     Linkedin,
     Mail,
     Facebook,
-    Phone,
     BookOpen,
     Calendar,
     Star,
