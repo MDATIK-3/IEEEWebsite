@@ -2,40 +2,14 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-
-const moderators = [
-  {
-    id: 1,
-    name: "Dr. Ahmed Al Mansur",
-    title: "Professor and Director, GCiA",
-    image: "/images/AHMED.jpg",
-    message:
-      "IEEE Green University represents our commitment to sustainable education. Through innovative programs, we're training the next generation of eco-conscious engineers who will lead the green revolution.",
-  },
-  {
-    id: 2,
-    name: "Prof. Rajibul Palash",
-    title: "IEEE Green University Mentor",
-    image: "/images/RJBUL.jpg",
-    message:
-      "Our green initiatives go beyond campus boundaries. We're creating a model for sustainable university operations that reduces carbon footprint while enhancing learning experiences.",
-  },
-  {
-    id: 3,
-    name: "Dr. Muhammad Aminur Rahaman",
-    title: "Chairperson of GUB",
-    image: "/images/AMN.jpg",
-    message:
-      "At IEEE Green University, we combine technical education with environmental stewardship. Our students develop solutions that address real-world sustainability challenges.",
-  },
-];
+import moderators from '@/data/moderatorsMessages.json';
 
 export default function ModeratorMessages() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [activeCard, setActiveCard] = useState(null);
 
   return (
-    <section className="relative flex items-center justify-center bg-white min-h-screen overflow-hidden">
+    <section className="relative py-20 flex items-center justify-center bg-white overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{

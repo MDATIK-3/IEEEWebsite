@@ -1,62 +1,12 @@
 'use client';
 
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
+import photosData from "@/data/photos.json"; 
 
 export const useGalleryData = (searchQuery = '', selectedCategory = 'All', previewCount = null) => {
-  const [photos, setPhotos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const photosCache = useRef(null);
-  const abortControllerRef = useRef(null);
-
-  useEffect(() => {
-    const fetchPhotos = async () => {
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
-      }
-
-      abortControllerRef.current = new AbortController();
-      
-      try {
-        setLoading(true);
-        setError(null);
-        
-        const res = await fetch("/photos.json", {
-          signal: abortControllerRef.current.signal
-        });
-        
-        if (!res.ok) {
-          throw new Error(`Failed to fetch: ${res.status}`);
-        }
-        
-        const data = await res.json();
-        const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-        
-        photosCache.current = sorted;
-        setPhotos(sorted);
-      } catch (err) {
-        if (err.name !== 'AbortError') {
-          console.error("Failed to fetch photos:", err);
-          setError(err.message);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (photosCache.current) {
-      setPhotos(photosCache.current);
-      setLoading(false);
-    } else {
-      fetchPhotos();
-    }
-
-    return () => {
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
-      }
-    };
-  }, []);
+  const [photos] = useState(() => {
+    return photosData.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  });
 
   const filteredPhotos = useMemo(() => {
     let filtered = photos;
@@ -85,15 +35,10 @@ export const useGalleryData = (searchQuery = '', selectedCategory = 'All', previ
     return filtered;
   }, [searchQuery, selectedCategory, photos, previewCount]);
 
-  return { 
-    filteredPhotos, 
-    loading, 
-    error,
+  return {
+    filteredPhotos,
     totalPhotos: photos.length,
     refresh: useCallback(() => {
-      photosCache.current = null;
-      setPhotos([]);
-      setLoading(true);
     }, [])
   };
 };

@@ -1,8 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
-import { IoMdTimer, IoMdPeople } from "react-icons/io";
+import { IoMdTimer } from "react-icons/io";
 import { CiCalendar } from "react-icons/ci";
 import Link from "next/link";
-import { useEvent } from '@/app/context/EventContext';
 import { User } from 'lucide-react';
 
 const calculateCountdown = (timeDiff) => {
@@ -33,9 +32,7 @@ const formatDate = (dateString) => {
   }
 };
 
-const EventCard = ({ event, now, onError }) => {
-  const { setSelectedEvent } = useEvent();
-
+const EventCard = ({ event, now, onError, onSelect }) => {
   if (!event) {
     console.error('EventCard: event prop is required');
     return null;
@@ -73,7 +70,7 @@ const EventCard = ({ event, now, onError }) => {
 
   const handleClick = useCallback(() => {
     try {
-      setSelectedEvent?.(event);
+      onSelect?.(event);
 
       if (typeof window !== 'undefined' && window.localStorage) {
         try {
@@ -86,7 +83,7 @@ const EventCard = ({ event, now, onError }) => {
       console.error('EventCard click handler error:', error);
       onError?.(error);
     }
-  }, [event, setSelectedEvent, onError]);
+  }, [event, onSelect, onError]);
 
   const handleImageError = useCallback((e) => {
     console.warn('Image failed to load:', image);
@@ -144,7 +141,6 @@ const EventCard = ({ event, now, onError }) => {
             </div>
           )}
         </div>
-
 
         <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
           {date && (
