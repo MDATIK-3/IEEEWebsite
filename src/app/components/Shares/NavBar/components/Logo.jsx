@@ -2,9 +2,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Logo({ width = 120, height = 48 }) {
+export default function Logo({ width = 120, height = 48, onClick }) {
   return (
-    <Link href="/" className="flex items-center">
+    <Link href="/" className="flex items-center" onClick={onClick}>
       <Image
         src="/images/IEEE_SB.png"
         alt="IEEE SB Logo"

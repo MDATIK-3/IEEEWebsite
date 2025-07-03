@@ -13,11 +13,6 @@ const navLinks = [
 export default function DesktopNavLinks() {
   const pathname = usePathname();
 
-  const activeLinkClasses =
-    'text-green-500 border-b-2 border-green-500 font-medium tracking-wide';
-  const defaultLinkClasses =
-    'font-light tracking-wide text-gray-700 hover:text-green-500 focus:outline-none focus:text-green-500 transition-all duration-300 ease-out';
-
   return (
     <ul className="hidden lg:flex items-center space-x-8">
       {navLinks.map(({ href, label }) => (
@@ -25,9 +20,10 @@ export default function DesktopNavLinks() {
           <Link
             href={href}
             className={cx(
-              pathname === href ? activeLinkClasses : defaultLinkClasses
+              pathname === href
+                ? 'text-green-500 border-b-2 border-green-500 font-medium tracking-wide'
+                : 'font-light tracking-wide text-gray-700 hover:text-green-500 focus:outline-none focus:text-green-500 transition-all duration-300 ease-out'
             )}
-            aria-current={pathname === href ? 'page' : undefined}
           >
             {label}
           </Link>

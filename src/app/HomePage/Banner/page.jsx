@@ -9,7 +9,7 @@ const FloatingDecorations = dynamic(() => import('./FloatingDecorations'), { ssr
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-green-50/40 to-blue-50/50 flex items-center justify-center">
+    <section className="relative min-h-screen overflow-hidden lg:pt-[56px] pb-10 pt-20 bg-gradient-to-br from-slate-50 via-green-50/40 to-blue-50/50 flex items-center justify-center">
       <BackgroundBlobs />
       <RadialBackground />
 
