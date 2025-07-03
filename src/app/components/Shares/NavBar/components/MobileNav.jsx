@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cx } from '@/app/utils/cx';
-import { useEffect, useState } from 'react';
 import Logo from './Logo';
 
 const navLinks = [
@@ -14,14 +13,7 @@ const navLinks = [
 ];
 
 export default function MobileNav({ mobileOpen, onClose }) {
-    const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) return null;
 
     return (
         <>
