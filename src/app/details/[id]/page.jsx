@@ -1,8 +1,10 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { User, Users, ExternalLink, Star, X } from 'lucide-react';
-import { useEvent } from '@/app/context/EventContext';
+import { useRef, useMemo } from 'react';
+import { useParams } from 'next/navigation';
+import { User, Users, ExternalLink, Star } from 'lucide-react';
+
+import eventData from '@/data/eventData.json';
 
 import HeroSection from './components/HeroSection';
 import EventImage from './components/EventImage';
@@ -15,32 +17,38 @@ import Modal from '@/app/components/Shares/Modal';
 import LoadingState from '@/app/components/LoadingSpinner';
 
 const EventDetails = () => {
-  const { events, selectedEvent, loading, error } = useEvent();
-  const [id, setId] = useState(null);
+  const params = useParams();
+  const id = params?.id;
+
   const modalRef = useRef(null);
 
-  useEffect(() => {
-    const parts = window.location.pathname.split('/');
-    if (parts.length > 2) setId(parts[2]);
-  }, []);
+  const event = useMemo(() => {
+    if (!id) return null;
+    return eventData.find(e => e.id.toString() === id) || null;
+  }, [id]);
 
-  const event =
-    selectedEvent || (events && id ? events.find(e => e.id.toString() === id) : null);
+  const eventDate = useMemo(() => (event ? new Date(`${event.date}T00:00:00`) : null), [event]);
+  const now = useMemo(() => new Date(), []);
+  const isPastEvent = eventDate ? eventDate < now : false;
 
-  const eventDate = event ? new Date(`${event.date}T00:00:00`) : null;
-  const isPastEvent = eventDate ? eventDate < new Date() : false;
-
-  const formatDate = dateStr => {
-    const date = new Date(`${dateStr}T00:00:00`);
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  const formatDate = (dateStr) => {
+    if (!dateStr) return '';
+    try {
+      const date = new Date(`${dateStr}T00:00:00`);
+      if (isNaN(date)) return dateStr;
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+      return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    } catch {
+      return dateStr;
+    }
   };
 
   const handleShare = async () => {
+    if (!event) return;
     try {
       if (navigator.share) {
         await navigator.share({
@@ -48,9 +56,11 @@ const EventDetails = () => {
           text: `Join us for ${event.eventName}`,
           url: window.location.href,
         });
-      } else {
+      } else if (navigator.clipboard) {
         await navigator.clipboard.writeText(window.location.href);
-        alert('Event link copied to clipboard!');
+        console.log('Event link copied to clipboard!');
+      } else {
+        alert('Sharing not supported. Please copy the URL manually.');
       }
     } catch (err) {
       console.error('Error sharing:', err);
@@ -64,11 +74,8 @@ const EventDetails = () => {
     { icon: ExternalLink, text: 'Interactive Content' },
   ];
 
-  if (loading || !event) {
-    return (
-      <LoadingState />
-    );
-  }
+  if (!id) return <LoadingState />;
+  if (!event) return <div className="text-center py-20">Event not found.</div>;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
@@ -81,7 +88,6 @@ const EventDetails = () => {
             <EventDescription event={event} isPastEvent={isPastEvent} />
             <SpeakerSection event={event} />
             <EventHighlights eventHighlights={eventHighlights} />
-
             <GallerySection
               event={event}
               isPastEvent={isPastEvent}
