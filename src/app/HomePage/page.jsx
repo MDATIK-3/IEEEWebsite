@@ -6,14 +6,14 @@ import Feature from "./Feature/page";
 import AllPhoto from "./Gallery/page";
 function Page() {
     return (
-        <>
+        <main>
             <Banner />
             <About />
             <ModeratorMessages />
             <Feature />
             <AllPhoto />
             <AllEvent />
-        </>
+        </main>
     )
 }
 

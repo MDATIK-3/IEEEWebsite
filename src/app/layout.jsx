@@ -2,7 +2,6 @@ import NavBar from './components/Shares/NavBar/page.jsx';
 import Footer from './components/Shares/Footer/page.jsx';
 import FeedbackButton from './components/FeedbackButton/page.jsx';
 import './globals.css';
-import { EventProvider } from './context/EventContext';
 
 export const metadata = {
   title: 'IEEE Green University of Bangladesh',
@@ -36,12 +35,10 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#10b981" />
       </head>
       <body className="bg-white text-gray-900 antialiased" suppressHydrationWarning>
-        <EventProvider>
-          <NavBar />
-          <main className="flex-grow">{children}</main>
-          <FeedbackButton />
-          <Footer />
-        </EventProvider>
+        <NavBar />
+        <main className="flex-grow">{children}</main>
+        <FeedbackButton />
+        <Footer />
       </body>
     </html>
   );

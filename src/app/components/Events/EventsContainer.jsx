@@ -1,26 +1,17 @@
-'use client';
-import { useEffect, useState } from "react";
+"use client";
+import { useState } from "react";
 import Link from "next/link";
+
 import EventsFilter from "./EventsFilter";
 import EventsGrid from "./EventsGrid";
-import LoadingSpinner from "../LoadingSpinner";
-import ErrorDisplay from "../../Executives/components/ErrorDisplay";
-import { useEvent } from '@/app/context/EventContext';
+import events from "@/data/eventData.json";
 
 const EventsContainer = ({ isFullPage }) => {
-  const { events, loading, error } = useEvent();
-  const [now, setNow] = useState(new Date());
+  const now = new Date();
+
   const [searchText, setSearchText] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNow(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const filteredEvents = events.filter((event) => {
     const matchesSearch = event.eventName.toLowerCase().includes(searchText.toLowerCase());
@@ -36,14 +27,6 @@ const EventsContainer = ({ isFullPage }) => {
   const displayedEvents = isFullPage ? filteredEvents.slice(0, 9) : filteredEvents.slice(0, 6);
   const upcomingCount = events.filter((event) => new Date(event.date) > now).length;
   const pastCount = events.filter((event) => new Date(event.date) < now).length;
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <ErrorDisplay error={error} />;
-  }
 
   return (
     <div className="py-12 px-4 max-w-7xl mx-auto border-t border-green-200">
@@ -90,7 +73,7 @@ const EventsContainer = ({ isFullPage }) => {
           </h3>
           <p className="text-green-600 mb-6">
             {searchText
-              ? "No events match your search for \"" + searchText + "\". Try different keywords."
+              ? `No events match your search for "${searchText}". Try different keywords.`
               : "There are no events to display at the moment. Check back later!"}
           </p>
           {searchText && (

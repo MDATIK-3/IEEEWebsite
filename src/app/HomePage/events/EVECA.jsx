@@ -1,7 +1,6 @@
 import { IoMdTimer } from "react-icons/io";
 import { IoMdPeople } from "react-icons/io"; 
 
-
 import { CiCalendar } from "react-icons/ci";
 import Link from "next/link";
 
