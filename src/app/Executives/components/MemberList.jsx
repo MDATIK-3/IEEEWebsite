@@ -1,9 +1,8 @@
 "use client";
 import MemberCard from './MemberCard';
-import { Search, Star, Users } from 'lucide-react';
+import { Search, BadgeCheck, GraduationCap } from 'lucide-react';
 
 const MemberList = ({ members, onMemberClick }) => {
-
     if (members.length === 0) {
         return (
             <div className="text-center py-16 bg-white rounded-xl shadow-lg border border-gray-100">
@@ -25,7 +24,7 @@ const MemberList = ({ members, onMemberClick }) => {
                 <div className="mb-12">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="p-3 bg-emerald-100 rounded-lg shadow-sm">
-                            <Star className="h-6 w-6 text-emerald-700" />
+                            <BadgeCheck className="h-6 w-6 text-green-500" />
                         </div>
                         <h2 className="text-3xl font-bold text-gray-800">Faculty Advisors</h2>
                         <span className="bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-lg font-medium shadow-sm">
@@ -49,7 +48,7 @@ const MemberList = ({ members, onMemberClick }) => {
                 <div>
                     <div className="flex items-center gap-3 mb-6">
                         <div className="p-3 bg-emerald-50 rounded-lg shadow-sm">
-                            <Users className="h-6 w-6 text-emerald-600" />
+                            <GraduationCap className="h-6 w-6 text-emerald-600" />
                         </div>
                         <h2 className="text-3xl font-bold text-gray-800">Student Executive Board</h2>
                         <span className="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-lg font-medium shadow-sm">

@@ -133,10 +133,10 @@ const EventCard = ({ event, now, onError }) => {
             <div className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
               <div className="flex items-center gap-1">
                 <User
-                  size={16}
+                  size={20}
                   strokeWidth={2}
                   absoluteStrokeWidth
-                  className="text-green-500"
+                  className="text-green-400"
                 />
                 <span className="text-sm font-semibold">Guest:</span>
               </div>
@@ -149,15 +149,15 @@ const EventCard = ({ event, now, onError }) => {
         <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
           {date && (
             <div className="flex items-center gap-2">
-              <CiCalendar className="text-lg text-green-700 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
-              <span className="text-sm font-medium text-green-700 dark:text-green-300">
+              <CiCalendar className="text-lg text-green-400 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
+              <span className="text-sm font-medium text-green-400 dark:text-green-300">
                 {formattedDate}
               </span>
             </div>
           )}
 
           {time && (
-            <div className="flex items-center gap-2 text-green-600 dark:text-green-300">
+            <div className="flex items-center gap-2 text-green-400 dark:text-green-300">
               <IoMdTimer className="text-lg flex-shrink-0" aria-hidden="true" />
               <span className="text-sm font-medium">{time}</span>
             </div>

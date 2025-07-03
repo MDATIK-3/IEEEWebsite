@@ -6,7 +6,7 @@ import {
     Facebook,
     BookOpen,
     Calendar,
-    Star,
+    BadgeCheck,
 } from "lucide-react";
 
 const MemberCard = ({ member, isFaculty = false, onClick }) => {
@@ -38,9 +38,10 @@ const MemberCard = ({ member, isFaculty = false, onClick }) => {
         >
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-transparent to-lime-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
+            {/* Clean badge icon without background */}
             {isFaculty && (
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-lime-400 to-lime-600 rounded-full p-1.5 shadow-md z-10">
-                    <Star className="h-3 w-3 text-white" />
+                <div className="absolute top-4 right-4 z-10">
+                    <BadgeCheck className="h-5 w-5 text-green-600 drop-shadow" />
                 </div>
             )}
 
@@ -84,7 +85,6 @@ const MemberCard = ({ member, isFaculty = false, onClick }) => {
                     <SocialLink href={`mailto:${member.social.email}`} icon={Mail} label="Email" disabled={!member.social.email} />
                     <SocialLink href={member.social.facebook} icon={Facebook} label="Facebook" disabled={!member.social.facebook} />
                 </div>
-
             </div>
         </div>
     );
