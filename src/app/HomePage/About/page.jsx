@@ -10,9 +10,9 @@ import Activities from './Activities';
 import { Users, Calendar, Trophy, Handshake, Rocket, BookOpen, Globe } from 'lucide-react';
 
 const stats = [
-  { number: '3000+', label: 'Active Members', icon: <Users className="text-green-400" size={28} /> },
-  { number: '50+', label: 'Annual Events', icon: <Calendar className="text-green-400" size={28} /> },
-  { number: '10+', label: 'Years Active', icon: <Trophy className="text-green-400" size={28} /> },
+  { number: '3000+', label: 'Active Members', icon: <Users className="text-green-600" size={32} /> },
+  { number: '50+', label: 'Annual Events', icon: <Calendar className="text-green-600" size={32} /> },
+  { number: '10+', label: 'Years Active', icon: <Trophy className="text-green-600" size={32} /> },
 ];
 
 const coreValues = [
