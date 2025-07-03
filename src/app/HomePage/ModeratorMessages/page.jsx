@@ -35,7 +35,7 @@ export default function ModeratorMessages() {
   const [activeCard, setActiveCard] = useState(null);
 
   return (
-    <section className="relative py-16 px-4 bg-white min-h-screen overflow-hidden">
+    <section className="relative flex items-center justify-center bg-white min-h-screen overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
@@ -46,8 +46,6 @@ export default function ModeratorMessages() {
           backgroundSize: '40px 40px',
         }}
       />
-
-      {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
