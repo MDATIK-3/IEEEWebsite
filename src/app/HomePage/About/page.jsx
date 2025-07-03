@@ -6,17 +6,20 @@ import Mission from './Mission';
 import CoreValues from './CoreValues';
 import Activities from './Activities';
 
+// Lucide icons
+import { Users, Calendar, Trophy, Handshake, Rocket, BookOpen, Globe } from 'lucide-react';
+
 const stats = [
-  { number: '3000+', label: 'Active Members', icon: '👥' },
-  { number: '50+', label: 'Annual Events', icon: '📅' },
-  { number: '10+', label: 'Years Active', icon: '🏆' },
+  { number: '3000+', label: 'Active Members', icon: <Users className="text-green-600" size={32} /> },
+  { number: '50+', label: 'Annual Events', icon: <Calendar className="text-green-600" size={32} /> },
+  { number: '10+', label: 'Years Active', icon: <Trophy className="text-green-600" size={32} /> },
 ];
 
 const coreValues = [
-  { icon: '🤝', title: 'Collaboration', desc: 'Working together for impact' },
-  { icon: '🚀', title: 'Innovation', desc: 'Creative solutions for tomorrow' },
-  { icon: '📖', title: 'Learning', desc: 'Continuous skill development' },
-  { icon: '🌍', title: 'Global Vision', desc: 'Worldwide engineering network' },
+  { icon: <Handshake className="text-green-500" size={20} />, title: 'Collaboration', desc: 'Working together for impact' },
+  { icon: <Rocket className="text-green-500" size={20} />, title: 'Innovation', desc: 'Creative solutions for tomorrow' },
+  { icon: <BookOpen className="text-green-500" size={20} />, title: 'Learning', desc: 'Continuous skill development' },
+  { icon: <Globe className="text-green-500" size={20} />, title: 'Global Vision', desc: 'Worldwide engineering network' },
 ];
 
 const activities = [
@@ -51,13 +54,11 @@ const About = () => {
           </p>
 
           <Stats stats={stats} />
-
           <Mission />
         </div>
 
         <aside className="w-full lg:w-96 flex-shrink-0 space-y-12">
           <CoreValues coreValues={coreValues} />
-
           <Activities activities={activities} />
         </aside>
       </div>
