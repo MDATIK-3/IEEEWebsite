@@ -3,6 +3,7 @@ import { IoMdTimer, IoMdPeople } from "react-icons/io";
 import { CiCalendar } from "react-icons/ci";
 import Link from "next/link";
 import { useEvent } from '@/app/context/EventContext';
+import { User } from 'lucide-react';
 
 const calculateCountdown = (timeDiff) => {
   if (timeDiff <= 0) return null;
@@ -130,17 +131,24 @@ const EventCard = ({ event, now, onError }) => {
         <div className="flex-grow space-y-3">
           {guest && (
             <div className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
-              <IoMdPeople className="text-xl flex-shrink-0 mt-0.5" aria-hidden="true" />
-              <span className="text-sm line-clamp-2">
-                <span className="font-semibold">Guests:</span> {guest}
-              </span>
+              <div className="flex items-center gap-1">
+                <User
+                  size={16}
+                  strokeWidth={2}
+                  absoluteStrokeWidth
+                  className="text-green-500"
+                />
+                <span className="text-sm font-semibold">Guest:</span>
+              </div>
+              <span className="text-sm">{guest}</span>
             </div>
           )}
         </div>
 
+
         <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
           {date && (
-            <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900 px-3 py-2 rounded-full">
+            <div className="flex items-center gap-2">
               <CiCalendar className="text-lg text-green-700 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
               <span className="text-sm font-medium text-green-700 dark:text-green-300">
                 {formattedDate}
