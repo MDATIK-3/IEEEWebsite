@@ -35,7 +35,7 @@
                 {
                     "name": "MD. Shoab Alam",
                     "role": "MENTOR",
-                    "img": "images/",
+                    "img": "images/ShoabAlam.png",
                     "social": {
                         "facebook": "https://www.facebook.com/",
                         "linkedin": "linkedin.com/in/shoabalam",
@@ -359,12 +359,11 @@
                     }
                 }
             ],
-            "students": [
-                
+            "students": [  
                 {
                     "name": "Fahim Mahmud",
                     "role": "Chair",
-                    "img": "images/",
+                    "img": "images/3.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
