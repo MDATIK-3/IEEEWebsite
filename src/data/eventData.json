@@ -1,0 +1,174 @@
+[
+  {
+    "id": 1,
+    "image": "images/e1.jpg",
+    "eventName": "Webinar on Cyber Existence of Professional Skills for a Graduate",
+    "description": "Join us for an in-depth exploration of how cyber skills can enhance professional development...",
+    "date": "2025-07-03",
+    "time": "10:00 PM",
+    "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
+    "guestBio": "Dr. Ahsan Habib is a renowned academician and cybersecurity expert with over 20 years of experience in higher education and research. He has guided numerous students and professionals in aligning technical knowledge with career growth. His work focuses on secure system design, ethical hacking, and digital literacy for future graduates. As a key mentor and thought leader at Green University, he is actively involved in bridging the gap between academia and industry.",
+    "specialGuest": "Dr. Ahmed Al Mansur, Professor and Director, GCiA",
+    "specialGuestBio": "Dr. Ahmed Al Mansur is the Director of the Green Center for Innovation & Advancement (GCiA) and a respected voice in digital transformation and academic leadership. With a distinguished career spanning more than 25 years, Dr. Mansur has played pivotal roles in research-driven innovation, student skill development, and fostering industry-academic collaboration. His insights into employability, professional growth, and strategic education policy have made lasting impacts across educational institutions.",
+    "eventArea": "Online via Zoom",
+    "eventType": "Webinar",
+    "participant": 120,
+    "organizer": "GUB Career Club",
+    "speakers": [
+      {
+        "name": "Dr. Ahsan Habib",
+        "designation": "Professor, Dept. of CSE, GUB",
+        "image": "images/ahsan.png"
+      },
+      {
+        "name": "Dr. Ahmed Al Mansur",
+        "designation": "Professor and Director, GCiA",
+        "image": "images/AMN.jpg"
+      }
+    ],
+    "highlights": [
+      "Expert Speaker",
+      "Q&A Session",
+      "Networking",
+      "Interactive Content"
+    ],
+    "gallery": [
+      "images/1.jpg",
+      "images/2.jpg",
+      "images/3.jpg",
+      "images/4.jpg"
+    ],
+    "registrationLink": "https://googleform.com/register..dsafdas.f.a.."
+  },
+  {
+    "id": 3,
+    "image": "images/e3.jpg",
+    "eventName": "Webinar on Cyber Existence of Professional Skills for a Graduate",
+    "description": "Join us for an in-depth exploration of how cyber skills can enhance professional development...",
+    "date": "2025-06-03",
+    "time": "10:00 PM",
+    "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
+    "guestBio": "Dr. Ahsan Habib is a renowned academician and cybersecurity expert with over 20 years of experience in higher education and research. He has guided numerous students and professionals in aligning technical knowledge with career growth. His work focuses on secure system design, ethical hacking, and digital literacy for future graduates. As a key mentor and thought leader at Green University, he is actively involved in bridging the gap between academia and industry.",
+    "specialGuest": "Dr. Ahmed Al Mansur, Professor and Director, GCiA",
+    "specialGuestBio": "Dr. Ahmed Al Mansur is the Director of the Green Center for Innovation & Advancement (GCiA) and a respected voice in digital transformation and academic leadership. With a distinguished career spanning more than 25 years, Dr. Mansur has played pivotal roles in research-driven innovation, student skill development, and fostering industry-academic collaboration. His insights into employability, professional growth, and strategic education policy have made lasting impacts across educational institutions.",
+    "eventArea": "Online via Zoom",
+    "eventType": "Webinar",
+    "participant": 120,
+    "organizer": "GUB Career Club",
+    "speakers": [
+      {
+        "name": "Dr. Ahsan Habib",
+        "designation": "Professor, Dept. of CSE, GUB",
+        "image": "images/ahsan.png"
+      },
+      {
+        "name": "Dr. Ahmed Al Mansur",
+        "designation": "Professor and Director, GCiA",
+        "image": "images/AMN.jpg"
+      }
+    ],
+    "gallery": [
+      "/images/1.jpg",
+      "/images/2.jpg",
+      "/images/3.jpg",
+      "/images/4.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "image": "images/4.jpg",
+    "eventName": "CSE Carnival - Tech Based Debate Contest",
+    "date": "2024-10-03",
+    "time": "02:00 PM to 04:15 PM",
+    "guest": "Mr. Humayan Kabir Rana, Mr. Saurav Chandra Das, Mr. Md Mubashwir Moshwan",
+    "specialGuest": "N/A",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Debate",
+    "participant": 80,
+    "organizer": "IEEE CS SBC GUB",
+    "gallery": [
+      "/images/1.jpg",
+      "/images/2.jpg",
+      "/images/3.jpg",
+      "/images/4.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "image": "images/2.jpg",
+    "eventName": "How Industry-Academia Collaboration Could Benefit CSE Graduates in 2024",
+    "date": "2024-10-04",
+    "time": "10:00 AM to 11:30 AM",
+    "guest": "Professor Dr. Md. Abdur Razzaque, Azmat Iqbal, Sajib Shikder, Md. Rezwan Hossain",
+    "specialGuest": "N/A",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Seminar",
+    "participant": 110,
+    "organizer": "IEEE CS SBC GUB"
+  },
+  {
+    "id": 6,
+    "image": "images/6.jpg",
+    "eventName": "CSE Carnival - IT Olympiad",
+    "date": "2024-10-04",
+    "time": "10:00 AM to 11:00 AM",
+    "guest": "N/A",
+    "specialGuest": "N/A",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Olympiad",
+    "participant": 52,
+    "organizer": "IEEE CS SBC GUB"
+  },
+  {
+    "id": 7,
+    "image": "images/4.jpg",
+    "eventName": "Panel Discussion on ‘How Industry-Academia Collaboration Could Benefit CSE Graduates in 2024",
+    "date": "2024-10-04",
+    "time": "11:00 AM to 01:00 PM",
+    "guest": "Md. Abdur Razzaque, Azmat Iqbal, Sajib Shikder, Md. Rezwan Hossain",
+    "specialGuest": "Professor Dr. Md. Golam Samdani Fakir, Professor Dr. Md. Sharif Uddin",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Panel Discussion",
+    "participant": 160,
+    "organizer": "IEEE CS SBC GUB"
+  },
+  {
+    "id": 8,
+    "image": "images/5.jpg",
+    "eventName": "Revolution of Robotics Technology and Artificial Intelligence",
+    "date": "2024-10-04",
+    "time": "11:30 AM to 12:45 PM",
+    "guest": "Prof. Dr. Saifuddin Md. Tareeq",
+    "specialGuest": "Md. Solaiman Mia",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Seminar",
+    "participant": 95,
+    "organizer": "IEEE CS SBC GUB"
+  },
+  {
+    "id": 9,
+    "image": "images/6.jpg",
+    "eventName": "Career Guideline Workshop on Full-Stack Development with MERN",
+    "date": "2024-10-17",
+    "time": "08:00 PM to 11:30 PM",
+    "guest": "Shohan Ean, Din Islam",
+    "specialGuest": "N/A",
+    "eventArea": "Online via Zoom",
+    "eventType": "Workshop",
+    "participant": 250,
+    "organizer": "IEEE CS SBC GUB"
+  },
+  {
+    "id": 10,
+    "image": "images/e1.jpg",
+    "eventName": "Introduction to Kaggle: A Beginner’s Guide for Aspiring Data Science & Machine Learning Enthusiasts",
+    "date": "2024-10-15",
+    "time": "02:15 PM to 04:15 PM",
+    "guest": "Mir Tahmid Hossain",
+    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Seminar",
+    "participant": 125,
+    "organizer": "IEEE CS SBC GUB"
+  }
+]
