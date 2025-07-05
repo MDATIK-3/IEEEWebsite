@@ -47,7 +47,7 @@
                 {
                     "name": "Faysal Hossain Tomal",
                     "role": "Chair",
-                    "img": "images/1 (1).png",
+                    "img": "images/FoysalHossainTomal.png",
                     "social": {
                         "facebook": "https://facebook.com/FaysalHT02",
                         "linkedin": "https://linkedin.com/in/faysaltomal",
@@ -57,7 +57,7 @@
                 {
                     "name": "S. M Shakib Mahmud Shefat",
                     "role": "Vice-chair (Activity)",
-                    "img": "images/2.png",
+                    "img": "images/SmShakibMahmudShefat.png",
                     "social": {
                         "facebook": "https://web.facebook.com/sakib1sefat",
                         "linkedin": "https://linkedin.com/in/shakibshefat",
@@ -67,7 +67,7 @@
                 {
                     "name": "Fahim Mahmud",
                     "role": "Vice-chair (Technical)",
-                    "img": "images/3.png",
+                    "img": "images/FahimMahmud.png",
                     "social": {
                         "facebook": "https://web.facebook.com/fah.mahmud",
                         "linkedin": "https://www.linkedin.com/in/fahim-mahmud-5185b91a4/",
@@ -77,7 +77,7 @@
                 {
                     "name": "Shahadat Hosen Nishan",
                     "role": "General Secretary",
-                    "img": "images/4.png",
+                    "img": "images/ShahadatHosenNishan.png",
                     "social": {
                         "facebook": "https://web.facebook.com/nishan979",
                         "linkedin": "https://linkedin.com/in/nishan979",
@@ -87,7 +87,7 @@
                 {
                     "name": "Esrat Ahmed Eva",
                     "role": "Joint Secretary",
-                    "img": "images/5.png",
+                    "img": "images/EsratAhmedEva.png",
                     "social": {
                         "facebook": "https://facebook.com/EsratAhmedEva",
                         "linkedin": "https://linkedin.com/in/esrateva",
@@ -97,7 +97,7 @@
                 {
                     "name": "Md. Abu Rayhan Imran",
                     "role": "Treasurer",
-                    "img": "images/6.png",
+                    "img": "images/MdAbuRayhanImran.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/16cDSpzfFC/",
                         "linkedin": "https://www.linkedin.com/in/md-abu-rayhan-imran-6262b61b6",
@@ -107,7 +107,7 @@
                 {
                     "name": "Pritam Saha Turja",
                     "role": "Organizing Secretary",
-                    "img": "images/7.png",
+                    "img": "images/PritamSahaTurja.png",
                     "social": {
                         "facebook": "https://www.facebook.com/pritamsaha.turja",
                         "linkedin": "https://www.linkedin.com/in/pritam-saha-turja-083308337/",
@@ -117,7 +117,7 @@
                 {
                     "name": "Antu Marma",
                     "role": "Joint Organizing Secretary",
-                    "img": "images/8.png",
+                    "img": "images/AntuMarma.png",
                     "social": {
                         "facebook": "https://web.facebook.com/antu.marma",
                         "linkedin": "https://www.linkedin.com/in/antumarma",
@@ -127,7 +127,7 @@
                 {
                     "name": "Nasibul Hasan Naem",
                     "role": "Publication Secretary",
-                    "img": "images/9.png",
+                    "img": "images/NasibulHasanNaem.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/1AsdBiy2v9/",
                         "linkedin": "https://bd.linkedin.com/in/nasibul-hasan-871497278",
@@ -137,7 +137,7 @@
                 {
                     "name": "Dip Barman",
                     "role": "Programme Co-Ordinator",
-                    "img": "images/10.png",
+                    "img": "images/DipBarman.png",
                     "social": {
                         "facebook": "https://web.facebook.com/dip.barman.118",
                         "linkedin": "https://linkedin.com/in/DipBarman",
@@ -147,7 +147,7 @@
                 {
                     "name": "Md. Rifat Bin Hasan",
                     "role": "Programme Co-Ordinator",
-                    "img": "images/11.png",
+                    "img": "images/MdRifatBinHasan.png",
                     "social": {
                         "facebook": "https://www.facebook.com/rifatbinhassan.hassan",
                         "linkedin": " www.linkedin.com/in/rifat-hassan-837473365",
@@ -157,7 +157,7 @@
                 {
                     "name": "Promod Chandra Das",
                     "role": "Membership Development Co-Ordinator",
-                    "img": "images/12.png",
+                    "img": "images/PromodChandraDas.png",
                     "social": {
                         "facebook": "https://www.facebook.com/promod.das.85656",
                         "linkedin": "https://www.linkedin.com/in/promod-chandra-das-894b32275/",
@@ -167,7 +167,7 @@
                 {
                     "name": "Afsa Akter Shawla",
                     "role": "Student Activity Co-Ordinator",
-                    "img": "images/13.png",
+                    "img": "images/AfsaAkterShawla.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/1MhUJDoLVy/",
                         "linkedin": "https://linkedin.com/in/afsashawla",
@@ -177,7 +177,7 @@
                 {
                     "name": "Md. Mainul Islam Nerob",
                     "role": "Publicity Co-Ordinator",
-                    "img": "images/14.png",
+                    "img": "images/MdMainulIslamNerob.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/1C4U5xD7yB/",
                         "linkedin": "https://www.linkedin.com/in/md-mainul-islam-nerob",
@@ -187,7 +187,7 @@
                 {
                     "name": "Atikur Rahman",
                     "role": "Information Secretary",
-                    "img": "images/15.png",
+                    "img": "images/AtikurRahman.png",
                     "social": {
                         "facebook": "https://www.facebook.com/atikurrahman.foysal.3",
                         "linkedin": "https://www.linkedin.com/in/atikur-rahman03/",
@@ -197,7 +197,7 @@
                 {
                     "name": "S M Naymuzzaman Nahid",
                     "role": "Graphics Designer",
-                    "img": "images/16.png",
+                    "img": "images/SMNaymuzzamanNahid.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/1CMD7k6ym2/",
                         "linkedin": "https://linkedin.com/in/naymuzzamannahid",
@@ -207,7 +207,7 @@
                 {
                     "name": "Md Miadul Islam Nizzan",
                     "role": "Asst Graphics Designer",
-                    "img": "images/17.png",
+                    "img": "images/MdMiadulIslamNizzan.png",
                     "social": {
                         "facebook": "https://www.facebook.com/miadul.islam.16",
                         "linkedin": "https://www.linkedin.com/in/md-miadul-islam-nizzan-450b70262",
@@ -217,7 +217,7 @@
                 {
                     "name": "Maheer Jabin Priya",
                     "role": "Web master & Newsletter editor",
-                    "img": "images/18.png",
+                    "img": "images/MaheerJabinPriya.png",
                     "social": {
                         "facebook": "https://www.facebook.com/ruhani.islam.121",
                         "linkedin": "https://www.linkedin.com/in/maheer-jabin-priya-773161369/",
@@ -227,7 +227,7 @@
                 {
                     "name": "Tonmoy Kanti Das",
                     "role": "Executive Member",
-                    "img": "images/19.png",
+                    "img": "images/TonmoyKantiDas.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/1EjRZLKr2F/",
                         "linkedin": "https://www.linkedin.com/in/tonmoy-das-4a90772aa",
@@ -237,7 +237,7 @@
                 {
                     "name": "Shakib Hasan",
                     "role": "Executive Member",
-                    "img": "images/20.png",
+                    "img": "images/ShakibHasan.png",
                     "social": {
                         "facebook": "https://facebook.com/shakib.hasan",
                         "linkedin": "https://linkedin.com/in/shakibhasan",
@@ -247,7 +247,7 @@
                 {
                     "name": "Sire Anik Kumar Haldar",
                     "role": "Executive Member",
-                    "img": "images/21.png",
+                    "img": "images/SireAnikKumarHaldar.png",
                     "social": {
                         "facebook": "https://www.facebook.com/aniket.anik.84622",
                         "linkedin": "https://www.linkedin.com/in/anik-haldar-740a43371",
@@ -257,7 +257,7 @@
                 {
                     "name": "Mehraz Khandakar",
                     "role": "Executive Member",
-                    "img": "images/22.png",
+                    "img": "images/MehrazKhandakar.png",
                     "social": {
                         "facebook": "https://web.facebook.com/trippie.444",
                         "linkedin": "https://linkedin.com/in/shakibhasan",
@@ -267,7 +267,7 @@
                 {
                     "name": "Abdullah Md Galib",
                     "role": "Volunteer",
-                    "img": "images/23.png",
+                    "img": "images/AbdullahMdGalib.png",
                     "social": {
                         "facebook": "https://facebook.com/a.md.galib",
                         "linkedin": "https://linkedin.com/in/abdullahmdgalib",
@@ -277,7 +277,7 @@
                 {
                     "name": "Nujhat Tabassum Faria",
                     "role": "Volunteer",
-                    "img": "images/24.png",
+                    "img": "images/NujhatTabassumFaria.png",
                     "social": {
                         "facebook": "https://facebook.com/shakib.hasan",
                         "linkedin": "https://linkedin.com/in/shakibhasan",
@@ -287,7 +287,7 @@
                 {
                     "name": "Md Abusufiyan Rafayet",
                     "role": "Volunteer",
-                    "img": "images/25.png",
+                    "img": "images/MdAbusufiyanRafayet.png",
                     "social": {
                         "facebook": "https://facebook.com/rafayetraf",
                         "linkedin": "https://linkedin.com/in/md-abuufiyan-rafayet-1096a9244",
@@ -297,7 +297,7 @@
                 {
                     "name": "Mehreen Jerin Khan",
                     "role": "Volunteer",
-                    "img": "images/26.png",
+                    "img": "images/MehreenJerinKhan.png",
                     "social": {
                         "facebook": "https://facebook.com/zzerryy",
                         "linkedin": "https://linkedin.com/in/mehreen-jerin-khan-a89330351",
@@ -307,7 +307,7 @@
                 {
                     "name": "Mst. Rifah Zakia",
                     "role": "Volunteer",
-                    "img": "images/27.png",
+                    "img": "images/RifahZakia.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/1Ca4CtceLo/",
                         "linkedin": "https://linkedin.com/in/rifah-zakia-63a6b41b5",
@@ -317,7 +317,7 @@
                 {
                     "name": "Swapnil Saha",
                     "role": "Volunteer",
-                    "img": "images/28.png",
+                    "img": "images/SwapnilSaha.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/19ABStumyp/",
                         "linkedin": "https://linkedin.com/in/swapnil-saha-4892b336b",
@@ -327,7 +327,7 @@
                 {
                     "name": "Gazi Md. Faysal Hossain Raju",
                     "role": "Volunteer",
-                    "img": "images/29.png",
+                    "img": "images/GaziMdFaysalHossainRaju.png",
                     "social": {
                         "facebook": "https://www.facebook.com/share/1FWoMcbTCE/",
                         "linkedin": "https://linkedin.com/in/faysal-hossain-raju-2a839436b/",
@@ -337,7 +337,7 @@
                 {
                     "name": "Meherin Afrin Muna",
                     "role": "Volunteer",
-                    "img": "images/30.png",
+                    "img": "images/MeherinAfrinMuna.png",
                     "social": {
                         "facebook": "https://facebook.com/afroja.khanam.7315",
                         "linkedin": "https://linkedin.com/in/shakibhasan",
@@ -349,13 +349,43 @@
         "CS": {
             "faculty": [
                 {
-                    "name": "Dr. Ahmed Al Mansur",
-                    "role": "Mentor",
-                    "img": "images/AHMED.jpg",
+                    "name": "Dr. Md. Ahsan Habib",
+                    "role": "ADVISOR",
+                    "img": "images/AhsanHabibTareq.png",
                     "social": {
-                        "facebook": "https://facebook.com/ahmed.mansur.cs",
-                        "linkedin": "https://linkedin.com/in/ahmedmansur-cs",
-                        "email": "mailto:ahmed.mansur.cs@example.com"
+                        "facebook": "https://www.facebook.com/ahsanhabib.tareq",
+                        "linkedin": "https://www.linkedin.com/in/md-ahsan-habib-bb774723",
+                        "email": "mailto:mahabib@cse.green.edu.bd"
+                    }
+                },
+                {
+                    "name": "Sharifur Rahman",
+                    "role": "MENTOR",
+                    "img": "images/LecturerSharifurRahman.png",
+                    "social": {
+                        "facebook": "https://web.facebook.com/",
+                        "linkedin": "linkedin.com/in/sharif-ur",
+                        "email": "mailto:sharifur@cse.green.edu.bd"
+                    }
+                },
+                {
+                    "name": "Babe Sultana",
+                    "role": "MENTOR",
+                    "img": "images/LecturerBabeSultana.png",
+                    "social": {
+                        "facebook": "https://www.facebook.com/",
+                        "linkedin": "linkedin.com/in/babe-sultana-ummeia-49411aaa",
+                        "email": "mailto:babe@cse.green.edu.bd"
+                    }
+                },
+                {
+                    "name": "MD. Rajibul Palas",
+                    "role": "MENTOR",
+                    "img": "images/RJBUL.jpg",
+                    "social": {
+                        "facebook": "https://www.facebook.com/rajibulpalas",
+                        "linkedin": "https://www.linkedin.com/in/mdrajibulpalas/",
+                        "email": "mailto:rajibul@cse.green.edu.bd"
                     }
                 }
             ],
@@ -363,7 +393,7 @@
                 {
                     "name": "Fahim Mahmud",
                     "role": "Chair",
-                    "img": "images/3.png",
+                    "img": "images/FahimMahmud.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -373,7 +403,7 @@
                 {
                     "name": "Md. Jubayerul Hasan Mahin",
                     "role": "Vice-chair (Activity)",
-                    "img": "images/",
+                    "img": "images/Md.JubayerulHasanMahin.jpg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -383,7 +413,7 @@
                 {
                     "name": "Al Amin Arnob",
                     "role": "Vice-chair (Technical)",
-                    "img": "images/",
+                    "img": "images/AlAminArnob.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -393,7 +423,7 @@
                 {
                     "name": "K M Monoarul Islam Shovon",
                     "role": "General Secretary",
-                    "img": "images/",
+                    "img": "images/KMMonoarulIslamShovon.jpg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -403,7 +433,7 @@
                 {
                     "name": "Pronoy Sarker Amit",
                     "role": "Joint Secretary",
-                    "img": "images/3.png",
+                    "img": "images/PronoySarkerAmit.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -413,7 +443,7 @@
                 {
                     "name": "Samia Ahmed Ripa",
                     "role": "Treasurer",
-                    "img": "images/",
+                    "img": "images/SamiaAhmedRipa.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -423,7 +453,7 @@
                 {
                     "name": "M.A. Rakib Sarker",
                     "role": "Organizing Secretary",
-                    "img": "images/",
+                    "img": "images/M.A.RakibSarker.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -433,7 +463,7 @@
                 {
                     "name": "Jahidul Islam",
                     "role": "Joint Organizing Secretary",
-                    "img": "images/",
+                    "img": "images/JahidulIslam.jpg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -443,7 +473,7 @@
                {
                     "name": "Afzal Hossain",
                     "role": "Publication Secretary",
-                    "img": "images/",
+                    "img": "images/AfzalHossain.jpeg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -453,7 +483,7 @@
                 {
                     "name": "Al Mamun",
                     "role": "Programme Co-Ordinator",
-                    "img": "images/",
+                    "img": "images/Al-Mamun.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -463,7 +493,7 @@
                 {
                     "name": "Md. Rakib Sarder",
                     "role": "Programme Co-Ordinator",
-                    "img": "images/",
+                    "img": "images/MD_Rakib_Sarder.jpeg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -473,7 +503,7 @@
                 {
                     "name": "Md Arif Billah",
                     "role": "Membership Development Co-Ordinator",
-                    "img": "images/",
+                    "img": "images/MdArifBillah.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -483,7 +513,7 @@
                 {
                     "name": "Irfan Ferdous Siam",
                     "role": "Student Activity Co-Ordinator",
-                    "img": "images/",
+                    "img": "images/Irfan_Ferdous Siam.JPG",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -493,7 +523,7 @@
                 {
                     "name": "Abdullah Al Faisal Ahmed",
                     "role": "Publicity Co-Ordinator",
-                    "img": "images/",
+                    "img": "images/AbdullahAlFaisalAhmed.jpg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -503,7 +533,7 @@
                 {
                     "name": "Raisa Jahan Rini",
                     "role": "Information Secretary",
-                    "img": "images/",
+                    "img": "images/RaisaJahanRini.jpg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -513,7 +543,7 @@
                 {
                     "name": "Ms. Sadia Hasan Epo",
                     "role": "Graphics Designer",
-                    "img": "images/",
+                    "img": "images/SadiaHasanEpo.jpg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -523,7 +553,7 @@
                 {
                     "name": "Nur Mohammad Sakil",
                     "role": "Asst. Graphics Designer",
-                    "img": "images/",
+                    "img": "images/NurMohammadSakil.jpg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -533,7 +563,7 @@
                 {
                     "name": "Taufiq Zahan Tushar",
                     "role": "Web Master & Newsletter Editor",
-                    "img": "images/",
+                    "img": "images/TaufiqZahanTushar.jpg",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -541,13 +571,113 @@
                     }
                 },
                 {
-                    "name": "Md. Tarikul Islam Tuhen",
+                    "name": "Md Atik",
                     "role": "Executive Member",
-                    "img": "images/",
+                    "img": "images/MdAtik.png",
                     "social": {
                         "facebook": "https://facebook.com/rayhan.imran.cs",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
                         "email": "mailto:mdtarikul543345@gmail.com"
+                    }
+                },
+                {
+                    "name": "Md. Tarikul Islam Tuhen",
+                    "role": "Executive Member",
+                    "img": "images/MDTarikulIslamTuhin.jpg",
+                    "social": {
+                        "facebook": "https://facebook.com/rayhan.imran.cs",
+                        "linkedin": "https://linkedin.com/in/rayhanimran-cs",
+                        "email": "mailto:mdtarikul543345@gmail.com"
+                    }
+                },
+                {
+                    "name": "Chinmoy Debnath",
+                    "role": "Executive Member",
+                    "img": "images/ChinmoyDebnath.jpg",
+                    "social": {
+                        "facebook": "https://facebook.com/rayhan.imran.cs",
+                        "linkedin": "https://linkedin.com/in/rayhanimran-cs",
+                        "email": "mailto:mdtarikul543345@gmail.com"
+                    }
+                },
+                {
+                    "name": "Bakul Ahmed",
+                    "role": "Volunteer",
+                    "img": "images/Bakul_Ahmed.jpg",
+                    "social": {
+                        "facebook": "",
+                        "linkedin": "",
+                        "email": "mailto:"
+                    }
+                },
+                {
+                    "name": "Najib Mahmud Labib",
+                    "role": "Volunteer",
+                    "img": "images/NajibMahmudLabib.jpg",
+                    "social": {
+                        "facebook": "",
+                        "linkedin": "",
+                        "email": "mailto:"
+                    }
+                },
+                {
+                    "name": "Sarah Ali",
+                    "role": "Volunteer",
+                    "img": "images/SarahAli.jpg",
+                    "social": {
+                        "facebook": "",
+                        "linkedin": "",
+                        "email": "mailto:"
+                    }
+                },
+                {
+                    "name": "Lamia Akter",
+                    "role": "Volunteer",
+                    "img": "images/LamiaAkter.jpg",
+                    "social": {
+                        "facebook": "",
+                        "linkedin": "",
+                        "email": "mailto:"
+                    }
+                },
+                {
+                    "name": "Satu Rani Das",
+                    "role": "Volunteer",
+                    "img": "images/SatuRaniDas.jpg",
+                    "social": {
+                        "facebook": "",
+                        "linkedin": "",
+                        "email": "mailto:"
+                    }
+                },
+                {
+                    "name": "Abu Bakkar Bhuiyan",
+                    "role": "Volunteer",
+                    "img": "images/AbuuBakkarBhuiyan.jpg",
+                    "social": {
+                        "facebook": "",
+                        "linkedin": "",
+                        "email": "mailto:"
+                    }
+                },
+                {
+                    "name": "Md. Asaduzzaman",
+                    "role": "Volunteer",
+                    "img": "images/Md.Asaduzzaman.jpeg",
+                    "social": {
+                        "facebook": "",
+                        "linkedin": "",
+                        "email": "mailto:"
+                    }
+                },
+                {
+                    "name": "Jui Saha",
+                    "role": "Volunteer",
+                    "img": "images/JuiSaha.jpg",
+                    "social": {
+                        "facebook": "",
+                        "linkedin": "",
+                        "email": "mailto:"
                     }
                 }
             ]  
@@ -558,7 +688,7 @@
                 {
                     "name": "Mohammed Nazmus Shakib",
                     "role": "Advisor",
-                    "img": "images/Advisor- Nazmus Shakib",
+                    "img": "images/NazmusShakib.jpg",
                     "social": {
                         "facebook": "https://web.facebook.com/mohammed.n.shakib",
                         "linkedin": "linkedin.com/in/ts-dr-mohammed-nazmus-shakib-65124758",
@@ -578,7 +708,7 @@
                 {
                     "name": "Shaharior Anik",
                     "role": "Mentor",
-                    "img": "images/Mentor- Shaharior Anik",
+                    "img": "images/Mentor-ShahariorAnik.jpg",
                     "social": {
                         "facebook": "https://web.facebook.com/sky.anik.79/",
                         "linkedin": "linkedin.com/in/shaharior-anik",
@@ -591,7 +721,7 @@
                 {
                     "name": "S. M Shakib Mahamud Shefat",
                     "role": "Chair",
-                    "img": "images/Chair Shefat.jpg",
+                    "img": "images/SmShakibMahmudShefat.png",
                     "social": {
                         "facebook": "https://www.facebook.com/sakib1sefat",
                         "linkedin": "https://linkedin.com/in/rayhanimran-cs",
@@ -669,32 +799,6 @@
                     }
                 }
             ] 
-        },     
-        "MAIN": {
-            "faculty": [
-                {
-                    "name": "MD. Rajibul Palas",
-                    "role": "Mentor",
-                    "img": "images/RJBUL.jpg",
-                    "social": {
-                        "facebook": "https://facebook.com/rajibul.palas.main",
-                        "linkedin": "https://linkedin.com/in/rajibulpalas-main",
-                        "email": "mailto:rajibul.palas.main@example.com"
-                    }
-                }
-            ],
-            "students": [
-                {
-                    "name": "Esrat Ahmed Eva",
-                    "role": "Joint Secretary",
-                    "img": "images/Eva.JPG",
-                    "social": {
-                        "facebook": "https://facebook.com/esrat.eva.main",
-                        "linkedin": "https://linkedin.com/in/esrateva-main",
-                        "email": "mailto:esrat.eva.main@example.com"
-                    }
-                }
-            ]
         }
     },
     "2024": {

@@ -17,7 +17,7 @@ const Sidebar = ({
     const groupLabels = {
         SB: "Student Branch",
         CS: "Computer Society",
-        MAIN: "Main Chapter"
+        PES: "Power & Energy Society"
     };
 
     return (
