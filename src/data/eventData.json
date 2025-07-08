@@ -170,5 +170,31 @@
     "eventType": "Seminar",
     "participant": 125,
     "organizer": "IEEE CS SBC GUB"
+  },
+  {
+    "id": 11,
+    "image": "images/e1.jpg",
+    "eventName": "Introduction to Kaggle: A Beginner’s Guide for Aspiring Data Science & Machine Learning Enthusiasts",
+    "date": "2024-10-15",
+    "time": "02:15 PM to 04:15 PM",
+    "guest": "Mir Tahmid Hossain",
+    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Seminar",
+    "participant": 125,
+    "organizer": "IEEE CS SBC GUB"
+  },
+  {
+    "id": 12,
+    "image": "images/e1.jpg",
+    "eventName": "Introduction to Kaggle: A Beginner’s Guide for Aspiring Data Science & Machine Learning Enthusiasts",
+    "date": "2024-10-15",
+    "time": "02:15 PM to 04:15 PM",
+    "guest": "Mir Tahmid Hossain",
+    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
+    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "eventType": "Seminar",
+    "participant": 125,
+    "organizer": "IEEE CS SBC GUB"
   }
 ]

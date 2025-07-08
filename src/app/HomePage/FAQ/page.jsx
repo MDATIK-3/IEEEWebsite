@@ -1,8 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 
-function FAQItem({ question, answer }) {
-  const [isOpen, setIsOpen] = useState(false);
+function FAQItem({ question, answer, isOpen, onToggle }) {
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -12,8 +11,6 @@ function FAQItem({ question, answer }) {
         : '0px';
     }
   }, [isOpen]);
-
-  const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
     <div 
@@ -25,7 +22,7 @@ function FAQItem({ question, answer }) {
     >
       <button
         className="w-full text-left p-5 flex justify-between items-center group"
-        onClick={toggleOpen}
+        onClick={onToggle}
         aria-expanded={isOpen}
       >
         <span className={`text-lg font-semibold transition-colors ${isOpen ? 'text-green-700' : 'text-gray-800'}`}>
@@ -60,10 +57,22 @@ function FAQItem({ question, answer }) {
 }
 
 function FAQList({ data }) {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const handleToggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <div className="max-w-4xl mx-auto mt-10">
       {data.map((item, index) => (
-        <FAQItem key={index} question={item.question} answer={item.answer} />
+        <FAQItem 
+          key={index}
+          question={item.question}
+          answer={item.answer}
+          isOpen={openIndex === index}
+          onToggle={() => handleToggle(index)}
+        />
       ))}
     </div>
   );
