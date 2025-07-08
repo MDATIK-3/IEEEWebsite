@@ -1,5 +1,26 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 import EventCard from './EventCard';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
 
 const EventsGrid = ({ events, now, onError }) => {
   if (!Array.isArray(events) || events.length === 0) {
@@ -13,30 +34,32 @@ const EventsGrid = ({ events, now, onError }) => {
   }
 
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {events.map((event, index) => {
-          if (!event?.id) {
-            console.warn(`Invalid event at index ${index}:`, event);
-            return null;
-          }
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {events.map((event, index) => {
+        if (!event?.id) {
+          console.warn(`Invalid event at index ${index}:`, event);
+          return null;
+        }
 
-          return (
-            <div
-              key={event.id}
-              className="animate-fade-in h-full"
-              style={{
-                animationDelay: `${index * 100}ms`,
-                animationFillMode: 'both',
-              }}
-            >
-              <EventCard event={event} now={now} onError={onError} />
-            </div>
-          );
-        })}
-      </div>
-    </div>
+        return (
+          <motion.div
+            key={event.id}
+            variants={itemVariants}
+            whileHover={{ y: -5, scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            className="h-full"
+          >
+            <EventCard event={event} now={now} onError={onError} />
+          </motion.div>
+        );
+      })}
+    </motion.div>
   );
 };
 
-export default React.memo(EventsGrid);
+export default EventsGrid;
