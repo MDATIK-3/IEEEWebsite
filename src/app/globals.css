@@ -78,7 +78,13 @@ body {
 }
 
 .modal-backdrop {
-  @apply fixed inset-0 z-40 bg-black/50 backdrop-blur-md transition-opacity duration-300;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  transition-property: opacity;
+  transition-duration: 300ms;
 }
 
 @keyframes modalZoom {
