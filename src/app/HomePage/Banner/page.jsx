@@ -1,11 +1,10 @@
 'use client';
-import dynamic from 'next/dynamic';
+
 import RadialBackground from './RadialBackground';
 import HeroText from './HeroText';
 import HeroCard from './HeroCard';
-
-const BackgroundBlobs = dynamic(() => import('./BackgroundBlobs'), { ssr: false });
-const FloatingDecorations = dynamic(() => import('./FloatingDecorations'), { ssr: false });
+import BackgroundBlobs from './BackgroundBlobs';
+import FloatingDecorations from "./FloatingDecorations"
 
 export default function HeroSection() {
   return (

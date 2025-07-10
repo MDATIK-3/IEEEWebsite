@@ -11,7 +11,7 @@ export default function HeroText() {
   const [typingDone, setTypingDone] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const texts = ['IEEE Community', 'Tech Innovation', 'Student Network', 'Future Leaders'];
+  const texts = ['IEEE Community', 'Tech Innovation Hub', 'Student Network', 'Future Leaders'];
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);

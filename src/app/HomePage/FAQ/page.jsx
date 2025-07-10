@@ -1,134 +1,57 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
 
-function FAQItem({ question, answer, isOpen, onToggle }) {
-  const contentRef = useRef(null);
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import FAQList from './FAQList';
+import faqData from '@/data/FAQ.json';
 
-  useEffect(() => {
-    if (contentRef.current) {
-      contentRef.current.style.maxHeight = isOpen 
-        ? `${contentRef.current.scrollHeight}px`
-        : '0px';
-    }
-  }, [isOpen]);
+const containerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.1,
+      ease: 'easeOut',
+      duration: 0.6,
+    },
+  },
+};
 
-  return (
-    <div 
-      className={`mb-5 rounded-xl shadow-sm overflow-hidden transition-all duration-300 ${
-        isOpen 
-          ? 'bg-green-50 border border-green-200 shadow-green-100' 
-          : 'bg-white hover:bg-green-50 border border-green-100'
-      }`}
-    >
-      <button
-        className="w-full text-left p-5 flex justify-between items-center group"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-      >
-        <span className={`text-lg font-semibold transition-colors ${isOpen ? 'text-green-700' : 'text-gray-800'}`}>
-          {question}
-        </span>
-        <div className="ml-4 flex-shrink-0">
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-green-100 rotate-180' : 'bg-green-50 group-hover:bg-green-100'}`}>
-            <svg 
-              className={`w-5 h-5 transition-colors ${isOpen ? 'text-green-600' : 'text-green-500 group-hover:text-green-600'}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
-      </button>
-      <div
-        ref={contentRef}
-        className="transition-all duration-500 overflow-hidden"
-        style={{ maxHeight: '0px' }}
-      >
-        <div className="p-5 pt-0">
-          <div className="pl-3 border-l-2 border-green-300">
-            <p className="text-gray-600">{answer}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FAQList({ data }) {
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const handleToggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
-  return (
-    <div className="max-w-4xl mx-auto mt-10">
-      {data.map((item, index) => (
-        <FAQItem 
-          key={index}
-          question={item.question}
-          answer={item.answer}
-          isOpen={openIndex === index}
-          onToggle={() => handleToggle(index)}
-        />
-      ))}
-    </div>
-  );
-}
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function FAQ() {
-  const faqData = [
-    {
-      question: "What is React?",
-      answer: "React is a JavaScript library for building user interfaces. It lets you create reusable UI components and efficiently update and render them when data changes."
-    },
-    {
-      question: "What are components?",
-      answer: "Components are the building blocks of React applications. They are self-contained modules that render some output. Components can be nested, reused, and manage their own state."
-    },
-    {
-      question: "How do I handle user input?",
-      answer: "Use React's event system to handle user interactions. The most common approach is to use controlled components where form data is handled by React state."
-    },
-    {
-      question: "Is React open source?",
-      answer: "Yes! React is an open-source JavaScript library maintained by Meta (formerly Facebook) and a community of individual developers and companies."
-    },
-    {
-      question: "Can I use React with TypeScript?",
-      answer: "Absolutely! React has excellent TypeScript support. Many developers find that TypeScript enhances their React development experience with better tooling and type safety."
-    },
-    {
-      question: "How does React compare to other frameworks?",
-      answer: "React focuses primarily on the view layer, making it flexible to integrate with other libraries. Unlike full frameworks, React gives developers freedom to choose routing, state management, and other solutions."
-    }
-  ];
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   return (
-    <div className="py-16 px-4 sm:px-6 bg-gradient-to-b from-green-50 to-white">
-      <div className="max-w-4xl mx-auto text-center mb-14">
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-green-700 bg-clip-text text-transparent mb-4">
-          Frequently Asked Questions
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Everything you need to know about our product. 
-          <span className="text-emerald-600 font-medium"> Can't find an answer? Contact us.</span>
-        </p>
+    <motion.section
+      ref={sectionRef}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={containerVariants}
+      className="relative py-16 px-4 sm:px-6 bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50 overflow-hidden"
+    >
+      <div
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, rgba(16,185,129,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(16,185,129,0.1) 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+      />
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <motion.div variants={itemVariants} className="text-center mb-14">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-emerald-600 via-teal-600 to-green-700 bg-clip-text text-transparent leading-tight">
+            Frequently Asked<br />
+            <span className="text-3xl sm:text-4xl md:text-5xl font-semibold">Questions</span>
+          </h1>
+        </motion.div>
+        <FAQList data={faqData} />
       </div>
-      
-      <FAQList data={faqData} />
-      
-      <div className="max-w-4xl mx-auto mt-16 text-center p-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-200">
-        <h2 className="text-2xl font-bold text-gray-800 mb-3">Still have questions?</h2>
-        <p className="text-gray-600 mb-6 max-w-xl mx-auto">
-          Our support team is here to help you with any questions you might have.
-        </p>
-        <button className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-          Contact Support
-        </button>
-      </div>
-    </div>
+    </motion.section>
   );
 }
