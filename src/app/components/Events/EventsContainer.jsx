@@ -24,9 +24,11 @@ const EventsContainer = ({ isFullPage }) => {
     return matchesSearch;
   });
 
-  const displayedEvents = isFullPage ? filteredEvents.slice(0, 9) : filteredEvents.slice(0, 6);
-  const upcomingCount = events.filter((event) => new Date(event.date) > now).length;
-  const pastCount = events.filter((event) => new Date(event.date) < now).length;
+const displayedEvents = isFullPage ? filteredEvents : filteredEvents.slice(0, 6);
+
+const upcomingCount = events.filter((event) => new Date(event.date) > now).length;
+const pastCount = events.filter((event) => new Date(event.date) < now).length;
+
 
   return (
     <div className="py-12 px-4 max-w-7xl mx-auto border-t border-green-200">

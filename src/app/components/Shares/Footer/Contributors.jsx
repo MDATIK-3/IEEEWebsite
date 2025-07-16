@@ -30,10 +30,10 @@ function Contributors() {
   }, []);
 
   return (
-    <div className="border-t border-gray-200 p-2 mt-6">
+    <div className="border-t border-gray-200 dark:border-slate-800 p-2 mt-6">
       <div className="text-center space-y-1 md:space-y-0">
         <div className="md:flex md:items-center md:justify-center md:gap-4 md:flex-wrap lg:flex-nowrap">
-          <p className="text-xs sm:text-sm text-gray-600 md:whitespace-nowrap">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-slate-400 md:whitespace-nowrap">
             © {new Date().getFullYear()} Green University IEEE Student Branch. All rights reserved.
           </p>
 

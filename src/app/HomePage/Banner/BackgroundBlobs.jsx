@@ -1,5 +1,3 @@
-'use client';
-
 export default function BackgroundBlobs() {
   return (
     <div className="absolute inset-0 will-change-transform transition-transform duration-700">
