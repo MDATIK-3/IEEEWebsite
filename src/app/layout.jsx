@@ -2,6 +2,7 @@ import NavBar from './components/Shares/NavBar/page.jsx';
 import Footer from './components/Shares/Footer/page.jsx';
 import FeedbackButton from './components/FeedbackButton/page.jsx';
 import ClientWrapper from './components/ClientWrapper';
+import { Analytics } from "@vercel/analytics/next"
 import './globals.css';
 
 export const metadata = {
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
           <main className="flex-grow">{children}</main>
           <FeedbackButton />
           <Footer />
+          <Analytics/>
         </ClientWrapper>
       </body>
     </html>

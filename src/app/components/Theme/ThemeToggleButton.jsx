@@ -6,8 +6,7 @@ import { Sun, Moon } from "lucide-react";
 
 export default function ThemeToggleButton() {
   const { theme, toggleTheme } = useContext(ThemeContext);
- 
-
+  
   return (
     <button
       onClick={toggleTheme}
