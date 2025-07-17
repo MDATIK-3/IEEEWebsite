@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import executiveData from "@/data/executiveData.json";
 
 import Background from "./components/Background";
@@ -23,43 +23,35 @@ const ExecutivePage = () => {
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
 
-  const { faculty, students, filteredAndSortedMembers } = useMemo(() => {
-    if (!selectedYear || !executiveData[selectedYear]) {
-      return { faculty: [], students: [], filteredAndSortedMembers: [] };
-    }
+  let faculty = [];
+  let students = [];
+  let filteredAndSortedMembers = [];
 
+  if (selectedYear && executiveData[selectedYear]) {
     const groupData = executiveData[selectedYear]?.[selectedGroup];
-    if (!groupData) {
-      return { faculty: [], students: [], filteredAndSortedMembers: [] };
+    if (groupData) {
+      faculty = (groupData.faculty || []).map(m => ({ ...m, isFaculty: true }));
+      students = (groupData.students || []).map(m => ({ ...m, isFaculty: false }));
+      const allMembers = [...faculty, ...students];
+
+      filteredAndSortedMembers = allMembers.filter(member => {
+        const searchLower = searchTerm.toLowerCase();
+        const matchesSearch =
+          member.name.toLowerCase().includes(searchLower) ||
+          member.role.toLowerCase().includes(searchLower) ||
+          (member.department && member.department.toLowerCase().includes(searchLower));
+
+        const matchesRole =
+          filterRole === "all" ||
+          (filterRole === "faculty" && member.isFaculty) ||
+          (filterRole === "student" && !member.isFaculty) ||
+          (filterRole === "president" && member.role.toLowerCase().includes("president")) ||
+          (filterRole === "officer" && !member.role.toLowerCase().includes("president") && !member.isFaculty);
+
+        return matchesSearch && matchesRole;
+      });
     }
-
-    const currentFaculty = (groupData.faculty || []).map(m => ({ ...m, isFaculty: true }));
-    const currentStudents = (groupData.students || []).map(m => ({ ...m, isFaculty: false }));
-    const allMembers = [...currentFaculty, ...currentStudents];
-
-    const filtered = allMembers.filter(member => {
-      const searchLower = searchTerm.toLowerCase();
-      const matchesSearch =
-        member.name.toLowerCase().includes(searchLower) ||
-        member.role.toLowerCase().includes(searchLower) ||
-        (member.department && member.department.toLowerCase().includes(searchLower));
-
-      const matchesRole =
-        filterRole === "all" ||
-        (filterRole === "faculty" && member.isFaculty) ||
-        (filterRole === "student" && !member.isFaculty) ||
-        (filterRole === "president" && member.role.toLowerCase().includes("president")) ||
-        (filterRole === "officer" && !member.role.toLowerCase().includes("president") && !member.isFaculty);
-
-      return matchesSearch && matchesRole;
-    });
-
-    return {
-      faculty: currentFaculty,
-      students: currentStudents,
-      filteredAndSortedMembers: filtered
-    };
-  }, [selectedYear, selectedGroup, searchTerm, filterRole, sortBy]);
+  }
 
   if (!defaultYear) {
     return (
