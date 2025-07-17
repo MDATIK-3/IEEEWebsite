@@ -3,21 +3,21 @@
     "id": 1,
     "name": "Dr. Ahmed Al Mansur",
     "title": "Professor and Director, GCiA",
-    "image": "/images/AHMED.jpg",
+    "image": "images/Ahmed_Al_Mansur.png",
     "message": "IEEE Green University represents our commitment to sustainable education. Through innovative programs, we're training the next generation of eco-conscious engineers who will lead the green revolution."
   },
   {
     "id": 2,
-    "name": "Lecturer Rajibul Palash",
-    "title": "Mentor, IEEE Green University",
-    "image": "/images/RJBUL.jpg",
+    "name": "Rajibul Palash",
+    "title": "Lecturer & Mentor,IEEE Green University",
+    "image": "images/Executives/2025/SB/Rajibul_Palas.jpg",
     "message": "Our green initiatives go beyond campus boundaries. We're creating a model for sustainable university operations that reduces carbon footprint while enhancing learning experiences."
   },
   {
     "id": 3,
     "name": "Dr. Md. Ahsan Habib",
-    "title": "Chairperson of GUB",
-    "image": "/images/AhsanHabibTareq.png",
+    "title": "Chairperson,Department of Computer Science & Engineering,Green University of Bangladesh",
+    "image": "images/Executives/2025/SB/AhsanHabibTareq.png",
     "message": "At IEEE Green University, we combine technical education with environmental stewardship. Our students develop solutions that address real-world sustainability challenges."
   }
 ]
