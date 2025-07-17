@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <meta name="theme-color" content="#10b981" />
       </head>
-      <body className="antialiased bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 transition-colors duration-200" suppressHydrationWarning>
+      <body className="antialiased bg-white text-gray-900 transition-colors duration-200" suppressHydrationWarning>
         <ClientWrapper>
           <NavBar />
           <main className="flex-grow">{children}</main>

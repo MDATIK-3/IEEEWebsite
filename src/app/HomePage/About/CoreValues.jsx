@@ -1,5 +1,3 @@
-'use client';
-
 const CoreValues = ({ coreValues }) => {
   return (
     <div>

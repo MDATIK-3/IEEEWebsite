@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect, useCallback } from 'react';
 import { IoMdTimer } from "react-icons/io";
 import { CiCalendar } from "react-icons/ci";

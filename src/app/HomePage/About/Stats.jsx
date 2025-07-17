@@ -8,7 +8,7 @@ const Stats = ({ stats }) => {
         >
           <div>{stat.icon}</div>
           <div className="text-2xl font-bold">{stat.number}</div>
-          <div className="text-sm text-gray-600 dark:text-gray-300">{stat.label}</div>
+          <div className="text-sm text-gray-600">{stat.label}</div>
         </div>
       ))}
     </div>

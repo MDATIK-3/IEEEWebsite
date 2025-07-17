@@ -6,27 +6,31 @@ import Image from "next/image";
 
 function Contributors() {
   const [teamMembers, setTeamMembers] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTeamMembers = async () => {
+    const fetchContributors = async () => {
       try {
-        const response = await fetch('https://api.github.com/repos/MDATIK-3/IEEEWebsite/contributors', {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-            Accept: 'application/vnd.github+json'
-          }
-        });
-
-        if (!response.ok) throw new Error(`Failed to fetch (status: ${response.status})`);
-
+        const response = await fetch('/api/contributors');
         const data = await response.json();
-        setTeamMembers(data);
-      } catch (err) {
-        console.error("Error fetching contributors:", err);
+        if (Array.isArray(data)) {
+          setTeamMembers(data);
+          setError(null);
+        } else if (data.error) {
+          setError(data.error);
+          setTeamMembers([]);
+        } else {
+          console.error('Contributors data is not an array:', data);
+          setError('Unexpected data format');
+          setTeamMembers([]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch contributors:', error);
+        setError('Failed to fetch contributors');
       }
     };
 
-    fetchTeamMembers();
+    fetchContributors();
   }, []);
 
   return (
@@ -40,6 +44,10 @@ function Contributors() {
           <p className="text-sm/tight text-gray-400 md:whitespace-nowrap">
             Built by the following IEEE Members:
           </p>
+
+          {error && (
+            <p className="text-red-500 text-sm mt-2">{error}</p>
+          )}
 
           <div className="flex justify-center items-center flex-wrap gap-2 sm:gap-3 md:flex-nowrap md:gap-2">
             {teamMembers.map((member) => (

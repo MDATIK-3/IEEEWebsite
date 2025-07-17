@@ -1,5 +1,3 @@
-'use client';
-
 const Mission = () => {
   return (
     <div className="bg-green-100/60 border border-green-200 p-6 md:p-8 rounded-2xl shadow-inner hover:bg-green-100/80 hover:border-green-300 hover:shadow-lg transition-all duration-300 group">

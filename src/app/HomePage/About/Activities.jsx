@@ -1,5 +1,3 @@
-'use client';
-
 const Activities = ({ activities }) => {
   return (
     <div>
