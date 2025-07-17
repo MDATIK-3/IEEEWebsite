@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useGalleryData } from "../hooks/useGalleryData";
 import GalleryControls from "./components/GalleryControls";
 import PhotoCard from "./components/PhotoCard";
@@ -33,15 +33,10 @@ const GalleryFull = () => {
         }
     }, [showModal, pendingIndex]);
 
-    const totalPages = useMemo(
-        () => Math.ceil(filteredPhotos.length / ITEMS_PER_PAGE),
-        [filteredPhotos]
-    );
+    const totalPages = Math.ceil(filteredPhotos.length / ITEMS_PER_PAGE);
 
-    const pagedPhotos = useMemo(() => {
-        const start = (currentPage - 1) * ITEMS_PER_PAGE;
-        return filteredPhotos.slice(start, start + ITEMS_PER_PAGE);
-    }, [filteredPhotos, currentPage]);
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const pagedPhotos = filteredPhotos.slice(start, start + ITEMS_PER_PAGE);
 
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {

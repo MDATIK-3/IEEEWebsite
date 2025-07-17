@@ -1,17 +1,13 @@
 'use client';
 
-import { useState, useMemo } from "react";
 import Link from "next/link";
 import ColabCard from "./ColabCard";
 import colabData from "@/data/collaboration.json";
 
 const Feature = () => {
-  const [showAll, setShowAll] = useState(false);
+  const showAll = false;
 
-  const sortedEvents = useMemo(() => {
-    return colabData.slice().sort((a, b) => a.id - b.id);
-  }, []);
-
+  const sortedEvents = colabData.slice().sort((a, b) => a.id - b.id);
   const displayedEvents = showAll ? sortedEvents : sortedEvents.slice(0, 4);
 
   return (
@@ -46,7 +42,7 @@ const Feature = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4 sm:px-0">
-          {!showAll && sortedEvents.length > 4 && (
+          {sortedEvents.length > 4 && (
             <Link href="/colab">
               <button className="w-full sm:w-auto group relative px-8 py-4 font-semibold text-white bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
                 <span className="relative z-10 flex items-center justify-center">
@@ -82,8 +78,8 @@ const Feature = () => {
             transform: translateY(0);
           }
         }
-      `}</style></section>
-
+      `}</style>
+    </section>
   );
 };
 

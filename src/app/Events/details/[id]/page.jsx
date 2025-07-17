@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { User, Users, ExternalLink, Star } from 'lucide-react';
 
@@ -22,13 +22,10 @@ const EventDetails = () => {
 
   const modalRef = useRef(null);
 
-  const event = useMemo(() => {
-    if (!id) return null;
-    return eventData.find(e => e.id.toString() === id) || null;
-  }, [id]);
+  const event = id ? eventData.find(e => e.id.toString() === id) || null : null;
 
-  const eventDate = useMemo(() => (event ? new Date(`${event.date}T00:00:00`) : null), [event]);
-  const now = useMemo(() => new Date(), []);
+  const eventDate = event ? new Date(`${event.date}T00:00:00`) : null;
+  const now = new Date();
   const isPastEvent = eventDate ? eventDate < now : false;
 
   const formatDate = (dateStr) => {
