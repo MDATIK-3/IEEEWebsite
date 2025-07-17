@@ -1,10 +1,7 @@
-'use client';
-
 import Image from "next/image";
 
 const EventImage = ({ event }) => {
   if (!event.image) return null;
-
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-green-100">
       <Image

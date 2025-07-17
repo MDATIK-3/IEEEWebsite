@@ -1,5 +1,5 @@
 'use client';
-import { Calendar, Clock, MapPin, Users, User, Share2 } from 'lucide-react';
+import { Calendar, MapPin, Users, User, Share2 } from 'lucide-react';
 
 const EventInfoCard = ({ event, formatDate, isPastEvent, handleShare, isSharing }) => {
   return (

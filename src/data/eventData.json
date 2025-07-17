@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "images/e1.jpg",
+    "image": "/images/e1.jpg",
     "eventName": "Webinar on Cyber Existence of Professional Skills for a Graduate",
     "description": "Join us for an in-depth exploration of how cyber skills can enhance professional development...",
     "date": "2025-08-03",
@@ -18,12 +18,12 @@
       {
         "name": "Dr. Ahsan Habib",
         "designation": "Professor, Dept. of CSE, GUB",
-        "image": "images/AhsanHabibTareq.png"
+        "image": "/images/Executives/2025/SB/AhsanHabibTareq.png"
       },
       {
         "name": "Dr. Ahmed Al Mansur",
         "designation": "Professor and Director, GCiA",
-        "image": "images/AHMED.jpg"
+        "image": "images/Ahmed_Al_Mansur.png"
       }
     ],
     "highlights": [
@@ -33,547 +33,349 @@
       "Interactive Content"
     ],
     "gallery": [
-      "images/1.jpg",
-      "images/2.jpg",
-      "images/3.jpg",
-      "images/4.jpg"
+      "/images/Event/1.jpg",
+      "/images/Event/2.jpg",
+      "/images/Event/3.jpg",
+      "/images/Event/4.jpg"
     ],
     "registrationLink": "https://googleform.com/register..dsafdas.f.a.."
   },
   {
-    "id": 3,
-    "image": "images/e3.jpg",
-    "eventName": "Webinar on Cyber Existence of Professional Skills for a Graduate",
-    "description": "Join us for an in-depth exploration of how cyber skills can enhance professional development...",
-    "date": "2025-06-03",
-    "time": "10:00 PM",
+    "id": 2,
+    "image": "/images/e2.png",
+    "eventName": "IEEE Young Professionals Bangladesh Talk Series 2025",
+    "description": "This is a demo description for event 2 focusing on academic excellence and professional development.",
+    "date": "2025-06-05",
+    "time": "11:00 AM",
     "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
     "guestBio": "Dr. Ahsan Habib is a renowned academician and cybersecurity expert with over 20 years of experience in higher education and research. He has guided numerous students and professionals in aligning technical knowledge with career growth. His work focuses on secure system design, ethical hacking, and digital literacy for future graduates. As a key mentor and thought leader at Green University, he is actively involved in bridging the gap between academia and industry.",
     "specialGuest": "Dr. Ahmed Al Mansur, Professor and Director, GCiA",
     "specialGuestBio": "Dr. Ahmed Al Mansur is the Director of the Green Center for Innovation & Advancement (GCiA) and a respected voice in digital transformation and academic leadership. With a distinguished career spanning more than 25 years, Dr. Mansur has played pivotal roles in research-driven innovation, student skill development, and fostering industry-academic collaboration. His insights into employability, professional growth, and strategic education policy have made lasting impacts across educational institutions.",
-    "eventArea": "Online via Zoom",
-    "eventType": "Webinar",
-    "participant": 120,
-    "organizer": "GUB Career Club",
+    "eventArea": "Venue 2",
+    "eventType": "Seminar",
+    "participant": 100,
+    "organizer": "Organizer 2",
     "speakers": [
       {
         "name": "Dr. Ahsan Habib",
         "designation": "Professor, Dept. of CSE, GUB",
-        "image": "images/ahsan.png"
+        "image": "/images/Executives/2025/SB/AhsanHabibTareq.png"
       },
       {
         "name": "Dr. Ahmed Al Mansur",
         "designation": "Professor and Director, GCiA",
-        "image": "images/AHMED.jpg"
+        "image": "images/Ahmed_Al_Mansur.png"
       }
     ],
+    "highlights": [
+      "Expert Speaker",
+      "Q&A Session",
+      "Networking",
+      "Interactive Content"
+    ],
     "gallery": [
-      "/images/1.jpg",
-      "/images/2.jpg",
-      "/images/3.jpg",
-      "/images/4.jpg"
-    ]
+      "/images/Event/5.jpg",
+      "/images/Event/6.jpg",
+      "/images/Event/7.jpg",
+      "/images/Event/8.jpg"
+    ],
+    "registrationLink": "https://example.com/register-event-2"
   },
   {
-    "id": 4,
-    "image": "images/4.jpg",
+    "id": 3,
+    "image": "/images/Event/7.jpg",
     "eventName": "CSE Carnival - Tech Based Debate Contest",
+    "description": "Join us for an exciting technology-focused debate competition where students showcase their analytical skills and technical knowledge through structured debates on contemporary tech topics.",
     "date": "2024-10-03",
     "time": "02:00 PM to 04:15 PM",
-    "guest": "Mr. Humayan Kabir Rana, Mr. Saurav Chandra Das, Mr. Md Mubashwir Moshwan",
-    "specialGuest": "N/A",
+    "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
+    "guestBio": "Dr. Ahsan Habib is a renowned academician and cybersecurity expert with over 20 years of experience in higher education and research. He has guided numerous students and professionals in aligning technical knowledge with career growth. His work focuses on secure system design, ethical hacking, and digital literacy for future graduates. As a key mentor and thought leader at Green University, he is actively involved in bridging the gap between academia and industry.",
+    "specialGuest": "Dr. Ahmed Al Mansur, Professor and Director, GCiA",
+    "specialGuestBio": "Dr. Ahmed Al Mansur is the Director of the Green Center for Innovation & Advancement (GCiA) and a respected voice in digital transformation and academic leadership. With a distinguished career spanning more than 25 years, Dr. Mansur has played pivotal roles in research-driven innovation, student skill development, and fostering industry-academic collaboration. His insights into employability, professional growth, and strategic education policy have made lasting impacts across educational institutions.",
     "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
     "eventType": "Debate",
     "participant": 80,
     "organizer": "IEEE CS SBC GUB",
+    "speakers": [
+      {
+        "name": "Dr. Ahsan Habib",
+        "designation": "Professor, Dept. of CSE, GUB",
+        "image": "/images/Executives/2025/SB/AhsanHabibTareq.png"
+      },
+      {
+        "name": "Dr. Ahmed Al Mansur",
+        "designation": "Professor and Director, GCiA",
+        "image": "images/Ahmed_Al_Mansur.png"
+      }
+    ],
+    "highlights": [
+      "Tech-focused Debates",
+      "Competitive Environment",
+      "Critical Thinking",
+      "Prize Distribution"
+    ],
     "gallery": [
-      "/images/1.jpg",
-      "/images/2.jpg",
-      "/images/3.jpg",
-      "/images/4.jpg"
-    ]
+      "/images/Event/9.jpg",
+      "/images/Event/10.jpg",
+      "/images/Event/11.jpg",
+      "/images/Event/12.jpg"
+    ],
+    "registrationLink": "https://ieee.gub.edu.bd/debate-contest-registration"
   },
   {
-    "id": 5,
-    "image": "images/2.jpg",
+    "id": 4,
+    "image": "/images/s2.png",
     "eventName": "How Industry-Academia Collaboration Could Benefit CSE Graduates in 2024",
+    "description": "An insightful seminar exploring the vital connections between industry requirements and academic preparation, focusing on how collaboration can enhance career prospects for Computer Science graduates.",
     "date": "2024-10-04",
     "time": "10:00 AM to 11:30 AM",
-    "guest": "Professor Dr. Md. Abdur Razzaque, Azmat Iqbal, Sajib Shikder, Md. Rezwan Hossain",
-    "specialGuest": "N/A",
+    "guest": "Professor Dr. Md. Abdur Razzaque",
+    "guestBio": "Professor Dr. Md. Abdur Razzaque is a distinguished academic leader with extensive research experience in computer science and industry collaboration. His work focuses on bridging the gap between theoretical knowledge and practical industry requirements.",
+    "specialGuest": "Azmat Iqbal, Sajib Shikder, Md. Rezwan Hossain",
+    "specialGuestBio": "Industry professionals Azmat Iqbal, Sajib Shikder, and Md. Rezwan Hossain bring valuable insights from the corporate world, sharing their experiences in hiring, training, and developing CSE graduates in professional environments.",
     "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
     "eventType": "Seminar",
     "participant": 110,
-    "organizer": "IEEE CS SBC GUB"
+    "organizer": "IEEE CS SBC GUB",
+    "speakers": [
+      {
+        "name": "Dr. Ahsan Habib",
+        "designation": "Professor, Dept. of CSE, GUB",
+        "image": "/images/Executives/2025/SB/AhsanHabibTareq.png"
+      },
+      {
+        "name": "Dr. Ahmed Al Mansur",
+        "designation": "Professor and Director, GCiA",
+        "image": "images/Ahmed_Al_Mansur.png"
+      }
+    ],
+    "highlights": [
+      "Industry Insights",
+      "Career Guidance",
+      "Professional Development",
+      "Networking Opportunities"
+    ],
+    "gallery": [
+      "/images/Event/13.jpg",
+      "/images/Event/14.jpg",
+      "/images/Event/15.jpg",
+      "/images/Event/16.jpg"
+    ],
+    "registrationLink": "https://ieee.gub.edu.bd/industry-academia-seminar"
   },
   {
-    "id": 6,
-    "image": "images/6.jpg",
+    "id": 5,
+    "image": "/images/Event/5.jpg",
     "eventName": "CSE Carnival - IT Olympiad",
+    "description": "A competitive IT Olympiad designed to test students' knowledge in various computer science domains including programming, algorithms, data structures, and problem-solving skills.",
     "date": "2024-10-04",
     "time": "10:00 AM to 11:00 AM",
-    "guest": "N/A",
+    "guest": "Competition Coordinators",
+    "guestBio": "Experienced faculty members and IT professionals who have designed challenging problems to test students' computational thinking and technical skills.",
     "specialGuest": "N/A",
+    "specialGuestBio": "N/A",
     "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
     "eventType": "Olympiad",
     "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
+    "organizer": "IEEE CS SBC GUB",
+    "speakers": [
+      {
+        "name": "Dr. Ahsan Habib",
+        "designation": "Professor, Dept. of CSE, GUB",
+        "image": "/images/Executives/2025/SB/AhsanHabibTareq.png"
+      },
+      {
+        "name": "Dr. Ahmed Al Mansur",
+        "designation": "Professor and Director, GCiA",
+        "image": "images/Ahmed_Al_Mansur.png"
+      }
+    ],
+    "highlights": [
+      "Competitive Programming",
+      "Problem Solving",
+      "Technical Assessment",
+      "Awards & Recognition"
+    ],
+    "gallery": [
+      "/images/Event/17.jpg",
+      "/images/Event/18.jpg",
+      "/images/Event/19.jpg",
+      "/images/Event/20.jpg"
+    ],
+    "registrationLink": "https://ieee.gub.edu.bd/it-olympiad-registration"
   },
   {
-    "id": 7,
-    "image": "images/4.jpg",
+    "id": 6,
+    "image": "/images/Event/19.jpg",
     "eventName": "Panel Discussion on How Industry-Academia Collaboration Could Benefit CSE Graduates in 2024",
+    "description": "An interactive panel discussion featuring industry experts and academic leaders discussing strategies for effective collaboration between universities and technology companies to enhance graduate employability.",
     "date": "2024-10-04",
     "time": "11:00 AM to 01:00 PM",
-    "guest": "Md. Abdur Razzaque, Azmat Iqbal, Sajib Shikder, Md. Rezwan Hossain",
+    "guest": "Md. Abdur Razzaque",
+    "guestBio": "Md. Abdur Razzaque is a respected academic professional with deep insights into industry-academia collaboration and graduate development programs.",
     "specialGuest": "Professor Dr. Md. Golam Samdani Fakir, Professor Dr. Md. Sharif Uddin",
+    "specialGuestBio": "Professor Dr. Md. Golam Samdani Fakir and Professor Dr. Md. Sharif Uddin are distinguished academics with extensive experience in curriculum development and industry partnerships, bringing valuable perspectives on educational innovation.",
     "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
     "eventType": "Panel Discussion",
     "participant": 160,
-    "organizer": "IEEE CS SBC GUB"
+    "organizer": "IEEE CS SBC GUB",
+    "speakers": [
+      {
+        "name": "Md. Abdur Razzaque",
+        "designation": "Panelist & Industry Expert",
+        "image": "/images/Executives/2025/SB/AhsanHabibTareq.png"
+      },
+      {
+        "name": "Azmat Iqbal",
+        "designation": "Industry Panelist",
+        "image": "images/Ahmed_Al_Mansur.png"
+      },
+      {
+        "name": "Professor Dr. Md. Golam Samdani Fakir",
+        "designation": "Academic Panelist",
+        "image": "/images/samdani_fakir.jpg"
+      },
+      {
+        "name": "Professor Dr. Md. Sharif Uddin",
+        "designation": "Academic Panelist",
+        "image": "/images/sharif_uddin.jpg"
+      }
+    ],
+    "highlights": [
+      "Interactive Panel",
+      "Industry-Academia Bridge",
+      "Career Development",
+      "Open Discussion"
+    ],
+    "gallery": [
+      "/images/Event/21.jpg",
+      "/images/Event/22.jpg",
+      "/images/Event/23.jpg",
+      "/images/Event/24.jpg"
+    ],
+    "registrationLink": "https://ieee.gub.edu.bd/panel-discussion-registration"
   },
   {
-    "id": 8,
-    "image": "images/5.jpg",
+    "id": 7,
+    "image": "/images/Event/21.jpg",
     "eventName": "Revolution of Robotics Technology and Artificial Intelligence",
+    "description": "Explore the cutting-edge developments in robotics and AI technology, understanding their impact on various industries and future career opportunities in these rapidly evolving fields.",
     "date": "2024-10-04",
     "time": "11:30 AM to 12:45 PM",
     "guest": "Prof. Dr. Saifuddin Md. Tareeq",
+    "guestBio": "Prof. Dr. Saifuddin Md. Tareeq is a leading researcher in robotics and artificial intelligence with numerous publications and patents. His expertise spans machine learning, autonomous systems, and intelligent robotics applications.",
     "specialGuest": "Md. Solaiman Mia",
+    "specialGuestBio": "Md. Solaiman Mia is a technology innovator and researcher who has contributed significantly to the practical applications of AI and robotics in various industrial sectors.",
     "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
     "eventType": "Seminar",
     "participant": 95,
-    "organizer": "IEEE CS SBC GUB"
+    "organizer": "IEEE CS SBC GUB",
+    "speakers": [
+      {
+        "name": "Prof. Dr. Saifuddin Md. Tareeq",
+        "designation": "Professor & AI Expert",
+        "image": "/images/saifuddin_tareeq.jpg"
+      },
+      {
+        "name": "Md. Solaiman Mia",
+        "designation": "Technology Innovator",
+        "image": "/images/solaiman_mia.jpg"
+      }
+    ],
+    "highlights": [
+      "AI & Robotics Insights",
+      "Future Technology Trends",
+      "Career Opportunities",
+      "Innovation Showcase"
+    ],
+    "gallery": [
+      "/images/Event/25.jpg",
+      "/images/Event/26.jpg",
+      "/images/Event/27.jpg",
+      "/images/Event/28.jpg"
+    ],
+    "registrationLink": "https://ieee.gub.edu.bd/ai-robotics-seminar"
   },
   {
-    "id": 9,
-    "image": "images/6.jpg",
+    "id": 8,
+    "image": "/images/Event/8.jpg",
     "eventName": "Career Guideline Workshop on Full-Stack Development with MERN",
+    "description": "A comprehensive workshop covering MongoDB, Express.js, React, and Node.js (MERN) stack development, providing hands-on experience and career guidance for aspiring full-stack developers.",
     "date": "2024-10-17",
     "time": "08:00 PM to 11:30 PM",
-    "guest": "Shohan Ean, Din Islam",
-    "specialGuest": "N/A",
+    "guest": "Shohan Ean",
+    "guestBio": "Shohan Ean is a senior full-stack developer with extensive experience in MERN stack development. He has worked on numerous web applications and has a passion for teaching and mentoring aspiring developers.",
+    "specialGuest": "Din Islam",
+    "specialGuestBio": "Din Islam is a seasoned software engineer specializing in modern web technologies and full-stack development. His expertise includes scalable web applications and best practices in software development.",
     "eventArea": "Online via Zoom",
     "eventType": "Workshop",
     "participant": 250,
-    "organizer": "IEEE CS SBC GUB"
+    "organizer": "IEEE CS SBC GUB",
+    "speakers": [
+      {
+        "name": "Shohan Ean",
+        "designation": "Senior Full-Stack Developer",
+        "image": "/images/shohan_ean.jpg"
+      },
+      {
+        "name": "Din Islam",
+        "designation": "Software Engineer",
+        "image": "/images/din_islam.jpg"
+      }
+    ],
+    "highlights": [
+      "Hands-on MERN Training",
+      "Career Guidance",
+      "Industry Best Practices",
+      "Project-based Learning"
+    ],
+    "gallery": [
+      "/images/Event/29.jpg",
+      "/images/Event/30.jpg",
+      "/images/Event/31.jpg",
+      "/images/Event/32.jpg"
+    ],
+    "registrationLink": "https://ieee.gub.edu.bd/mern-workshop-registration"
   },
   {
-    "id": 10,
-    "image": "images/e1.jpg",
-    "eventName": "Introduction to Kaggle: A Beginner’s Guide for Aspiring Data Science & Machine Learning Enthusiasts",
-    "date": "2024-10-15",
-    "time": "02:15 PM to 04:15 PM",
-    "guest": "Mir Tahmid Hossain",
-    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
+    "id": 9,
+    "image": "/images/Event/3.jpg",
+    "eventName": "Innovation Summit 2025",
+    "description": "A comprehensive summit focusing on emerging technologies, innovation strategies, and entrepreneurship opportunities for students and professionals in the tech industry.",
+    "date": "2025-03-15",
+    "time": "09:00 AM to 05:00 PM",
+    "guest": "Dr. Technology Leader",
+    "guestBio": "Dr. Technology Leader is a renowned expert in emerging technologies and innovation management with over 15 years of experience in leading tech companies and startups.",
+    "specialGuest": "Industry Pioneer",
+    "specialGuestBio": "Industry Pioneer is a successful entrepreneur and technology visionary who has founded multiple successful tech startups and contributed to significant technological advancements.",
     "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Seminar",
-    "participant": 125,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 11,
-    "image": "images/",
-    "eventName": "Inauguration Ceremony of New ExCom & Farewell of previous ExCom",
-    "date": "2025-07-05",
-    "time": "08:30 AM to 12:30 PM",
-    "guest": "",
-    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Seminar",
-    "participant": 125,
-    "organizer": "IEEE Student Branch GUB"
-  },
-  {
-    "id": 12,
-    "image": "images/",
-    "eventName": "Social Innovation Challenge",
-    "date": "2025-08-01",
-    "time": "10:00 AM to 11:00 AM",
-    "guest": "",
-    "specialGuest": "",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Hackathon",
-    "participant": 1,
-    "organizer": "IEEE Student Branch GUB"
-  },
-  {
-    "id": 13,
-    "image": "images/",
-    "eventName": "AI Playground, ML with Python",
-    "date": "2025-08-01",
-    "time": "11:00 AM to 01:00 PM",
-    "guest": "",
-    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Workshops",
-    "participant": 125,
-    "organizer": "IEEE Student Branch GUB"
-  },
-  {
-    "id": 14,
-    "image": "images/",
-    "eventName": "Wind Energy & Japan Scholarships",
-    "date": "2025-08-01",
-    "time": "11:00 AM to 01:00 PM",
-    "guest": "",
-    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Seminar",
-    "participant": 125,
-    "organizer": "IEEE Student Branch GUB"
-  },
-  {
-    "id": 15 ,
-    "image": "images/",
-    "eventName": "IEEE Insight Week",
-    "date": "2025-08-01",
-    "time": "",
-    "guest": "",
-    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Social Campaign & Challenges",
-    "participant": 125,
-    "organizer": "IEEE Student Branch GUB"
-  },
-  {
-    "id": 16,
-    "image": "images/",
-    "eventName": "Research Methodology",
-    "date": "2025-08-01",
-    "time": "",
-    "guest": "",
-    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Seminar",
-    "participant": 125,
-    "organizer": "IEEE Student Branch GUB"
-  },
-  {
-    "id": 17,
-    "image": "images/6.jpg",
-    "eventName": "CodePuzzle & CPConvo",
-    "date": "2025-08-01",
-    "time": "",
-    "guest": "",
-    "specialGuest": "Prof. Dr. Md. Ahsan Habib Tareq, Dr. Muhammad Aminur Rahman",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Contest & Panel",
-    "participant": 125,
-    "organizer": "IEEE Student Branch GUB"
-  },
-  {
-    "id": 18,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "IEEE TechFest GUB",
-    "date": "2025-09-04",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Annual Flagship Festival",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 19,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "PES Collaboration Competition",
-    "date": "2025-09-05",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Student Chapter Event",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 20,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Build Your Own GPT, Prompt Engineering",
-    "date": "2025-09-06",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Workshops",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 21,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "IEEE Day 2025 Celebration",
-    "date": "2025-09-07",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Celebration",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 22,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "IEEE CS Day 2025",
-    "date": "2025-09-08",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Celebration",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 23,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "The Future of AI & Responsible AI",
-    "date": "2025-09-09",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Webinar",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 24,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Lighting Up Careers in EEE",
-    "date": "2025-09-10",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Seminar",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 25,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Career Roadmap, Study Abroad, Thesis Writing",
-    "date": "2025-09-11",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Celebration",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 26,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "AutoCAD Workshop",
-    "date": "2025-12-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Workshop",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 27,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "2025 7th International Conference On Sustainable Technologies For Industry 5.0 (STI 2025)",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "International Conference",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 28,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Quantum Computing Series",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Talks & Workshops",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 29,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Technical Skill Workshops",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Workshop Series",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 30,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Solar Panel Module Performance",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Workshop",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 31,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Cybersecurity Essentials, DevSecOps, IoT",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Technical Talks & Webinars",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 32,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Industrial Visits (Solar Land)",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Celebration",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 33,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Hands-On Robotics",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Workshop",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 34,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Lighting Up Careers in EEE",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Seminar",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 35,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Machine Learning in Power Systems",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Webinar",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 36,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Smart Energy & Sustainable Systems Symposium",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Hybrid",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "id": 37,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Project Agri-AI",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Innovation Project Challenge",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "Id": 38,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "PES Day 2025 Celebration",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Celebration",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "Id": 39,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Industrial Automation Workshop",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Workshop",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "Id": 40,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Project Expo",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Mini Project Fair",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
-  },
-  {
-    "Id": 41,
-    "image": "images/IEEE_XBanner_2025.png",
-    "eventName": "Retention Day",
-    "date": "2025-09-12",
-    "time": "",
-    "guest": "N/A",
-    "specialGuest": "N/A",
-    "eventArea": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
-    "eventType": "Internal Event",
-    "participant": 52,
-    "organizer": "IEEE CS SBC GUB"
+    "eventType": "Summit",
+    "participant": 300,
+    "organizer": "IEEE CS SBC GUB",
+    "speakers": [
+      {
+        "name": "Dr. Technology Leader",
+        "designation": "Chief Technology Officer",
+        "image": "/images/tech_leader.jpg"
+      },
+      {
+        "name": "Industry Pioneer",
+        "designation": "Entrepreneur & Innovator",
+        "image": "/images/industry_pioneer.jpg"
+      }
+    ],
+    "highlights": [
+      "Innovation Showcase",
+      "Startup Pitching",
+      "Technology Trends",
+      "Entrepreneurship"
+    ],
+    "gallery": [
+      "/images/Event/33.jpg",
+      "/images/Event/34.jpg",
+      "/images/Event/35.jpg",
+      "/images/Event/36.jpg"
+    ],
+    "registrationLink": "https://ieee.gub.edu.bd/innovation-summit-2025"
   }
-  
-
 ]

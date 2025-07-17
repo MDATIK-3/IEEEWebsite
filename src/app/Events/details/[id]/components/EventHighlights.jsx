@@ -1,5 +1,3 @@
-'use client';
-
 const EventHighlights = ({ eventHighlights }) => {
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8 border border-green-100">

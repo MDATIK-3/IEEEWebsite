@@ -11,6 +11,8 @@ const SpeakerSection = ({ event }) => {
         setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
     };
 
+    const formatSrc = (src) => (src?.startsWith('/') ? src : `/${src}`);
+
     return (
         <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 border border-green-100 max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-2xl font-bold text-gray-900 mb-6 text-center sm:text-left">Featured Speakers</h2>
@@ -28,7 +30,7 @@ const SpeakerSection = ({ event }) => {
                         >
                             <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden flex-shrink-0 border-2 border-green-400">
                                 <Image
-                                    src={`/${speaker.image}`}
+                                    src={formatSrc(speaker.image)}
                                     alt={speaker.name}
                                     width={80}
                                     height={80}
