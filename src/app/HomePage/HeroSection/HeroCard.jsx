@@ -10,8 +10,8 @@ export default function HeroCard() {
         <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-blue-400/30 to-indigo-500/30 rounded-full blur-xl motion-safe:animate-pulse"></div>
 
         <div className="flex justify-center mb-6 group">
-          <div className="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white group-hover:border-green-200 transition-all duration-500 w-[320px] h-[200px] sm:w-[480px] sm:h-[270px] md:w-[640px] md:h-[320px]">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-400/30 to-blue-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl border-1 group-hover:border-green-200 transition-all duration-500 w-[320px] h-[200px] sm:w-[480px] sm:h-[270px] md:w-[640px] md:h-[320px]">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <Image
               src="/images/hero.jpg"
               alt="Technology Innovation"

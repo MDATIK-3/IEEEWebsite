@@ -29,7 +29,15 @@ const activities = [
 
 const About = () => {
   return (
-    <section className="pt-24 pb-20  text-gray-800 overflow-hidden min-h-[600px]">
+    <section className="pt-24 pb-20 text-gray-800 overflow-hidden min-h-[600px] relative">
+      <div
+        className="absolute dark:text-white inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: `linear-gradient(to right, rgba(79, 70, 229, 0.05) 1px, transparent 1.2px), 
+          linear-gradient(to bottom, rgba(79, 70, 229, 0.05) 1px, transparent 1px)`,
+          backgroundSize: '45px 45px',
+        }}
+      />
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 transition-all">
         <div className="flex-1 flex flex-col justify-center">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">

@@ -1,7 +1,7 @@
 const Activities = ({ activities }) => {
   return (
     <div>
-      <h3 className="text-xl font-bold text-gray-900 mb-5">What We Do</h3>
+      <h3 className="text-xl font-bold mb-5">What We Do</h3>
       <div className="flex flex-wrap gap-2">
         {activities.map((activity, i) => (
           <span
