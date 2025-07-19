@@ -26,7 +26,7 @@ const PhotoCard = ({ photo, index, photos }) => {
 
   return (
     <>
-      <div className="group relative bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
         <div
           className="relative aspect-[4/3] cursor-pointer overflow-hidden"
           onClick={handleClick}
@@ -39,7 +39,9 @@ const PhotoCard = ({ photo, index, photos }) => {
             <Image
               src={photo.image}
               alt={photo.name}
-              className={`w-full h-full object-cover transition-all duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'} group-hover:scale-105`}
+              className={`w-full h-full object-cover transition-all duration-300 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              } group-hover:scale-105`}
               onLoad={() => setImageLoaded(true)}
               onError={() => {
                 setImageError(true);
@@ -55,9 +57,9 @@ const PhotoCard = ({ photo, index, photos }) => {
             </div>
           )}
 
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition">
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition">
             <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-200">
-              <div className="bg-white/80 p-2 rounded-full shadow backdrop-blur-sm hover:scale-110 transform transition">
+              <div className="p-2 rounded-full shadow backdrop-blur-sm bg-white hover:scale-110 transform transition">
                 <ZoomIn className="w-5 h-5 text-gray-800" />
               </div>
             </div>
