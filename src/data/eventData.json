@@ -42,29 +42,29 @@
   },
   {
     "id": 2,
-    "image": "/images/e2.png",
+    "image": "images/Event/IEEE_YPtalkseries_2025_Banner.png",
     "eventName": "IEEE Young Professionals Bangladesh Talk Series 2025",
-    "description": "This is a demo description for event 2 focusing on academic excellence and professional development.",
-    "date": "2025-06-05",
-    "time": "11:00 AM",
-    "guest": "Dr. Ahsan Habib, Professor, Dept. of CSE, Green University of Bangladesh",
-    "guestBio": "Dr. Ahsan Habib is a renowned academician and cybersecurity expert with over 20 years of experience in higher education and research. He has guided numerous students and professionals in aligning technical knowledge with career growth. His work focuses on secure system design, ethical hacking, and digital literacy for future graduates. As a key mentor and thought leader at Green University, he is actively involved in bridging the gap between academia and industry.",
-    "specialGuest": "Dr. Ahmed Al Mansur, Professor and Director, GCiA",
-    "specialGuestBio": "Dr. Ahmed Al Mansur is the Director of the Green Center for Innovation & Advancement (GCiA) and a respected voice in digital transformation and academic leadership. With a distinguished career spanning more than 25 years, Dr. Mansur has played pivotal roles in research-driven innovation, student skill development, and fostering industry-academic collaboration. His insights into employability, professional growth, and strategic education policy have made lasting impacts across educational institutions.",
-    "eventArea": "Venue 2",
+    "description": "IEEE Young Professionals Bangladesh Talk Series is a flagship online talk series aimed at early-career engineers, students, and researchers. The series focuses on professional growth, career planning, leadership, and networking within the IEEE community. This time the talk was held on Emerging Trends on Blockchain Technology to foster learning and make students more aware of recent industry and academia trends.",
+    "date": "2025-07-19",
+    "time": "08:00 PM",
+    "guestspeaker": "Amina Saud",
+    "guestspeakerBio": "Amina Saud is a dedicated Lecturer in the Department of Computer Science at Lahore Garrison University, Lahore, Pakistan. With a strong background in computer science education and research, she brings valuable academic insights and professional experience to her students. Her interests include software engineering, data science, and the advancement of technology-driven education in Pakistan.",
+    "sessionchair": "Professor Dr. Ahsan Habib, Chairperson, Dept. of Computer Science & Engineering, Green University of Bangladesh",
+    "sessionchairBio": "Dr. Ahsan Habib is a renowned academician and cybersecurity expert with over 20 years of experience in higher education and research. He has guided numerous students and professionals in aligning technical knowledge with career growth. His work focuses on secure system design, ethical hacking, and digital literacy for future graduates. As a key mentor and thought leader at Green University, he is actively involved in bridging the gap between academia and industry.",
+    "eventArea": "Online via Zoom",
     "eventType": "Seminar",
-    "participant": 100,
-    "organizer": "Organizer 2",
+    "participant": 153,
+    "organizer": "IEEE Student Branch GUB",
     "speakers": [
       {
-        "name": "Dr. Ahsan Habib",
-        "designation": "Professor, Dept. of CSE, GUB",
-        "image": "/images/Executives/2025/SB/AhsanHabibTareq.png"
+        "name": "Amina Saud",
+        "designation": "Lecturer, Department of Computer Science, Lahore Garrison University, Lahore, Pakistan ",
+        "image": "images/Event/IEEE_YPtalk_Amina_Saud.png"
       },
       {
-        "name": "Dr. Ahmed Al Mansur",
-        "designation": "Professor and Director, GCiA",
-        "image": "images/Ahmed_Al_Mansur.png"
+        "name": "Prof. Dr. Ahsan Habib",
+        "designation": "Chairperson, Dept. of Computer Science & Engineering, Green University of Bangladesh",
+        "image": "images/Executives/2025/SB/AhsanHabibTareq.png"
       }
     ],
     "highlights": [
@@ -74,12 +74,12 @@
       "Interactive Content"
     ],
     "gallery": [
-      "/images/Event/5.jpg",
-      "/images/Event/6.jpg",
-      "/images/Event/7.jpg",
-      "/images/Event/8.jpg"
+      "/images/Event/YP_TalkSeries_2025_SS01.png",
+      "/images/Event/YP_TalkSeries_2025_SS02.png",
+      "/images/Event/YP_TalkSeries_2025_SS03.png",
+      "/images/Event/YP_TalkSeries_2025_SS04.png"
     ],
-    "registrationLink": "https://example.com/register-event-2"
+    "registrationLink": "https://forms.gle/ivXp6VDpdEsHkQCp9"
   },
   {
     "id": 3,
@@ -233,12 +233,12 @@
       {
         "name": "Professor Dr. Md. Golam Samdani Fakir",
         "designation": "Academic Panelist",
-        "image": "/images/samdani_fakir.jpg"
+        "image": "images/Event/Md_Golam_Samdani_Fakir.png"
       },
       {
         "name": "Professor Dr. Md. Sharif Uddin",
         "designation": "Academic Panelist",
-        "image": "/images/sharif_uddin.jpg"
+        "image": "images/Event/VC_Sharif_Uddin.png"
       }
     ],
     "highlights": [
@@ -279,7 +279,7 @@
       {
         "name": "Md. Solaiman Mia",
         "designation": "Technology Innovator",
-        "image": "/images/solaiman_mia.jpg"
+        "image": "images/Md_Solaiman_Mia.png"
       }
     ],
     "highlights": [
