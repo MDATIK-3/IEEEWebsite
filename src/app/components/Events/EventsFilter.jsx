@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from "react";
+import { useTheme } from '@/app/Theme/ThemeProvider';
 
 const EventsFilter = ({
   searchText,
@@ -10,6 +11,7 @@ const EventsFilter = ({
   counts,
   setIsSearchFocused,
 }) => {
+  const { isDark } = useTheme();
   const [isSearchHovered, setIsSearchHovered] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -24,24 +26,15 @@ const EventsFilter = ({
 
   const getSearchClasses = () =>
     searchText
-      ? "scale-102 shadow-lg ring-1 ring-emerald-300"
+      ? isDark
+        ? "scale-102 shadow-lg ring-emerald-700 ring-1"
+        : "scale-102 shadow-lg ring-emerald-300 ring-1"
       : isSearchHovered
-        ? "scale-101 shadow-md"
-        : "scale-100 shadow-sm";
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    if (isDropdownOpen) document.addEventListener("mousedown", handleClickOutside);
-    else document.removeEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isDropdownOpen]);
+      ? "scale-101 shadow-md"
+      : "scale-100 shadow-sm";
 
   return (
-    <div className="max-w-3xl mx-auto px-4 md:px-6 py-6 md:py-8">
+    <div className={`max-w-3xl mx-auto px-4 md:px-6 py-6 md:py-8 ${isDark ? 'text-gray-300' : 'text-gray-900'}`}>
       <div className="text-center mt-4 mb-5">
         <h2
           className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 inline-block advanced-animated-gradient"
@@ -51,13 +44,13 @@ const EventsFilter = ({
       </div>
       <div className="flex items-center space-x-4">
         <div
-          className={`relative flex-grow transition-transform duration-300 ${getSearchClasses()} rounded-2xl bg-white/90 backdrop-blur-sm`}
+          className={`relative flex-grow transition-transform duration-300 ${getSearchClasses()} rounded-2xl ${isDark ? 'bg-gray-800 bg-opacity-80 backdrop-blur-md' : 'bg-white/90 backdrop-blur-sm'}`}
           onMouseEnter={() => setIsSearchHovered(true)}
           onMouseLeave={() => setIsSearchHovered(false)}
         >
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
             <svg
-              className="h-5 w-5 text-emerald-500"
+              className={`h-5 w-5 ${isDark ? 'text-emerald-400' : 'text-emerald-500'}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -73,14 +66,14 @@ const EventsFilter = ({
             onChange={(e) => setSearchText(e.target.value)}
             onFocus={() => setIsSearchFocused(true)}
             onBlur={() => setIsSearchFocused(false)}
-            className="w-full pl-12 pr-12 py-3 md:py-4 border border-emerald-100 rounded-2xl bg-transparent text-gray-800 placeholder-gray-500 text-sm md:text-base transition-all duration-300 outline-none"
+            className={`w-full pl-12 pr-12 py-3 md:py-4 border rounded-2xl bg-transparent text-sm md:text-base transition-all duration-300 outline-none ${isDark ? 'border-emerald-700 placeholder-emerald-400 text-gray-300' : 'border-emerald-100 placeholder-gray-500 text-gray-800'}`}
             aria-label="Search events"
           />
 
           {searchText && (
             <button
               onClick={clearSearch}
-              className="absolute right-3 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center z-20 text-emerald-500 hover:text-emerald-700 transition-transform hover:scale-110"
+              className={`absolute right-3 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center z-20 transition-transform hover:scale-110 ${isDark ? 'text-emerald-400 hover:text-emerald-600' : 'text-emerald-500 hover:text-emerald-700'}`}
               aria-label="Clear search"
               type="button"
             >
@@ -100,7 +93,7 @@ const EventsFilter = ({
           <button
             type="button"
             onClick={() => setIsDropdownOpen((prev) => !prev)}
-            className="flex items-center px-5 py-3 rounded-2xl border border-emerald-300 bg-white text-emerald-700 font-semibold shadow-sm hover:bg-emerald-50 transition-colors"
+            className={`flex items-center px-5 py-3 rounded-2xl border font-semibold shadow-sm transition-colors ${isDark ? 'border-emerald-600 bg-gray-800 text-emerald-400 hover:bg-gray-700' : 'border-emerald-300 bg-white text-emerald-700 hover:bg-emerald-50'}`}
             aria-haspopup="listbox"
             aria-expanded={isDropdownOpen}
             aria-label="Select event filter"
@@ -119,7 +112,7 @@ const EventsFilter = ({
 
           {isDropdownOpen && (
             <ul
-              className="absolute right-0 z-50 mt-2 w-48 bg-white rounded-2xl shadow-lg max-h-60 overflow-auto ring-1 ring-black ring-opacity-5 focus:outline-none"
+              className={`absolute right-0 z-50 mt-2 w-48 rounded-2xl shadow-lg max-h-60 overflow-auto ring-1 ring-black ring-opacity-5 focus:outline-none ${isDark ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-900'}`}
               role="listbox"
               aria-label="Event filters"
               tabIndex={-1}
@@ -141,7 +134,11 @@ const EventsFilter = ({
                   }}
                   tabIndex={0}
                   className={`cursor-pointer select-none relative py-2 px-5 text-sm flex justify-between items-center ${filterType === filter.key
-                      ? "bg-emerald-600 text-white font-semibold"
+                      ? isDark
+                        ? "bg-emerald-600 text-white font-semibold"
+                        : "bg-emerald-600 text-white font-semibold"
+                      : isDark
+                      ? "text-gray-300 hover:bg-emerald-900"
                       : "text-gray-900 hover:bg-emerald-100"
                     }`}
                 >

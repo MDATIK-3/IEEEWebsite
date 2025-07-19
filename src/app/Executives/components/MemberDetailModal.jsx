@@ -1,5 +1,6 @@
-"use client";
+'use client';
 import { useEffect } from 'react';
+import { useTheme } from '@/app/Theme/ThemeProvider';
 import {
     Linkedin,
     Mail,
@@ -12,6 +13,8 @@ import {
 } from 'lucide-react';
 
 const MemberDetailModal = ({ member, onClose }) => {
+    const { isDark } = useTheme();
+
     useEffect(() => {
         const handleEscape = (event) => {
             if (event.key === 'Escape') {
@@ -25,12 +28,12 @@ const MemberDetailModal = ({ member, onClose }) => {
     if (!member) return null;
 
     const InfoRow = ({ icon: Icon, href, text, colorClass }) => (
-        <div className="flex items-center gap-4 bg-gray-50 px-4 py-3 rounded-xl shadow border border-gray-100">
+        <div className={`flex items-center gap-4 px-4 py-3 rounded-xl shadow border ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-100'}`}>
             <Icon className={`h-5 w-5 shrink-0 ${colorClass}`} />
             {href ? (
-                <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline break-all">{text}</a>
+                <a href={href} target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-gray-300 hover:underline' : 'text-gray-700 hover:underline'} break-all`}>{text}</a>
             ) : (
-                <span className="text-gray-600 break-all">{text}</span>
+                <span className={`${isDark ? 'text-gray-400' : 'text-gray-600'} break-all`}>{text}</span>
             )}
         </div>
     );
@@ -49,7 +52,7 @@ const MemberDetailModal = ({ member, onClose }) => {
             aria-label={label}
             title={label}
         >
-            <Icon className="w-4 h-4 text-black" strokeWidth={1.8} />
+            <Icon className={`${isDark ? 'text-emerald-400' : 'text-black'}`} strokeWidth={1.8} />
         </a>
     );
 
@@ -59,12 +62,12 @@ const MemberDetailModal = ({ member, onClose }) => {
             onClick={onClose}
         >
             <div
-                className="bg-white rounded-3xl p-8 max-w-md w-full relative shadow-2xl animate-fade-in transition-transform transform scale-100"
+                className={`${isDark ? 'bg-gray-900' : 'bg-white'} rounded-3xl p-8 max-w-md w-full relative shadow-2xl animate-fade-in transition-transform transform scale-100`}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                    className={`${isDark ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-700' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-100'} absolute top-4 right-4 p-2 rounded-full transition-colors`}
                     aria-label="Close"
                 >
                     <X className="h-6 w-6" />
@@ -74,18 +77,18 @@ const MemberDetailModal = ({ member, onClose }) => {
                     <img
                         src={member.img || "https://placehold.co/200x200/e0e0e0/505050?text=Profile"}
                         alt={member.name}
-                        className="h-32 w-32 rounded-full object-cover ring-4 ring-emerald-200 mb-4 shadow-lg"
+                        className={`${isDark ? 'ring-emerald-600' : 'ring-emerald-200'} h-32 w-32 rounded-full object-cover mb-4 shadow-lg ring-4`}
                         onError={(e) => { e.target.src = "https://placehold.co/200x200/e0e0e0/505050?text=Profile"; }}
                     />
-                    <h3 className="text-2xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                    <p className="text-lg font-medium text-emerald-700 mb-6">{member.role}</p>
+                    <h3 className={`${isDark ? 'text-gray-300' : 'text-gray-900'} text-2xl font-bold mb-1`}>{member.name}</h3>
+                    <p className={`${isDark ? 'text-emerald-400' : 'text-emerald-700'} text-lg font-medium mb-6`}>{member.role}</p>
 
                     <div className="space-y-3 text-sm w-full max-w-xs mb-6">
-                        {member.department && <InfoRow icon={BookOpen} text={member.department} colorClass="text-emerald-600" />}
-                        {member.year && <InfoRow icon={Calendar} text={`Year: ${member.year}`} colorClass="text-emerald-600" />}
-                        {member.phone && <InfoRow icon={Phone} href={`tel:${member.phone}`} text={member.phone} colorClass="text-emerald-600" />}
-                        {member.email && <InfoRow icon={Mail} href={`mailto:${member.email}`} text={member.email} colorClass="text-red-600" />}
-                        {member.website && <InfoRow icon={Globe} href={member.website} text={member.website.replace(/(^\w+:|^)\/\//, '')} colorClass="text-gray-600" />}
+                        {member.department && <InfoRow icon={BookOpen} text={member.department} colorClass={isDark ? 'text-emerald-400' : 'text-emerald-600'} />}
+                        {member.year && <InfoRow icon={Calendar} text={`Year: ${member.year}`} colorClass={isDark ? 'text-emerald-400' : 'text-emerald-600'} />}
+                        {member.phone && <InfoRow icon={Phone} href={`tel:${member.phone}`} text={member.phone} colorClass={isDark ? 'text-emerald-400' : 'text-emerald-600'} />}
+                        {member.email && <InfoRow icon={Mail} href={`mailto:${member.email}`} text={member.email} colorClass={isDark ? 'text-red-500' : 'text-red-600'} />}
+                        {member.website && <InfoRow icon={Globe} href={member.website} text={member.website.replace(/(^\w+:|^)\/\//, '')} colorClass={isDark ? 'text-gray-400' : 'text-gray-600'} />}
                     </div>
 
                     <div className="flex justify-center gap-4 mt-2 ">

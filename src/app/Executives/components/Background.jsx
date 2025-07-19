@@ -1,10 +1,14 @@
+import { useTheme } from '@/app/Theme/ThemeProvider';
+
 const Background = () => {
-    const appBackgroundStyles = `
+  const { isDark } = useTheme();
+
+  const appBackgroundStyles = `
     .app-grid-background {
-      background-color: #FFFFFF; 
+      background-color: ${isDark ? '#1f2937' : '#FFFFFF'};
       background-image:
-        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, ${isDark ? '0.05' : '0.03'}) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, ${isDark ? '0.05' : '0.03'}) 1px, transparent 1px);
       background-size: 25px 25px; /* Subtle grid size */
     }
 
@@ -22,7 +26,7 @@ const Background = () => {
     .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
     .animate-scale-in { animation: scale-in 0.3s ease-out forwards; }
   `;
-    return <style>{appBackgroundStyles}</style>;
+  return <style>{appBackgroundStyles}</style>;
 };
 
 export default Background;

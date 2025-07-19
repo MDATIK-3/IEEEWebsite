@@ -55,14 +55,14 @@ const ExecutivePage = () => {
 
   if (!defaultYear) {
     return (
-      <div className="app-grid-background flex justify-center items-center min-h-screen text-red-600 text-xl">
+      <div className="flex justify-center items-center min-h-screen text-red-600 text-xl">
         No executive data available.
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen app-grid-background flex font-inter">
+    <div className="min-h-screen flex font-inter">
       <Background />
 
       <Sidebar

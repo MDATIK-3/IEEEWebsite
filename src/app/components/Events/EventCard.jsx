@@ -83,7 +83,7 @@ const EventCard = ({ event, onError, onSelect }) => {
 
   return (
     <article
-      className="w-full h-full bg-white dark:bg-base-200 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden"
+      className="w-full h-full bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow hover:border hover:border-green-300 duration-300 flex flex-col overflow-hidden"
       role="article"
       aria-label={`Event: ${eventName || 'Untitled Event'}`}
     >
@@ -119,7 +119,7 @@ const EventCard = ({ event, onError, onSelect }) => {
 
         <div className="flex-grow space-y-3">
           {guest && (
-            <div className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
+            <div className="flex items-start gap-2 text-gray-600 ">
               <div className="flex items-center gap-1">
                 <User size={20} strokeWidth={2} absoluteStrokeWidth className="text-green-400" />
                 <span className="text-sm font-semibold">Guest:</span>

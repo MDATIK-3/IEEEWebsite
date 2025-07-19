@@ -1,3 +1,7 @@
+'use client';
+
+import { useTheme } from '@/app/Theme/ThemeProvider';
+import { motion } from 'framer-motion';
 import Stats from './Stats';
 import Mission from './Mission';
 import CoreValues from './CoreValues';
@@ -27,25 +31,47 @@ const activities = [
   'Networking',
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+};
+
 const About = () => {
+  const { isDark } = useTheme();
+
+  const backgroundGridColor = isDark
+    ? 'rgba(79, 70, 229, 0.1)'
+    : 'rgba(79, 70, 229, 0.05)';
+
+  const sectionBgGradient = isDark
+    ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900'
+    : 'bg-gradient-to-r from-green-50/10 via-green-50/20 to-green-50/10';
+
+  const textColor = isDark ? 'text-gray-300' : 'text-gray-800';
+
   return (
-    <section className="pt-24 pb-20 text-gray-800 overflow-hidden min-h-[600px] relative">
+    <section className={`pt-24 pb-20 overflow-hidden min-h-[600px] z-0 relative ${sectionBgGradient}`}>
       <div
-        className="absolute dark:text-white inset-0 pointer-events-none z-0"
+        className="absolute inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(79, 70, 229, 0.05) 1px, transparent 1.2px), 
-          linear-gradient(to bottom, rgba(79, 70, 229, 0.05) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(to right, ${backgroundGridColor} 1px, transparent 1.2px), 
+          linear-gradient(to bottom, ${backgroundGridColor} 1px, transparent 1px)`,
           backgroundSize: '45px 45px',
         }}
       />
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 transition-all">
-        <div className="flex-1 flex flex-col justify-center">
+      <motion.div
+        className={`max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 transition-all ${textColor}`}
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.div className="flex-1 flex flex-col justify-center" variants={containerVariants}>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
             Empowering Future <br />
             <span className="text-green-600 hover:text-green-700 transition-colors duration-300">Engineers</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8 leading-relaxed">
+          <p className={`text-lg md:text-xl max-w-2xl mb-8 leading-relaxed ${textColor}`}>
             IEEE Student Branch is a vibrant community of{' '}
             <strong className="text-green-600 hover:text-green-700 transition-colors duration-300">3000+ passionate members</strong> dedicated to
             innovation, learning, and professional growth in electrical and computer engineering.
@@ -53,13 +79,13 @@ const About = () => {
 
           <Stats stats={stats} />
           <Mission />
-        </div>
+        </motion.div>
 
-        <aside className="w-full lg:w-96 flex-shrink-0 space-y-12">
+        <motion.aside className="w-full lg:w-96 flex-shrink-0 space-y-12" variants={containerVariants}>
           <CoreValues coreValues={coreValues} />
           <Activities activities={activities} />
-        </aside>
-      </div>
+        </motion.aside>
+      </motion.div>
     </section>
   );
 };

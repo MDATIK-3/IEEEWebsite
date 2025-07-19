@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from "react";
+import { useTheme } from '@/app/Theme/ThemeProvider';
 import { useGalleryData } from "../hooks/useGalleryData";
 import GalleryControls from "./components/GalleryControls";
 import PhotoCard from "./components/PhotoCard";
@@ -12,6 +13,7 @@ import Modal from "@/app/components/Shares/Modal";
 const ITEMS_PER_PAGE = 18;
 
 const GalleryFull = () => {
+    const { isDark } = useTheme();
     const [currentPage, setCurrentPage] = useState(1);
     const [viewMode, setViewMode] = useState('grid');
     const [searchQuery, setSearchQuery] = useState('');
@@ -55,12 +57,22 @@ const GalleryFull = () => {
 
     if (loading) return <LoadingSpinner />;
 
+    const backgroundGradient = isDark
+        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 pt-20'
+        : 'bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/25 pt-20';
+
+    const backgroundGridColor = isDark
+        ? 'rgba(79, 70, 229, 0.15)'
+        : 'rgba(79, 70, 229, 0.05)';
+
+    const textColor = isDark ? 'text-gray-300' : 'text-slate-600';
+
     return (
-        <div className="relative bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/25 pt-20">
+        <div className={`relative ${backgroundGradient}`}>
             <div
                 className="absolute inset-0 pointer-events-none z-0"
                 style={{
-                    backgroundImage: `linear-gradient(to right, rgba(79, 70, 229, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(79, 70, 229, 0.05) 1px, transparent 1px)`,
+                    backgroundImage: `linear-gradient(to right, ${backgroundGridColor} 1px, transparent 1px), linear-gradient(to bottom, ${backgroundGridColor} 1px, transparent 1px)`,
                     backgroundSize: '40px 40px',
                 }}
             />
@@ -80,7 +92,7 @@ const GalleryFull = () => {
                     ) : (
                         <>
                             <div className="mb-8 text-center">
-                                <p className="text-slate-600">
+                                <p className={textColor}>
                                     Showing {pagedPhotos.length} of {filteredPhotos.length} photos
                                     {selectedCategory !== 'All' && ` in ${selectedCategory}`}
                                     {searchQuery && ` matching "${searchQuery}"`}

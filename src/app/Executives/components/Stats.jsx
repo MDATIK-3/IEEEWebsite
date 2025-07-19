@@ -4,7 +4,6 @@ import { Sparkles, BadgeCheck, GraduationCap, History } from 'lucide-react';
 const StatCard = ({ icon: Icon, value, label, color }) => (
     <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm flex items-center justify-center">
         <div className="flex items-center gap-4">
-            {/* Icon without background */}
             <Icon className={`h-7 w-7 text-${color}-600`} />
             <div>
                 <p className="text-3xl font-bold text-gray-800">{value}</p>

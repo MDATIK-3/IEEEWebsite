@@ -27,7 +27,7 @@ const EventsGrid = ({ events, now, onError }) => {
   if (!Array.isArray(events) || events.length === 0) {
     return (
       <div className="flex items-center justify-center py-16 h-full min-h-[300px]">
-        <p className="text-gray-500 dark:text-gray-400 text-lg">
+        <p className="text-gray-500 text-lg">
           No events to display
         </p>
       </div>
