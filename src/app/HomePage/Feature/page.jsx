@@ -11,7 +11,7 @@ const Feature = () => {
   const displayedEvents = showAll ? sortedEvents : sortedEvents.slice(0, 4);
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-emerald-50 via-white to-teal-50 relative overflow-hidden">
+    <section className="py-20 px-4 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000"></div>
 
@@ -20,7 +20,7 @@ const Feature = () => {
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-700 bg-clip-text text-transparent mb-4">
             IEEE Collaborations
           </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg max-w-3xl mx-auto leading-relaxed">
             Empowering innovation through strategic partnerships with leading technology organizations,
             fostering research excellence and driving industry advancement.
           </p>
