@@ -1,50 +1,46 @@
 import NavBar from './components/Shares/NavBar/page.jsx';
 import Footer from './components/Shares/Footer/page.jsx';
 import FeedbackButton from './components/FeedbackButton/page.jsx';
-import ClientWrapper from './components/ClientWrapper';
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import  ThemeProvider  from "@/app/Theme/ThemeProvider.jsx";
+import { metadata, viewport } from '@/app/utils/metadata.js';
 import './globals.css';
-
-export const metadata = {
-  title: 'IEEE Green University of Bangladesh',
-  description: 'Official website of IEEE Student Branch, Green University of Bangladesh',
-  keywords: ['IEEE', 'Green University', 'GUB', 'IEEE Student Branch', 'Bangladesh'],
-  authors: [{ name: 'IEEE GUB Team', url: 'https://ieeegub.vercel.app/' }],
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
-  },
-  robots: 'index, follow',
-  other: {
-    'google-site-verification': 'your-google-site-verification-code',
-    author: 'IEEE GUB',
-  },
-};
-
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-};
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <meta name="theme-color" content="#10b981" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const savedTheme = localStorage.getItem('theme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const shouldBeDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+                
+                if (shouldBeDark) {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (e) {
+                // Fallback for SSR
+              }
+            `,
+          }}
+        />
       </head>
-      <body className="antialiased bg-white text-gray-900 transition-colors duration-200" suppressHydrationWarning>
-        <ClientWrapper>
+      <body suppressHydrationWarning>
+        <ThemeProvider>
           <NavBar />
           <main className="flex-grow">{children}</main>
           <FeedbackButton />
           <Footer />
-          <Analytics/>
-        </ClientWrapper>
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+
+export { metadata, viewport };

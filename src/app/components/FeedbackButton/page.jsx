@@ -42,7 +42,7 @@ export default function FeedbackButton() {
   return (
     <div className="fixed bottom-16 right-6 z-50">
       {isOpen ? (
-        <div className="bg-white dark:bg-black text-card-foreground border border-border rounded-lg shadow-xl p-6 w-80">
+        <div className="bg-white text-card-foreground border border-border rounded-lg shadow-xl p-6 w-80">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-semibold text-lg">Share Your Thoughts</h3>
             <button

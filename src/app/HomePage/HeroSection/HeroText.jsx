@@ -59,7 +59,7 @@ export default function HeroText() {
   return (
     <div className="w-full px-4 sm:px-6 py-10 sm:py-14 max-w-screen-xl mx-auto text-left">
       <div className="space-y-3 sm:space-y-5">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight sm:leading-snug">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight sm:leading-snug">
           <span className="block">Bangladesh's Largest</span>
           <span className="relative block h-[1.5em] sm:h-[1.8em] mt-1 min-h-[1.5em]">
             <span className="absolute top-0 left-0 font-extrabold whitespace-nowrap bg-gradient-to-r from-green-600 via-emerald-500 to-teal-600 bg-clip-text text-transparent">
@@ -97,7 +97,7 @@ export default function HeroText() {
         <Link
           href="/Events"
           aria-label="Explore Events"
-          className="w-full sm:w-auto text-center inline-flex items-center justify-center px-5 py-3 text-base font-semibold text-gray-700 bg-white/90 backdrop-blur border border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 hover:text-green-700 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          className="w-full sm:w-auto text-center inline-flex items-center justify-center px-5 py-3 text-base font-semibold text-gray-700 bg-white backdrop-blur border border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 hover:text-green-700 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
         >
           Explore Events
         </Link>

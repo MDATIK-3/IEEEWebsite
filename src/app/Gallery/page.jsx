@@ -81,7 +81,7 @@ const GalleryFull = () => {
                         <>
                             <div className="mb-8 text-center">
                                 <p className="text-slate-600">
-                                    Showing {pagedPhotos.length } of {filteredPhotos.length} photos
+                                    Showing {pagedPhotos.length} of {filteredPhotos.length} photos
                                     {selectedCategory !== 'All' && ` in ${selectedCategory}`}
                                     {searchQuery && ` matching "${searchQuery}"`}
                                 </p>

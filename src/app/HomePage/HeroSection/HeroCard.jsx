@@ -4,7 +4,7 @@ export default function HeroCard() {
   return (
     <div className="relative z-10">
       <div
-        className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 p-8 overflow-hidden transition-all duration-500 ease-out hover:shadow-3xl"
+        className="relative bg-white backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 p-8 overflow-hidden transition-all duration-500 ease-out hover:shadow-3xl"
       >
         <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-green-400/30 to-emerald-500/30 rounded-full blur-xl motion-safe:animate-pulse"></div>
         <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-blue-400/30 to-indigo-500/30 rounded-full blur-xl motion-safe:animate-pulse"></div>

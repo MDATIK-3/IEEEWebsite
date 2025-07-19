@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import EventsFilter from "../components/Events/EventsFilter";
 import EventsGrid from "../components/Events/EventsGrid";
 import events from "@/data/eventData.json";
+import useMounted from "../hooks/useMounted";
 
 const emptyStateVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -44,6 +45,12 @@ const EventsFullPage = () => {
   const [searchText, setSearchText] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  
+ const mounted = useMounted();
+
+  if (!mounted) return (
+    <div className="min-h-screen"></div>
+  );
 
   const filteredEvents = events.filter((event) => {
     const matchesSearch = event.eventName

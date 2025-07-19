@@ -1,38 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --card-background: #f8fafc;
-  --card-foreground: #0f172a;
-  --primary-accent: #10b981;
-  --muted-foreground: #64748b;
-  --border-color: #e2e8f0;
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #000000;
+}
 
-[data-theme='dark'] {
+.dark {
+  color-scheme: dark !important;
   --background: #020617;
   --foreground: #e2e8f0;
-  --card-background: #0f172a;
-  --card-foreground: #e2e8f0;
-  --primary-accent: #10b981;
-  --muted-foreground: #94a3b8;
-  --border-color: #1e293b;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
 }
 
-[data-theme='dark'] body {
-  background-color: #020617;
+.dark body {
+  background-color: #020617 !important;
+  color: #e2e8f0 !important;
   background-image: radial-gradient(at 80% 20%, hsla(212, 96%, 21%, 0.25) 0px, transparent 50%),
                     radial-gradient(at 20% 80%, hsla(165, 76%, 33%, 0.2) 0px, transparent 50%);
 }
 
+html:not(.dark) {
+  color-scheme: light !important;
+}
+
+html:not(.dark) body {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  background-image: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.dark) {
+    color-scheme: light !important;
+  }
+  
+  html:not(.dark) body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    background-image: none !important;
+  }
+}
+
+/* Dark mode text colors for better visibility */
+.dark .text-gray-800 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-gray-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-gray-600 {
+  color: #94a3b8 !important;
+}
+
+.dark .bg-white {
+  background-color: #1e293b !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #0f172a !important;
+}
+
+.dark .border-gray-200 {
+  border-color: #334155 !important;
+}
+
+.dark .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Logo and animations */
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -52,7 +102,6 @@ body {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
@@ -64,22 +113,13 @@ body {
   }
 }
 
-
-
 @keyframes gradientMove {
-
-  0%,
-  100% {
+  0%, 100% {
     background-position: 0% 50%;
   }
-
   50% {
     background-position: 100% 50%;
   }
-}
-
-* {
-  -webkit-tap-highlight-color: transparent;
 }
 
 .modal-backdrop {
@@ -97,7 +137,6 @@ body {
     opacity: 0;
     transform: scale(0.95);
   }
-
   100% {
     opacity: 1;
     transform: scale(1);
@@ -107,9 +146,6 @@ body {
 .animate-modal {
   animation: modalZoom 0.25s ease-out;
 }
-
-
-
 
 @keyframes advanced-bg-move {
   0% {

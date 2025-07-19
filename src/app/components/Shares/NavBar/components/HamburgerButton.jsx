@@ -6,12 +6,12 @@ export default function HamburgerButton({ open, onClick }) {
       onClick={onClick}
       aria-label="Toggle menu"
       aria-expanded={open}
-      className="lg:hidden p-2 rounded-full text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-slate-100 hover:bg-gray-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400 transition-all duration-300"
+      className="lg:hidden p-2 rounded-full text-gray-600 hover:text-green-600 hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 transform hover:scale-110 active:scale-95"
       type="button"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6"
+        className="h-6 w-6 transition-colors duration-300"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

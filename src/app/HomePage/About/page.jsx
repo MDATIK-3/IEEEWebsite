@@ -29,7 +29,7 @@ const activities = [
 
 const About = () => {
   return (
-    <section className="pt-24 pb-20 bg-gradient-to-b from-green-50/70 via-green-50/40 to-green-50/50 text-gray-800 overflow-hidden min-h-[600px]">
+    <section className="pt-24 pb-20  text-gray-800 overflow-hidden min-h-[600px]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 transition-all">
         <div className="flex-1 flex flex-col justify-center">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">

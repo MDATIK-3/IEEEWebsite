@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/layout.jsx", "src/app/page.jsx", "src/app/components/Shares/Footer/Contributors.jsx", "src/app/HomePage/Banner/animated-background.jsx", "src/app/details/[id]/page.jsx", "src/app/HomePage/FAQ/page.jsx", "src/app/HomePage/FAQ/FAQItem.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/layout.jsx", "src/app/page.jsx", "src/app/components/Shares/Footer/Contributors.jsx", "src/app/HomePage/Banner/animated-background.jsx", "src/app/details/[id]/page.jsx", "src/app/HomePage/FAQ/page.jsx", "src/app/HomePage/FAQ/FAQItem.jsx", "src/app/Theme/ThemeProvider.jsx"],
   "exclude": ["node_modules"]
 }

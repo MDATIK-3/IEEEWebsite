@@ -8,7 +8,7 @@ import FloatingDecorations from "./FloatingDecorations"
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-green-50/40 to-blue-50/50 flex items-center justify-center
+    <section className="relative min-h-screen overflow-hidden flex items-center justify-center
       pt-16 pb-8 px-4
       sm:pt-20 sm:pb-10 sm:px-6
       lg:pt-[56px] lg:pb-10 lg:px-8">
