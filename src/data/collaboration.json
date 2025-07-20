@@ -1,32 +1,20 @@
 [
   {
     "id": 1,
-    "image": "https://retractionwatch.com/wp-content/uploads/2018/11/ieee.jpg",
-    "name": "Unlocking the Power of Data",
-    "organization": "IEEE Computer Society Bangladesh Chapter, Green University Computer Club (GUCC), and PeopleNTech Institute of IT"
+    "image": "images/IEEE_BD_Section_Logo.png",
+    "name": "IEEE Bangladesh Section",
+    "organization": "The IEEE Bangladesh Section, established on November 20, 1993, operates under IEEE Region 10 (Asia-Pacific). With over 3,500 members, it encompasses 51 student branches, 9 society chapters, and 2 affinity groups. The section is dedicated to advancing technological innovation, fostering professional development, and promoting community engagement through various educational and technical activities across Bangladesh."
   },
   {
     "id": 2,
-    "image": "https://ieee-ceda.org/files/ieeeceda/styles/responsive_4_3_760w/public/images/media/photos/computer-society-color.jpg?h=f3216549&itok=DjnJTxex",
-    "name": "Sara Hossain",
-    "organization": "IEEE GUB Student Branch"
+    "image": "images/IEEE_Computer_Society_Logo.png",
+    "name": "IEEE Computer Society Bangladesh Chapter",
+    "organization": "The IEEE Computer Society Bangladesh Chapter (IEEE CS BDC) is a prominent technical community that connects students, researchers, and professionals in the fields of computer science and engineering. It serves as a platform for knowledge exchange, professional development, and innovation through events like the Summer Symposium and initiatives such as Team SPARK and Women in Computing. The chapter is dedicated to fostering collaboration and advancing technology in Bangladesh."
   },
   {
     "id": 3,
-    "image": "https://ieee-region6.org/wp-content/uploads/2020/10/IEEE-DAY-2020.jpg",
-    "name": "Mahmudul Karim",
-    "organization": "GUB Career Development Center"
-  },
-  {
-    "id": 4,
-    "image": "https://ieee-isgt-latam.org/wp-content/uploads/sites/728/LogoISGT-COLORES.png",
-    "name": "Jannatul Ferdous",
-    "organization": "GUB Innovation Lab"
-  },
-  {
-    "id": 5,
-    "image": "https://signalprocessingsociety.org/sites/default/files/circle-table.jpg",
-    "name": "Tanvir Hasan",
-    "organization": "Green University CSE Department"
+    "image": "images/IEEE_Young_Professional_Logo.png",
+    "name": "IEEE Young Professionals Bangladesh",
+    "organization": "The IEEE Bangladesh Young Professionals (YP) is a dynamic community that empowers early-career engineers, researchers, and technologists through skill-building events, networking opportunities, and career development initiatives. Their flagship event, the International Young Professionals Activities Congress (YPCON), brings together professionals and students for workshops, technical talks, and panel discussions. With a dedicated executive committee and a growing membership, IEEE YP Bangladesh is committed to fostering professional growth and leadership in the tech community."
   }
 ]
