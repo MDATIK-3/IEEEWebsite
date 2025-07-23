@@ -13,7 +13,7 @@ export const useTheme = () => {
 };
 
 export default function ClientWrapper({ children }) {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
