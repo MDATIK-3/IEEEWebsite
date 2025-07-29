@@ -1,6 +1,5 @@
 'use client';
 
-import { useTheme } from '@/app/Theme/ThemeProvider';
 import { motion } from 'framer-motion';
 import Stats from './Stats';
 import Mission from './Mission';
@@ -37,50 +36,46 @@ const containerVariants = {
 };
 
 const About = () => {
-  const { isDark } = useTheme();
-
-  const backgroundGridColor = isDark
-    ? 'rgba(79, 70, 229, 0.1)'
-    : 'rgba(79, 70, 229, 0.05)';
-
-  const sectionBgGradient = isDark
-    ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900'
-    : 'bg-gradient-to-r from-green-50/10 via-green-50/20 to-green-50/10';
-
-  const textColor = isDark ? 'text-gray-300' : 'text-gray-800';
-
   return (
-    <section className={`pt-24 pb-20 overflow-hidden min-h-[600px] z-0 relative ${sectionBgGradient}`}>
-      <div
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage: `linear-gradient(to right, ${backgroundGridColor} 1px, transparent 1.2px), 
-          linear-gradient(to bottom, ${backgroundGridColor} 1px, transparent 1px)`,
-          backgroundSize: '45px 45px',
-        }}
-      />
+    <section
+      className={`
+        relative pt-24 pb-20 overflow-hidden min-h-[600px] z-0
+        bg-gradient-to-br from-green-50 via-white to-green-100
+        dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900
+        before:content-[''] before:absolute before:inset-0 before:z-0
+        before:bg-[linear-gradient(to_right,rgba(79,70,229,0.08)_1px,transparent_1.2px),linear-gradient(to_bottom,rgba(79,70,229,0.08)_1px,transparent_1px)]
+        before:dark:bg-[linear-gradient(to_right,rgba(79,70,229,0.08)_1px,transparent_1.2px),linear-gradient(to_bottom,rgba(79,70,229,0.08)_1px,transparent_1px)]
+        before:bg-[length:45px_45px]
+      `}
+    >
       <motion.div
-        className={`max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 transition-all ${textColor}`}
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 text-gray-800 dark:text-gray-300 transition-all"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
+        {/* Left Section */}
         <motion.div className="flex-1 flex flex-col justify-center" variants={containerVariants}>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
             Empowering Future <br />
-            <span className="text-green-600 hover:text-green-700 transition-colors duration-300">Engineers</span>
+            <span className="text-green-600 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300">
+              Engineers
+            </span>
           </h1>
 
-          <p className={`text-lg md:text-xl max-w-2xl mb-8 leading-relaxed ${textColor}`}>
+          <p className="text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
             IEEE Student Branch is a vibrant community of{' '}
-            <strong className="text-green-600 hover:text-green-700 transition-colors duration-300">3000+ passionate members</strong> dedicated to
-            innovation, learning, and professional growth in electrical and computer engineering.
+            <strong className="text-green-600 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300">
+              3000+ passionate members
+            </strong>{' '}
+            dedicated to innovation, learning, and professional growth in electrical and computer engineering.
           </p>
 
           <Stats stats={stats} />
           <Mission />
         </motion.div>
 
+        {/* Right Sidebar */}
         <motion.aside className="w-full lg:w-96 flex-shrink-0 space-y-12" variants={containerVariants}>
           <CoreValues coreValues={coreValues} />
           <Activities activities={activities} />

@@ -17,11 +17,9 @@ export default function ClientWrapper({ children }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    // Determine the initial theme
     const initialTheme = savedTheme
       ? savedTheme === 'dark'
       : systemPrefersDark;
@@ -42,7 +40,7 @@ export default function ClientWrapper({ children }) {
   const toggleTheme = () => {
     const newIsDark = !isDark;
     setIsDark(newIsDark);
-    localStorage.setItem('theme', newIsDark ? 'dark' : 'light'); // Save user preference
+    localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
     applyTheme(newIsDark);
   };
 

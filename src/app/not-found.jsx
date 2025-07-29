@@ -17,12 +17,11 @@ export default function UnderConstruction() {
                 return prev - 1;
             });
         }, 1000);
-
         return () => clearInterval(intervalRef.current);
     }, []);
 
     return (
-        <main className="flex items-center justify-center min-h-screen px-6 py-24 bg-gray-50">
+        <main className="flex items-center justify-center min-h-screen px-6 py-24 bg-gray-50 dark:bg-gray-900">
             <div className="flex flex-col lg:flex-row items-center max-w-6xl gap-12 lg:gap-20">
                 <div className="w-full lg:w-1/2">
                     <img
@@ -35,28 +34,28 @@ export default function UnderConstruction() {
                 </div>
 
                 <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
-                    <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+                    <h1 className="text-4xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight sm:text-5xl">
                         We're Working on This Page
                     </h1>
 
-                    <p className="text-lg text-gray-700 max-w-lg mx-auto lg:mx-0">
+                    <p className="text-lg text-gray-700 dark:text-gray-300 max-w-lg mx-auto lg:mx-0">
                         This page is currently under construction. Please check back later or send us your feedback.
                     </p>
 
-                    <p className="text-lg text-gray-700">
+                    <p className="text-lg text-gray-700 dark:text-gray-300">
                         Redirecting to the homepage in{" "}
-                        <span className="font-semibold text-green-600">{countdown}</span>{" "}
+                        <span className="font-semibold text-green-600 dark:text-green-400">{countdown}</span>{" "}
                         second{countdown !== 1 && "s"}...
                     </p>
 
-                    <Link href="/"
+                    <Link
+                        href="/"
                         className="inline-block w-full lg:w-auto font-semibold rounded-lg px-8 py-3 text-white shadow-lg
-                        bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800
-                        focus:outline-none focus:ring-4 focus:ring-green-400 transition"
+              bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800
+              focus:outline-none focus:ring-4 focus:ring-green-400 dark:focus:ring-green-500 transition"
                         aria-label="Go back to homepage now"
                     >
                         Go back to Homepage now
-
                     </Link>
                 </div>
             </div>
