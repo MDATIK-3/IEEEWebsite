@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { User, Users, ExternalLink, Star } from 'lucide-react';
 
@@ -22,7 +22,10 @@ const EventDetails = () => {
 
   const modalRef = useRef(null);
 
-  const event = id ? eventData.find(e => e.id.toString() === id) || null : null;
+  const event = useMemo(
+    () => (id ? eventData.find((e) => e.id.toString() === id) || null : null),
+    [id]
+  );
 
   const eventDate = event ? new Date(`${event.date}T00:00:00`) : null;
   const now = new Date();
@@ -36,7 +39,7 @@ const EventDetails = () => {
       const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
+        'July', 'August', 'September', 'October', 'November', 'December',
       ];
       return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
     } catch {
@@ -55,30 +58,41 @@ const EventDetails = () => {
         });
       } else if (navigator.clipboard) {
         await navigator.clipboard.writeText(window.location.href);
-        console.log('Event link copied to clipboard!');
+        alert('Event link copied to clipboard!');
       } else {
         alert('Sharing not supported. Please copy the URL manually.');
       }
     } catch (err) {
       console.error('Error sharing:', err);
+      alert('Failed to share the event.');
     }
   };
 
-  const eventHighlights = [
+  const eventHighlights = useMemo(() => [
     { icon: User, text: 'Expert Speaker' },
     { icon: Users, text: 'Q&A Session' },
     { icon: Star, text: 'Networking' },
     { icon: ExternalLink, text: 'Interactive Content' },
-  ];
+  ], []);
 
   if (!id) return <LoadingState />;
-  if (!event) return <div className="text-center py-20">Event not found.</div>;
+
+  if (!event)
+    return (
+      <main role="main" className="text-center py-20 text-gray-700 dark:text-gray-300">
+        <h1 className="text-2xl font-semibold mb-4">Event Not Found</h1>
+        <p>Please check the link or try searching for other events.</p>
+      </main>
+    );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+    <main
+      role="main"
+      className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 transition-colors duration-500"
+    >
       <HeroSection event={event} isPastEvent={isPastEvent} formatDate={formatDate} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-8">
             <EventImage event={event} />
@@ -92,19 +106,19 @@ const EventDetails = () => {
             />
           </div>
 
-          <div className="space-y-6">
+          <aside className="space-y-6" aria-label="Event information">
             <EventInfoCard
               event={event}
               formatDate={formatDate}
               isPastEvent={isPastEvent}
               handleShare={handleShare}
             />
-          </div>
+          </aside>
         </div>
-      </div>
+      </section>
 
       <Modal ref={modalRef} photos={event.gallery || []} />
-    </div>
+    </main>
   );
 };
 

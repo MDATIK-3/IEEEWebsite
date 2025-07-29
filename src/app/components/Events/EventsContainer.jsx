@@ -25,10 +25,10 @@ const EventsContainer = ({ isFullPage }) => {
     return matchesSearch;
   });
 
-const displayedEvents = isFullPage ? filteredEvents : filteredEvents.slice(0, 6);
+  const displayedEvents = isFullPage ? filteredEvents : filteredEvents.slice(0, 6);
 
-const upcomingCount = events.filter((event) => new Date(event.date) > now).length;
-const pastCount = events.filter((event) => new Date(event.date) < now).length;
+  const upcomingCount = events.filter((event) => new Date(event.date) > now).length;
+  const pastCount = events.filter((event) => new Date(event.date) < now).length;
 
 
   return (
