@@ -2,8 +2,7 @@ import Link from "next/link";
 import ColabCard from "./ColabCard";
 import colabData from "@/data/collaboration.json";
 
-const Feature = () => {
-  const showAll = false;
+const Feature = ({ showAll = false }) => {
   const sortedEvents = [...colabData].sort((a, b) => a.id - b.id);
   const displayedEvents = showAll ? sortedEvents : sortedEvents.slice(0, 8);
 
@@ -12,12 +11,12 @@ const Feature = () => {
       className="
         relative overflow-hidden
         bg-gradient-to-br from-white via-emerald-50 to-teal-50
-        dark:from-gray-950 dark:via-gray-900 dark:to-gray-950
+        dark:from-gray-800 dark:via-gray-900/70 dark:to-gray-800/90
         transition-colors duration-300 py-24 px-6 sm:px-12
       "
     >
-      <div className="absolute top-10 left-10 w-80 h-80 bg-emerald-200 dark:bg-emerald-900/40 rounded-full mix-blend-multiply blur-3xl opacity-40 animate-blob" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-200 dark:bg-teal-900/40 rounded-full mix-blend-multiply blur-3xl opacity-40 animate-blob animation-delay-1000" />
+      <div className="absolute top-10 left-10 w-80 h-80 bg-emerald-200 dark:bg-emerald-100 rounded-full mix-blend-multiply blur-3xl opacity-40 animate-blob" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-200 dark:bg-teal-200 rounded-full mix-blend-multiply blur-3xl opacity-40 animate-blob animation-delay-1000" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-14 px-6 sm:px-0">
@@ -46,7 +45,7 @@ const Feature = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 px-6 sm:px-0">
-          {sortedEvents.length > 8 && (
+          {!showAll && (
             <Link
               href="/Collaboration"
               className="w-full sm:w-auto group relative px-10 py-4 font-semibold text-white bg-gradient-to-r from-emerald-500 via-teal-600 to-teal-700 rounded-3xl shadow-lg hover:shadow-2xl transition-transform duration-300 transform hover:-translate-y-1 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400 flex items-center justify-center"
