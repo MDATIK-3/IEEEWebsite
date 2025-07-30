@@ -1,0 +1,38 @@
+import { Clock, Phone, Mail, Navigation } from 'lucide-react';
+
+function BranchInfoCards() {
+    const contactDetails = [
+        { icon: Phone, title: "Branch Counselor", primary: "+880 1234 567890" },
+        { icon: Mail, title: "Official Email", primary: "ieee.gub@green.edu.bd" },
+        { icon: Clock, title: "Office Hours", primary: "Mon - Fri: 10 AM - 5 PM" },
+        { icon: Navigation, title: "University Address", primary: "Purbachal, Dhaka" }
+    ];
+
+    return (
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {contactDetails.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                    <div key={index} className="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50 hover:border-gray-300/70 dark:hover:border-gray-600/70 cursor-pointer transform hover:-translate-y-2">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-700/30 dark:to-transparent rounded-3xl"></div>
+                        <div className="relative flex items-center space-x-4">
+                            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 text-white group-hover:scale-110 transition-all duration-300 shadow-lg">
+                                <Icon className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="text-md font-semibold text-gray-500 dark:text-gray-400">
+                                    {item.title}
+                                </h3>
+                                <p className="text-gray-900 dark:text-white text-sm font-medium">
+                                    {item.primary}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
+        </section>
+    );
+}
+
+export default BranchInfoCards
