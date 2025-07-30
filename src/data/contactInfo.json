@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "Phone",
+    "title": "Branch Counselor",
+    "primary": "+880 1234 567890"
+  },
+  {
+    "icon": "Mail",
+    "title": "Official Email",
+    "primary": "ieee.gub@green.edu.bd"
+  },
+  {
+    "icon": "Clock",
+    "title": "Office Hours",
+    "primary": "Mon - Fri: 10 AM - 5 PM"
+  },
+  {
+    "icon": "Navigation",
+    "title": "University Address",
+    "primary": "Purbachal, Dhaka"
+  }
+]
