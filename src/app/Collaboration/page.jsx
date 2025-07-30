@@ -1,4 +1,4 @@
-import Mainpage from "../HomePage/Feature/page"
+import Mainpage from "../HomePage/Feature/Feature"
 function page() {
     return (
         <Mainpage showAll={true} />
