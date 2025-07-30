@@ -1,49 +1,49 @@
 [
   {
     "id": 1,
-    "image": "images/Collaboration/IeeeBangladeshChapter.png",
+    "image": "images/Collaboration/BangladeshSection.png",
     "name": "IEEE Bangladesh Section",
     "organization": "The IEEE Bangladesh Section, established on November 20, 1993, operates under IEEE Region 10 (Asia-Pacific). With over 3,500 members, it encompasses 51 student branches, 9 society chapters, and 2 affinity groups. The section is dedicated to advancing technological innovation, fostering professional development, and promoting community engagement through various educational and technical activities across Bangladesh."
   },
   {
     "id": 2,
-    "image": "images/Collaboration/BangladeshSection.png",
+    "image": "images/Collaboration/IeeeCSBangladeshChapter.png",
     "name": "IEEE Computer Society Bangladesh Chapter",
     "organization": "The IEEE Computer Society Bangladesh Chapter (IEEE CS BDC) is a prominent technical community that connects students, researchers, and professionals in the fields of computer science and engineering. It serves as a platform for knowledge exchange, professional development, and innovation through events like the Summer Symposium and initiatives such as Team SPARK and Women in Computing. The chapter is dedicated to fostering collaboration and advancing technology in Bangladesh."
   },
   {
     "id": 3,
-    "image": "images/Collaboration/3.png",
+    "image": "images/Collaboration/YoungProfessional.png",
     "name": "IEEE Young Professionals Bangladesh",
     "organization": "The IEEE Bangladesh Young Professionals (YP) is a dynamic community that empowers early-career engineers, researchers, and technologists through skill-building events, networking opportunities, and career development initiatives. Their flagship event, the International Young Professionals Activities Congress (YPCON), brings together professionals and students for workshops, technical talks, and panel discussions. With a dedicated executive committee and a growing membership, IEEE YP Bangladesh is committed to fostering professional growth and leadership in the tech community."
   },
   {
     "id": 4,
-    "image": "images/Collaboration/4.png",
-    "name": "IEEE Computer Society Bangladesh Chapter",
+    "image": "images/Collaboration/IEEE_PES.png",
+    "name": "IEEE Power and Energy Society",
     "organization": "The IEEE Computer Society Bangladesh Chapter (IEEE CS BDC) is a prominent technical community that connects students, researchers, and professionals in the fields of computer science and engineering. It serves as a platform for knowledge exchange, professional development, and innovation through events like the Summer Symposium and initiatives such as Team SPARK and Women in Computing. The chapter is dedicated to fostering collaboration and advancing technology in Bangladesh."
   },
   {
     "id": 5,
-    "image": "images/Collaboration/5.png",
+    "image": "images/Collaboration/YoungProfessional.png",
     "name": "IEEE Young Professionals Bangladesh",
     "organization": "The IEEE Bangladesh Young Professionals (YP) is a dynamic community that empowers early-career engineers, researchers, and technologists through skill-building events, networking opportunities, and career development initiatives. Their flagship event, the International Young Professionals Activities Congress (YPCON), brings together professionals and students for workshops, technical talks, and panel discussions. With a dedicated executive committee and a growing membership, IEEE YP Bangladesh is committed to fostering professional growth and leadership in the tech community."
   },
   {
     "id": 6,
-    "image": "images/Collaboration/IeeeBangladeshChapter.png",
+    "image": "images/Collaboration/BangladeshSection.png",
     "name": "IEEE Bangladesh Section",
     "organization": "The IEEE Bangladesh Section, established on November 20, 1993, operates under IEEE Region 10 (Asia-Pacific). With over 3,500 members, it encompasses 51 student branches, 9 society chapters, and 2 affinity groups. The section is dedicated to advancing technological innovation, fostering professional development, and promoting community engagement through various educational and technical activities across Bangladesh."
   },
   {
     "id": 7,
-    "image": "images/Collaboration/BangladeshSection.png",
+    "image": "images/Collaboration/IeeeCSBangladeshChapter.png",
     "name": "IEEE Computer Society Bangladesh Chapter",
     "organization": "The IEEE Computer Society Bangladesh Chapter (IEEE CS BDC) is a prominent technical community that connects students, researchers, and professionals in the fields of computer science and engineering. It serves as a platform for knowledge exchange, professional development, and innovation through events like the Summer Symposium and initiatives such as Team SPARK and Women in Computing. The chapter is dedicated to fostering collaboration and advancing technology in Bangladesh."
   },
   {
     "id": 8,
-    "image": "images/Collaboration/3.png",
+    "image": "images/Collaboration/YoungProfessional.png",
     "name": "IEEE Young Professionals Bangladesh",
     "organization": "The IEEE Bangladesh Young Professionals (YP) is a dynamic community that empowers early-career engineers, researchers, and technologists through skill-building events, networking opportunities, and career development initiatives. Their flagship event, the International Young Professionals Activities Congress (YPCON), brings together professionals and students for workshops, technical talks, and panel discussions. With a dedicated executive committee and a growing membership, IEEE YP Bangladesh is committed to fostering professional growth and leadership in the tech community."
   },

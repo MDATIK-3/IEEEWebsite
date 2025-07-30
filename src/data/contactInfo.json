@@ -1,22 +1,22 @@
 [
   {
     "icon": "Phone",
-    "title": "Branch Counselor",
-    "primary": "+880 1234 567890"
+    "title": "IEEE SB Chair",
+    "primary": "+880 1518-918266"
   },
   {
     "icon": "Mail",
     "title": "Official Email",
-    "primary": "ieee.gub@green.edu.bd"
+    "primary": "ieee_sb@green.edu.bd"
   },
   {
     "icon": "Clock",
     "title": "Office Hours",
-    "primary": "Mon - Fri: 10 AM - 5 PM"
+    "primary": "Fri - Wed 08:30 AM - 05:00 PM"
   },
   {
     "icon": "Navigation",
     "title": "University Address",
-    "primary": "Purbachal, Dhaka"
+    "primary": "Purbachal American City, Kanchan, Rupganj, Narayanganj-1461, Dhaka, Bangladesh"
   }
 ]
