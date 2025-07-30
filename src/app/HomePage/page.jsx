@@ -12,9 +12,9 @@ function Page() {
             <HeroSection />
             <About />
             <ModeratorMessages />
-            <Feature />
-            <AllPhoto />
             <AllEvent />
+            <AllPhoto />
+            <Feature />
             <FAQ />
         </main>
     )

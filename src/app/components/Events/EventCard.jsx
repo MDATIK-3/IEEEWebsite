@@ -15,134 +15,109 @@ const formatDate = (dateString) => {
       month: 'short',
       day: 'numeric'
     });
-  } catch (error) {
-    console.warn('Date formatting error:', error);
+  } catch {
     return dateString;
   }
 };
 
 const EventCard = ({ event, onError, onSelect }) => {
-  if (!event) {
-    console.error('EventCard: event prop is required');
-    return null;
-  }
+  if (!event) return null;
 
   const { id, image, eventName, date, guest, time } = event;
-
   const [countdown, setCountdown] = useState(null);
 
   useEffect(() => {
     if (!date) return;
-
     const eventDate = new Date(date);
-    if (isNaN(eventDate.getTime())) {
-      console.warn('Invalid event date:', date);
-      return;
-    }
-
     const updateCountdown = () => {
       const now = new Date();
       const diff = eventDate - now;
-
-      if (diff <= 0) {
-        setCountdown(null);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+      if (diff <= 0) return setCountdown(null);
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+      setCountdown(`${d}d ${h}h ${m}m ${s}s`);
     };
-
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
   }, [date]);
 
-  const formattedDate = formatDate(date);
-
   const handleClick = useCallback(() => {
     try {
       onSelect?.(event);
-      if (typeof window !== 'undefined' && window.localStorage) {
-        localStorage.setItem('selectedEvent', JSON.stringify(event));
-      }
+      localStorage?.setItem('selectedEvent', JSON.stringify(event));
     } catch (error) {
-      console.error('EventCard click handler error:', error);
       onError?.(error);
     }
   }, [event, onSelect, onError]);
 
   const handleImageError = useCallback((e) => {
-    console.warn('Image failed to load:', image);
     e.target.style.display = 'none';
-  }, [image]);
+  }, []);
 
   return (
     <article
-      className="w-full h-full bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow hover:border hover:border-green-300 duration-300 flex flex-col overflow-hidden"
+      className="group relative w-full h-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl shadow-sm hover:shadow-xl hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-500 transform hover:scale-[1.025] hover:-translate-y-1 overflow-hidden"
       role="article"
-      aria-label={`Event: ${eventName || 'Untitled Event'}`}
     >
       {image && (
-        <figure className="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
-          <Link
-            href={`/Events/details/${id}`}
-            onClick={handleClick}
-            aria-label={`View details for ${eventName || 'this event'}`}
-          >
-            <img
-              src={image}
-              alt={eventName ? `${eventName} event image` : 'Event image'}
-              className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
-              onError={handleImageError}
-              loading="lazy"
-            />
+        <figure className="relative h-56 bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 overflow-hidden">
+          <Link href={`/Events/details/${id}`} onClick={handleClick} className="block w-full h-full">
+            <div className="relative w-full h-full overflow-hidden">
+              <img
+                src={image}
+                alt={eventName || 'Event image'}
+                onError={handleImageError}
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.05),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            </div>
           </Link>
 
           {countdown && (
-            <div className="absolute top-2 right-2 flex items-center gap-1 bg-gradient-to-r from-green-400 to-emerald-300 text-black text-xs font-semibold px-3 py-1 rounded-full shadow-lg z-10">
-              <IoMdTimer className="text-sm" />
+            <div className="absolute top-3 right-3 flex items-center gap-1 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm border border-white/20 transform group-hover:scale-110 transition-transform duration-300">
+              <IoMdTimer className="text-sm animate-pulse" />
               {countdown}
             </div>
           )}
         </figure>
       )}
 
-      <div className="p-5 space-y-3">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 line-clamp-2 mb-3">
+      <div className="p-6 flex flex-col gap-4">
+        <h2 className="text-xl font-semibold text-zinc-800 dark:text-zinc-100 line-clamp-2 transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
           {eventName || 'Untitled Event'}
         </h2>
 
-        <div className="flex-grow space-y-3">
-          {guest && (
-            <div className="flex items-start gap-2 text-gray-600 ">
-              <div className="flex items-center gap-1">
-                <User size={20} strokeWidth={2} absoluteStrokeWidth className="text-green-400" />
-                <span className="text-sm font-semibold">Guest:</span>
-              </div>
-              <span className="text-sm">{guest}</span>
-            </div>
-          )}
-        </div>
-
-        <div className="flex flex-wrap justify-between items-center gap-2 pt-2 mt-auto">
-          {date && (
+        {guest && (
+          <div className="flex items-start gap-3 text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors">
             <div className="flex items-center gap-2">
-              <CiCalendar className="text-lg text-green-400 dark:text-green-400 flex-shrink-0" aria-hidden="true" />
-              <span className="text-sm font-medium text-green-400 dark:text-green-300">
-                {formattedDate}
+              <div className="p-1.5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full">
+                <User size={16} className="text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <span className="text-sm font-semibold">Guest:</span>
+            </div>
+            <span className="text-sm">{guest}</span>
+          </div>
+        )}
+
+        <div className="flex flex-wrap justify-between items-center gap-3 pt-4 mt-auto border-t border-zinc-200 dark:border-zinc-700">
+          {date && (
+            <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-2 rounded-lg group-hover:scale-105 transition-transform">
+              <CiCalendar className="text-lg text-emerald-600 dark:text-emerald-400" />
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
+                {formatDate(date)}
               </span>
             </div>
           )}
 
           {time && (
-            <div className="flex items-center gap-2 text-green-400 dark:text-green-300">
-              <IoMdTimer className="text-lg flex-shrink-0" aria-hidden="true" />
-              <span className="text-sm font-medium">{time}</span>
+            <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-2 rounded-lg group-hover:scale-105 transition-transform">
+              <IoMdTimer className="text-lg text-emerald-600 dark:text-emerald-400" />
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">{time}</span>
             </div>
           )}
         </div>
