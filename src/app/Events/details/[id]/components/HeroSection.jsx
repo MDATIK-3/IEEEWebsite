@@ -5,20 +5,22 @@ import { Calendar, Clock, CheckCircle } from 'lucide-react';
 import Link from "next/link";
 
 const HeroSection = ({ event, isPastEvent, formatDate }) => (
-  <div className="relative overflow-hidden bg-gradient-to-r from-green-700 via-emerald-600 to-teal-500 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 transition-colors duration-700 ease-in-out">
+  <div className="relative overflow-hidden bg-gradient-to-br from-emerald-800 via-teal-700 to-cyan-600 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 transition-colors duration-700 ease-in-out">
 
     <div className="absolute inset-0 bg-black opacity-20 dark:bg-slate-900/50 transition-opacity duration-700 ease-in-out" />
 
-    {/* Back to Event Button */}
-    <div className="absolute top-16 left-6 z-20">
+   
+    
+
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 flex flex-col justify-center items-center text-center animate-fade-in-up">
+
+      <div className="absolute top-16 left-28 z-20">
       <Link href="/Events">
-        <span className=" text-white dark:text-slate-200">
+        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white dark:bg-slate-800/60 dark:text-slate-200 border border-white/30 dark:border-slate-700 hover:bg-white/30 dark:hover:bg-slate-700/70 backdrop-blur-md transition-all duration-300">
           ← Back to Events
         </span>
       </Link>
     </div>
-
-    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 flex flex-col justify-center items-center text-center animate-fade-in-up">
       
       <div
         className={`inline-flex items-center px-5 py-2 rounded-full backdrop-blur-md text-sm font-semibold mb-6 border shadow-sm transition-colors duration-300 ${isPastEvent
@@ -26,6 +28,7 @@ const HeroSection = ({ event, isPastEvent, formatDate }) => (
           : 'bg-white/25 dark:bg-slate-800/70 text-white dark:text-slate-200 border-white/20 dark:border-slate-700/60'
           }`}
       >
+        
         {isPastEvent ? (
           <>
             <CheckCircle className="w-5 h-5 mr-2 text-green-400 dark:text-emerald-400 transition-transform duration-300 hover:scale-110" />

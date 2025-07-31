@@ -50,6 +50,8 @@ const Footer = () => {
             <div className="flex justify-center md:justify-start flex-wrap gap-3">
               <a
                 href="https://www.facebook.com/ieeesbgub/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-500 hover:text-green-600 hover:scale-110 transition-all duration-300"
                 aria-label="Facebook"
               >
@@ -57,6 +59,8 @@ const Footer = () => {
               </a>
               <a
                 href="#"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-500 hover:text-green-600 hover:scale-110 transition-all duration-300"
                 aria-label="Twitter"
               >
@@ -64,19 +68,24 @@ const Footer = () => {
               </a>
               <a
                 href="#"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-500 hover:text-green-600 hover:scale-110 transition-all duration-300"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/ieee-gub-student-branch/posts/?feedView=all"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-500 hover:text-green-600 hover:scale-110 transition-all duration-300"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
+
           </div>
 
           <div className="space-y-2">
@@ -144,6 +153,8 @@ const Footer = () => {
                 <a
                   key={index}
                   href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center md:justify-start space-x-2 hover:text-transparent hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-600 hover:bg-clip-text transition-all duration-300"
                 >
                   <ChevronRight className="h-4 w-4 text-gray-500" />

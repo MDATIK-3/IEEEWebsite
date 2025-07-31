@@ -90,13 +90,13 @@ export default function HeroText() {
 
       <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center">
         <Link
-          href="/contact"
-          aria-label="Join IEEE GUB"
+          href="https://www.ieee.org/"
+          aria-label="Join IEEE "
           className="group w-full sm:w-auto text-center inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl shadow-lg hover:shadow-xl hover:shadow-green-500/25 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 overflow-hidden relative"
         >
           <span className="absolute inset-0 bg-gradient-to-r from-green-700 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
           <span className="relative flex items-center">
-            Join IEEE GUB
+            Join IEEE
             <ChevronRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
           </span>
         </Link>
