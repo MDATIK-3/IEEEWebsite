@@ -84,7 +84,7 @@ export default function HeroText() {
       <div className="mt-6 sm:mt-8 max-w-xl">
         <p className="text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
           Join Bangladesh&apos;s premier IEEE Student Branch at Green University of Bangladesh, leading
-          innovation in Computer Science, Engineering, and sustainable tech.
+          innovation in Computer Science, Engineering, and Sustainable Tech.
         </p>
       </div>
 
