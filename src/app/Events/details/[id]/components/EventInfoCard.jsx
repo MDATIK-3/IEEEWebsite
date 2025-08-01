@@ -1,7 +1,7 @@
 'use client';
 
 import { Calendar, MapPin, Users, User, Share2 } from 'lucide-react';
-import registeredData from  "@/data/registered.json"; 
+import registeredData from "@/data/registered.json";
 
 const EventInfoCard = ({ event, formatDate, isPastEvent, handleShare, isSharing }) => {
   const totalRegistered = registeredData.length;
@@ -34,13 +34,14 @@ const EventInfoCard = ({ event, formatDate, isPastEvent, handleShare, isSharing 
           <Users className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
           <div>
             <p className="font-medium text-gray-900 dark:text-gray-100">
-              {isPastEvent ? 'Participants' : 'Currently Registered Participants'}
+              {isPastEvent ? 'Participants' : 'Current Registrations'}
             </p>
             <p className="text-gray-600 dark:text-gray-300">
-              {isPastEvent ? `${event.participant} attendees` : `${50+totalRegistered} registered`}
+              {isPastEvent ? `${event.participant} attendees` : `${50 + totalRegistered} participants registered`}
             </p>
           </div>
         </div>
+
 
         <div className="flex items-start gap-3">
           <User className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
