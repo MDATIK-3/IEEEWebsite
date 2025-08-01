@@ -1,15 +1,25 @@
 'use client';
 
 import { Sun, Moon } from 'lucide-react';
-import { useTheme } from './ThemeProvider';
+import { useTheme } from 'next-themes';
+import useMounted from '@/app/hooks/useMounted';
 
 export default function ThemeToggle() {
-  const { isDark, toggleTheme } = useTheme();
+  const mounted = useMounted();
+  const { resolvedTheme, setTheme } = useTheme();
+
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === 'dark';
+
+  const toggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark');
+  };
 
   return (
     <button
       onClick={toggleTheme}
-      className="relative p-2 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+      className="relative p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors duration-200"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <div className="relative w-5 h-5">

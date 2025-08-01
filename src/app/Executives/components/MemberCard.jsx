@@ -1,5 +1,5 @@
 'use client';
-import { useTheme } from '@/app/Theme/ThemeProvider';
+
 import {
     Linkedin,
     Mail,
@@ -12,48 +12,29 @@ import SocialLink from "./SocialLink";
 import Image from "next/image";
 
 const MemberCard = ({ member, isFaculty = false, onClick }) => {
-    const { isDark } = useTheme();
     const safeSrc = member.img?.startsWith('/') ? member.img : `/${member.img}`;
 
-    const containerClass = isDark
-        ? "group relative bg-gray-800 rounded-2xl border border-gray-700 hover:border-emerald-500 hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer"
-        : "group relative bg-white rounded-2xl border border-gray-200 hover:border-emerald-300 hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer";
-
-    const socialContainerClass = isDark
-        ? "absolute bottom-0 left-0 right-0 z-20 bg-gray-900 shadow-emerald-900 py-3 flex justify-center gap-3 transform translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-b-2xl shadow-md"
-        : "absolute bottom-0 left-0 right-0 z-20 bg-white shadow-amber-100 py-3 flex justify-center gap-3 transform translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-b-2xl shadow-md";
-
-    const badgeClass = isDark
-        ? "h-5 w-5 text-emerald-400 drop-shadow"
-        : "h-5 w-5 text-green-600 drop-shadow";
-
-    const nameClass = isDark
-        ? "text-lg font-semibold text-gray-300 mb-1 group-hover:text-emerald-400 transition-colors"
-        : "text-lg font-semibold text-gray-800 mb-1 group-hover:text-emerald-600 transition-colors";
-
-    const roleClass = isFaculty
-        ? isDark
-            ? "text-lime-400"
-            : "text-lime-600"
-        : isDark
-            ? "text-emerald-400"
-            : "text-emerald-600";
-
-    const infoTextClass = isDark
-        ? "space-y-1 mt-2 text-xs text-gray-400"
-        : "space-y-1 mt-2 text-xs text-gray-500";
-
-    const imageRingClass = isFaculty
-        ? isDark
-            ? "h-24 w-24 ring-4 ring-lime-700 group-hover:ring-lime-500"
-            : "h-24 w-24 ring-4 ring-lime-100 group-hover:ring-lime-200"
-        : isDark
-            ? "h-20 w-20 ring-4 ring-emerald-700 group-hover:ring-emerald-500"
-            : "h-20 w-20 ring-4 ring-emerald-100 group-hover:ring-emerald-200";
-
     return (
-        <div className={containerClass} onClick={onClick}>
-            <div className={socialContainerClass}>
+        <div
+            onClick={onClick}
+            className="
+        group relative rounded-2xl border bg-white text-gray-900 cursor-pointer
+        border-gray-200 hover:border-emerald-300 hover:shadow-xl
+        transition-all duration-500 overflow-hidden
+        dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 dark:hover:border-emerald-500 dark:hover:shadow-xl
+      "
+        >
+            <div
+                className="
+          absolute bottom-0 left-0 right-0 z-20 py-3 flex justify-center gap-3
+          rounded-b-2xl shadow-md
+          bg-white shadow-amber-100
+          transform translate-y-full opacity-0
+          group-hover:translate-y-0 group-hover:opacity-100
+          transition-all duration-500
+          dark:bg-gray-900 dark:shadow-emerald-900
+        "
+            >
                 <SocialLink href={member.social.linkedin} icon={Linkedin} label="LinkedIn" disabled={!member.social.linkedin} />
                 <SocialLink href={`mailto:${member.social.email}`} icon={Mail} label="Email" disabled={!member.social.email} />
                 <SocialLink href={member.social.facebook} icon={Facebook} label="Facebook" disabled={!member.social.facebook} />
@@ -61,7 +42,12 @@ const MemberCard = ({ member, isFaculty = false, onClick }) => {
 
             {isFaculty && (
                 <div className="absolute top-4 right-4 z-10">
-                    <BadgeCheck className={badgeClass} />
+                    <BadgeCheck
+                        className="
+              h-5 w-5 text-green-600 drop-shadow
+              dark:text-emerald-400
+            "
+                    />
                 </div>
             )}
 
@@ -72,18 +58,37 @@ const MemberCard = ({ member, isFaculty = false, onClick }) => {
                         alt={member.name}
                         width={150}
                         height={150}
-                        className={`mx-auto object-cover rounded-full shadow-md transition-all duration-500 ${imageRingClass}`}
+                        className={`
+              mx-auto object-cover rounded-full shadow-md transition-all duration-500
+              ${isFaculty
+                                ? "h-24 w-24 ring-4 ring-lime-100 group-hover:ring-lime-200 dark:ring-lime-700 dark:group-hover:ring-lime-500"
+                                : "h-20 w-20 ring-4 ring-emerald-100 group-hover:ring-emerald-200 dark:ring-emerald-700 dark:group-hover:ring-emerald-500"
+                            }
+            `}
                     />
                 </div>
 
                 <div className="text-center">
-                    <h3 className={nameClass}>
+                    <h3
+                        className="
+              text-lg font-semibold mb-1 text-gray-800 transition-colors
+              group-hover:text-emerald-600
+              dark:text-gray-300 dark:group-hover:text-emerald-400
+            "
+                    >
                         {member.name}
                     </h3>
-                    <p className={`text-sm font-medium ${roleClass}`}>
+                    <p
+                        className={`
+              text-sm font-medium ${isFaculty
+                                ? "text-lime-600 dark:text-lime-400"
+                                : "text-emerald-600 dark:text-emerald-400"
+                            }
+            `}
+                    >
                         {member.role}
                     </p>
-                    <div className={infoTextClass}>
+                    <div className="space-y-1 mt-2 text-xs text-gray-500 dark:text-gray-400">
                         {member.department && (
                             <div className="flex items-center justify-center gap-1.5">
                                 <BookOpen className="h-3.5 w-3.5" />

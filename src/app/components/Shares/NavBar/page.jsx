@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from './components/Logo';
 import DesktopNavLinks from './components/DesktopNavLinks';
 import MobileNav from './components/MobileNav';
 import HamburgerButton from './components/HamburgerButton';
 import ThemeToggleButton from '@/app/Theme/ThemeToggleButton';
+import useMounted from '@/app/hooks/useMounted';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -16,24 +17,36 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const mounted = useMounted();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleMobileMenuToggle = () => {
-    setMobileOpen((prev) => !prev);
+  useEffect(() => {
     const html = document.documentElement;
-    html.classList.toggle('overflow-hidden', !mobileOpen);
-  };
+    mobileOpen ? html.classList.add('overflow-hidden') : html.classList.remove('overflow-hidden');
+    return () => html.classList.remove('overflow-hidden');
+  }, [mobileOpen]);
 
-  const handleMobileLinkClick = () => {
-    setMobileOpen(false);
-    document.documentElement.classList.remove('overflow-hidden');
-  };
+  const handleMobileMenuToggle = () => setMobileOpen((prev) => !prev);
+  const handleMobileLinkClick = () => setMobileOpen(false);
+
+  if (!mounted) {
+    return (
+      <nav className="fixed top-0 left-0 right-0 z-50 h-[56px] border-b shadow-sm backdrop-blur-xl border-gray-200/10">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2 lg:px-6 lg:py-2.5">
+          <Logo />
+          <div className="flex items-center space-x-4">
+            <DesktopNavLinks navLinks={navLinks} />
+            <ThemeToggleButton />
+            <div className="lg:hidden p-2 w-10 h-10" />
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <>
-      <nav
-        className="fixed top-0 left-0 right-0 z-50 h-[56px] border-b shadow-sm backdrop-blur-xl border-gray-200/10"
-      >
+      <nav className="fixed top-0 left-0 right-0 z-50 h-[56px] border-b shadow-sm backdrop-blur-xl border-gray-200/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2 lg:px-6 lg:py-2.5">
           <Logo onClick={handleMobileLinkClick} />
           <div className="flex items-center space-x-4">
@@ -43,7 +56,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-
       <MobileNav navLinks={navLinks} mobileOpen={mobileOpen} onClose={handleMobileLinkClick} />
     </>
   );

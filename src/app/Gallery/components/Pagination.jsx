@@ -1,11 +1,8 @@
 'use client';
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useTheme } from '@/app/Theme/ThemeProvider';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const { isDark } = useTheme();
-
   if (totalPages <= 1) return null;
 
   const getPageNumbers = () => {
@@ -20,13 +17,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     return pageNumbers.filter((page, index, arr) => arr.indexOf(page) === index);
   };
 
-  const baseButtonClass = `group flex items-center justify-center w-8 h-8 rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed`;
-  const lightBgClass = `bg-white border border-gray-300 hover:border-emerald-400`;
-  const darkBgClass = `bg-gray-800 border border-gray-600 hover:border-emerald-500`;
-  const lightTextClass = `text-gray-700 hover:text-emerald-600`;
-  const darkTextClass = `text-gray-300 hover:text-emerald-400`;
-  const disabledLightText = `group-disabled:text-gray-400`;
-  const disabledDarkText = `group-disabled:text-gray-600`;
+  const baseBtn = `group flex items-center justify-center w-8 h-8 rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed`;
+  const bg = `bg-white border border-gray-300 hover:border-emerald-400 dark:bg-gray-800 dark:border-gray-600 dark:hover:border-emerald-500`;
+  const text = `text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400`;
+  const disabledText = `group-disabled:text-gray-400 dark:group-disabled:text-gray-600`;
 
   return (
     <div className="flex justify-center items-center py-4 px-2">
@@ -34,16 +28,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`${baseButtonClass} ${isDark ? darkBgClass : lightBgClass} ${isDark ? darkTextClass : lightTextClass} ${isDark ? disabledDarkText : disabledLightText}`}
+          className={`${baseBtn} ${bg} ${text} ${disabledText}`}
           aria-label="Go to previous page"
         >
-          <ChevronLeft className={`w-4 h-4 transition-colors ${isDark ? 'text-gray-300 group-hover:text-emerald-400 group-disabled:text-gray-600' : 'text-gray-500 group-hover:text-emerald-600 group-disabled:text-gray-400'}`} />
+          <ChevronLeft className="w-4 h-4 transition-colors text-gray-500 group-hover:text-emerald-600 group-disabled:text-gray-400 dark:text-gray-300 dark:group-hover:text-emerald-400 dark:group-disabled:text-gray-600" />
         </button>
+
         {getPageNumbers().map((page, index) =>
           page === '...' ? (
             <div
               key={`ellipsis-${index}`}
-              className={`flex items-center justify-center w-8 h-8 text-gray-400 text-sm select-none ${isDark ? 'text-gray-500' : ''}`}
+              className="flex items-center justify-center w-8 h-8 text-sm text-gray-400 dark:text-gray-500 select-none"
               aria-hidden="true"
             >
               ···
@@ -52,7 +47,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             <button
               key={page}
               onClick={() => onPageChange(page)}
-              className={`${baseButtonClass} ${currentPage === page ? 'bg-emerald-600 text-white' : isDark ? darkBgClass + ' ' + darkTextClass : lightBgClass + ' ' + lightTextClass} `}
+              className={`${baseBtn} ${currentPage === page
+                ? 'bg-emerald-600 text-white'
+                : `${bg} ${text}`
+                }`}
               aria-label={`Go to page ${page}`}
               aria-current={currentPage === page ? 'page' : undefined}
             >
@@ -64,10 +62,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`${baseButtonClass} ${isDark ? darkBgClass : lightBgClass} ${isDark ? darkTextClass : lightTextClass} ${isDark ? disabledDarkText : disabledLightText}`}
+          className={`${baseBtn} ${bg} ${text} ${disabledText}`}
           aria-label="Go to next page"
         >
-          <ChevronRight className={`w-4 h-4 transition-colors ${isDark ? 'text-gray-300 group-hover:text-emerald-400 group-disabled:text-gray-600' : 'text-gray-500 group-hover:text-emerald-600 group-disabled:text-gray-400'}`} />
+          <ChevronRight className="w-4 h-4 transition-colors text-gray-500 group-hover:text-emerald-600 group-disabled:text-gray-400 dark:text-gray-300 dark:group-hover:text-emerald-400 dark:group-disabled:text-gray-600" />
         </button>
       </nav>
     </div>
