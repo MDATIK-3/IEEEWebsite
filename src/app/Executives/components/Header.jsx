@@ -32,8 +32,17 @@ const Header = ({ searchTerm, setSearchTerm, onMobileFilterClick }) => {
                     </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center max-w-4xl mx-auto">
-                    <div className="relative flex-1 w-full">
+                <div className="flex flex-col gap-4 items-center justify-center max-w-4xl mx-auto">
+                    {/* Filter Button - Mobile Only */}
+                    <button
+                        onClick={onMobileFilterClick}
+                        className="lg:hidden flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md transform hover:scale-105 active:scale-95 font-medium"
+                    >
+                        <Filter className="h-5 w-5" />
+                        <span>Filters</span>
+                    </button>
+
+                    <div className="relative w-full">
                         <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                         <input
                             type="text"
@@ -47,15 +56,6 @@ const Header = ({ searchTerm, setSearchTerm, onMobileFilterClick }) => {
                 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:placeholder-gray-400"
                         />
                     </div>
-
-                    <button
-                        onClick={onMobileFilterClick}
-                        className="lg:hidden flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl
-              hover:bg-green-700 transition-colors shadow-md transform hover:scale-105 active:scale-95"
-                    >
-                        <Filter className="h-5 w-5" />
-                        <span className="font-medium">Filters</span>
-                    </button>
                 </div>
             </div>
         </div>

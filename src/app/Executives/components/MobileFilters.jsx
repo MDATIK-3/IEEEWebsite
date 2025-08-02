@@ -24,8 +24,11 @@ const MobileFilters = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)] backdrop-blur-md flex items-start justify-center p-4 pt-10 animate-fade-in lg:hidden">
-      <div className="relative w-full max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-2xl animate-scale-in dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-end justify-center p-4 lg:hidden mobile-filter-backdrop">
+      <div className="relative w-full max-w-md rounded-t-3xl border border-gray-200 bg-white p-6 shadow-2xl transform transition-all duration-300 ease-out dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 mobile-filter-enter">
+        {/* Handle bar for better UX */}
+        <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gray-300 rounded-full dark:bg-gray-600"></div>
+        
         <button
           onClick={onClose}
           className="absolute top-4 right-4 rounded-full p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
@@ -33,11 +36,12 @@ const MobileFilters = ({
         >
           <X className="h-6 w-6" />
         </button>
-        <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold text-gray-800 dark:text-gray-300">
+        
+        <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold text-gray-800 dark:text-gray-300 mt-4">
           <Filter className="h-6 w-6 text-emerald-600" /> Filters
         </h2>
 
-        <div className="space-y-6">
+        <div className="space-y-6 max-h-[70vh] overflow-y-auto">
           <div>
             <label
               htmlFor="mobile-year-select"
@@ -134,7 +138,7 @@ const MobileFilters = ({
 
           <button
             onClick={onClose}
-            className="w-full rounded-xl bg-emerald-600 px-6 py-3 text-white shadow-md transition-colors hover:bg-emerald-700"
+            className="w-full rounded-xl bg-emerald-600 px-6 py-3 text-white shadow-md transition-colors hover:bg-emerald-700 font-medium"
           >
             Apply Filters
           </button>
