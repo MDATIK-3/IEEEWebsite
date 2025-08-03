@@ -1,3 +1,4 @@
+import ShimmerEffect from "@/app/components/ShimmerEffect";
 import Image from "next/image";
 
 export default function HeroCard() {
@@ -22,6 +23,7 @@ export default function HeroCard() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
+          <ShimmerEffect/>
         </div>
 
         <div className="text-center transition-all duration-500">
