@@ -1,4 +1,5 @@
 import BgColor from "@/app/components/BgColor";
+import Wave from "@/app/components/Shares/Wave";
 import { Calendar, Clock } from 'lucide-react';
 import Link from "next/link";
 
@@ -50,6 +51,7 @@ const HeroSection = ({ event, isPastEvent, formatDate }) => (
     </div>
 
     <BgColor />
+    <Wave/>
   </div>
 );
 

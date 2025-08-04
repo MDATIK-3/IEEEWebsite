@@ -1,4 +1,5 @@
 import { Cpu } from 'lucide-react';
+import Wave from '@/app/components/Shares/Wave'
 
 function ContactHeader() {
     return (
@@ -20,8 +21,8 @@ function ContactHeader() {
                     </p>
                 </div>
             </div>
+            <Wave />
         </header>
     );
 }
-
 export default ContactHeader;
