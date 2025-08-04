@@ -3,7 +3,7 @@ import BranchInfoCards from "./BranchInfoCards"
 import ContactForm from "./ContactForm"
 import WhyJoinIEEE from "./WhyJoinIEEE"
 import MapSection from "./MapSection"
-import { ToastProvider } from "./ToastProvider"
+import { ToastProvider } from "./Components/ToastProvider"
 
 const page = () => {
   return (
