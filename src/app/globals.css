@@ -278,3 +278,18 @@ html:not(.dark) body {
 .blur-4xl {
   filter: blur(64px);
 }
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%) scale(0.95);
+    opacity: 0;
+  }
+  80% {
+    transform: translateX(-4px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}

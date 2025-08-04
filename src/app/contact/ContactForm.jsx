@@ -1,7 +1,8 @@
 'use client';
 
-import { MessageCircle, Rocket, Send, Loader2 } from 'lucide-react';
 import { useState } from 'react';
+import { MessageCircle, Rocket, Send, Loader2 } from 'lucide-react';
+import { useToast } from './ToastProvider'
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -10,6 +11,7 @@ const ContactForm = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [focusedField, setFocusedField] = useState('');
+    const { showToast } = useToast()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,11 +44,8 @@ const ContactForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormTouched({ name: true, email: true, subject: true, message: true });
-        const nameError = getFieldError('name');
-        const emailError = getFieldError('email');
-        const subjectError = getFieldError('subject');
-        const messageError = getFieldError('message');
-        if (nameError || emailError || subjectError || messageError) return;
+
+        if (getFieldError('name') || getFieldError('email') || getFieldError('subject') || getFieldError('message')) return;
 
         setIsSending(true);
         setErrorMessage('');
@@ -63,12 +62,17 @@ const ContactForm = () => {
                 setFormData({ name: '', email: '', subject: '', message: '' });
                 setFormTouched({ name: false, email: false, subject: false, message: false });
                 setTimeout(() => setIsSuccess(false), 5000);
+                showToast('Message sent successfully!', 'success');
             } else {
                 const error = await response.json();
-                setErrorMessage(error.message || 'Something went wrong. Please try again.');
+                const msg = error.message || 'Something went wrong. Please try again.';
+                setErrorMessage(msg);
+                showToast(msg, 'error');
             }
-        } catch (error) {
-            setErrorMessage('Network error. Please check your connection and try again.');
+        } catch {
+            const msg = 'Network error. Please check your connection and try again.';
+            setErrorMessage(msg);
+            showToast(msg, 'error');
         } finally {
             setIsSending(false);
         }
@@ -105,10 +109,10 @@ const ContactForm = () => {
                                 onBlurCapture={() => setFocusedField('')}
                                 placeholder="Your Name"
                                 className={`w-full px-6 py-4 bg-gray-50/70 dark:bg-gray-700/70 border-2 rounded-2xl transition-all text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none ${focusedField === 'name'
-                                        ? 'border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/20'
-                                        : getFieldError('name')
-                                            ? 'border-red-400 bg-red-50 dark:bg-red-400/10'
-                                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                                    ? 'border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/20'
+                                    : getFieldError('name')
+                                        ? 'border-red-400 bg-red-50 dark:bg-red-400/10'
+                                        : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                                     }`}
                             />
                             {getFieldError('name') && <p className="mt-1 text-sm text-red-500">{getFieldError('name')}</p>}
@@ -124,10 +128,10 @@ const ContactForm = () => {
                                 onBlurCapture={() => setFocusedField('')}
                                 placeholder="Your Email"
                                 className={`w-full px-6 py-4 bg-gray-50/70 dark:bg-gray-700/70 border-2 rounded-2xl transition-all text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none ${focusedField === 'email'
-                                        ? 'border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/20'
-                                        : getFieldError('email')
-                                            ? 'border-red-400 bg-red-50 dark:bg-red-400/10'
-                                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                                    ? 'border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/20'
+                                    : getFieldError('email')
+                                        ? 'border-red-400 bg-red-50 dark:bg-red-400/10'
+                                        : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                                     }`}
                             />
                             {getFieldError('email') && <p className="mt-1 text-sm text-red-500">{getFieldError('email')}</p>}
@@ -144,10 +148,10 @@ const ContactForm = () => {
                         onBlurCapture={() => setFocusedField('')}
                         placeholder="Subject"
                         className={`w-full px-6 py-4 bg-gray-50/70 dark:bg-gray-700/70 border-2 rounded-2xl transition-all text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none ${focusedField === 'subject'
-                                ? 'border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/20'
-                                : getFieldError('subject')
-                                    ? 'border-red-400 bg-red-50 dark:bg-red-400/10'
-                                    : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                            ? 'border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/20'
+                            : getFieldError('subject')
+                                ? 'border-red-400 bg-red-50 dark:bg-red-400/10'
+                                : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                             }`}
                     />
                     {getFieldError('subject') && <p className="mt-1 text-sm text-red-500">{getFieldError('subject')}</p>}
@@ -162,10 +166,10 @@ const ContactForm = () => {
                         placeholder="Your Message"
                         rows={6}
                         className={`w-full px-6 py-4 bg-gray-50/70 dark:bg-gray-700/70 border-2 rounded-2xl transition-all text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 resize-none focus:outline-none ${focusedField === 'message'
-                                ? 'border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/20'
-                                : getFieldError('message')
-                                    ? 'border-red-400 bg-red-50 dark:bg-red-400/10'
-                                    : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
+                            ? 'border-emerald-500 dark:border-emerald-400 shadow-lg shadow-emerald-500/20'
+                            : getFieldError('message')
+                                ? 'border-red-400 bg-red-50 dark:bg-red-400/10'
+                                : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                             }`}
                     />
                     {getFieldError('message') && <p className="mt-1 text-sm text-red-500">{getFieldError('message')}</p>}
