@@ -63,7 +63,7 @@ const EventCard = ({ event, onError, onSelect }) => {
       role="article"
     >
       {image && (
-        <figure className="relative h-56 bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 overflow-hidden">
+        <figure className="relative h-52 bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 overflow-hidden">
           <Link href={`/Events/details/${id}`} onClick={handleClick} className="block w-full h-full">
             <div className="relative w-full h-full overflow-hidden">
               <img
@@ -91,18 +91,18 @@ const EventCard = ({ event, onError, onSelect }) => {
         <h2 className="text-xl font-semibold text-zinc-800 dark:text-zinc-100 line-clamp-2 transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
           {eventName || 'Untitled Event'}
         </h2>
-
         {guest && (
-          <div className="flex items-start gap-3 text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors">
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full">
-                <User size={16} className="text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <span className="text-sm font-semibold">Guest:</span>
+          <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors w-full">
+            <div className="flex-shrink-0 p-1.5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full">
+              <User size={16} className="text-emerald-600 dark:text-emerald-400" />
             </div>
-            <span className="text-sm">{guest}</span>
+            <div className="flex items-baseline min-w-0">
+              <span className="text-sm font-semibold whitespace-nowrap mr-1">Guest:</span>
+              <span className="text-sm truncate">{guest}</span>
+            </div>
           </div>
         )}
+
 
         <div className="flex flex-wrap justify-between items-center gap-3 pt-4 mt-auto border-t border-zinc-200 dark:border-zinc-700">
           {date && (

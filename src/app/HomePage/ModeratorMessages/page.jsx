@@ -66,7 +66,7 @@ export default function ModeratorMessages() {
                 </div>
 
                 <div className="absolute -bottom-2 right-2 bg-green-500 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-sm tracking-wide">
-                  Chairperson
+                  Branch Counselor
                 </div>
               </div>
               <div className="text-center md:text-left">
@@ -114,7 +114,7 @@ export default function ModeratorMessages() {
                   <div className={`absolute -bottom-1 right-0 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase shadow-sm tracking-wide
                     ${person.id === 1 ? 'bg-emerald-500' : 'bg-gradient-to-r from-green-400 to-green-600'}
 `}>
-                    {person.id === 1 ? 'Director' : 'Lecturer'}
+                    {person.id === 1 ? 'Director' : 'Mentor'}
                   </div>
                 </div>
                 <div>
