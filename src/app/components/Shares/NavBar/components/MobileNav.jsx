@@ -2,12 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import { cx } from '@/app/utils/cx';
 import { isActiveLink } from '@/app/utils/navUtils';
 import Logo from './Logo';
 
-export default function MobileNav({ mobileOpen, onClose, navLinks }) {
+export default function MobileNav({ mobileOpen, onClose, navLinks, activityLinks }) {
   const pathname = usePathname();
+  const [activitiesOpen, setActivitiesOpen] = useState(false);
 
   return (
     <>
@@ -41,7 +43,56 @@ export default function MobileNav({ mobileOpen, onClose, navLinks }) {
 
         <nav className="px-4 py-6">
           <ul className="space-y-4">
-            {navLinks.map(({ href, label }) => (
+            {/* Render Home */}
+            <li key={navLinks[0].href}>
+              <Link
+                href={navLinks[0].href}
+                onClick={onClose}
+                className={cx(
+                  'block text-lg py-3 px-4 rounded-lg transition-all duration-200',
+                  isActiveLink(pathname, navLinks[0].href)
+                    ? 'text-green-600 bg-green-50 border-l-4 border-green-600 font-medium'
+                    : 'text-gray-700 hover:text-black hover:bg-gray-50 font-light'
+                )}
+              >
+                {navLinks[0].label}
+              </Link>
+            </li>
+
+            {/* Activities Dropdown */}
+            <li>
+              <button
+                onClick={() => setActivitiesOpen((prev) => !prev)}
+                className="flex justify-between w-full text-left text-lg py-3 px-4 rounded-lg text-gray-700 hover:bg-gray-100 transition"
+              >
+                <span>Activities</span>
+                <span>{activitiesOpen ? '▲' : '▼'}</span>
+              </button>
+
+              {activitiesOpen && (
+                <ul className="pl-4 mt-2 space-y-2">
+                  {activityLinks.map(({ href, label }) => (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        onClick={onClose}
+                        className={cx(
+                          'block text-base px-4 py-2 rounded-md transition-all',
+                          isActiveLink(pathname, href)
+                            ? 'text-green-600 bg-green-50 border-l-4 border-green-600 font-medium'
+                            : 'text-gray-600 hover:text-black hover:bg-gray-50'
+                        )}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            {/* Render remaining navLinks */}
+            {navLinks.slice(1).map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
@@ -52,7 +103,6 @@ export default function MobileNav({ mobileOpen, onClose, navLinks }) {
                       ? 'text-green-600 bg-green-50 border-l-4 border-green-600 font-medium'
                       : 'text-gray-700 hover:text-black hover:bg-gray-50 font-light'
                   )}
-                  aria-current={isActiveLink(pathname, href) ? 'page' : undefined}
                 >
                   {label}
                 </Link>

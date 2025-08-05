@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import moderators from '@/data/moderatorsMessages.json';
-import ShimmerEffect from '@/app/components/ShimmerEffect';
+import { motion } from 'framer-motion';
 
 export default function ModeratorMessages() {
   const [hoveredCard, setHoveredCard] = useState(null);
