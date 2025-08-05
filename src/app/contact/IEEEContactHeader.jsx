@@ -1,12 +1,15 @@
 import { Cpu } from 'lucide-react';
-import Wave from '@/app/components/Shares/Wave'
+import Wave from '@/app/components/Shares/Wave';
 
 function ContactHeader() {
     return (
-        <header className="relative bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 overflow-hidden">
+        <header className="relative bg-white dark:bg-gray-900 overflow-hidden">
+            {/* Gradient Backgrounds */}
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-green-500/10 to-teal-500/10 dark:from-emerald-800/20 dark:via-green-800/20 dark:to-teal-800/20 animate-gradient-x"></div>
             <div className="absolute top-0 left-1/4 w-72 h-72 bg-green-300/20 dark:bg-green-500/20 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-300/20 dark:bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
+
+            {/* Main Content */}
             <div className="relative max-w-7xl mx-auto px-6 py-20 sm:py-24">
                 <div className="text-center space-y-8">
                     <div className="inline-flex items-center px-6 py-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full text-gray-700 dark:text-gray-200 text-sm font-medium shadow-lg border border-white/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300">
@@ -21,8 +24,11 @@ function ContactHeader() {
                     </p>
                 </div>
             </div>
+
+            {/* Wave Animation */}
             <Wave />
         </header>
     );
 }
+
 export default ContactHeader;

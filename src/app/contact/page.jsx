@@ -8,7 +8,7 @@ import { ToastProvider } from "./Components/ToastProvider";
 const Page = () => {
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50/30 to-emerald-50/30 dark:from-gray-900 dark:via-green-900/30 dark:to-emerald-900/30 transition-colors duration-500">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 transition-colors duration-500">
         <IEEEContactHeader />
         
        
