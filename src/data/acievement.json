@@ -3,42 +3,42 @@
     "id": 1,
     "year": 2019,
     "program_name": "Green Energy Workshop",
-    "details": "A hands-on workshop promoting sustainable energy solutions. Over 200 students participated in building solar-powered models.",
+    "details": "A hands-on workshop promoting sustainable energy solutions through practical demonstrations and collaborative projects. Participants engaged in building solar-powered models, exploring wind energy concepts, and learning about energy conservation techniques. Over 200 students from various departments attended and contributed to designing eco-friendly prototypes, showcasing the potential of renewable energy in real-world applications.",
     "image": "/images/achievements/green-energy.jpg"
   },
   {
     "id": 2,
     "year": 2020,
     "program_name": "AI for Good Seminar",
-    "details": "An online seminar featuring industry experts discussing how Artificial Intelligence can contribute to solving global challenges.",
+    "details": "An insightful online seminar featuring renowned industry experts and researchers who discussed how Artificial Intelligence can be harnessed to tackle major global challenges such as healthcare accessibility, disaster response, and environmental monitoring. The session included live Q&As, real-world case studies, and AI demos that highlighted the positive societal impact of ethical AI innovations.",
     "image": "/images/achievements/ai-for-good.jpg"
   },
   {
     "id": 3,
     "year": 2021,
     "program_name": "Tech for Humanity Hackathon",
-    "details": "A 48-hour hackathon encouraging innovations for social impact. The winning team developed an app to assist visually impaired users.",
+    "details": "A 48-hour national-level hackathon focused on building technology solutions that address social issues. Over 30 teams participated, developing projects ranging from assistive technologies to educational platforms. The winning team created an AI-powered mobile app that assists visually impaired users with navigation and object recognition. Mentors from top tech firms guided participants throughout the event.",
     "image": "/images/achievements/hackathon.jpg"
   },
   {
     "id": 4,
     "year": 2022,
     "program_name": "Cybersecurity Awareness Month",
-    "details": "A month-long campaign including webinars, competitions, and guest lectures aimed at improving cybersecurity knowledge among students.",
+    "details": "A comprehensive month-long initiative dedicated to educating students on cyber hygiene, digital privacy, and ethical hacking. Activities included interactive webinars, capture-the-flag competitions, live demonstrations of cyber threats, and guest lectures by cybersecurity professionals. The campaign significantly improved student awareness and inspired many to pursue careers in cybersecurity and information security management.",
     "image": "/images/achievements/cybersecurity.jpg"
   },
   {
     "id": 5,
     "year": 2023,
     "program_name": "Women in Tech Summit",
-    "details": "A celebration of women engineers and technologists, featuring keynotes, panel discussions, and networking sessions.",
+    "details": "A vibrant summit celebrating the achievements and contributions of women in STEM. The event featured keynote speeches by prominent women leaders in tech, panel discussions on workplace diversity, mentorship sessions, and a startup pitch competition exclusively for female founders. Over 400 attendees participated, making it one of the most empowering events of the year.",
     "image": "/images/achievements/women-in-tech.jpg"
   },
   {
     "id": 6,
     "year": 2024,
     "program_name": "IEEE Climate Action Conference",
-    "details": "Organized a national-level conference focused on technological contributions to climate action. Attended by delegates from 15 universities.",
+    "details": "An impactful national conference that brought together researchers, industry leaders, and students to discuss technological interventions for combating climate change. Topics included sustainable infrastructure, smart agriculture, and carbon-neutral innovations. Delegates from 15 leading universities presented papers and projects, resulting in several collaborative initiatives for local and national environmental efforts.",
     "image": "/images/achievements/climate-action.jpg"
   }
 ]
