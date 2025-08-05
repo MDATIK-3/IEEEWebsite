@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import achievement from '@/data/acievement.json';
+import BgColor from '@/app/components/BgColor';
 
 const AchieveCard = () => {
   const [expandedCards, setExpandedCards] = useState({});
@@ -88,6 +89,7 @@ const AchieveCard = () => {
           </div>
         );
       })}
+    <BgColor/>
     </div>
   );
 };
