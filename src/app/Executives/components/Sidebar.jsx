@@ -119,8 +119,8 @@ const Sidebar = ({
             <option value="all">All Members</option>
             <option value="faculty">Faculty</option>
             <option value="student">Students</option>
-            <option value="president">Presidents</option>
-            <option value="officer">Officers</option>
+            <option value="president">Chair</option>
+            
           </select>
         </div>
       </div>

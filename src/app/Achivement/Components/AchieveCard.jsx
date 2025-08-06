@@ -22,7 +22,7 @@ const AchieveCard = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 py-8 max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 py-8 max-w-7xl mx-auto items-start">
       {achievement.map(({ id, year, program_name, details, image }) => {
         const isExpanded = expandedCards[id];
 
@@ -54,12 +54,12 @@ const AchieveCard = () => {
             </div>
 
             {/* Content */}
-            <div className="p-5 flex flex-col flex-grow">
+            <div className="p-5 flex flex-col">
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                 {program_name}
               </h3>
 
-              <p className="text-gray-600 dark:text-gray-300 text-base flex-grow">
+              <p className="text-gray-600 dark:text-gray-300 text-base">
                 {isExpanded ? details : getPreview(details)}
               </p>
 
