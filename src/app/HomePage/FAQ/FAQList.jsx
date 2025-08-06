@@ -18,7 +18,7 @@ const containerVariants = {
 };
 
 export default function FAQList({ data }) {
-  const [openIndex, setOpenIndex] = useState(0); 
+  const [openIndex, setOpenIndex] = useState(null); 
 
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);

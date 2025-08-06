@@ -8,7 +8,11 @@ const DeveloperCard = () => {
   const allDevelopers = developerData;
 
  const DeveloperProfile = ({ dev }) => (
-  <div className="relative bg-white dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-lg transition-shadow pt-16 pb-6 px-6">
+  <div className="relative bg-white dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-lg transition-shadow pt-16 pb-6 px-6 mb-10 sm:mb-0 
+
+  bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 
+  
+  ">
     
     {/* Image positioned half outside */}
     <div className="absolute -top-12 left-1/2 transform -translate-x-1/2">
@@ -54,7 +58,7 @@ const DeveloperCard = () => {
         </p>
         <h3 className="text-xl font-bold text-gray-600 dark:text-green-400 mt- pb-8">Project Lead</h3>
 
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8 gap-y-14 max-w-4xl mx-auto">
           {projectLeads.map((dev) => (
             <DeveloperProfile key={dev.id} dev={dev} />
           ))}
@@ -64,7 +68,7 @@ const DeveloperCard = () => {
       <section className="text-center space-y-6">
         <h3 className="text-2xl font-bold text-gray-800 dark:text-white pb-10">Meet Our Developers</h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 gap-y-12">
           {allDevelopers.map((dev) => (
             <DeveloperProfile key={dev.id} dev={dev} />
           ))}
@@ -76,5 +80,3 @@ const DeveloperCard = () => {
 };
 
 export default DeveloperCard;
-
-
