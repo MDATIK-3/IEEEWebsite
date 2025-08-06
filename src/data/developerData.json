@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "MD. Atik Hasan",
+    "image": "/images/Executives/2025/CS/221902046.png",
+    "developer_type": "Full-Stack Developer",
+    "batch": "221",
+    "facebook": "https://www.facebook.com/mdatikhasan.096",
+    "linkedin": "https://www.linkedin.com/in/mdatik96/",
+    "github": "https://github.com/MDATIK-3"
+  },
+  {
+    "id": 2,
+    "name": "Atikur Rahman",
+    "image": "/images/Executives/2025/SB/221002297.jpg",
+    "developer_type": "Full Stack Developer",
+    "batch": "221",
+    "facebook": "https://www.facebook.com/atikurrahman.foysal.3",
+    "linkedin": "https://www.linkedin.com/in/atikur-rahman03/",
+    "github": "https://github.com/atikurrahman33"
+  },
+  {
+    "id": 3,
+    "name": "Abdullah MD Galib",
+    "image": "/images/Executives/2025/SB/251002029.png",
+    "developer_type": "Data Entry",
+    "batch": "251",
+    "facebook": "www.facebook.com/contact.muhammad",
+    "linkedin": "https://linkedin.com/in/abdullahmdgalib",
+    "github": "https://github.com/Abdullah-Galib"
+  }
+]
