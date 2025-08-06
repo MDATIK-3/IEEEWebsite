@@ -2,16 +2,16 @@
   {
     "id": 1,
     "year": 2019,
-    "program_name": "Green Energy Workshop",
-    "details": "A hands-on workshop promoting sustainable energy solutions through practical demonstrations and collaborative projects. Participants engaged in building solar-powered models, exploring wind energy concepts, and learning about energy conservation techniques. Over 200 students from various departments attended and contributed to designing eco-friendly prototypes, showcasing the potential of renewable energy in real-world applications.",
-    "image": "/images/achievements/green-energy.jpg"
+    "program_name": "Sustainable Technologies for Industry",
+    "details": "Sustainable technologies for industry focus on reducing environmental impact through energy efficiency, waste reduction, and cleaner production methods. These innovations drive long-term economic and ecological benefits while promoting responsible resource use.",
+    "image": "/images/achievements/TechforIndustry.jpg"
   },
   {
     "id": 2,
     "year": 2020,
-    "program_name": "AI for Good Seminar",
-    "details": "An insightful online seminar featuring renowned industry experts and researchers who discussed how Artificial Intelligence can be harnessed to tackle major global challenges such as healthcare accessibility, disaster response, and environmental monitoring. The session included live Q&As, real-world case studies, and AI demos that highlighted the positive societal impact of ethical AI innovations.",
-    "image": "/images/achievements/ai-for-good.jpg"
+    "program_name": "AI for Future Leaders Seminar",
+    "details": "An insightful seminar featuring renowned industry experts and researchers who discussed how Artificial Intelligence can be harnessed to tackle major global challenges such as healthcare accessibility, disaster response, and environmental monitoring. The session included live Q&As, real-world case studies, and AI demos that highlighted the positive societal impact of ethical AI innovations.",
+    "image": "/images/achievements/AIforLeaders.jpg"
   },
   {
     "id": 3,
