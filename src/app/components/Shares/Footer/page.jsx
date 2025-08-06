@@ -21,6 +21,7 @@ const Footer = () => {
     { label: "Gallery", href: "/Gallery" },
     { label: "Events", href: "/Events" },
     { label: "Executives", href: "/Executives" },
+    { label: "Contact", href: "/contact" },
   ];
 
   const websiteLinks = [

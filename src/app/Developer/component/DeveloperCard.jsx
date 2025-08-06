@@ -4,7 +4,7 @@ import { Facebook, Github, Linkedin } from 'lucide-react';
 import developerData from "@/data/developerData.json";
 
 const DeveloperCard = () => {
-  const projectLeads = developerData.filter((dev) => dev.id === 1 || dev.id === 2);
+  const projectLeads = developerData.filter((dev) => dev.id === 221902046 || dev.id === 221002297);
   const allDevelopers = developerData;
 
  const DeveloperProfile = ({ dev }) => (
