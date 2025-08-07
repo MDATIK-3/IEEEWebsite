@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -46,22 +46,27 @@ const EventsFullPage = () => {
   const [filterType, setFilterType] = useState("all");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   
- const mounted = useMounted();
+  const mounted = useMounted();
 
-  if (!mounted) return (
-    <div className="min-h-screen"></div>
-  );
+  if (!mounted) return <div className="min-h-screen"></div>;
 
+  // --- Enhanced Search Logic ---
   const filteredEvents = events.filter((event) => {
-    const matchesSearch = event.eventName
-      .toLowerCase()
-      .includes(searchText.toLowerCase());
+    const lowerSearch = searchText.toLowerCase();
+
+    const eventNameMatch = event.eventName?.toLowerCase().includes(lowerSearch);
+    const organizerMatch = event.organizer?.toLowerCase().includes(lowerSearch);
+    const yearMatch = new Date(event.date).getFullYear().toString().includes(lowerSearch);
+
+    const matchesSearch =
+      !searchText || eventNameMatch || organizerMatch || yearMatch;
 
     if (filterType === "upcoming") {
       return new Date(event.date) > now && matchesSearch;
     } else if (filterType === "past") {
       return new Date(event.date) < now && matchesSearch;
     }
+
     return matchesSearch;
   });
 
