@@ -8,10 +8,6 @@ const Sidebar = ({
   executiveData,
   selectedGroup,
   setSelectedGroup,
-  sortBy,
-  setSortBy,
-  filterRole,
-  setFilterRole,
 }) => {
   const groupLabels = {
     SB: "Student Branch",
@@ -57,10 +53,9 @@ const Sidebar = ({
                 key={group}
                 onClick={() => setSelectedGroup(group)}
                 className={`flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 text-left
-                  ${
-                    selectedGroup === group
-                      ? "bg-emerald-600 shadow-md text-white transform scale-[1.02]"
-                      : "border border-gray-200 bg-gray-100 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-emerald-700 dark:hover:text-emerald-300"
+                  ${selectedGroup === group
+                    ? "bg-emerald-600 shadow-md text-white transform scale-[1.02]"
+                    : "border border-gray-200 bg-gray-100 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-emerald-700 dark:hover:text-emerald-300"
                   }
                 `}
               >
@@ -68,10 +63,9 @@ const Sidebar = ({
                 <span>{groupLabels[group] || group}</span>
                 <span
                   className={`ml-auto rounded-full px-2 py-1 text-xs
-                    ${
-                      selectedGroup === group
-                        ? "bg-white/20"
-                        : "bg-gray-200 text-gray-500 dark:bg-gray-600 dark:text-gray-400"
+                    ${selectedGroup === group
+                      ? "bg-white/20"
+                      : "bg-gray-200 text-gray-500 dark:bg-gray-600 dark:text-gray-400"
                     }
                   `}
                 >
@@ -81,47 +75,6 @@ const Sidebar = ({
               </button>
             ))}
           </div>
-        </div>
-
-        <div className="mb-6">
-          <label
-            htmlFor="sort-by"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-          >
-            Sort By
-          </label>
-          <select
-            id="sort-by"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-700 focus:border-transparent focus:ring-2 focus:ring-emerald-500 transition-all dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
-          >
-            <option value="name">Name</option>
-            <option value="role">Role</option>
-            <option value="department">Department</option>
-            <option value="year">Year</option>
-          </select>
-        </div>
-
-        <div>
-          <label
-            htmlFor="filter-role"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-          >
-            Filter by Role
-          </label>
-          <select
-            id="filter-role"
-            value={filterRole}
-            onChange={(e) => setFilterRole(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-700 focus:border-transparent focus:ring-2 focus:ring-emerald-500 transition-all dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
-          >
-            <option value="all">All Members</option>
-            <option value="faculty">Faculty</option>
-            <option value="student">Students</option>
-            <option value="president">Chair</option>
-            
-          </select>
         </div>
       </div>
     </aside>
