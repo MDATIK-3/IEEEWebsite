@@ -57,6 +57,7 @@ export default function HeroText() {
   }, []);
 
   return (
+   
     <div className="w-full px-4 sm:px-6 py-10 sm:py-14 max-w-screen-xl mx-auto text-left">
       <div className="space-y-3 sm:space-y-5">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight sm:leading-snug">
@@ -119,5 +120,6 @@ export default function HeroText() {
         }
       `}</style>
     </div>
+    
   );
 }
