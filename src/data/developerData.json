@@ -1,32 +1,55 @@
 [
   {
-    "id": 221902046,
-    "name": "MD. Atik Hasan",
-    "image": "/images/Executives/2025/CS/221902046.png",
-    "developer_type": "Full-Stack Developer",
-    "batch": "221",
-    "facebook": "https://www.facebook.com/mdatikhasan.096",
-    "linkedin": "https://www.linkedin.com/in/mdatik96/",
-    "github": "https://github.com/MDATIK-3"
+    "id": 1,
+    "name": "Faysal Hossain Tomal",
+    "image": "/images/Executives/2025/SB/221002220.png",
+    "developer_type": "Chair",
+    "batch": "221902046",
+    "facebook": "https://www.facebook.com/",
+    "linkedin": "https://linkedin.com/in/shoabalam",
+    "email": "shoab@cse.green.edu.bd"
   },
   {
-    "id": 221002297,
-    "name": "Atikur Rahman",
-    "image": "/images/Executives/2025/SB/221002297.jpg",
-    "developer_type": "Full Stack Developer",
-    "batch": "221",
-    "facebook": "https://www.facebook.com/atikurrahman.foysal.3",
-    "linkedin": "https://www.linkedin.com/in/atikur-rahman03/",
-    "github": "https://github.com/atikurrahman33"
+    "id": 2,
+    "name": "Shahadat Hosen Nishan",
+    "image": "/images/Executives/2025/SB/221002099.png",
+    "developer_type": "Project Coordinator",
+    "batch": "221902046",
+    "facebook": "https://web.facebook.com/nishan979",
+    "linkedin": "https://linkedin.com/in/nishan979",
+    "email": "nishanshish@gmail.com"
   },
   {
     "id": 3,
+    "name": "MD. Atik Hasan",
+    "image": "/images/Executives/2025/CS/221902046.png",
+    "developer_type": "Main Lead Developer",
+    "batch": "221902046",
+    "facebook": "https://www.facebook.com/mdatikhasan.096",
+    "linkedin": "https://www.linkedin.com/in/mdatik96/",
+    "github": "https://github.com/MDATIK-3",
+    "email": "atikh4335@gmail.com"
+  },
+  {
+    "id": 4,
+    "name": "Atikur Rahman",
+    "image": "/images/Executives/2025/SB/221002297.jpg",
+    "developer_type": "Full Stack Developer",
+    "batch": "221002297",
+    "facebook": "https://www.facebook.com/atikurrahman.foysal.3",
+    "linkedin": "https://www.linkedin.com/in/atikur-rahman03/",
+    "github": "https://github.com/atikurrahman33",
+    "email": "foysalatik33@gmail.com"
+  },
+  {
+    "id": 5,
     "name": "Abdullah MD Galib",
     "image": "/images/Executives/2025/SB/251002029.png",
     "developer_type": "Data Entry",
-    "batch": "251",
-    "facebook": "www.facebook.com/a.md.galib",
+    "batch": "251002025",
+    "facebook": "https://www.facebook.com/a.md.galib",
     "linkedin": "https://linkedin.com/in/abdullahmdgalib",
-    "github": "https://github.com/Abdullah-Galib"
+    "github": "https://github.com/Abdullah-Galib",
+    "email": "galib.developer@gmail.com"
   }
 ]
