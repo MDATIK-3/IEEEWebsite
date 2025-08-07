@@ -5,25 +5,27 @@ import { useRef, useMemo, useEffect, useState } from "react";
 import * as THREE from "three";
 
 const useDarkMode = () => {
-  const [isDark, setIsDark] = useState(() =>
-    document.documentElement.classList.contains("dark")
-  );
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsDark(document.documentElement.classList.contains("dark"));
-    });
+    const classList = document?.documentElement?.classList;
+    if (classList?.contains("dark")) {
+      setIsDark(true);
+    } else {
+      setIsDark(false);
+    }
 
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
+    const matcher = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = (e) => setIsDark(e.matches);
 
-    return () => observer.disconnect();
+    matcher.addEventListener("change", onChange);
+
+    return () => matcher.removeEventListener("change", onChange);
   }, []);
 
   return isDark;
 };
+
 
 const ParticleSystem = ({ isDarkMode }) => {
   const ref = useRef();
@@ -44,7 +46,7 @@ const ParticleSystem = ({ isDarkMode }) => {
   const sizes = useMemo(() => {
     const sz = new Float32Array(numParticles);
     for (let i = 0; i < numParticles; i++) {
-      sz[i] = Math.random() * 0.02; // Even smaller bubble size range
+      sz[i] = Math.random() * 0.025; // Even smaller bubble size range
     }
     return sz;
   }, []);
