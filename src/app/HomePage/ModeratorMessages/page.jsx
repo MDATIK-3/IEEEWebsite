@@ -65,7 +65,7 @@ export default function ModeratorMessages() {
                   />
                 </div>
 
-                <div className="absolute -bottom-2 right-2 bg-green-500 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-sm tracking-wide">
+                <div className="absolute -bottom-2 right-4 bg-green-500 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-sm tracking-wide">
                   Branch Counselor
                 </div>
               </div>

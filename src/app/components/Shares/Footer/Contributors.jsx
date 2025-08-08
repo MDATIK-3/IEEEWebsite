@@ -12,7 +12,7 @@ function Contributors() {
           </p>
 
           <div className="text-center hover:underline ">
-            <Link href="/Developer" className="font-bold text-green-600 inline-flex items-center gap-2">
+            <Link href="/Executives/Developer" className="font-bold text-green-600 inline-flex items-center gap-2">
               IEEE GUB Development Team
             </Link>
           </div>

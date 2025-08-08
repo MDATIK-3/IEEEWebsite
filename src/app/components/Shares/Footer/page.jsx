@@ -27,6 +27,7 @@ const Footer = () => {
   const websiteLinks = [
     { label: "Green University", href: "https://green.edu.bd/" },
     { label: "Join IEEE", href: "https://www.ieee.org/" },
+    { label: "STI", href: "https://sti.green.edu.bd/" },
   ];
 
   return (
