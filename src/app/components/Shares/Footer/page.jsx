@@ -62,15 +62,6 @@ const Footer = () => {
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="https://www.youtube.com/@ieeesbgub9293"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-green-600 hover:scale-110 transition-all duration-300"
-                aria-label="YouTube"
-              >
-                <Youtube className="h-5 w-5" />
-              </a>
-              <a
                 href="https://www.linkedin.com/company/ieee-gub-student-branch/posts/?feedView=all"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -78,6 +69,15 @@ const Footer = () => {
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/@ieeesbgub9293"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-green-600 hover:scale-110 transition-all duration-300"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-5 w-5" />
               </a>
             </div>
           </div>

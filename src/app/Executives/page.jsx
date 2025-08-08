@@ -7,6 +7,7 @@ import Stats from "./components/Stats";
 import MemberList from "./components/MemberList";
 import MobileFilters from "./components/MobileFilters";
 import MemberDetailModal from "./components/MemberDetailModal";
+import useFilteredMembers from "@/app/hooks/useFilteredMembers";
 
 const ExecutivePage = () => {
   const years = Object.keys(executiveData).sort((a, b) => parseInt(b) - parseInt(a));
@@ -15,41 +16,15 @@ const ExecutivePage = () => {
   const [selectedYear, setSelectedYear] = useState(defaultYear);
   const [selectedGroup, setSelectedGroup] = useState("SB");
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("name");
-  const [filterRole, setFilterRole] = useState("all");
-
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
 
-  let faculty = [];
-  let students = [];
-  let filteredAndSortedMembers = [];
-
-  if (selectedYear && executiveData[selectedYear]) {
-    const groupData = executiveData[selectedYear]?.[selectedGroup];
-    if (groupData) {
-      faculty = (groupData.faculty || []).map(m => ({ ...m, isFaculty: true }));
-      students = (groupData.students || []).map(m => ({ ...m, isFaculty: false }));
-      const allMembers = [...faculty, ...students];
-
-      filteredAndSortedMembers = allMembers.filter(member => {
-        const searchLower = searchTerm.toLowerCase();
-        const matchesSearch =
-          member.name.toLowerCase().includes(searchLower) ||
-          member.role.toLowerCase().includes(searchLower) ||
-          (member.department && member.department.toLowerCase().includes(searchLower));
-
-        const matchesRole =
-          filterRole === "all" ||
-          (filterRole === "faculty" && member.isFaculty) ||
-          (filterRole === "student" && !member.isFaculty) ||
-          (filterRole === "president" && member.role.toLowerCase().includes("president")) ||
-          (filterRole === "officer" && !member.role.toLowerCase().includes("president") && !member.isFaculty);
-
-        return matchesSearch && matchesRole;
-      });
-    }
-  }
+  const { faculty, students, filteredMembers } = useFilteredMembers({
+    executiveData,
+    searchTerm,
+    selectedYear,
+    selectedGroup,
+  });
 
   if (!defaultYear) {
     return (
@@ -68,10 +43,6 @@ const ExecutivePage = () => {
         executiveData={executiveData}
         selectedGroup={selectedGroup}
         setSelectedGroup={setSelectedGroup}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        filterRole={filterRole}
-        setFilterRole={setFilterRole}
       />
 
       <main className="flex-1 mt-18 px-4 sm:px-6 lg:px-10 pb-10">
@@ -82,13 +53,13 @@ const ExecutivePage = () => {
         />
 
         <Stats
-          members={filteredAndSortedMembers}
+          members={filteredMembers}
           facultyCount={faculty.length}
           studentCount={students.length}
           yearCount={years.length}
         />
 
-        <MemberList members={filteredAndSortedMembers} onMemberClick={setSelectedMember} />
+        <MemberList members={filteredMembers} onMemberClick={setSelectedMember} />
       </main>
 
       <MobileFilters
@@ -100,10 +71,6 @@ const ExecutivePage = () => {
         executiveData={executiveData}
         selectedGroup={selectedGroup}
         setSelectedGroup={setSelectedGroup}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        filterRole={filterRole}
-        setFilterRole={setFilterRole}
       />
 
       <MemberDetailModal member={selectedMember} onClose={() => setSelectedMember(null)} />
