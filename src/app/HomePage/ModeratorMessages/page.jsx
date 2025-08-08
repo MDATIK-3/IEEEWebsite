@@ -16,17 +16,13 @@ export default function ModeratorMessages() {
   return (
     <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 overflow-hidden">
 
-      {/* Background Blobs */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-0 right-0 w-72 h-72 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 dark:opacity-20 animate-blob"></div>
         <div className="absolute top-40 left-20 w-80 h-80 bg-emerald-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 dark:opacity-20 animate-blob animation-delay-2000"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-
-        {/* Heading */}
         <div className="text-center mb-20">
-
           <span className="inline-block px-4 py-2 mb-4 text-sm font-semibold text-green-600 bg-green-100 rounded-full dark:text-green-300 dark:bg-green-900/30">
             Leadership Insights
           </span>
@@ -38,11 +34,7 @@ export default function ModeratorMessages() {
             Perspectives from our academic leaders driving sustainable innovation
           </p>
         </div>
-
-        {/* Chairperson */}
         <div className="flex justify-center mb-20">
-
-
           <div
             className={`group w-full max-w-4xl rounded-2xl bg-white dark:bg-gray-800 p-8 shadow-md border border-gray-200 dark:border-gray-700
               transition-transform duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1
@@ -52,7 +44,6 @@ export default function ModeratorMessages() {
             onMouseLeave={() => setHoveredCard(null)}
             onClick={() => setActiveCard(activeCard === chairperson.id ? null : chairperson.id)}
           >
-
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="relative flex-shrink-0">
                 <div className="relative w-40 h-40 rounded-full overflow-hidden border-[6px] border-green-400 dark:border-green-600 shadow-lg ring-4 ring-green-200/30 dark:ring-green-900/30">
@@ -64,7 +55,6 @@ export default function ModeratorMessages() {
                     height={160}
                   />
                 </div>
-
                 <div className="absolute -bottom-2 right-4 bg-green-500 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-sm tracking-wide">
                   Branch Counselor
                 </div>
@@ -86,8 +76,6 @@ export default function ModeratorMessages() {
             </div>
           </div>
         </div>
-
-        {/* Director and Lecturers Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[director, ...lecturers].map(person => (
             <div
@@ -111,10 +99,8 @@ export default function ModeratorMessages() {
                       height={64}
                     />
                   </div>
-                  <div className={`absolute -bottom-1 right-0 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase shadow-sm tracking-wide
-                    ${person.id === 1 ? 'bg-emerald-500' : 'bg-gradient-to-r from-green-400 to-green-600'}
-`}>
-                    {person.id === 1 ? 'Director' : 'Mentor'}
+                  <div className="absolute -bottom-1 right-1 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase shadow-sm tracking-wide bg-gradient-to-r from-green-400 to-green-600">
+                    Mentor
                   </div>
                 </div>
                 <div>
@@ -124,17 +110,13 @@ export default function ModeratorMessages() {
                   <p className="text-green-600 dark:text-green-400 text-sm font-medium mb-2">
                     {person.title}
                   </p>
-
                 </div>
-
               </div>
-              <p className=" pt-2 text-gray-600 dark:text-gray-300 text-sm italic leading-snug">
+              <p className="pt-2 text-gray-600 dark:text-gray-300 text-sm italic leading-snug">
                 "{person.message}"
               </p>
-
             </div>
           ))}
-
         </div>
       </div>
     </section>
