@@ -4,17 +4,28 @@ export const metadata = {
   keywords: ['IEEE', 'Green University', 'GUB', 'IEEE Student Branch', 'Bangladesh'],
   authors: [{ name: 'IEEE GUB Team', url: 'https://ieeegub.vercel.app/' }],
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/favicon/favicon-96x96.png',
+    shortcut: '/favicon/favicon.ico',
+    apple: '/favicon/apple-touch-icon.png',
   },
   robots: 'index, follow',
-  other: {
-    'google-site-verification': 'your-google-site-verification-code',
-    author: 'IEEE GUB',
-  },
+  openGraph: {
+    title: 'IEEE Green University of Bangladesh',
+    description: 'Connect. Innovate. Lead. IEEE Student Branch of Green University of Bangladesh',
+    url: 'https://ieeegub.vercel.app',
+    siteName: 'IEEE GUB',
+    images: [
+      {
+        url: '/favicon/favicon-96x96.png',
+        width: 1200,
+        height: 630,
+        alt: 'IEEE GUB Official Website',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  }
 };
-
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
