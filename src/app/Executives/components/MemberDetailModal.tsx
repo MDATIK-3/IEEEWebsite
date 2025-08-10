@@ -79,8 +79,8 @@ const MemberDetailModal: React.FC<MemberDetailModalProps> = ({ member, onClose }
 
           <p
             className={`mb-6 text-lg font-medium ${member.isFaculty
-                ? "text-lime-600 dark:text-lime-400"
-                : "text-emerald-600 dark:text-emerald-400"
+              ? "text-lime-600 dark:text-lime-400"
+              : "text-emerald-600 dark:text-emerald-400"
               }`}
           >
             {member.role}
@@ -92,18 +92,24 @@ const MemberDetailModal: React.FC<MemberDetailModalProps> = ({ member, onClose }
               icon={Linkedin}
               label="LinkedIn Profile"
               disabled={!member.social?.linkedin}
+              padding="md"
+              iconSize="md"
             />
             <SocialLink
               href={member.social?.facebook}
               icon={Facebook}
               label="Facebook Profile"
               disabled={!member.social?.facebook}
+              padding="md"
+              iconSize="md"
             />
             <SocialLink
               href={cleanedEmail ? `mailto:${cleanedEmail}` : undefined}
               icon={Mail}
               label="Email"
               disabled={!cleanedEmail}
+              padding="md"
+              iconSize="md"
             />
           </div>
         </div>
