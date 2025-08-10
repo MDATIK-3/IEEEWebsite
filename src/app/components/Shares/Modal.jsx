@@ -1,30 +1,35 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
-import { X, ChevronLeft, ChevronRight, Calendar, Download } from 'lucide-react';
-import Image from 'next/image';
+import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
+import { X, ChevronLeft, ChevronRight, Calendar, Download } from "lucide-react";
+import Image from "next/image";
 
 const Modal = forwardRef(({ photos }, ref) => {
   const [currentIndex, setCurrentIndex] = useState(null);
   const showModal = currentIndex !== null;
 
-  const photo = showModal && photos?.[currentIndex] || null;
-  const imageUrl = photo ? (typeof photo === 'string' ? photo : photo.image) : null;
+  const photo = (showModal && photos?.[currentIndex]) || null;
+  const imageUrl = photo
+    ? typeof photo === "string"
+      ? photo
+      : photo.image
+    : null;
 
   const closeModal = () => setCurrentIndex(null);
-  const prevPhoto = () => setCurrentIndex((i) => (i - 1 + photos.length) % photos.length);
+  const prevPhoto = () =>
+    setCurrentIndex((i) => (i - 1 + photos.length) % photos.length);
   const nextPhoto = () => setCurrentIndex((i) => (i + 1) % photos.length);
 
   const handleDownload = async () => {
     if (!photo) return;
-    const photoUrl = typeof photo === 'string' ? photo : photo.image;
+    const photoUrl = typeof photo === "string" ? photo : photo.image;
     const photoName = photo.name || `Photo_${photo.id || currentIndex}`;
 
     try {
       const res = await fetch(photoUrl);
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
       link.download = `${photoName}.jpg`;
       document.body.appendChild(link);
@@ -32,7 +37,7 @@ const Modal = forwardRef(({ photos }, ref) => {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
     } catch (e) {
-      console.error('Download failed:', e);
+      console.error("Download failed:", e);
     }
   };
 
@@ -44,17 +49,17 @@ const Modal = forwardRef(({ photos }, ref) => {
     if (!showModal) return;
 
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') closeModal();
-      else if (e.key === 'ArrowLeft') prevPhoto();
-      else if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === "Escape") closeModal();
+      else if (e.key === "ArrowLeft") prevPhoto();
+      else if (e.key === "ArrowRight") nextPhoto();
     };
 
-    document.addEventListener('keydown', onKeyDown);
-    document.body.style.overflow = 'hidden';
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
     };
   }, [showModal, photos]);
 
@@ -73,7 +78,11 @@ const Modal = forwardRef(({ photos }, ref) => {
       >
         <Image
           src={imageUrl}
-          alt={typeof photo === 'string' ? `Photo ${currentIndex + 1}` : (photo.name || `Photo ${photo.id}`)}
+          alt={
+            typeof photo === "string"
+              ? `Photo ${currentIndex + 1}`
+              : photo.name || `Photo ${photo.id}`
+          }
           width={400}
           height={300}
           className="w-full h-full object-contain"
@@ -85,10 +94,10 @@ const Modal = forwardRef(({ photos }, ref) => {
             <div className="flex items-center gap-4 text-sm flex-wrap">
               <span className="px-4 py-2 flex items-center gap-2 rounded-2xl font-medium text-white bg-gradient-to-r from-emerald-500 to-emerald-600 hover:brightness-110">
                 <Calendar className="w-4 h-4" />
-                {new Date(photo.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
+                {new Date(photo.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
                 })}
               </span>
             </div>

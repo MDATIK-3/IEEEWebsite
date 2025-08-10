@@ -18,6 +18,8 @@ const ExecutivePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
+  
+  console.log(selectedMember);
 
   const { faculty, students, filteredMembers } = useFilteredMembers({
     executiveData,
