@@ -17,9 +17,9 @@ import Contributors from "./Contributors";
 const Footer = () => {
   const customLinks = [
     { label: "Home", href: "/" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Events", href: "/events" },
-    { label: "Executives", href: "/executives" },
+    { label: "Gallery", href: "/Gallery" },
+    { label: "Events", href: "/Activities/Events" },
+    { label: "Executives", href: "/Executives" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -33,8 +33,6 @@ const Footer = () => {
     <footer className="bg-white border-t border-gray-200 text-gray-700">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
-
-          {/* Logo + About */}
           <div className="space-y-4">
             <div className="flex items-center justify-center md:justify-start space-x-2">
               <Image

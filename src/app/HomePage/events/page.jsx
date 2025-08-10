@@ -49,7 +49,7 @@ const EventsPreview = () => {
 
       {filteredEvents.length > 6 && (
         <div className="flex justify-center mt-12">
-          <Link href="/Events">
+          <Link href="/Activities/Events">
             <button className="group relative px-8 py-4 font-semibold text-white bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-500 dark:to-emerald-500 rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-green-300/30 dark:hover:shadow-green-500/20 transform hover:scale-105 transition-all duration-500 overflow-hidden border border-transparent hover:border-green-400/20 dark:hover:border-green-300/30">
               <span className="absolute inset-0 bg-gradient-to-r from-green-700 to-emerald-700 dark:from-green-400 dark:to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
               <span className="relative flex items-center space-x-2">

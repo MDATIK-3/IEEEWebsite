@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Logo from './components/Logo';
-import DesktopNavLinks from './components/DesktopNavLinks';
-import MobileNav from './components/MobileNav';
-import HamburgerButton from './components/HamburgerButton';
-import ThemeToggleButton from '@/app/Theme/ThemeToggleButton';
-import useMounted from '@/app/hooks/useMounted';
+import { useEffect, useState } from "react";
+import Logo from "./components/Logo";
+import DesktopNavLinks from "./components/DesktopNavLinks";
+import MobileNav from "./components/MobileNav";
+import HamburgerButton from "./components/HamburgerButton";
+import ThemeToggleButton from "@/app/Theme/ThemeToggleButton";
+import useMounted from "@/app/hooks/useMounted";
 
 const navLinks = [
-  { href: '/', label: 'Home' },
+  { href: "/", label: "Home" },
   {
-    label: 'Activities',
+    label: "Activities",
     subLinks: [
-      { href: '/Activities/Events', label: 'Events' },
-      { href: '/Activities/Achievements', label: 'Achievements' },
+      { href: "/Activities/Events", label: "Events" },
+      { href: "/Activities/Achievements", label: "Achievements" },
     ],
   },
-  { href: '/Executives', label: 'Executives' },
-  { href: '/Gallery', label: 'Gallery' },
-  { href: '/contact', label: 'Contact' },
+  { href: "/Executives", label: "Executives" },
+  { href: "/Gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -29,15 +29,15 @@ export default function Navbar() {
   useEffect(() => {
     const html = document.documentElement;
     if (mobileOpen) {
-      html.classList.add('overflow-hidden');
+      html.classList.add("overflow-hidden");
     } else {
-      html.classList.remove('overflow-hidden');
+      html.classList.remove("overflow-hidden");
     }
 
-    return () => html.classList.remove('overflow-hidden');
+    return () => html.classList.remove("overflow-hidden");
   }, [mobileOpen]);
 
-  const handleMobileMenuToggle = () => setMobileOpen(prev => !prev);
+  const handleMobileMenuToggle = () => setMobileOpen((prev) => !prev);
   const handleMobileLinkClick = () => setMobileOpen(false);
 
   if (!mounted) {
@@ -63,7 +63,10 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <DesktopNavLinks navLinks={navLinks} />
             <ThemeToggleButton />
-            <HamburgerButton open={mobileOpen} onClick={handleMobileMenuToggle} />
+            <HamburgerButton
+              open={mobileOpen}
+              onClick={handleMobileMenuToggle}
+            />
           </div>
         </div>
       </nav>
@@ -73,7 +76,6 @@ export default function Navbar() {
         onClose={handleMobileLinkClick}
         navLinks={navLinks}
       />
-
     </>
   );
 }
