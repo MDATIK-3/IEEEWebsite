@@ -64,7 +64,7 @@ const EventCard = ({ event, onError, onSelect }) => {
     >
       {image && (
         <figure className="relative h-52 bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 overflow-hidden">
-          <Link href={`/Events/details/${id}`} onClick={handleClick} className="block w-full h-full">
+          <Link href={`/Activities/Events/details/${id}`} onClick={handleClick} className="block w-full h-full">
             <div className="relative w-full h-full overflow-hidden">
               <img
                 src={image}

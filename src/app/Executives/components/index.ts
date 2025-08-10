@@ -1,12 +1,9 @@
-// Reusable Components
 export { default as SocialLink } from './SocialLink';
 export { default as ProfileImage } from './ProfileImage';
 export { default as FacultyBadge } from './FacultyBadge';
 
-// Types
 export * from './types';
 
-// Main Components
 export { default as MemberDetailModal } from './MemberDetailModal';
 export { default as MemberCard } from './MemberCard';
 export { default as MemberList } from './MemberList';

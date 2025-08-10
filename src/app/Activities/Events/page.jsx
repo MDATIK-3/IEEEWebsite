@@ -50,7 +50,6 @@ const EventsFullPage = () => {
 
   if (!mounted) return <div className="min-h-screen"></div>;
 
-  // --- Enhanced Search Logic ---
   const filteredEvents = events.filter((event) => {
     const lowerSearch = searchText.toLowerCase();
 
