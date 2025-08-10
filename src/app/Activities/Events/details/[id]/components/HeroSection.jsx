@@ -9,7 +9,7 @@ const HeroSection = ({ event, isPastEvent, formatDate }) => (
 
     <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 flex flex-col items-center text-center">
       <div className="w-full flex flex-col sm:flex-row justify-between items-center mb-5">
-        <Link href="/Events">
+        <Link href="/Activities/Events">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white dark:bg-slate-800/60 dark:text-slate-200 border border-white/30 dark:border-slate-700 hover:bg-white/30 dark:hover:bg-slate-700/70 backdrop-blur-md text-sm font-medium transition">
             ← Back to Events
           </span>
