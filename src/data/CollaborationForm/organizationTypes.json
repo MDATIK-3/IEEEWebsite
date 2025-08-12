@@ -1,0 +1,34 @@
+[
+    {
+        "value": "university",
+        "label": "University/Educational Institution"
+    },
+    {
+        "value": "tech_company",
+        "label": "Technology Company"
+    },
+    {
+        "value": "startup",
+        "label": "Startup"
+    },
+    {
+        "value": "non_profit",
+        "label": "Non-Profit Organization"
+    },
+    {
+        "value": "government",
+        "label": "Government Agency"
+    },
+    {
+        "value": "research",
+        "label": "Research Institution"
+    },
+    {
+        "value": "corporate_foundation",
+        "label": "Corporate Foundation"
+    },
+    {
+        "value": "other",
+        "label": "Other"
+    }
+]
