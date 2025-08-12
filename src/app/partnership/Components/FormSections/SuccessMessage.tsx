@@ -18,8 +18,8 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ onReset }) => (
                 Application Submitted!
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Thank you for your interest in partnering with IEEE GUB. We've received your application
-                and our team will review it shortly. We'll get back to you within 3-5 business days.
+                Thank you for your interest in partnering with IEEE GUB. We&apos;ve received your application
+                and our team will review it shortly. We&apos;ll get back to you within 3-5 business days.
             </p>
             <button
                 onClick={onReset}

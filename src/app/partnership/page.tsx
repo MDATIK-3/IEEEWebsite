@@ -14,7 +14,7 @@ import SuccessMessage from './Components/FormSections/SuccessMessage';
 import organizationTypes from '@/data/CollaborationForm/organizationTypes.json';
 import partnershipTypes from '@/data/CollaborationForm/partnershipTypes.json';
 
-interface FormData {
+export interface FormData {
     organizationName: string;
     organizationType: string;
     contactPerson: string;
@@ -30,6 +30,7 @@ interface FormData {
     benefits: string;
     timeline: string;
     additionalInfo: string;
+    [key: string]: string;
 }
 
 interface Errors {
@@ -100,8 +101,9 @@ const PartnershipPage = () => {
     const validateForm = useCallback((): boolean => {
         const newErrors: Errors = {};
         (Object.keys(formData) as (keyof FormData)[]).forEach((key) => {
-            const error = validateField(key, formData[key]);
-            if (error) newErrors[key] = error;
+            const keyStr = key as string;
+            const error = validateField(keyStr, formData[key]);
+            if (error) newErrors[keyStr] = error;
         });
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -153,10 +155,9 @@ const PartnershipPage = () => {
             let result;
             try {
                 result = await response.json();
-            } catch (error) {
+            } catch {
                 throw new Error('Invalid response from server');
             }
-
             if (response.ok) {
                 setIsSuccess(true);
                 setFormData({
@@ -180,7 +181,7 @@ const PartnershipPage = () => {
             } else {
                 setSubmitError(result.message || 'Failed to submit application');
             }
-        } catch (error) {
+        } catch {
             setSubmitError('Network error. Please try again.');
         } finally {
             setIsSubmitting(false);

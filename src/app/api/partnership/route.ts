@@ -1,4 +1,3 @@
-// src/app/api/partnership/route.ts
 import { NextResponse } from 'next/server';
 import nodemailer, { Transporter } from 'nodemailer';
 import sanitizeHtml from 'sanitize-html';
@@ -7,7 +6,6 @@ import { toZonedTime } from 'date-fns-tz';
 import { randomBytes } from 'crypto';
 import { cookies } from 'next/headers';
 
-// Environment variable validation
 const requiredEnvVars = [
   'EMAIL_HOST',
   'EMAIL_PORT',
@@ -23,10 +21,9 @@ for (const envVar of requiredEnvVars) {
   }
 }
 
-// Initialize nodemailer transporter
 const transporter: Transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
-  port: parseInt(process.env.EMAIL_PORT || '587'), // Default to 587 if undefined
+  port: parseInt(process.env.EMAIL_PORT || '587'),
   secure: process.env.EMAIL_SECURE === 'true',
   auth: {
     user: process.env.EMAIL_USER,
@@ -34,7 +31,6 @@ const transporter: Transporter = nodemailer.createTransport({
   },
 });
 
-// Interface for request body
 interface PartnershipRequest {
   organizationName: string;
   organizationType: string;
@@ -53,12 +49,8 @@ interface PartnershipRequest {
   additionalInfo?: string;
 }
 
-// Generate CSRF token
-const generateCsrfToken = (): string => {
-  return randomBytes(32).toString('hex');
-};
+const generateCsrfToken = (): string => randomBytes(32).toString('hex');
 
-// Validate CSRF token
 const validateCsrfToken = async (request: Request): Promise<boolean> => {
   const cookieStore = cookies();
   const csrfToken = request.headers.get('X-CSRF-Token');
@@ -66,7 +58,6 @@ const validateCsrfToken = async (request: Request): Promise<boolean> => {
   return csrfToken === sessionCsrfToken;
 };
 
-// Sanitize input to prevent XSS
 const sanitizeInput = (input: string | undefined): string => {
   if (!input) return 'Not provided';
   return sanitizeHtml(input, {
@@ -77,23 +68,15 @@ const sanitizeInput = (input: string | undefined): string => {
 
 export async function POST(request: Request) {
   try {
-    // Validate CSRF token
-    if (!validateCsrfToken(request)) {
-      return NextResponse.json(
-        { message: 'Invalid CSRF token' },
-        { status: 403 }
-      );
+    if (!(await validateCsrfToken(request))) {
+      return NextResponse.json({ message: 'Invalid CSRF token' }, { status: 403 });
     }
 
-    // Parse and validate request body
     let body: PartnershipRequest;
     try {
       body = await request.json();
-    } catch (error) {
-      return NextResponse.json(
-        { message: 'Invalid request body' },
-        { status: 400 }
-      );
+    } catch {
+      return NextResponse.json({ message: 'Invalid request body' }, { status: 400 });
     }
 
     const {
@@ -114,75 +97,45 @@ export async function POST(request: Request) {
       additionalInfo,
     } = body;
 
-    // Validation (aligned with frontend)
     if (!organizationName || organizationName.trim().length < 2) {
-      return NextResponse.json(
-        { message: 'Organization name must be at least 2 characters' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Organization name must be at least 2 characters' }, { status: 400 });
     }
 
     if (!organizationType) {
-      return NextResponse.json(
-        { message: 'Please select an organization type' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Please select an organization type' }, { status: 400 });
     }
 
     if (!contactPerson || contactPerson.trim().length < 2) {
-      return NextResponse.json(
-        { message: 'Contact person name must be at least 2 characters' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Contact person name must be at least 2 characters' }, { status: 400 });
     }
 
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      return NextResponse.json(
-        { message: 'Please provide a valid email address' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Please provide a valid email address' }, { status: 400 });
     }
 
     if (phone && !/^\+?[\d\s-]{7,}$/.test(phone)) {
-      return NextResponse.json(
-        { message: 'Please provide a valid phone number' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Please provide a valid phone number' }, { status: 400 });
     }
 
     if (website && !/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(website)) {
-      return NextResponse.json(
-        { message: 'Please provide a valid URL' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Please provide a valid URL' }, { status: 400 });
     }
 
     if (!partnershipType) {
-      return NextResponse.json(
-        { message: 'Please select a partnership type' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Please select a partnership type' }, { status: 400 });
     }
 
     if (!projectDescription || projectDescription.trim().length < 50) {
-      return NextResponse.json(
-        { message: 'Project description must be at least 50 characters' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Project description must be at least 50 characters' }, { status: 400 });
     }
 
     if (!objectives || objectives.trim().length < 10) {
-      return NextResponse.json(
-        { message: 'Partnership objectives must be at least 10 characters' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'Partnership objectives must be at least 10 characters' }, { status: 400 });
     }
 
-    // Format date in UTC
     const zonedDate = toZonedTime(new Date(), 'UTC');
     const submissionDate = format(zonedDate, 'PPpp zzz');
 
-    // Send email
     await transporter.sendMail({
       from: `"Partnership Application" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
@@ -227,13 +180,10 @@ Application submitted on: ${submissionDate}
       html: `
 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 0 auto; background: #f8fafc; padding: 20px;">
   <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-    <!-- Header -->
     <div style="background: linear-gradient(135deg, #10b981, #059669); padding: 30px; text-align: center;">
       <h1 style="color: white; margin: 0; font-size: 28px; font-weight: bold;">🤝 New Partnership Application</h1>
       <p style="color: #d1fae5; margin: 10px 0 0 0; font-size: 16px;">IEEE Student Branch - Green University of Bangladesh</p>
     </div>
-
-    <!-- Organization Information -->
     <div style="padding: 30px;">
       <div style="margin-bottom: 30px;">
         <h2 style="color: #1f2937; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-bottom: 3px solid #10b981; padding-bottom: 10px;">
@@ -245,8 +195,6 @@ Application submitted on: ${submissionDate}
           <p style="margin: 0;"><strong style="color: #374151;">Address:</strong> <span style="color: #1f2937;">${sanitizeInput(address)}</span></p>
         </div>
       </div>
-
-      <!-- Contact Information -->
       <div style="margin-bottom: 30px;">
         <h2 style="color: #1f2937; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-bottom: 3px solid #10b981; padding-bottom: 10px;">
           👤 Contact Information
@@ -258,8 +206,6 @@ Application submitted on: ${submissionDate}
           <p style="margin: 0;"><strong style="color: #374151;">Website:</strong> <span style="color: #1f2937;">${sanitizeInput(website)}</span></p>
         </div>
       </div>
-
-      <!-- Partnership Details -->
       <div style="margin-bottom: 30px;">
         <h2 style="color: #1f2937; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-bottom: 3px solid #10b981; padding-bottom: 10px;">
           🤝 Partnership Details
@@ -270,8 +216,6 @@ Application submitted on: ${submissionDate}
           <p style="margin: 0;"><strong style="color: #374151;">Budget Range:</strong> <span style="color: #1f2937;">${sanitizeInput(budget)}</span></p>
         </div>
       </div>
-
-      <!-- Project Description -->
       <div style="margin-bottom: 30px;">
         <h2 style="color: #1f2937; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-bottom: 3px solid #10b981; padding-bottom: 10px;">
           📋 Project Description
@@ -280,8 +224,6 @@ Application submitted on: ${submissionDate}
           <p style="color: #1f2937; line-height: 1.6; margin: 0; white-space: pre-wrap;">${sanitizeInput(projectDescription)}</p>
         </div>
       </div>
-
-      <!-- Partnership Objectives -->
       <div style="margin-bottom: 30px;">
         <h2 style="color: #1f2937; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-bottom: 3px solid #10b981; padding-bottom: 10px;">
           🎯 Partnership Objectives
@@ -290,8 +232,6 @@ Application submitted on: ${submissionDate}
           <p style="color: #1f2937; line-height: 1.6; margin: 0; white-space: pre-wrap;">${sanitizeInput(objectives)}</p>
         </div>
       </div>
-
-      <!-- Mutual Benefits -->
       <div style="margin-bottom: 30px;">
         <h2 style="color: #1f2937; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-bottom: 3px solid #10b981; padding-bottom: 10px;">
           ⭐ Mutual Benefits
@@ -300,8 +240,6 @@ Application submitted on: ${submissionDate}
           <p style="color: #1f2937; line-height: 1.6; margin: 0; white-space: pre-wrap;">${sanitizeInput(benefits)}</p>
         </div>
       </div>
-
-      <!-- Timeline -->
       <div style="margin-bottom: 30px;">
         <h2 style="color: #1f2937; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-bottom: 3px solid #10b981; padding-bottom: 10px;">
           📅 Proposed Timeline
@@ -310,8 +248,6 @@ Application submitted on: ${submissionDate}
           <p style="color: #1f2937; line-height: 1.6; margin: 0; white-space: pre-wrap;">${sanitizeInput(timeline)}</p>
         </div>
       </div>
-
-      <!-- Additional Information -->
       <div style="margin-bottom: 30px;">
         <h2 style="color: #1f2937; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-bottom: 3px solid #10b981; padding-bottom: 10px;">
           📝 Additional Information
@@ -320,8 +256,6 @@ Application submitted on: ${submissionDate}
           <p style="color: #1f2937; line-height: 1.6; margin: 0; white-space: pre-wrap;">${sanitizeInput(additionalInfo)}</p>
         </div>
       </div>
-
-      <!-- Footer -->
       <div style="background: #f8fafc; padding: 20px; border-radius: 12px; text-align: center; border-top: 1px solid #e2e8f0;">
         <p style="color: #64748b; font-size: 14px; margin: 0 0 10px 0;">
           📅 Application submitted on: <strong>${submissionDate}</strong>
@@ -332,8 +266,6 @@ Application submitted on: ${submissionDate}
       </div>
     </div>
   </div>
-
-  <!-- Action Section -->
   <div style="margin-top: 20px; text-align: center; padding: 20px; background: white; border-radius: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
     <h3 style="color: #1f2937; margin: 0 0 15px 0;">Next Steps:</h3>
     <p style="color: #64748b; margin: 0 0 20px 0; font-size: 14px;">
@@ -352,43 +284,33 @@ Application submitted on: ${submissionDate}
       `,
     });
 
-    // Clear CSRF token after successful submission
     const cookieStore = await cookies();
     cookieStore.delete('csrfToken');
 
-    return NextResponse.json(
-      { message: 'Partnership application submitted successfully!' },
-      { status: 200 }
-    );
-  } catch (error: any) {
-    console.error('Partnership application error:', {
-      message: error.message,
-      stack: error.stack,
-      body: await request.text().catch(() => 'Failed to parse body'),
-    });
+    return NextResponse.json({ message: 'Partnership application submitted successfully!' }, { status: 200 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Partnership application error:', {
+        message: error.message,
+        stack: error.stack,
+        body: await request.text().catch(() => 'Failed to parse body'),
+      });
 
-    if (error.message.includes('Invalid request body')) {
-      return NextResponse.json(
-        { message: 'Invalid request body' },
-        { status: 400 }
-      );
+      if (error.message.includes('Invalid request body')) {
+        return NextResponse.json({ message: 'Invalid request body' }, { status: 400 });
+      }
+
+      if (error.message.includes('Failed to send email')) {
+        return NextResponse.json({ message: 'Failed to send email. Please try again later.' }, { status: 500 });
+      }
+    } else {
+      console.error('Unknown error:', error);
     }
 
-    if (error.message.includes('Failed to send email')) {
-      return NextResponse.json(
-        { message: 'Failed to send email. Please try again later.' },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json(
-      { message: 'Failed to submit partnership application. Please try again later.' },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: 'Failed to submit partnership application. Please try again later.' }, { status: 500 });
   }
 }
 
-// New endpoint to generate CSRF token
 export async function GET() {
   const csrfToken = generateCsrfToken();
   const cookieStore = await cookies();
@@ -396,7 +318,7 @@ export async function GET() {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict',
-    maxAge: 60 * 60, // 1 hour
+    maxAge: 60 * 60,
   });
 
   return NextResponse.json({ csrfToken });

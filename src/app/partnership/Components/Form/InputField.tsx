@@ -6,7 +6,7 @@ interface InputFieldProps {
     type?: string;
     required?: boolean;
     placeholder?: string;
-    icon?: React.ElementType;
+    icon?: React.ComponentType<{ className?: string }>;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus: () => void;

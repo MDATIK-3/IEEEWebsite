@@ -6,7 +6,7 @@ interface SelectFieldProps {
   options: { value: string; label: string }[];
   required?: boolean;
   placeholder: string;
-  icon?: React.ElementType;
+  icon?: React.ComponentType<{ className?: string }>;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onFocus: () => void;
