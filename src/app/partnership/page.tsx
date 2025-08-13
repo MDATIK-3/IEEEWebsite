@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Header from './Components/Header';
 import PartnershipBenefits from './Components/PartnershipBenefits';
 import FormHeader from './Components/Form/FormHeader';
@@ -61,6 +61,8 @@ const PartnershipPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [submitError, setSubmitError] = useState('');
+    const [csrfToken, setCsrfToken] = useState('');
+
 
     const validateField = useCallback(
         (name: string, value: string): string => {
@@ -118,6 +120,15 @@ const PartnershipPage = () => {
         []
     );
 
+    useEffect(() => {
+        fetch('/api/partnership', { method: 'GET' })
+            .then((res) => res.json())
+            .then((data) => setCsrfToken(data.csrfToken))
+            .catch((err) => {
+                console.error('Failed to get CSRF token', err);
+            });
+    }, []);
+
     const handleFocus = useCallback((fieldName: string) => {
         setFocusedField(fieldName);
     }, []);
@@ -148,10 +159,12 @@ const PartnershipPage = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-CSRF-Token': csrfToken,
                 },
+                credentials: 'include',
                 body: JSON.stringify(formData),
             });
-
+            
             let result;
             try {
                 result = await response.json();
