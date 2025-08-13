@@ -56,16 +56,6 @@ const GalleryControls = ({
                         <div className="flex-shrink-0">
                             <div className="flex items-center rounded-full p-1 border bg-white/70 border-slate-200 dark:bg-gray-800 dark:bg-opacity-80 dark:border-gray-700">
                                 <button
-                                    onClick={() => setViewMode('grid')}
-                                    className={`p-2 rounded-full transition-all duration-200 ${viewMode === 'grid'
-                                        ? 'bg-emerald-600 text-white shadow-sm'
-                                        : 'text-slate-600 hover:bg-slate-100 dark:text-gray-300 dark:hover:bg-gray-700'
-                                        }`}
-                                    aria-label="Grid View"
-                                >
-                                    <Grid className="w-4 h-4" />
-                                </button>
-                                <button
                                     onClick={() => setViewMode('list')}
                                     className={`p-2 rounded-full transition-all duration-200 ${viewMode === 'list'
                                         ? 'bg-emerald-600 text-white shadow-sm'
@@ -74,6 +64,16 @@ const GalleryControls = ({
                                     aria-label="List View"
                                 >
                                     <List className="w-4 h-4" />
+                                </button>
+                                <button
+                                    onClick={() => setViewMode('grid')}
+                                    className={`p-2 rounded-full transition-all duration-200 ${viewMode === 'grid'
+                                        ? 'bg-emerald-600 text-white shadow-sm'
+                                        : 'text-slate-600 hover:bg-slate-100 dark:text-gray-300 dark:hover:bg-gray-700'
+                                        }`}
+                                    aria-label="Grid View"
+                                >
+                                    <Grid className="w-4 h-4" />
                                 </button>
                             </div>
                         </div>

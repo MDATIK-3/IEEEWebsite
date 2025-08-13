@@ -14,7 +14,7 @@ const ITEMS_PER_PAGE = 18;
 
 const GalleryFull = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [viewMode, setViewMode] = useState('grid');
+    const [viewMode, setViewMode] = useState('list');
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [showModal, setShowModal] = useState(false);
@@ -56,7 +56,7 @@ const GalleryFull = () => {
     if (loading) return <LoadingSpinner />;
 
     return (
-        <div className="relative pt-20 bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/25 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
+        <div className="relative pt-20 bg-gradient-to-br from-green-50 via-cyan-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
             <div
                 className="absolute inset-0 pointer-events-none z-0"
                 style={{
