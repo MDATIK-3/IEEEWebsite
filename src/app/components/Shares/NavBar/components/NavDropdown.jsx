@@ -102,16 +102,17 @@ export default function NavDropdown({
                     <div
                         id={`dropdown-${label}`}
                         className={cx(
-                            'transition-all duration-300 ease-in-out transform',
-                            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none',
-                            'origin-top',
+                            // Base transitions
+                            'transition-all duration-300 ease-in-out transform origin-top',
 
-                            // Mobile inline
-                            'relative bg-white dark:bg-zinc-800 rounded-lg max-h-96 overflow-y-auto',
+                            // Mobile: show/hide using hidden class instead of max-h
+                            isOpen ? 'block opacity-100 translate-y-0' : 'hidden opacity-0 -translate-y-2',
+
+                            // Mobile background
+                            'relative bg-white dark:bg-zinc-800 rounded-lg',
 
                             // Desktop floating panel
-                            'md:absolute md:top-full md:left-1/2 md:-translate-x-1/2 md:mt-2 md:min-w-64 md:rounded-xl md:shadow-2xl md:ring-1 md:ring-black/10 md:z-50 md:bg-white/95 md:dark:bg-zinc-800/95 md:backdrop-blur-sm',
-
+                            'md:block md:absolute md:top-full md:left-1/2 md:-translate-x-1/2 md:mt-2 md:min-w-64 md:rounded-xl md:shadow-2xl md:ring-1 md:ring-black/10 md:z-50 md:bg-white/95 md:dark:bg-zinc-800/95 md:backdrop-blur-sm',
                             dropdownClassName
                         )}
                     >
