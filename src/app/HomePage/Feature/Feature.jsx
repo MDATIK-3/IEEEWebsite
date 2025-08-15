@@ -61,7 +61,7 @@ const Feature = ({ showAll = false }) => {
           )}
 
           <Link
-            href="/partnership"
+            href="/contact/partnership"
             className="w-full sm:w-auto group cursor-pointer px-10 py-4 font-semibold text-emerald-700 dark:text-white bg-white dark:bg-transparent border-2 border-emerald-300 dark:border-emerald-500 rounded-3xl shadow-md hover:shadow-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/40 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-emerald-400 flex items-center justify-center"
           >
             <span className="flex items-center justify-center">

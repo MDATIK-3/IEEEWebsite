@@ -19,7 +19,24 @@ const navLinks = [
   },
   { href: "/Executives", label: "Executives" },
   { href: "/Gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact" },
+  {
+    label: "Contact",
+    subLinks: [
+      {
+        href: "/contact/GeneralContact",
+        label: "General Contact"
+      },
+      {
+        href: "/contact/partnership",
+        label: "Partnership Inquiries"
+      },
+      {
+        href: "/contact/developer",
+        label: "Development Team"
+      }
+
+    ],
+  },
 ];
 
 export default function Navbar() {

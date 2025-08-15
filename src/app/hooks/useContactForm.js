@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useToast } from '../contact/Components/ToastProvider';
+import { useToast } from '@/app/contact/GeneralContact/Components/ToastProvider';
 
 export const useContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
