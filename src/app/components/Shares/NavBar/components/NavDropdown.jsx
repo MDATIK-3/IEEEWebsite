@@ -19,8 +19,8 @@ export default function NavDropdown({
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [enableHover, setEnableHover] = useState(false);
-    const dropdownRef = useRef(null);
     const hoverTimeout = useRef(null);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -35,18 +35,6 @@ export default function NavDropdown({
         };
     }, []);
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsOpen(false);
-            }
-        };
-        if (isOpen) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [isOpen]);
-
     const handleMouseEnter = () => {
         if (!enableHover) return;
         clearTimeout(hoverTimeout.current);
@@ -57,6 +45,8 @@ export default function NavDropdown({
         if (!enableHover) return;
         hoverTimeout.current = setTimeout(() => setIsOpen(false), 200);
     };
+
+    const handleClick = () => setIsOpen((o) => !o);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -69,14 +59,15 @@ export default function NavDropdown({
 
     return (
         <li
-            ref={dropdownRef}
-            className="relative group"
-            {...(enableHover ? { onMouseEnter: handleMouseEnter, onMouseLeave: handleMouseLeave } : {})}
+            ref={containerRef}
+            className="relative"
+            onMouseEnter={enableHover ? handleMouseEnter : undefined}
+            onMouseLeave={enableHover ? handleMouseLeave : undefined}
         >
             {subLinks ? (
                 <>
                     <button
-                        onClick={() => setIsOpen((o) => !o)}
+                        onClick={handleClick}
                         onKeyDown={handleKeyDown}
                         aria-expanded={isOpen}
                         aria-controls={`dropdown-${label}`}
@@ -99,38 +90,30 @@ export default function NavDropdown({
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
+
                     <div
                         id={`dropdown-${label}`}
                         className={cx(
-                            // Base transitions
                             'transition-all duration-300 ease-in-out transform origin-top',
-
-                            // Mobile: show/hide using hidden class instead of max-h
                             isOpen ? 'block opacity-100 translate-y-0' : 'hidden opacity-0 -translate-y-2',
-
-                            // Mobile background
-                            'relative bg-white dark:bg-zinc-800 rounded-lg',
-
-                            // Desktop floating panel
-                            'md:block md:absolute md:top-full md:left-1/2 md:-translate-x-1/2 md:mt-2 md:min-w-64 md:rounded-xl md:shadow-2xl md:ring-1 md:ring-black/10 md:z-50 md:bg-white/95 md:dark:bg-zinc-800/95 md:backdrop-blur-sm',
+                            'absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-64 rounded-xl shadow-2xl ring-1 ring-black/10 z-50 bg-white/95 dark:bg-zinc-800/95 backdrop-blur-sm',
                             dropdownClassName
                         )}
                     >
                         <ul className="py-2">
-                            {subLinks.map(({ href, label }, index) => (
+                            {subLinks.map(({ href, label }) => (
                                 <li key={href}>
                                     <Link
                                         href={href}
                                         onClick={() => {
                                             setIsOpen(false);
-                                            if (onClose) onClose();
+                                            onClose?.();
                                         }}
                                         className={cx(
-                                            'block py-2 px-4 text-sm font-medium transition-colors duration-200 ',
+                                            'block py-2 px-4 text-sm font-medium transition-colors duration-200 focus:outline-none',
                                             isActiveLink(pathname, href)
                                                 ? 'text-teal-600 bg-teal-50 dark:bg-teal-900/30'
                                                 : 'text-gray-700 dark:text-gray-200 hover:text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-900/30',
-                                            'focus:outline-none',
                                             subLinkClassName
                                         )}
                                     >
@@ -148,7 +131,7 @@ export default function NavDropdown({
                     className={cx(
                         'block font-medium transition-all duration-300 ease-in-out',
                         isActive ? 'text-teal-600' : 'text-gray-800 dark:text-gray-200',
-                        'hover:text-teal-500 hover:bg-teal-50 dark:hover:bg-teal-900/30 focus:outline-none ',
+                        'hover:text-teal-500 hover:bg-teal-50 dark:hover:bg-teal-900/30 focus:outline-none',
                         buttonClassName
                     )}
                 >
