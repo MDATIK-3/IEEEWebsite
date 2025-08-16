@@ -46,7 +46,7 @@ const ParticleSystem = ({ isDarkMode }) => {
   const sizes = useMemo(() => {
     const sz = new Float32Array(numParticles);
     for (let i = 0; i < numParticles; i++) {
-      sz[i] = Math.random() * 0.025; // Even smaller bubble size range
+      sz[i] = Math.random() * 0.0025; // Even smaller bubble size range
     }
     return sz;
   }, []);
