@@ -75,7 +75,7 @@ export async function GET() {
           const userData = await fetchGitHub(`${GITHUB_API_BASE}/users/${login}`);
           contributorData.name = userData.name || contributorData.name;
           contributorData.public_repos = userData.public_repos || 0;
-        } catch (err) {
+        } catch (err: unknown) {
           console.warn(`Error fetching GitHub user data for ${login}:`, err);
         }
 
@@ -84,11 +84,11 @@ export async function GET() {
     );
 
     return NextResponse.json(contributors);
-  } catch (err: any) {
-    console.error('API error:', err.message || err);
-    return NextResponse.json(
-      { error: err.message || 'Internal server error' },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    let message = 'Internal server error';
+    if (err instanceof Error) message = err.message;
+
+    console.error('API error:', message);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
