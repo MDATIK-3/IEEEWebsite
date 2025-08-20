@@ -84,7 +84,10 @@ export async function GET() {
       })
     );
 
-    return NextResponse.json(contributors);
+    return NextResponse.json(contributors, {
+      status: 200,
+      headers: { 'Cache-Control': 'no-store' }, 
+    });
   } catch (err: unknown) {
     let message = 'Internal server error';
     if (err instanceof Error) message = err.message;
