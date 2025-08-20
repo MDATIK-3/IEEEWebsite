@@ -49,12 +49,13 @@ const DeveloperProfile = ({ dev, index }) => {
                     <Image
                         src={
                             dev.avatar_url
-                                ? `${dev.avatar_url}?t=${new Date().getTime()}`
+                                ? `${dev.avatar_url}?t=${dev.avatar_updated_at}`
                                 : '/images/default-avatar.png'
                         }
                         alt={dev.name || dev.login}
                         width={100}
                         height={100}
+                        unoptimized={true}
                         className="rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-md select-none"
                         draggable={false}
                         onContextMenu={(e) => e.preventDefault()}

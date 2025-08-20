@@ -64,6 +64,7 @@ export async function GET() {
           email: '',
           bio: '',
           public_repos: 0,
+          avatar_updated_at: Date.now(), 
         };
 
         const role = rolesMap[login];
@@ -74,8 +75,8 @@ export async function GET() {
         try {
           const userData = await fetchGitHub(`${GITHUB_API_BASE}/users/${login}`);
           contributorData.name = contributorData.name || userData.name;
-          contributorData.avatar_url = userData.avatar_url === null ? baseData.avatar_url : userData.avatar_url;
-
+          contributorData.avatar_url = userData.avatar_url || baseData.avatar_url;
+          contributorData.avatar_updated_at = new Date(userData.updated_at).getTime() || Date.now();
         } catch (err: unknown) {
           console.warn(`Error fetching GitHub user data for ${login}:`, err);
         }
@@ -84,10 +85,7 @@ export async function GET() {
       })
     );
 
-    return NextResponse.json(contributors, {
-      status: 200,
-      headers: { 'Cache-Control': 'no-store' }, 
-    });
+    return NextResponse.json(contributors)
   } catch (err: unknown) {
     let message = 'Internal server error';
     if (err instanceof Error) message = err.message;
