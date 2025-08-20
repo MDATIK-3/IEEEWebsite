@@ -57,7 +57,7 @@ export async function GET() {
           html_url,
           contributions,
           name: login,
-          developer_type: contributions > 50 ? 'Senior Developer' : 'Developer',
+          developer_type: contributions > 150 ? 'Senior Developer' : 'Developer',
           batch: '',
           facebook: '',
           linkedin: '',
@@ -73,8 +73,9 @@ export async function GET() {
 
         try {
           const userData = await fetchGitHub(`${GITHUB_API_BASE}/users/${login}`);
-          contributorData.name = userData.name || contributorData.name;
-          contributorData.public_repos = userData.public_repos || 0;
+          contributorData.name = contributorData.name || userData.name;
+          contributorData.avatar_url = userData.avatar_url === null ? baseData.avatar_url : userData.avatar_url;
+
         } catch (err: unknown) {
           console.warn(`Error fetching GitHub user data for ${login}:`, err);
         }

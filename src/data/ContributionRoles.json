@@ -8,6 +8,7 @@
         "linkedin": "https://www.linkedin.com/in/mdatik96/",
         "github": "https://github.com/MDATIK-3",
         "email": "atikh4335@gmail.com",
+        "avatar_url": null,
         "bio": "Building scalable web applications with a passion for clean code."
     },
     {
@@ -19,17 +20,19 @@
         "linkedin": "https://www.linkedin.com/in/atikur-rahman03/",
         "github": "https://github.com/atikurrahman33",
         "email": "foysalatik33@gmail.com",
+        "avatar_url": null,
         "bio": "Coding with purpose, creating impact one app at a time."
     },
     {
         "login": "Abdullah-Galib",
-        "name": "",
+        "name": "Abdullah Md Galib",
         "developer_type": "Data Entry",
         "batch": "251",
         "facebook": "https://www.facebook.com/a.md.galib",
         "linkedin": "https://linkedin.com/in/abdullahmdgalib",
         "github": "https://github.com/Abdullah-Galib",
         "email": "mail.mdgalib@gmail.com",
+        "avatar_url": null,
         "bio": "Ensuring accuracy and efficiency, one entry at a time."
     }
 ]
