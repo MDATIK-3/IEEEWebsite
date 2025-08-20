@@ -16,7 +16,7 @@ export default function RadialBackground() {
         />
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% {
             transform: translate(0, 0) rotate(0deg) scale(1);

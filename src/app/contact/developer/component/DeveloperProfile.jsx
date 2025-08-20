@@ -47,7 +47,11 @@ const DeveloperProfile = ({ dev, index }) => {
             <div className="flex justify-center pt-8 pb-4 relative overflow-visible">
                 <div className="relative group">
                     <Image
-                        src={dev.avatar_url}
+                        src={
+                            dev.avatar_url
+                                ? `${dev.avatar_url}?t=${new Date().getTime()}`
+                                : '/images/default-avatar.png'
+                        }
                         alt={dev.name || dev.login}
                         width={100}
                         height={100}
