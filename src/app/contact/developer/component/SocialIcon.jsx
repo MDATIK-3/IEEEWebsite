@@ -19,11 +19,7 @@ const SocialIcon = ({ href, children }) => {
             rel="noopener noreferrer"
             onClick={handleClick}
             className="p-2 rounded-full bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-            whileHover={{
-                scale: 1.1,
-                rotate: 5,
-                backgroundColor: "rgba(20,184,166,0.1)"
-            }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
             transition={{
                 duration: 0.2,

@@ -1,11 +1,10 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { User, Users, ExternalLink, Star } from 'lucide-react';
 
 import eventData from '@/data/eventData.json';
-
 import HeroSection from './components/HeroSection';
 import EventImage from './components/EventImage';
 import EventDescription from './components/EventDescription';
@@ -19,7 +18,7 @@ import LoadingState from '@/app/components/LoadingSpinner';
 const EventDetails = () => {
   const params = useParams();
   const id = params?.id;
-
+  const [loading, setLoading] = useState(true);
   const modalRef = useRef(null);
 
   const event = useMemo(
@@ -31,20 +30,20 @@ const EventDetails = () => {
   const now = new Date();
   const isPastEvent = eventDate ? eventDate < now : false;
 
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
-    try {
-      const date = new Date(`${dateStr}T00:00:00`);
-      if (isNaN(date)) return dateStr;
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      const months = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December',
-      ];
-      return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-    } catch {
-      return dateStr;
-    }
+    const date = new Date(`${dateStr}T00:00:00`);
+    if (isNaN(date)) return dateStr;
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
   };
 
   const handleShare = async () => {
@@ -68,28 +67,29 @@ const EventDetails = () => {
     }
   };
 
-  const eventHighlights = useMemo(() => [
-    { icon: User, text: 'Expert Speaker' },
-    { icon: Users, text: 'Q&A Session' },
-    { icon: Star, text: 'Networking' },
-    { icon: ExternalLink, text: 'Interactive Content' },
-  ], []);
+  const eventHighlights = useMemo(
+    () => [
+      { icon: User, text: 'Expert Speaker' },
+      { icon: Users, text: 'Q&A Session' },
+      { icon: Star, text: 'Networking' },
+      { icon: ExternalLink, text: 'Interactive Content' },
+    ],
+    []
+  );
 
-  if (!id) return <LoadingState />;
+  if (loading) return <LoadingState />;
 
-  if (!event)
+  if (!id || !event) {
     return (
-      <main role="main" className="text-center py-20 text-gray-700 dark:text-gray-300">
+      <main className="text-center py-20 text-gray-700 dark:text-gray-300">
         <h1 className="text-2xl font-semibold mb-4">Event Not Found</h1>
         <p>Please check the link or try searching for other events.</p>
       </main>
     );
+  }
 
   return (
-    <main
-      role="main"
-      className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 transition-colors duration-500"
-    >
+    <main className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 transition-colors duration-500">
       <HeroSection event={event} isPastEvent={isPastEvent} formatDate={formatDate} />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

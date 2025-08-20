@@ -1,25 +1,24 @@
-"use client";
-import { useState } from "react";
-import executiveData from "@/data/executiveData.json";
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
-import Stats from "./components/Stats";
-import MemberList from "./components/MemberList";
-import MobileFilters from "./components/MobileFilters";
-import MemberDetailModal from "./components/MemberDetailModal";
-import useFilteredMembers from "@/app/hooks/useFilteredMembers";
+'use client';
+import { useState, useEffect } from 'react';
+import executiveData from '@/data/executiveData.json';
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import Stats from './components/Stats';
+import MemberList from './components/MemberList';
+import MobileFilters from './components/MobileFilters';
+import MemberDetailModal from './components/MemberDetailModal';
+import LoadingState from '@/app/components/LoadingSpinner';
+import useFilteredMembers from '@/app/hooks/useFilteredMembers';
 
 const ExecutivePage = () => {
   const years = Object.keys(executiveData).sort((a, b) => parseInt(b) - parseInt(a));
-  const defaultYear = years[0] || "";
-
+  const defaultYear = years[0] || '';
   const [selectedYear, setSelectedYear] = useState(defaultYear);
-  const [selectedGroup, setSelectedGroup] = useState("SB");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedGroup, setSelectedGroup] = useState('SB');
+  const [searchTerm, setSearchTerm] = useState('');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
-  
-  console.log(selectedMember);
+  const [loading, setLoading] = useState(true);
 
   const { faculty, students, filteredMembers } = useFilteredMembers({
     executiveData,
@@ -27,6 +26,14 @@ const ExecutivePage = () => {
     selectedYear,
     selectedGroup,
   });
+
+  useEffect(() => {
+    setLoading(false)
+  }, []);
+
+  if (loading) {
+    return <LoadingState />;
+  }
 
   if (!defaultYear) {
     return (

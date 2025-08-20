@@ -1,10 +1,9 @@
-/* File: components/DeveloperCard.jsx */
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import DeveloperProfile from './DeveloperProfile';
 import SectionHeader from './SectionHeader';
-import developerData from '@/data/developerData.json';
+import LoadingState from '@/app/components/LoadingSpinner';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -21,33 +20,53 @@ const containerVariants = {
 
 const DeveloperCard = () => {
   const shouldReduceMotion = useReducedMotion();
+  const [contributors, setContributors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      html, body, * {
-        scroll-behavior: smooth !important;
-      }
-    `;
-    document.head.appendChild(style);
-    return () => {
-      if (document.head.contains(style)) {
-        document.head.removeChild(style);
+    const fetchContributors = async () => {
+      try {
+        const response = await fetch('/api/contributors', {
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch contributors');
+        }
+
+        const data = await response.json();
+        setContributors(data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching contributors:', err);
+        setError('Failed to load contributors');
+        setLoading(false);
       }
     };
+
+    fetchContributors();
   }, []);
 
-  const projectLeads = developerData.filter(dev =>
-    ["Chair", "Project Coordinator"].includes(dev.developer_type)
-  );
-  const developmentTeam = developerData.filter(dev =>
-    !["Chair", "Project Coordinator"].includes(dev.developer_type)
-  );
+  if (loading) {
+    return (
+      <LoadingState />
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <p className="text-lg text-red-600 dark:text-red-400">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24"
-      style={{ willChange: 'scroll-position', scrollBehavior: 'smooth' }}
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-24 scroll-smooth"
     >
       <section className="text-center">
         <motion.div
@@ -85,30 +104,9 @@ const DeveloperCard = () => {
         </motion.div>
       </section>
 
-      {projectLeads.length > 0 && (
+      {contributors.length > 0 && (
         <section className="text-center">
-          <SectionHeader
-            title="Project Leadership"
-            color="text-emerald-600 dark:text-emerald-400"
-            delay={0.1}
-          />
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-5xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {projectLeads.map((dev, index) => (
-              <DeveloperProfile key={dev.id} dev={dev} index={index} />
-            ))}
-          </motion.div>
-        </section>
-      )}
-
-      {developmentTeam.length > 0 && (
-        <section className="text-center">
-          <SectionHeader title="Development Team" delay={0.1} />
+          <SectionHeader title="Development Team" color="text-emerald-600 dark:text-emerald-400" delay={0.1} />
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
             variants={containerVariants}
@@ -116,7 +114,7 @@ const DeveloperCard = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            {developmentTeam.map((dev, index) => (
+            {contributors.map((dev, index) => (
               <DeveloperProfile key={dev.id} dev={dev} index={index} />
             ))}
           </motion.div>

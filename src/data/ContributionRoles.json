@@ -1,0 +1,35 @@
+[
+    {
+        "login": "MDATIK-3",
+        "name": "",
+        "developer_type": "Full Stack Developer",
+        "batch": "221",
+        "facebook": "https://www.facebook.com/mdatikhasan.096",
+        "linkedin": "https://www.linkedin.com/in/mdatik96/",
+        "github": "https://github.com/MDATIK-3",
+        "email": "atikh4335@gmail.com",
+        "bio": "Building scalable web applications with a passion for clean code."
+    },
+    {
+        "login": "atikurrahman33",
+        "name": "",
+        "developer_type": "Full Stack Developer",
+        "batch": "221",
+        "facebook": "https://www.facebook.com/atikurrahman.foysal.3",
+        "linkedin": "https://www.linkedin.com/in/atikur-rahman03/",
+        "github": "https://github.com/atikurrahman33",
+        "email": "foysalatik33@gmail.com",
+        "bio": "Coding with purpose, creating impact one app at a time."
+    },
+    {
+        "login": "Abdullah-Galib",
+        "name": "",
+        "developer_type": "Data Entry",
+        "batch": "251",
+        "facebook": "https://www.facebook.com/a.md.galib",
+        "linkedin": "https://linkedin.com/in/abdullahmdgalib",
+        "github": "https://github.com/Abdullah-Galib",
+        "email": "mail.mdgalib@gmail.com",
+        "bio": "Ensuring accuracy and efficiency, one entry at a time."
+    }
+]
