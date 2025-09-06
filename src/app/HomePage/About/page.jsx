@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import Stats from './Stats';
 import Mission from './Mission';
 import CoreValues from './CoreValues';
@@ -31,52 +32,97 @@ const activities = [
 ];
 
 const containerVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.25, delayChildren: 0.1 }
+  }
+};
+
+const fancyVariants = {
+  hidden: { opacity: 0, y: 60, rotateX: -15, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: 1,
+    transition: {
+      duration: 1,
+      ease: [0.16, 1, 0.3, 1], 
+      opacity: { duration: 0.5 }
+    }
+  }
 };
 
 const About = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   return (
     <section
+      ref={ref}
       className={`
         relative pt-24 pb-20 overflow-hidden min-h-[600px] z-0
         bg-gradient-to-br from-green-50 via-white to-green-100
         dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900
-        before:content-[''] before:absolute before:inset-0 before:z-0
-        before:bg-[linear-gradient(to_right,rgba(79,70,229,0.08)_1px,transparent_1.2px),linear-gradient(to_bottom,rgba(79,70,229,0.08)_1px,transparent_1px)]
-        before:dark:bg-[linear-gradient(to_right,rgba(79,70,229,0.08)_1px,transparent_1.2px),linear-gradient(to_bottom,rgba(79,70,229,0.08)_1px,transparent_1px)]
-        before:bg-[length:45px_45px]
       `}
     >
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 text-gray-800 dark:text-gray-300 transition-all"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
+        className="absolute inset-0 z-0 opacity-40 pointer-events-none"
+        style={{ y }}
       >
-        {/* Left Section */}
-        <motion.div className="flex-1 flex flex-col justify-center" variants={containerVariants}>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-            Empowering Future <br />
-            <span className="text-green-600 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300">
-              Engineers
-            </span>
-          </h1>
+        <div className="w-full h-full bg-[linear-gradient(to_right,rgba(79,70,229,0.08)_1px,transparent_1.2px),linear-gradient(to_bottom,rgba(79,70,229,0.08)_1px,transparent_1px)] bg-[length:45px_45px]" />
+      </motion.div>
 
-          <p className="text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
+      <motion.div
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 text-gray-800 dark:text-gray-300 transition-all"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.25 }}
+      >
+        <motion.div className="flex-1 flex flex-col justify-center" variants={fancyVariants}>
+          <motion.h1
+            className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight"
+            variants={fancyVariants}
+            whileHover={{ scale: 1.05, rotateY: -3, textShadow: "0px 0px 12px rgba(34,197,94,0.6)" }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            Empowering Future <br />
+            <motion.span
+              className="text-green-600 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300 inline-block"
+              whileHover={{ scale: 1.1, rotate: -2 }}
+            >
+              Engineers
+            </motion.span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg md:text-xl max-w-2xl mb-8 leading-relaxed"
+            variants={fancyVariants}
+          >
             IEEE Student Branch is a vibrant community of{' '}
             <strong className="text-green-600 hover:text-green-700 dark:hover:text-green-500 transition-colors duration-300">
               3000+ passionate members
             </strong>{' '}
             dedicated to innovation, learning, and professional growth in electrical and computer engineering.
-          </p>
+          </motion.p>
 
-          <Stats stats={stats} />
-          <Mission />
+          <motion.div variants={fancyVariants}>
+            <Stats stats={stats} />
+          </motion.div>
+
+          <motion.div variants={fancyVariants}>
+            <Mission />
+          </motion.div>
         </motion.div>
 
-        {/* Right Sidebar */}
-        <motion.aside className="w-full lg:w-96 flex-shrink-0 space-y-12" variants={containerVariants}>
+        <motion.aside
+          className="w-full lg:w-96 flex-shrink-0 space-y-12"
+          variants={fancyVariants}
+        >
           <CoreValues coreValues={coreValues} />
           <Activities activities={activities} />
         </motion.aside>

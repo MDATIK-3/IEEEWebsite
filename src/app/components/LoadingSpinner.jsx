@@ -1,7 +1,7 @@
 export default function LoadingState() {
 
     return (
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center">
             <div className="text-center space-y-6">
                 <div className="relative">
                     <div className="w-8 h-8 border-2 border-green-200 border-t-green-600 rounded-full animate-spin mx-auto"></div>

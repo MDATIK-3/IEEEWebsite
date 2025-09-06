@@ -6,13 +6,13 @@ import ThreeBackground2 from "@/app/components/Shares/Particles";
 
 const Page = () => {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen flex items-center justify-center">
       <ThreeBackground />
       <ThreeBackground2 />
       <div className="relative z-10 py-10">
         <DeveloperCard />
-        <BgColor />
       </div>
+      <BgColor />
     </div>
   );
 };
