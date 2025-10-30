@@ -36,12 +36,14 @@ export async function POST(request) {
 const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
     const prompt = `
       You are a helpful chatbot for the IEEE GUB website. Answer the user's query based ONLY on the following data. Do not add external information or hallucinate.
-      
+
+      Provide the response in well-formatted markdown, using headings, lists, bold text, and other markdown elements where appropriate for clarity and readability.
+
       Knowledge Base:
       ${knowledgeBase}
-      
+
       User Query: ${query}
-      
+
       Response:
     `;
 
