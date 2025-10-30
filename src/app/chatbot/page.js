@@ -49,7 +49,7 @@ export default function Chatbot({ isModal = false, onClose = null }) {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: input }),
+        body: JSON.stringify({ query: input, context: messages.slice(-10) }), // Send last 10 messages for context
       });
 
       if (!res.ok) {

@@ -29,18 +29,26 @@ for (const file of jsonFiles) {
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'your-gemini-api-key-here');
 
+const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
 export async function POST(request) {
-  const { query } = await request.json();
+  const { query, context = [] } = await request.json();
 
   try {
-const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const contextString = context.length > 0 ? `\n\nConversation Context:\n${context.map(msg => `${msg.sender === 'user' ? 'User' : 'Assistant'}: ${msg.text}`).join('\n')}` : '';
+
     const prompt = `
       You are a helpful chatbot for the IEEE GUB website. Answer the user's query based ONLY on the following data. Do not add external information or hallucinate.
 
       Provide the response in well-formatted markdown, using headings, lists, bold text, and other markdown elements where appropriate for clarity and readability.
 
+      Special Instructions:
+      - When providing information about an executive or member, always include their photo using markdown image syntax: ![Name](path) if the img field is available.
+      - If the user asks to "show photo" or similar, display the photo of the relevant person using the img path from the data.
+      - If the query refers to "this photo" or "his/her photo", assume it's referring to the last mentioned person in the conversation context or knowledge base.
+
       Knowledge Base:
-      ${knowledgeBase}
+      ${knowledgeBase}${contextString}
 
       User Query: ${query}
 
