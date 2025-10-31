@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, Trash2, Copy, Check, RotateCcw, Sparkles, X, Minimize2, Maximize2 } from 'lucide-react';
+import { Send, Trash2, Copy, Check, RotateCcw, Sparkles, X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 export default function Chatbot({ isModal = false, onClose = null }) {
