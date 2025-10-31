@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { MessageSquare, X, Send, Bot } from "lucide-react";
-import Chatbot from "../../chatbot/page";
+import ChatbotModal from "@/app/chatbot/ChatbotModal";
 
 export default function FeedbackButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +55,7 @@ export default function FeedbackButton() {
     <>
       {/* Chatbot Modal - Now properly integrated */}
       {chatbotModalOpen && (
-        <Chatbot isModal={true} onClose={handleChatbotClose} />
+        <ChatbotModal isOpen={chatbotModalOpen} onClose={handleChatbotClose} />
       )}
 
       {/* Feedback/Chatbot Toggle Button */}
