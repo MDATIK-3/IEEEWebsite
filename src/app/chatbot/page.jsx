@@ -161,4 +161,7 @@ export default function Chatbot({ isModal = false, onClose = null }) {
       </div>
     );
   }
+  return (
+    <div>Testing</div>
+  )
 }
