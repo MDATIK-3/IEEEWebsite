@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useGalleryData } from "../hooks/useGalleryData";
 import GalleryControls from "./components/GalleryControls";
-import PhotoCard from "./components/PhotoCard";
+import PhotoCard from "../components/common/PhotoCard";
 import Pagination from "./components/Pagination";
 import EmptyState from "./components/EmptyState";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -98,6 +98,7 @@ const GalleryFull = () => {
                                         photo={photo}
                                         viewMode={viewMode}
                                         index={index}
+                                        variant="gallery"
                                         onClick={() => handlePhotoClick(photo)}
                                     />
                                 ))}
