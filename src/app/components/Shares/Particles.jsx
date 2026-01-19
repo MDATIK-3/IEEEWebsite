@@ -1,10 +1,25 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+
+const useReducedMotion = () => {
+    const [reduced, setReduced] = useState(false);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const update = () => setReduced(mediaQuery.matches);
+        update();
+        mediaQuery.addEventListener('change', update);
+        return () => mediaQuery.removeEventListener('change', update);
+    }, []);
+
+    return reduced;
+};
 
 export default function ThreeBackground() {
     const mountRef = useRef(null);
     const rendererRef = useRef(null);
+    const reducedMotion = useReducedMotion();
 
     useEffect(() => {
         if (!mountRef.current) return;
@@ -20,11 +35,12 @@ export default function ThreeBackground() {
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         mountRef.current.appendChild(renderer.domElement);
         rendererRef.current = renderer;
 
-        const particleCount = 200;
+        const isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+        const particleCount = isSmallScreen ? 140 : 180;
         const geometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
@@ -77,6 +93,10 @@ export default function ThreeBackground() {
 
         const clock = new THREE.Clock();
         const animate = () => {
+            if (reducedMotion) {
+                renderer.render(scene, camera);
+                return;
+            }
             const delta = clock.getDelta();
             mouseX += (targetX - mouseX) * 0.05;
             mouseY += (targetY - mouseY) * 0.05;
@@ -105,7 +125,7 @@ export default function ThreeBackground() {
                 mountRef.current.removeChild(renderer.domElement);
             }
         };
-    }, []);
+    }, [reducedMotion]);
 
     return (
         <div

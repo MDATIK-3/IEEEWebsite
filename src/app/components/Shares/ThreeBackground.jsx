@@ -4,6 +4,34 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useMemo, useEffect, useState } from "react";
 import * as THREE from "three";
 
+const useReducedMotion = () => {
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  return reduced;
+};
+
+const useParticleConfig = () => {
+  const [config, setConfig] = useState({ count: 120, distance: 5 });
+
+  useEffect(() => {
+    const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
+    setConfig({
+      count: isSmallScreen ? 90 : 140,
+      distance: isSmallScreen ? 4.2 : 5,
+    });
+  }, []);
+
+  return config;
+};
+
 const useDarkMode = () => {
   const [isDark, setIsDark] = useState(false);
 
@@ -27,11 +55,11 @@ const useDarkMode = () => {
 };
 
 
-const ParticleSystem = ({ isDarkMode }) => {
+const ParticleSystem = ({ isDarkMode, particleCount, linkDistance, reducedMotion }) => {
   const ref = useRef();
   const pointsRef = useRef();
   const linesRef = useRef();
-  const numParticles = 150;
+  const numParticles = particleCount;
 
   const positions = useMemo(() => {
     const pos = new Float32Array(numParticles * 3);
@@ -61,7 +89,7 @@ const ParticleSystem = ({ isDarkMode }) => {
           Math.pow(positions[i * 3 + 1] - positions[j * 3 + 1], 2) +
           Math.pow(positions[i * 3 + 2] - positions[j * 3 + 2], 2)
         );
-        if (dist < 5) {
+        if (dist < linkDistance) {
           linePositions.push(
             positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2],
             positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]
@@ -113,6 +141,9 @@ const ParticleSystem = ({ isDarkMode }) => {
   }), [isDarkMode]);
 
   useFrame(({ clock }) => {
+    if (reducedMotion) {
+      return;
+    }
     const t = clock.getElapsedTime();
     ref.current.rotation.y = t * 0.01;
     ref.current.rotation.x = t * 0.005;
@@ -153,18 +184,26 @@ const ParticleSystem = ({ isDarkMode }) => {
 
 const Background = () => {
   const isDarkMode = useDarkMode();
+  const reducedMotion = useReducedMotion();
+  const { count, distance } = useParticleConfig();
   const fogColor = isDarkMode ? "#0f172a" : "#d4e4ff";
 
   return (
     <Canvas
       camera={{ position: [0, 0, 20], fov: 70 }}
+      dpr={[1, 1.5]}
       style={{ position: "fixed", inset: 0, zIndex: -1 }}
     >
       <ambientLight intensity={0.6} />
       <pointLight position={[25, 25, 25]} intensity={2.0} distance={70} decay={2} color="#ffffff" />
       <pointLight position={[-20, -20, 15]} intensity={1.2} color="#ffdab3" distance={60} decay={2} />
       <fog attach="fog" args={[fogColor, 15, 35]} />
-      <ParticleSystem isDarkMode={isDarkMode} />
+      <ParticleSystem
+        isDarkMode={isDarkMode}
+        particleCount={count}
+        linkDistance={distance}
+        reducedMotion={reducedMotion}
+      />
     </Canvas>
   );
 };
