@@ -1,6 +1,6 @@
 import NavBar from './components/Shares/NavBar/page.jsx';
 import Footer from './components/Shares/Footer/page.jsx';
-import FeedbackButton from './components/FeedbackButton/page.jsx';
+import FeedbackButtonClient from './components/FeedbackButton/FeedbackButtonClient.jsx';
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/app/Theme/ThemeProvider.jsx";
 import { metadata, viewport } from '@/app/utils/metadata.js';
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <NavBar />
           <main className="flex-grow">{children}</main>
-          <FeedbackButton />
+          <FeedbackButtonClient />
           <Footer />
         </Providers>
         <Analytics />
