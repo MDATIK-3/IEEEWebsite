@@ -117,11 +117,11 @@ export default function HeroText() {
         </Link>
 
         <Link
-          href="/Activities/Events"
+          href="/HomePage/LearnIEEE"
           aria-label="Explore Events"
           className="group w-full sm:w-auto text-center inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-lg hover:border-green-400 dark:hover:border-green-500 hover:bg-green-50 dark:hover:bg-green-900 hover:text-green-700 dark:hover:text-green-400 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
         >
-          Explore Events
+          Learn About IEEE
         </Link>
       </div>
 
