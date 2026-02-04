@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import EventsFilter from "./EventsFilter";
 import EventsGrid from "./EventsGrid";
@@ -65,10 +66,12 @@ const EventsContainer = ({ isFullPage }) => {
       ) : (
         <div className="text-center py-16">
           <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <img
+            <Image
               src="/images/notfound.png"
               alt="No events"
-              className="w-12 h-12"
+              width={48}
+              height={48}
+              className="h-12 w-12"
             />
           </div>
           <h3 className="text-2xl font-semibold text-green-800 mb-2">

@@ -1,7 +1,9 @@
 import ShimmerEffect from "@/app/components/ShimmerEffect";
+import Image from "next/image";
 
 const ColabCard = ({ event }) => {
   const { image, name } = event;
+  const imageSrc = image?.startsWith("/") ? image : `/${image || ""}`;
 
   return (
     <div
@@ -19,16 +21,18 @@ const ColabCard = ({ event }) => {
       "
     >
       <div className="relative w-full h-20 mb-4 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-        <img
-          src={image}
+        <Image
+          src={imageSrc}
           alt={`${name} logo`}
+          width={240}
+          height={80}
+          sizes="240px"
           className="
             max-w-full max-h-full object-contain
             transition-all duration-500
             filter drop-shadow-sm group-hover:drop-shadow-md
           "
           draggable={false}
-          loading="lazy"
         />
       </div>
 

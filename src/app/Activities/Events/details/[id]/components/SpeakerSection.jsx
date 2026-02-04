@@ -38,6 +38,7 @@ const SpeakerSection = ({ event }) => {
                                     alt={speaker.name}
                                     width={80}
                                     height={80}
+                                    sizes="80px"
                                     className="object-cover w-full h-full"
                                 />
                             </div>

@@ -14,6 +14,7 @@ const Modal = forwardRef(({ photos }, ref) => {
       ? photo
       : photo.image
     : null;
+  const normalizedImageUrl = imageUrl?.startsWith("/") ? imageUrl : `/${imageUrl || ""}`;
 
   const closeModal = () => setCurrentIndex(null);
   const prevPhoto = () =>
@@ -77,15 +78,15 @@ const Modal = forwardRef(({ photos }, ref) => {
         onClick={(e) => e.stopPropagation()}
       >
         <Image
-          src={imageUrl}
+          src={normalizedImageUrl}
           alt={
             typeof photo === "string"
               ? `Photo ${currentIndex + 1}`
               : photo.name || `Photo ${photo.id}`
           }
-          width={400}
-          height={300}
-          className="w-full h-full object-contain"
+          fill
+          sizes="90vw"
+          className="object-contain"
         />
 
         {isValidDate && (

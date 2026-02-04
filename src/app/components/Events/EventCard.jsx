@@ -5,6 +5,7 @@ import { IoMdTimer } from "react-icons/io";
 import { CiCalendar } from "react-icons/ci";
 import Link from "next/link";
 import { User } from 'lucide-react';
+import Image from 'next/image';
 
 const formatDate = (dateString) => {
   try {
@@ -25,6 +26,8 @@ const EventCard = ({ event, onError, onSelect }) => {
 
   const { id, image, eventName, date, guest, time } = event;
   const [countdown, setCountdown] = useState(null);
+  const [imageFailed, setImageFailed] = useState(false);
+  const imageSrc = image?.startsWith('/') ? image : `/${image || ''}`;
 
   useEffect(() => {
     if (!date) return;
@@ -53,8 +56,8 @@ const EventCard = ({ event, onError, onSelect }) => {
     }
   }, [event, onSelect, onError]);
 
-  const handleImageError = useCallback((e) => {
-    e.target.style.display = 'none';
+  const handleImageError = useCallback(() => {
+    setImageFailed(true);
   }, []);
 
   return (
@@ -66,13 +69,20 @@ const EventCard = ({ event, onError, onSelect }) => {
         <figure className="relative h-52 bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 overflow-hidden">
           <Link href={`/Activities/Events/details/${id}`} onClick={handleClick} className="block w-full h-full">
             <div className="relative w-full h-full overflow-hidden">
-              <img
-                src={image}
-                alt={eventName || 'Event image'}
-                onError={handleImageError}
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-              />
+              {!imageFailed ? (
+                <Image
+                  src={imageSrc}
+                  alt={eventName || 'Event image'}
+                  onError={handleImageError}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                  Image unavailable
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.05),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </div>

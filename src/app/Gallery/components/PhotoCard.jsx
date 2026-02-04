@@ -23,6 +23,7 @@ const PhotoCard = ({ photo, viewMode, onClick, index }) => {
           src={photo.image}
           alt={photo.name || `Photo ${photo.id}`}
           fill
+          sizes={viewMode === 'list' ? '(max-width: 640px) 100vw, 256px' : '(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw'}
           className="object-cover group-hover:scale-110 transition-transform duration-500"
         />
 

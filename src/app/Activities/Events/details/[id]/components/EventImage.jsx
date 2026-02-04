@@ -9,6 +9,7 @@ const EventImage = ({ event }) => {
         alt={event.eventName}
         width={800}
         height={450}
+        sizes="(max-width: 1024px) 100vw, 800px"
         priority={false}
         className="w-full object-cover"
       />

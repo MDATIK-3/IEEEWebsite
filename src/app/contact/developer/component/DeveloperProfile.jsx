@@ -55,7 +55,7 @@ const DeveloperProfile = ({ dev, index }) => {
                         alt={dev.name || dev.login}
                         width={100}
                         height={100}
-                        unoptimized={true}
+                        sizes="100px"
                         className="rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-md select-none"
                         draggable={false}
                         onContextMenu={(e) => e.preventDefault()}

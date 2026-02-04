@@ -25,6 +25,7 @@ const AchieveCard = () => {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 py-8 max-w-7xl mx-auto items-start">
       {achievement.map(({ id, year, program_name, details, image }) => {
         const isExpanded = expandedCards[id];
+        const imageSrc = image?.startsWith('/') ? image : `/${image || ''}`;
 
         return (
           <div
@@ -45,9 +46,10 @@ const AchieveCard = () => {
                 transition={{ duration: 0.3 }}
               />
               <Image
-                src={image}
+                src={imageSrc}
                 alt={program_name}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105 rounded-md"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>

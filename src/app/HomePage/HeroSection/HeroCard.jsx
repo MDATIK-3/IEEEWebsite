@@ -60,7 +60,8 @@ export default function HeroCard() {
                     alt="Technology Innovation"
                     fill
                     sizes="(max-width: 640px) 100vw, 640px"
-                    loading="eager"
+                    priority={index === 0}
+                    loading={index === 0 ? 'eager' : 'lazy'}
                     className="object-cover"
                   />
                 </div>

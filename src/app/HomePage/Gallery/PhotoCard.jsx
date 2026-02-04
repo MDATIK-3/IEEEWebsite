@@ -39,6 +39,8 @@ const PhotoCard = ({ photo, index, photos }) => {
             <Image
               src={photo.image}
               alt={photo.name}
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              priority={index === 0}
               className={`w-full h-full object-cover transition-all duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               } group-hover:scale-105`}
@@ -47,7 +49,6 @@ const PhotoCard = ({ photo, index, photos }) => {
                 setImageError(true);
                 setImageLoaded(true);
               }}
-              loading={index === 0 ? 'eager' : 'lazy'}
               width={800}
               height={600}
             />

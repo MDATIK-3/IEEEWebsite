@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 export default function UnderConstruction() {
@@ -24,11 +25,13 @@ export default function UnderConstruction() {
         <main className="flex items-center justify-center min-h-screen px-6 py-24 bg-gray-50 dark:bg-gray-900">
             <div className="flex flex-col lg:flex-row items-center max-w-6xl gap-12 lg:gap-20">
                 <div className="w-full lg:w-1/2">
-                    <img
+                    <Image
                         src="/images/notfound.png"
                         alt="Page under construction"
+                        width={640}
+                        height={640}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         className="w-full max-w-md mx-auto animate-pulse"
-                        loading="lazy"
                         draggable={false}
                     />
                 </div>

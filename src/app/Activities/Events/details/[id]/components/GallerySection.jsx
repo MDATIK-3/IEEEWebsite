@@ -36,6 +36,7 @@ const GallerySection = ({ event, isPastEvent, onImageClick }) => {
               alt={`Event image ${i + 1}`}
               width={200}
               height={200}
+              sizes="(max-width: 640px) 50vw, 25vw"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           </div>

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import EventsGrid from "@/app/components/Events/EventsGrid.jsx";
 import events from "@/data/eventData.json";
 
@@ -32,10 +33,12 @@ const EventsPreview = () => {
       ) : (
         <div className="text-center py-16 group">
           <div className="w-24 h-24 bg-green-50 dark:bg-green-900/30 group-hover:bg-green-100 dark:group-hover:bg-green-800/40 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-200/50 dark:group-hover:shadow-green-800/30 border border-green-100 dark:border-green-800/50">
-            <img
+            <Image
               src="/images/notfound.png"
               alt="No events"
-              className="w-12 h-12 transition-transform duration-300 group-hover:scale-110 dark:opacity-80 dark:group-hover:opacity-100"
+              width={48}
+              height={48}
+              className="h-12 w-12 transition-transform duration-300 group-hover:scale-110 dark:opacity-80 dark:group-hover:opacity-100"
             />
           </div>
           <h3 className="text-2xl font-semibold text-green-700 dark:text-green-200 group-hover:text-green-600 dark:group-hover:text-green-100 mb-2 transition-colors duration-300">

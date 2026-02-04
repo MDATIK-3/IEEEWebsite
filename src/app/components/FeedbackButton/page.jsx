@@ -1,8 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { MessageSquare, X, Send, Bot } from "lucide-react";
-import ChatbotModal from "@/app/chatbot/ChatbotModal";
+
+const ChatbotModal = dynamic(() => import("@/app/chatbot/ChatbotModal"), {
+  ssr: false,
+});
 
 export default function FeedbackButton() {
   const [isOpen, setIsOpen] = useState(false);
