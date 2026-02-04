@@ -1,49 +1,57 @@
 import { Copy, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
-export default function ChatMessage({ msg, idx, copiedIndex, onCopy }) {
-  const formatTime = (timestamp) => {
-    const date = new Date(timestamp);
-    return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-  };
+function formatTime(timestamp) {
+  const date = new Date(timestamp);
+  return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+export default function ChatMessage({ msg, copiedId, onCopy }) {
+  const isUser = msg.sender === 'user';
 
   return (
-    <div
-      className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} animate-fadeIn`}
-    >
+    <div className={`flex items-end gap-2 ${isUser ? 'justify-end' : 'justify-start'} animate-fadeIn`}>
+      {!isUser && (
+        <div className="mb-1 hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-teal-700 text-xs font-semibold text-white shadow sm:flex">
+          AI
+        </div>
+      )}
       <div
-        className={`group max-w-[80%] ${
-          msg.sender === 'user'
-            ? 'bg-gradient-to-br from-green-600 to-green-700 text-white rounded-2xl rounded-br-md shadow-md'
-            : `${msg.isError ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-md'} text-slate-900 dark:text-slate-100 border rounded-2xl rounded-bl-md`
+        className={`group max-w-[92%] sm:max-w-[80%] ${
+          isUser
+            ? 'rounded-2xl rounded-br-md bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-md'
+            : `${
+                msg.isError
+                  ? 'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20'
+                  : 'border-slate-200 bg-white/95 shadow-md dark:border-slate-700 dark:bg-slate-800/95'
+              } rounded-2xl rounded-bl-md border text-slate-900 dark:text-slate-100`
         }`}
       >
-        <div className="px-4 py-3">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold opacity-75">
-              {msg.sender === 'user' ? 'You' : 'IEEE Assistant'}
-            </span>
+        <div className="px-3 py-3 sm:px-4">
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <span className="text-xs font-semibold opacity-75">{isUser ? 'You' : 'IEEE Assistant'}</span>
             <div className="flex items-center gap-2">
-              <span className="text-xs opacity-60">
-                {formatTime(msg.timestamp)}
-              </span>
-              {msg.sender === 'bot' && (
+              <span className="text-xs opacity-60">{formatTime(msg.timestamp)}</span>
+              {!isUser && (
                 <button
-                  onClick={() => onCopy(msg.text, idx)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700"
+                  onClick={() => onCopy(msg.text, msg.id)}
+                  className="rounded p-1 opacity-100 transition hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 sm:opacity-0 sm:group-hover:opacity-100 dark:hover:bg-slate-700"
                   aria-label="Copy message"
                 >
-                  {copiedIndex === idx ? (
-                    <Check className="w-3 h-3 text-green-600" />
+                  {copiedId === msg.id ? (
+                    <Check className="h-3.5 w-3.5 text-emerald-600" />
                   ) : (
-                    <Copy className="w-3 h-3" />
+                    <Copy className="h-3.5 w-3.5" />
                   )}
                 </button>
               )}
             </div>
           </div>
-          <div className="text-sm leading-relaxed break-words">
-            {msg.sender === 'bot' ? (
+
+          <div className="break-words text-sm leading-relaxed">
+            {isUser ? (
+              <div className="whitespace-pre-wrap">{msg.text}</div>
+            ) : (
               <ReactMarkdown
                 components={{
                   a: ({ href, children }) => (
@@ -51,32 +59,31 @@ export default function ChatMessage({ msg, idx, copiedIndex, onCopy }) {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 underline"
+                      className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300"
                     >
                       {children}
                     </a>
                   ),
-                  ul: ({ children }) => (
-                    <ul className="list-disc list-inside space-y-1">{children}</ul>
+                  p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                  ul: ({ children }) => <ul className="ml-4 list-disc space-y-1">{children}</ul>,
+                  ol: ({ children }) => <ol className="ml-4 list-decimal space-y-1">{children}</ol>,
+                  code: ({ children }) => (
+                    <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs text-slate-800 dark:bg-slate-700 dark:text-slate-100">
+                      {children}
+                    </code>
                   ),
-                  ol: ({ children }) => (
-                    <ol className="list-decimal list-inside space-y-1">{children}</ol>
-                  ),
-                  li: ({ children }) => (
-                    <li className="ml-4">{children}</li>
-                  ),
-                  strong: ({ children }) => (
-                    <strong className="font-semibold">{children}</strong>
-                  ),
-                  em: ({ children }) => (
-                    <em className="italic">{children}</em>
+                  img: ({ src, alt }) => (
+                    <img
+                      src={src}
+                      alt={alt || 'Image'}
+                      className="my-2 max-h-56 w-auto rounded-lg border border-slate-300 dark:border-slate-700"
+                      loading="lazy"
+                    />
                   ),
                 }}
               >
                 {msg.text}
               </ReactMarkdown>
-            ) : (
-              <div className="whitespace-pre-wrap">{msg.text}</div>
             )}
           </div>
         </div>

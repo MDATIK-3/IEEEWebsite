@@ -1,132 +1,141 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import ChatHeader from './ChatHeader';
 import ChatArea from './ChatArea';
 import ChatInput from './ChatInput';
 import ErrorBanner from './ErrorBanner';
 import ChatStyles from './ChatStyles';
 
+function createMessage(sender, text, isError = false) {
+  const hasUUID = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function';
+  return {
+    id: hasUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
+    sender,
+    text,
+    timestamp: new Date().toISOString(),
+    isError,
+  };
+}
+
 export default function ChatbotModal({ isOpen, onClose }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [copiedIndex, setCopiedIndex] = useState(null);
+  const [copiedId, setCopiedId] = useState(null);
   const [error, setError] = useState(null);
+  const [lastUserText, setLastUserText] = useState('');
 
   const messagesEndRef = useRef(null);
-  const chatContainerRef = useRef(null);
+  const abortControllerRef = useRef(null);
 
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isLoading, scrollToBottom]);
 
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+  useEffect(() => {
+    if (!isOpen) return undefined;
 
-    const userMessage = {
-      id: Date.now(),
-      sender: 'user',
-      text: input,
-      timestamp: new Date().toISOString()
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') onClose?.();
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleEsc);
+      abortControllerRef.current?.abort();
+    };
+  }, [isOpen, onClose]);
+
+  const sendMessage = async (value = input) => {
+    const text = value.trim();
+    if (!text || isLoading) return;
+
+    const userMessage = createMessage('user', text);
+    setMessages((prev) => [...prev, userMessage]);
+    setLastUserText(text);
     setInput('');
     setIsLoading(true);
     setError(null);
+
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = new AbortController();
 
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: input, context: messages.slice(-10) }),
+        body: JSON.stringify({
+          query: text,
+          context: [...messages.slice(-9), userMessage],
+        }),
+        signal: abortControllerRef.current.signal,
       });
 
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(payload?.error || `Request failed (${res.status})`);
+      }
 
-      const data = await res.json();
-
-      setMessages(prev => [
+      setMessages((prev) => [
         ...prev,
-        {
-          id: Date.now(),
-          sender: 'bot',
-          text: data.response || 'No response received',
-          timestamp: new Date().toISOString(),
-        },
+        createMessage('bot', payload?.response || 'No response received.'),
       ]);
-    } catch (error) {
-      console.error('Chat error:', error);
-      setError(error.message);
-      setMessages(prev => [
+    } catch (requestError) {
+      if (requestError.name === 'AbortError') return;
+
+      const message = requestError?.message || 'Unable to connect to chat service.';
+      setError(message);
+      setMessages((prev) => [
         ...prev,
-        {
-          id: Date.now(),
-          sender: 'bot',
-          text: '⚠️ Sorry, I encountered an error. Please try again.',
-          timestamp: new Date().toISOString(),
-          isError: true,
-        },
+        createMessage('bot', 'Sorry, I encountered an error. Please try again.', true),
       ]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const copyToClipboard = async (text, index) => {
+  const copyToClipboard = async (text, messageId) => {
     try {
       await navigator.clipboard.writeText(text);
-      setCopiedIndex(index);
-      setTimeout(() => setCopiedIndex(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
+      setCopiedId(messageId);
+      setTimeout(() => setCopiedId(null), 1800);
+    } catch (copyError) {
+      console.error('Failed to copy message:', copyError);
     }
   };
 
   const clearChat = () => {
-    if (window.confirm('Clear all messages?')) {
-      setMessages([]);
-      setError(null);
-    }
+    setMessages([]);
+    setError(null);
   };
 
   const retryLastMessage = () => {
-    if (messages.length >= 2) {
-      const lastUserMessage = [...messages].reverse().find(m => m.sender === 'user');
-      if (lastUserMessage) {
-        setInput(lastUserMessage.text);
-        const lastBotIndex = messages.findIndex(m => m.sender === 'bot' && m.id > lastUserMessage.id);
-        if (lastBotIndex !== -1) {
-          setMessages(messages.slice(0, lastBotIndex));
-        }
-      }
-    }
+    if (!lastUserText || isLoading) return;
+    sendMessage(lastUserText);
   };
-
-  // 🔒 Close modal on ESC key
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === 'Escape') onClose?.();
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/65 p-0 backdrop-blur-md sm:items-center sm:p-4 animate-fadeIn"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="IEEE GUB chatbot"
     >
       <div
-        className="w-full max-w-2xl h-[85vh] flex flex-col rounded-2xl shadow-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 border border-slate-200 dark:border-slate-800 animate-slideUp"
-        onClick={(e) => e.stopPropagation()}
+        className="chat-panel relative flex h-[100dvh] w-full flex-col overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100 shadow-2xl dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 sm:h-[85vh] sm:max-w-4xl sm:rounded-3xl animate-slideUp"
+        onClick={(event) => event.stopPropagation()}
       >
         <ChatHeader
           isModal
@@ -142,9 +151,10 @@ export default function ChatbotModal({ isOpen, onClose }) {
         <ChatArea
           messages={messages}
           isLoading={isLoading}
-          copiedIndex={copiedIndex}
+          copiedId={copiedId}
           onCopy={copyToClipboard}
-          chatContainerRef={chatContainerRef}
+          onSuggestion={setInput}
+          onSendSuggestion={sendMessage}
           messagesEndRef={messagesEndRef}
         />
 
@@ -154,6 +164,10 @@ export default function ChatbotModal({ isOpen, onClose }) {
           onSend={sendMessage}
           isLoading={isLoading}
         />
+
+        <span className="sr-only" aria-live="polite">
+          {isLoading ? 'Assistant is typing' : ''}
+        </span>
 
         <ChatStyles />
       </div>

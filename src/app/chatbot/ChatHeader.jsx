@@ -2,51 +2,59 @@ import { Trash2, RotateCcw, Sparkles, X } from 'lucide-react';
 
 export default function ChatHeader({ isModal, isLoading, messages = [], onRetry, onClear, onClose }) {
   return (
-    <header className="relative px-6 py-4 bg-gradient-to-r from-green-700 via-green-800 to-green-700 dark:from-slate-900 dark:via-green-950 dark:to-green-950 border-b border-green-700/50 dark:border-slate-800 rounded-t-2xl shadow-md">
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 rounded-t-2xl pointer-events-none" />
+    <header className="relative overflow-hidden border-b border-emerald-800/30 rounded-none bg-gradient-to-r from-emerald-700 via-emerald-800 to-teal-800 px-4 py-3 shadow-md dark:border-emerald-900/40 dark:from-emerald-950 dark:via-teal-950 dark:to-slate-950 sm:rounded-t-3xl sm:px-6 sm:py-4">
+      <div className="pointer-events-none absolute inset-0 rounded-none bg-grid-pattern opacity-10 sm:rounded-t-3xl" />
+      <div className="pointer-events-none absolute -left-20 -top-16 h-40 w-40 rounded-full bg-emerald-300/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-10 bottom-0 h-28 w-28 rounded-full bg-cyan-200/20 blur-3xl" />
 
       <div className="relative flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-green-500/20 rounded-lg backdrop-blur-sm">
-            <Sparkles className="w-6 h-6 text-green-300" />
+          <div className="rounded-xl bg-white/15 p-2.5 backdrop-blur-md ring-1 ring-white/20">
+            <Sparkles className="h-5 w-5 text-emerald-100 sm:h-6 sm:w-6" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white select-none">
+            <h1 className="select-none text-lg font-semibold tracking-tight text-white sm:text-xl">
               IEEE GUB Assistant
             </h1>
-            <p className="text-xs text-green-200 mt-0.5 select-none">
-              {isLoading ? 'Thinking…' : 'Online'}
-            </p>
+            <div className="mt-1 flex items-center gap-2">
+              <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-2 py-0.5 text-[11px] font-medium text-emerald-100 ring-1 ring-white/20">
+                <span className={`h-1.5 w-1.5 rounded-full ${isLoading ? 'bg-amber-300' : 'bg-emerald-300'}`} />
+                {isLoading ? 'Generating' : 'Online'}
+              </span>
+              <p className="select-none text-xs text-emerald-100/90">{messages.length} messages</p>
+            </div>
           </div>
         </div>
+
         <div className="flex items-center gap-2">
           {messages.length > 0 && (
             <>
               <button
                 onClick={onRetry}
-                className="p-2 rounded-lg bg-green-500/20 hover:bg-green-500/30 text-green-200 transition-all duration-200"
+                className="rounded-lg bg-white/10 p-2 text-emerald-100 transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 aria-label="Retry last message"
+                title="Retry"
               >
-                <RotateCcw className="w-4 h-4" />
+                <RotateCcw className="h-4 w-4" />
               </button>
-
               <button
                 onClick={onClear}
-                className="p-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-200 transition-all duration-200"
+                className="rounded-lg bg-rose-400/20 p-2 text-rose-100 transition hover:bg-rose-400/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-200/70"
                 aria-label="Clear chat"
+                title="Clear chat"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="h-4 w-4" />
               </button>
             </>
           )}
-
           {isModal && (
             <button
               onClick={onClose}
-              className="p-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-200 transition-all duration-200"
+              className="rounded-lg bg-white/10 p-2 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
               aria-label="Close chatbot"
+              title="Close"
             >
-              <X className="w-4 h-4" />
+              <X className="h-4 w-4" />
             </button>
           )}
         </div>

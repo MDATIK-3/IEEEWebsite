@@ -5,55 +5,54 @@ export default function ChatInput({ input = '', setInput, onSend, isLoading }) {
   const textareaRef = useRef(null);
 
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 120)}px`;
-    }
+    if (!textareaRef.current) return;
+    textareaRef.current.style.height = 'auto';
+    textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 140)}px`;
   }, [input]);
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSend();
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
+      event.preventDefault();
       onSend();
     }
   };
 
   return (
-    <footer className="px-4 py-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-b-2xl">
-      <div className="flex items-end gap-3">
-        <div className="flex-1 relative">
+    <footer className="border-t border-slate-200/90 bg-white/95 px-3 py-3 backdrop-blur dark:border-slate-800 dark:bg-slate-900/95 sm:px-4 sm:py-4 sm:rounded-b-3xl">
+      <form onSubmit={handleSubmit} className="flex items-end gap-2 sm:gap-3">
+        <div className="relative flex-1">
           <textarea
             ref={textareaRef}
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(event) => setInput(event.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask about events, executives, or activities..."
             rows={1}
             disabled={isLoading}
             maxLength={2000}
-            className="w-full px-4 py-3 rounded-xl border-2 border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent resize-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{ minHeight: '48px' }}
+            className="min-h-12 w-full resize-none rounded-2xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-500 shadow-sm transition-all focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/25 disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400 sm:px-4 sm:py-3 sm:text-base"
             aria-label="Chat input field"
           />
         </div>
 
         <button
-          onClick={onSend}
+          type="submit"
           disabled={!input.trim() || isLoading}
-          className="p-3 rounded-xl bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 disabled:from-slate-300 disabled:to-slate-400 dark:disabled:from-slate-700 dark:disabled:to-slate-800 disabled:cursor-not-allowed text-white font-medium transition-all shadow-md hover:shadow-lg disabled:shadow-none transform hover:scale-105 active:scale-95 disabled:transform-none"
+          className="rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 p-3 text-white shadow-md transition-all hover:from-emerald-700 hover:to-teal-800 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 active:scale-95 disabled:cursor-not-allowed disabled:from-slate-300 disabled:to-slate-400 disabled:shadow-none dark:disabled:from-slate-700 dark:disabled:to-slate-800"
           aria-label="Send message"
         >
-          <Send className="w-5 h-5" />
+          <Send className="h-5 w-5" />
         </button>
-      </div>
+      </form>
 
-      <div className="flex items-center justify-between mt-2 px-1">
-        <p className="text-xs text-slate-500 dark:text-slate-400">
-          Press <kbd>Enter</kbd> to send • <kbd>Shift + Enter</kbd> for new line
-        </p>
-        <p className="text-xs text-slate-400 dark:text-slate-500">
-          {input.length}/2000
-        </p>
+      <div className="mt-2 flex items-center justify-between px-1">
+        <p className="text-xs text-slate-500 dark:text-slate-400">Enter to send, Shift+Enter for newline</p>
+        <p className="text-xs text-slate-400 dark:text-slate-500">{input.length}/2000</p>
       </div>
     </footer>
   );

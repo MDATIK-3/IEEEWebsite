@@ -4,7 +4,7 @@ export default function ChatStyles() {
       @keyframes fadeIn {
         from {
           opacity: 0;
-          transform: translateY(10px);
+          transform: translateY(12px);
         }
         to {
           opacity: 1;
@@ -22,10 +22,10 @@ export default function ChatStyles() {
         }
       }
       .animate-fadeIn {
-        animation: fadeIn 0.3s ease-out;
+        animation: fadeIn 0.25s ease-out;
       }
       .animate-slideUp {
-        animation: slideUp 0.3s ease-out;
+        animation: slideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .bg-grid-pattern {
         background-image:
@@ -35,6 +35,20 @@ export default function ChatStyles() {
       }
       .scroll-smooth {
         scroll-behavior: smooth;
+      }
+      .chat-panel {
+        position: relative;
+      }
+      .chat-panel::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid rgba(148, 163, 184, 0.28);
+        pointer-events: none;
+      }
+      .text-balance {
+        text-wrap: balance;
       }
       .scroll-smooth::-webkit-scrollbar {
         width: 8px;
@@ -49,6 +63,12 @@ export default function ChatStyles() {
       }
       .scroll-smooth::-webkit-scrollbar-thumb:hover {
         background: rgba(0, 0, 0, 0.3);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .animate-fadeIn,
+        .animate-slideUp {
+          animation: none !important;
+        }
       }
     `}</style>
   );
