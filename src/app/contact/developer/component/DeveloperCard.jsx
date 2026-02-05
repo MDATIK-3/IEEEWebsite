@@ -1,9 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import DeveloperProfile from './DeveloperProfile';
 import SectionHeader from './SectionHeader';
-import LoadingState from '@/app/components/LoadingSpinner';
+import roles from '@/data/ContributionRoles.json';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -20,9 +20,27 @@ const containerVariants = {
 
 const DeveloperCard = () => {
   const shouldReduceMotion = useReducedMotion();
-  const [contributors, setContributors] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const baseContributors = useMemo(
+    () =>
+      roles.map((role, index) => ({
+        id: index + 1,
+        login: role.login,
+        name: role.name || role.login,
+        developer_type: role.developer_type || 'Developer',
+        batch: role.batch || '',
+        facebook: role.facebook || '',
+        linkedin: role.linkedin || '',
+        email: role.email || '',
+        bio: role.bio || '',
+        contributions: null,
+        html_url: role.github || (role.login ? `https://github.com/${role.login}` : ''),
+        avatar_url: role.avatar_url || (role.login ? `https://avatars.githubusercontent.com/${role.login}` : ''),
+        avatar_updated_at: Date.now(),
+      })),
+    []
+  );
+
+  const [contributors, setContributors] = useState(baseContributors);
 
   useEffect(() => {
     const fetchContributors = async () => {
@@ -31,6 +49,7 @@ const DeveloperCard = () => {
           headers: {
             'Accept': 'application/json',
           },
+          cache: 'no-store',
         });
 
         if (!response.ok) {
@@ -38,31 +57,16 @@ const DeveloperCard = () => {
         }
 
         const data = await response.json();
-        setContributors(data);
-        setLoading(false);
+        if (Array.isArray(data) && data.length > 0) {
+          setContributors(data);
+        }
       } catch (err) {
         console.error('Error fetching contributors:', err);
-        setError('Failed to load contributors');
-        setLoading(false);
       }
     };
 
     fetchContributors();
   }, []);
-
-  if (loading) {
-    return (
-      <LoadingState />
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-        <p className="text-lg text-red-600 dark:text-red-400">{error}</p>
-      </div>
-    );
-  }
 
   return (
     <div

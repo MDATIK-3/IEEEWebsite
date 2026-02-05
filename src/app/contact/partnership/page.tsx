@@ -121,7 +121,7 @@ const PartnershipPage = () => {
     );
 
     useEffect(() => {
-        fetch('/api/partnership', { method: 'GET' })
+        fetch('/api/partnership', { method: 'GET', cache: 'no-store' })
             .then((res) => res.json())
             .then((data) => setCsrfToken(data.csrfToken))
             .catch((err) => {

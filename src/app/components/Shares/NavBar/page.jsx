@@ -7,6 +7,7 @@ import MobileNav from "./components/MobileNav";
 import HamburgerButton from "./components/HamburgerButton";
 import ThemeToggleButton from "@/app/Theme/ThemeToggleButton";
 import useMounted from "@/app/hooks/useMounted";
+import Link from "next/link";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,6 +16,15 @@ const navLinks = [
     subLinks: [
       { href: "/Activities/Events", label: "Events" },
       { href: "/Activities/Achievements", label: "Achievements" },
+    ],
+  },
+  {
+    label: "Community",
+    subLinks: [
+      { href: "/Join", label: "Join IEEE" },
+      { href: "/Projects", label: "Projects" },
+      { href: "/Opportunities", label: "Opportunities" },
+      { href: "/Resources", label: "Resources" },
     ],
   },
   { href: "/Executives", label: "Executives" },
@@ -64,6 +74,12 @@ export default function Navbar() {
           <Logo />
           <div className="flex items-center space-x-4">
             <DesktopNavLinks navLinks={navLinks} />
+            <Link
+              href="/Join"
+              className="hidden lg:inline-flex items-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+            >
+              Join IEEE
+            </Link>
             <ThemeToggleButton />
             <div className="lg:hidden p-2 w-10 h-10" />
           </div>
@@ -79,6 +95,12 @@ export default function Navbar() {
           <Logo onClick={handleMobileLinkClick} />
           <div className="flex items-center space-x-4">
             <DesktopNavLinks navLinks={navLinks} />
+            <Link
+              href="/Join"
+              className="hidden lg:inline-flex items-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+            >
+              Join IEEE
+            </Link>
             <ThemeToggleButton />
             <HamburgerButton
               open={mobileOpen}

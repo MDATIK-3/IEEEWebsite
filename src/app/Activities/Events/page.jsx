@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 import EventsFilter from "@/app/components/Events/EventsFilter";
 import EventsGrid from "@/app/components/Events/EventsGrid";
 import events from "@/data/eventData.json";
 import useMounted from "@/app/hooks/useMounted";
+import { buildCalendarUrl, buildLocalDate } from "@/app/utils/eventCalendar";
 
 const emptyStateVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -39,12 +41,113 @@ const buttonVariants = {
   tap: { scale: 0.95 },
 };
 
+const formatMonth = (dateStr) => {
+  const date = new Date(dateStr);
+  if (isNaN(date)) return "Unknown Month";
+  return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+};
+
+const formatDay = (dateStr) => {
+  const date = new Date(dateStr);
+  if (isNaN(date)) return { day: "--", weekday: "" };
+  return {
+    day: date.toLocaleDateString("en-US", { day: "2-digit" }),
+    weekday: date.toLocaleDateString("en-US", { weekday: "short" }),
+  };
+};
+
+const CalendarView = ({ events }) => {
+  const grouped = useMemo(() => {
+    const sorted = [...events].sort((a, b) => {
+      const aDate = new Date(a.date);
+      const bDate = new Date(b.date);
+      if (isNaN(aDate) && isNaN(bDate)) return 0;
+      if (isNaN(aDate)) return 1;
+      if (isNaN(bDate)) return -1;
+      return bDate - aDate;
+    });
+    return sorted.reduce((acc, event) => {
+      const key = formatMonth(event.date);
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(event);
+      return acc;
+    }, {});
+  }, [events]);
+
+  if (!events.length) {
+    return (
+      <div className="flex items-center justify-center py-16 h-full min-h-[300px]">
+        <p className="text-gray-500 text-lg">No events to display</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-10">
+      {Object.entries(grouped).map(([month, monthEvents]) => (
+        <section key={month} className="space-y-4">
+          <h3 className="text-2xl font-semibold text-emerald-700 dark:text-emerald-300">{month}</h3>
+          <div className="space-y-4">
+            {monthEvents.map((event) => {
+              const dateInfo = formatDay(event.date);
+              const calendarUrl = buildCalendarUrl(event);
+              const startDate = buildLocalDate(event.date, event.startTime);
+              const isUpcoming = startDate ? startDate > new Date() : false;
+              return (
+                <div
+                  key={event.id}
+                  className="flex flex-col md:flex-row md:items-center gap-4 rounded-2xl border border-emerald-100 bg-white/90 dark:bg-slate-800/90 dark:border-emerald-800 p-5 shadow-sm"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-200 flex flex-col items-center justify-center">
+                      <span className="text-sm font-semibold">{dateInfo.weekday}</span>
+                      <span className="text-lg font-bold">{dateInfo.day}</span>
+                    </div>
+                    <div>
+                      <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">{event.eventName}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        {event.eventType} • {event.time || "Time TBA"}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {event.locationLabel || event.eventArea || "Location TBA"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="md:ml-auto flex flex-wrap items-center gap-3">
+                    <Link
+                      href={`/Activities/Events/details/${event.id}`}
+                      className="inline-flex items-center rounded-full border border-emerald-300 px-4 py-2 text-xs font-semibold text-emerald-700 hover:bg-emerald-50 dark:text-emerald-200 dark:border-emerald-700 dark:hover:bg-emerald-900/30"
+                    >
+                      View Details
+                    </Link>
+                    {calendarUrl && isUpcoming && (
+                      <a
+                        href={calendarUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-700"
+                      >
+                        Add to Calendar
+                      </a>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+};
+
 const EventsFullPage = () => {
   const now = new Date();
 
   const [searchText, setSearchText] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [viewMode, setViewMode] = useState("list");
   
   const mounted = useMounted();
 
@@ -70,6 +173,7 @@ const EventsFullPage = () => {
   });
 
   const displayedEvents = filteredEvents.slice(0, 9);
+  const calendarEvents = filteredEvents;
   const upcomingCount = events.filter((event) => new Date(event.date) > now).length;
   const pastCount = events.filter((event) => new Date(event.date) < now).length;
 
@@ -85,8 +189,35 @@ const EventsFullPage = () => {
         setIsSearchFocused={setIsSearchFocused}
       />
 
-      {displayedEvents.length > 0 ? (
-        <EventsGrid events={displayedEvents} now={now} />
+      <div className="flex justify-center mb-8">
+        <div className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 dark:bg-slate-800 dark:border-emerald-700 p-1 shadow-sm">
+          {[
+            { id: "list", label: "List View" },
+            { id: "calendar", label: "Calendar View" },
+          ].map((option) => (
+            <button
+              key={option.id}
+              type="button"
+              onClick={() => setViewMode(option.id)}
+              className={`px-4 py-2 text-sm font-semibold rounded-full transition-all ${
+                viewMode === option.id
+                  ? "bg-emerald-600 text-white shadow"
+                  : "text-emerald-700 hover:bg-emerald-50 dark:text-emerald-200 dark:hover:bg-emerald-900/30"
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {((viewMode === "list" && displayedEvents.length > 0) ||
+        (viewMode === "calendar" && calendarEvents.length > 0)) ? (
+        viewMode === "list" ? (
+          <EventsGrid events={displayedEvents} now={now} />
+        ) : (
+          <CalendarView events={calendarEvents} />
+        )
       ) : (
         <motion.div
           key="empty-state"

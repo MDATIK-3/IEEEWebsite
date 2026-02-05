@@ -73,6 +73,7 @@ export default function ChatbotModal({ isOpen, onClose }) {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        cache: 'no-store',
         body: JSON.stringify({
           query: text,
           context: [...messages.slice(-9), userMessage],

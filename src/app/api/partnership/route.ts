@@ -6,6 +6,9 @@ import { toZonedTime } from 'date-fns-tz';
 import { randomBytes } from 'crypto';
 import { cookies } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const requiredEnvVars = [
   'EMAIL_HOST',
   'EMAIL_PORT',
@@ -69,14 +72,20 @@ const sanitizeInput = (input: string | undefined): string => {
 export async function POST(request: Request) {
   try {
     if (!(await validateCsrfToken(request))) {
-      return NextResponse.json({ message: 'Invalid CSRF token' }, { status: 403 });
+      return NextResponse.json(
+        { message: 'Invalid CSRF token' },
+        { status: 403, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     let body: PartnershipRequest;
     try {
       body = await request.json();
     } catch {
-      return NextResponse.json({ message: 'Invalid request body' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Invalid request body' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     const {
@@ -98,39 +107,66 @@ export async function POST(request: Request) {
     } = body;
 
     if (!organizationName || organizationName.trim().length < 2) {
-      return NextResponse.json({ message: 'Organization name must be at least 2 characters' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Organization name must be at least 2 characters' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     if (!organizationType) {
-      return NextResponse.json({ message: 'Please select an organization type' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Please select an organization type' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     if (!contactPerson || contactPerson.trim().length < 2) {
-      return NextResponse.json({ message: 'Contact person name must be at least 2 characters' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Contact person name must be at least 2 characters' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      return NextResponse.json({ message: 'Please provide a valid email address' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Please provide a valid email address' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     if (phone && !/^\+?[\d\s-]{7,}$/.test(phone)) {
-      return NextResponse.json({ message: 'Please provide a valid phone number' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Please provide a valid phone number' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     if (website && !/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(website)) {
-      return NextResponse.json({ message: 'Please provide a valid URL' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Please provide a valid URL' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     if (!partnershipType) {
-      return NextResponse.json({ message: 'Please select a partnership type' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Please select a partnership type' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     if (!projectDescription || projectDescription.trim().length < 50) {
-      return NextResponse.json({ message: 'Project description must be at least 50 characters' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Project description must be at least 50 characters' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     if (!objectives || objectives.trim().length < 10) {
-      return NextResponse.json({ message: 'Partnership objectives must be at least 10 characters' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Partnership objectives must be at least 10 characters' },
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
+      );
     }
 
     const zonedDate = toZonedTime(new Date(), 'UTC');
@@ -287,7 +323,10 @@ Application submitted on: ${submissionDate}
     const cookieStore = await cookies();
     cookieStore.delete('csrfToken');
 
-    return NextResponse.json({ message: 'Partnership application submitted successfully!' }, { status: 200 });
+    return NextResponse.json(
+      { message: 'Partnership application submitted successfully!' },
+      { status: 200, headers: { 'Cache-Control': 'no-store' } }
+    );
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error('Partnership application error:', {
@@ -297,17 +336,26 @@ Application submitted on: ${submissionDate}
       });
 
       if (error.message.includes('Invalid request body')) {
-        return NextResponse.json({ message: 'Invalid request body' }, { status: 400 });
+        return NextResponse.json(
+          { message: 'Invalid request body' },
+          { status: 400, headers: { 'Cache-Control': 'no-store' } }
+        );
       }
 
       if (error.message.includes('Failed to send email')) {
-        return NextResponse.json({ message: 'Failed to send email. Please try again later.' }, { status: 500 });
+        return NextResponse.json(
+          { message: 'Failed to send email. Please try again later.' },
+          { status: 500, headers: { 'Cache-Control': 'no-store' } }
+        );
       }
     } else {
       console.error('Unknown error:', error);
     }
 
-    return NextResponse.json({ message: 'Failed to submit partnership application. Please try again later.' }, { status: 500 });
+    return NextResponse.json(
+      { message: 'Failed to submit partnership application. Please try again later.' },
+      { status: 500, headers: { 'Cache-Control': 'no-store' } }
+    );
   }
 }
 
@@ -321,5 +369,5 @@ export async function GET() {
     maxAge: 60 * 60,
   });
 
-  return NextResponse.json({ csrfToken });
+  return NextResponse.json({ csrfToken }, { headers: { 'Cache-Control': 'no-store' } });
 }

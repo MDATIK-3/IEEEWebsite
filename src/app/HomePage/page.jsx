@@ -5,6 +5,7 @@ import ModeratorMessages from "./ModeratorMessages/page"
 import Feature from "./Feature/Feature";
 import AllPhoto from "./Gallery/page";
 import FAQ from "./FAQ/page";
+import Spotlights from "./Spotlights/page";
 
 function Page() {
     return (
@@ -12,6 +13,7 @@ function Page() {
             <HeroSection />
             <About />
             <ModeratorMessages />
+            <Spotlights />
             <AllEvent />
             <AllPhoto />
             <Feature />

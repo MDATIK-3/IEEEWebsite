@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path'
 const DATA_DIR = path.join(process.cwd(), 'src/data');
 const MODEL_NAME = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 const GREETING_REGEX =
   /^(hi|hello|hey|heya|yo|hola|salam|assalamualaikum|good\s?(morning|afternoon|evening))[\s!,.?]*$/i;
 const THANKS_REGEX = /^(thanks|thank you|ty|thx)[\s!,.?]*$/i;
@@ -68,7 +70,7 @@ export async function POST(request) {
         JSON.stringify({ error: 'Chat service is not configured. Missing GEMINI_API_KEY.' }),
         {
           status: 500,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
         }
       );
     }
@@ -80,14 +82,14 @@ export async function POST(request) {
     if (!query) {
       return new Response(JSON.stringify({ error: 'Query is required.' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
       });
     }
     const smallTalkReply = getSmallTalkReply(query);
     if (smallTalkReply) {
       return new Response(JSON.stringify({ response: smallTalkReply }), {
         status: 200,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
       });
     }
 
@@ -127,13 +129,13 @@ Response:
 
     return new Response(JSON.stringify({ response }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
     });
   } catch (error) {
     console.error('Chat API error:', error);
     return new Response(JSON.stringify({ error: 'Failed to generate response.' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
     });
   }
 }

@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "title": "Event Operations Volunteer",
+    "committee": "Student Branch",
+    "description": "Support logistics, attendee check-in, and run-of-show execution for upcoming events.",
+    "skills": ["Coordination", "Communication", "Teamwork"],
+    "timeCommitment": "3-5 hours per event",
+    "deadline": "2026-03-15",
+    "status": "Open",
+    "applyUrl": "https://forms.gle/ieee-gub-volunteer-ops"
+  },
+  {
+    "id": 2,
+    "title": "Content & Media Team",
+    "committee": "Student Branch",
+    "description": "Create social posts, event recaps, and photo/video coverage for IEEE GUB activities.",
+    "skills": ["Design", "Copywriting", "Photography"],
+    "timeCommitment": "2-4 hours per week",
+    "deadline": "2026-03-20",
+    "status": "Open",
+    "applyUrl": "https://forms.gle/ieee-gub-content-team"
+  },
+  {
+    "id": 3,
+    "title": "Workshop Co-Lead (AI Track)",
+    "committee": "IEEE CS",
+    "description": "Co-design workshop curriculum, recruit mentors, and lead hands-on sessions.",
+    "skills": ["AI/ML", "Teaching", "Planning"],
+    "timeCommitment": "6-8 hours per month",
+    "deadline": "2026-04-05",
+    "status": "Open",
+    "applyUrl": "https://forms.gle/ieee-gub-ai-workshop"
+  },
+  {
+    "id": 4,
+    "title": "Sponsorship Outreach",
+    "committee": "IEEE PES",
+    "description": "Build partnerships with local industry and coordinate sponsor benefits.",
+    "skills": ["Outreach", "Negotiation", "Presentation"],
+    "timeCommitment": "3-6 hours per month",
+    "deadline": "2026-02-28",
+    "status": "Closed",
+    "applyUrl": "https://forms.gle/ieee-gub-sponsorship"
+  }
+]

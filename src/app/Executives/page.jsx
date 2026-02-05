@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import executiveData from '@/data/executiveData.json';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -7,7 +7,6 @@ import Stats from './components/Stats';
 import MemberList from './components/MemberList';
 import MobileFilters from './components/MobileFilters';
 import MemberDetailModal from './components/MemberDetailModal';
-import LoadingState from '@/app/components/LoadingSpinner';
 import useFilteredMembers from '@/app/hooks/useFilteredMembers';
 
 const ExecutivePage = () => {
@@ -18,7 +17,6 @@ const ExecutivePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   const { faculty, students, filteredMembers } = useFilteredMembers({
     executiveData,
@@ -26,14 +24,6 @@ const ExecutivePage = () => {
     selectedYear,
     selectedGroup,
   });
-
-  useEffect(() => {
-    setLoading(false)
-  }, []);
-
-  if (loading) {
-    return <LoadingState />;
-  }
 
   if (!defaultYear) {
     return (

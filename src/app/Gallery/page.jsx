@@ -6,7 +6,6 @@ import GalleryControls from "./components/GalleryControls";
 import PhotoCard from "./components/PhotoCard";
 import Pagination from "./components/Pagination";
 import EmptyState from "./components/EmptyState";
-import LoadingSpinner from "../components/LoadingSpinner";
 import Modal from "@/app/components/Shares/Modal";
 import BgColor from "../components/BgColor";
 
@@ -21,7 +20,7 @@ const GalleryFull = () => {
     const [pendingIndex, setPendingIndex] = useState(null);
     const modalRef = useRef();
 
-    const { filteredPhotos, loading } = useGalleryData(searchQuery, selectedCategory);
+    const { filteredPhotos } = useGalleryData(searchQuery, selectedCategory);
 
     useEffect(() => {
         setCurrentPage(1);
@@ -52,8 +51,6 @@ const GalleryFull = () => {
             setShowModal(true);
         }
     };
-
-    if (loading) return <LoadingSpinner />;
 
     return (
         <div className="relative pt-20 bg-gradient-to-br from-green-50 via-cyan-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">

@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { IoMdTimer } from "react-icons/io";
 import { CiCalendar } from "react-icons/ci";
 import Link from "next/link";
-import { User } from 'lucide-react';
+import { CalendarPlus, User } from 'lucide-react';
 import Image from 'next/image';
+import { buildCalendarUrl, buildLocalDate } from '@/app/utils/eventCalendar';
 
 const formatDate = (dateString) => {
   try {
@@ -24,17 +25,25 @@ const formatDate = (dateString) => {
 const EventCard = ({ event, onError, onSelect }) => {
   if (!event) return null;
 
-  const { id, image, eventName, date, guest, time } = event;
+  const { id, image, eventName, date, guest, time, startTime, endTime, locationLabel } = event;
   const [countdown, setCountdown] = useState(null);
   const [imageFailed, setImageFailed] = useState(false);
   const imageSrc = image?.startsWith('/') ? image : `/${image || ''}`;
+  const calendarUrl = useMemo(() => buildCalendarUrl(event), [event]);
+  const startDate = useMemo(() => buildLocalDate(date, startTime), [date, startTime]);
+  const isUpcoming = useMemo(() => {
+    if (!startDate) return false;
+    return startDate > new Date();
+  }, [startDate]);
 
   useEffect(() => {
-    if (!date) return;
-    const eventDate = new Date(date);
+    if (!startDate || !calendarUrl || !isUpcoming) {
+      setCountdown(null);
+      return;
+    }
     const updateCountdown = () => {
       const now = new Date();
-      const diff = eventDate - now;
+      const diff = startDate - now;
       if (diff <= 0) return setCountdown(null);
       const d = Math.floor(diff / (1000 * 60 * 60 * 24));
       const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -45,7 +54,7 @@ const EventCard = ({ event, onError, onSelect }) => {
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [date]);
+  }, [startDate, calendarUrl, isUpcoming]);
 
   const handleClick = useCallback(() => {
     try {
@@ -88,7 +97,7 @@ const EventCard = ({ event, onError, onSelect }) => {
             </div>
           </Link>
 
-          {countdown && (
+          {countdown && isUpcoming && (
             <div className="absolute top-3 right-3 flex items-center gap-1 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm border border-white/20 transform group-hover:scale-110 transition-transform duration-300">
               <IoMdTimer className="text-sm animate-pulse" />
               {countdown}
@@ -131,6 +140,25 @@ const EventCard = ({ event, onError, onSelect }) => {
             </div>
           )}
         </div>
+
+        {calendarUrl && startTime && endTime && isUpcoming && (
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            {locationLabel && (
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                {locationLabel}
+              </span>
+            )}
+            <a
+              href={calendarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-transform hover:scale-105"
+            >
+              <CalendarPlus className="h-4 w-4" />
+              Add to Calendar
+            </a>
+          </div>
+        )}
       </div>
     </article>
   );

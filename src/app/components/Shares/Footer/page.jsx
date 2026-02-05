@@ -16,11 +16,14 @@ import Contributors from "./Contributors";
 
 const Footer = () => {
   const customLinks = [
-    { label: "Home", href: "/" },
-    { label: "Gallery", href: "/Gallery" },
+    { label: "Join IEEE", href: "/Join" },
+    { label: "Projects", href: "/Projects" },
+    { label: "Opportunities", href: "/Opportunities" },
+    { label: "Resources", href: "/Resources" },
     { label: "Events", href: "/Activities/Events" },
     { label: "Executives", href: "/Executives" },
-    { label: "Contact", href: "/contact" },
+    { label: "Gallery", href: "/Gallery" },
+    { label: "Contact", href: "/contact/GeneralContact" },
   ];
 
   const websiteLinks = [
@@ -49,6 +52,12 @@ const Footer = () => {
               innovation, collaboration, and professional development in Green
               University of Bangladesh.
             </p>
+            <Link
+              href="/Join"
+              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+            >
+              Join IEEE
+            </Link>
             <div className="flex justify-center md:justify-start flex-wrap gap-3">
               <a
                 href="https://www.facebook.com/ieeesbgub/"

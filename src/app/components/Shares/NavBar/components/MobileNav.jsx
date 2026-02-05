@@ -4,6 +4,7 @@ import { cx } from '@/app/utils/cx';
 import Logo from './Logo';
 import NavDropdown from './NavDropdown';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 export default function MobileNav({ mobileOpen, onClose, navLinks }) {
   const pathname = usePathname();
@@ -58,6 +59,15 @@ export default function MobileNav({ mobileOpen, onClose, navLinks }) {
               );
             })}
           </ul>
+          <div className="px-6 pb-8">
+            <Link
+              href="/Join"
+              onClick={onClose}
+              className="block text-center rounded-full bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+            >
+              Join IEEE
+            </Link>
+          </div>
         </nav>
       </aside>
     </>

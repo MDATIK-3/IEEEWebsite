@@ -6,6 +6,10 @@ import { Providers } from "@/app/Theme/ThemeProvider.jsx";
 import { metadata, viewport } from '@/app/utils/metadata.js';
 import './globals.css';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>

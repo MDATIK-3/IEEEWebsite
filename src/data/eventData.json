@@ -38,7 +38,28 @@
       "/images/Event/3.jpg",
       "/images/Event/4.jpg"
     ],
-    "registrationLink": "https://googleform.com/register..dsafdas.f.a.."
+    "registrationLink": "https://googleform.com/register..dsafdas.f.a..",
+    "startTime": "10:00 PM",
+    "endTime": "12:00 AM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Online via Zoom",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   },
   {
     "id": 2,
@@ -79,7 +100,28 @@
       "/images/Event/YP_TalkSeries_2025_SS03.png",
       "/images/Event/YP_TalkSeries_2025_SS04.png"
     ],
-    "registrationLink": "https://forms.gle/ivXp6VDpdEsHkQCp9"
+    "registrationLink": "https://forms.gle/ivXp6VDpdEsHkQCp9",
+    "startTime": "08:00 PM",
+    "endTime": "10:00 PM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Online via Zoom",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   },
   {
     "id": 3,
@@ -120,7 +162,28 @@
       "/images/Event/11.jpg",
       "/images/Event/12.jpg"
     ],
-    "registrationLink": "https://ieee.gub.edu.bd/debate-contest-registration"
+    "registrationLink": "https://ieee.gub.edu.bd/debate-contest-registration",
+    "startTime": "02:00 PM",
+    "endTime": "04:15 PM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   },
   {
     "id": 4,
@@ -161,7 +224,28 @@
       "/images/Event/15.jpg",
       "/images/Event/16.jpg"
     ],
-    "registrationLink": "https://ieee.gub.edu.bd/industry-academia-seminar"
+    "registrationLink": "https://ieee.gub.edu.bd/industry-academia-seminar",
+    "startTime": "10:00 AM",
+    "endTime": "11:30 AM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   },
   {
     "id": 5,
@@ -202,7 +286,28 @@
       "/images/Event/19.jpg",
       "/images/Event/20.jpg"
     ],
-    "registrationLink": "https://ieee.gub.edu.bd/it-olympiad-registration"
+    "registrationLink": "https://ieee.gub.edu.bd/it-olympiad-registration",
+    "startTime": "10:00 AM",
+    "endTime": "11:00 AM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   },
   {
     "id": 6,
@@ -253,7 +358,28 @@
       "/images/Event/23.jpg",
       "/images/Event/24.jpg"
     ],
-    "registrationLink": "https://ieee.gub.edu.bd/panel-discussion-registration"
+    "registrationLink": "https://ieee.gub.edu.bd/panel-discussion-registration",
+    "startTime": "11:00 AM",
+    "endTime": "01:00 PM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   },
   {
     "id": 7,
@@ -294,7 +420,28 @@
       "/images/Event/27.jpg",
       "/images/Event/28.jpg"
     ],
-    "registrationLink": "https://ieee.gub.edu.bd/ai-robotics-seminar"
+    "registrationLink": "https://ieee.gub.edu.bd/ai-robotics-seminar",
+    "startTime": "11:30 AM",
+    "endTime": "12:45 PM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   },
   {
     "id": 8,
@@ -335,7 +482,28 @@
       "/images/Event/31.jpg",
       "/images/Event/32.jpg"
     ],
-    "registrationLink": "https://ieee.gub.edu.bd/mern-workshop-registration"
+    "registrationLink": "https://ieee.gub.edu.bd/mern-workshop-registration",
+    "startTime": "08:00 PM",
+    "endTime": "11:30 PM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Online via Zoom",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   },
   {
     "id": 9,
@@ -376,6 +544,27 @@
       "/images/Event/35.jpg",
       "/images/Event/36.jpg"
     ],
-    "registrationLink": "https://ieee.gub.edu.bd/innovation-summit-2025"
+    "registrationLink": "https://ieee.gub.edu.bd/innovation-summit-2025",
+    "startTime": "09:00 AM",
+    "endTime": "05:00 PM",
+    "timezone": "Asia/Dhaka",
+    "locationLabel": "Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj, Dhaka",
+    "resources": [
+      {
+        "label": "Slides",
+        "url": "https://example.com/ieee-gub-slides",
+        "type": "slides"
+      },
+      {
+        "label": "Recording",
+        "url": "https://example.com/ieee-gub-recording",
+        "type": "video"
+      },
+      {
+        "label": "Photo Highlights",
+        "url": "https://example.com/ieee-gub-photos",
+        "type": "gallery"
+      }
+    ]
   }
 ]

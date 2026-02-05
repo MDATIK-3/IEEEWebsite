@@ -74,10 +74,12 @@ const DeveloperProfile = ({ dev, index }) => {
                             <span className="font-semibold">Batch:</span>
                             <span className="font-normal">{dev.batch || 'N/A'}</span>
                         </div>
-                        <div className="flex justify-between">
-                            <span className="font-semibold">Contributions:</span>
-                            <span className="font-normal">{dev.contributions || 'N/A'}</span>
-                        </div>
+                        {dev.contributions !== null && dev.contributions !== undefined && dev.contributions !== '' && (
+                            <div className="flex justify-between">
+                                <span className="font-semibold">Contributions:</span>
+                                <span className="font-normal">{dev.contributions}</span>
+                            </div>
+                        )}
                     </motion.div>
                 </div>
             </div>

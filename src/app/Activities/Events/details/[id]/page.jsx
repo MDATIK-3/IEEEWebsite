@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo, useState, useEffect } from 'react';
+import { useRef, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { User, Users, ExternalLink, Star } from 'lucide-react';
 
@@ -12,13 +12,12 @@ import SpeakerSection from './components/SpeakerSection';
 import EventHighlights from './components/EventHighlights';
 import GallerySection from './components/GallerySection';
 import EventInfoCard from './components/EventInfoCard';
+import EventResources from './components/EventResources';
 import Modal from '@/app/components/Shares/Modal';
-import LoadingState from '@/app/components/LoadingSpinner';
 
 const EventDetails = () => {
   const params = useParams();
   const id = params?.id;
-  const [loading, setLoading] = useState(true);
   const modalRef = useRef(null);
 
   const event = useMemo(
@@ -30,9 +29,6 @@ const EventDetails = () => {
   const now = new Date();
   const isPastEvent = eventDate ? eventDate < now : false;
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
 
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
@@ -77,8 +73,6 @@ const EventDetails = () => {
     []
   );
 
-  if (loading) return <LoadingState />;
-
   if (!id || !event) {
     return (
       <main className="text-center py-20 text-gray-700 dark:text-gray-300">
@@ -99,6 +93,7 @@ const EventDetails = () => {
             <EventDescription event={event} isPastEvent={isPastEvent} />
             <SpeakerSection event={event} />
             <EventHighlights eventHighlights={eventHighlights} />
+            <EventResources resources={event.resources} />
             <GallerySection
               event={event}
               isPastEvent={isPastEvent}

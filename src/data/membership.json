@@ -1,0 +1,36 @@
+{
+  "joinLink": "https://www.ieee.org/membership/join",
+  "localContactLink": "/contact/GeneralContact",
+  "benefits": [
+    "Priority access to IEEE GUB workshops, competitions, and conferences",
+    "Leadership opportunities in IEEE GUB Student Branch and chapters",
+    "Mentorship from seniors, alumni, and invited industry experts",
+    "Certificates and volunteer credits from IEEE GUB activities",
+    "Global IEEE member recognition and networking"
+  ],
+  "steps": [
+    "Complete the IEEE online membership form",
+    "Select societies that match your interests (e.g., CS, PES)",
+    "Send your IEEE membership confirmation to IEEE GUB",
+    "Join the local onboarding/orientation session"
+  ],
+  "fees": [
+    { "label": "IEEE Student Membership", "value": "USD 14/year" },
+    { "label": "Society Add-ons", "value": "USD 0/year" },
+    { "label": "IEEE GUB Local Dues", "value": "BDT 0/year" }
+  ],
+  "faqs": [
+    {
+      "question": "Do I need to be a CSE student to join IEEE GUB?",
+      "answer": "No. Students from any department at GUB can join the IEEE Student Branch."
+    },
+    {
+      "question": "How do I complete IEEE GUB onboarding?",
+      "answer": "After joining IEEE, send your membership confirmation to IEEE GUB through the contact form for onboarding."
+    },
+    {
+      "question": "Can I attend events without membership?",
+      "answer": "Yes. Many events are open to all students, but IEEE GUB members get priority access and discounts."
+    }
+  ]
+}

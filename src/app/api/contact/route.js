@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: parseInt(process.env.EMAIL_PORT),
@@ -19,28 +22,28 @@ export async function POST(request) {
     if (!name || name.length < 2) {
       return NextResponse.json(
         { message: "Name must be at least 2 characters" },
-        { status: 400 }
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
     }
 
     if (!email) {
       return NextResponse.json(
         { message: "Please provide a valid email address" },
-        { status: 400 }
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
     }
 
     if (!subject || subject.length < 3) {
       return NextResponse.json(
         { message: "Subject must be at least 3 characters" },
-        { status: 400 }
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
     }
 
     if (!message || message.length < 10) {
       return NextResponse.json(
         { message: "Message must be at least 10 characters long" },
-        { status: 400 }
+        { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
     }
 
@@ -70,7 +73,7 @@ export async function POST(request) {
 
     return NextResponse.json(
       { message: "Message sent successfully!" },
-      { status: 200 }
+      { status: 200, headers: { 'Cache-Control': 'no-store' } }
     );
 
   } catch (error) {
@@ -78,7 +81,7 @@ export async function POST(request) {
 
     return NextResponse.json(
       { message: "Failed to send message. Please try again later." },
-      { status: 500 }
+      { status: 500, headers: { 'Cache-Control': 'no-store' } }
     );
   }
 }
