@@ -1,53 +1,62 @@
 # IEEE Green University of Bangladesh - Official Website
 
-The official website for IEEE Student Branch at Green University of Bangladesh, showcasing our community of over 3000 members dedicated to innovation, learning, and professional growth in electrical and computer engineering.
+Official website for the IEEE Student Branch at Green University of Bangladesh (IEEE GUB). This site highlights events, achievements, leadership, and community opportunities for students, alumni, and partners.
 
 ## Features
 
 ### Homepage
-
-- Hero section with animated backgrounds  
-- About section covering mission, values, and activities  
-- Statistics display showing member count and achievements  
-- Featured events section  
-- FAQ with expandable answers  
-- IEEE collaborations showcase  
+- Hero section with animated backgrounds
+- About, moderator messages, and highlights
+- Member spotlights
+- Featured events and gallery previews
+- IEEE collaborations showcase
+- FAQ section
 
 ### Events
+- Event listings with search and filters (all/upcoming/past)
+- List and calendar views
+- Countdown and Add-to-Calendar for upcoming events
+- Detailed event pages with speakers, highlights, gallery, and resources
+- Registration links for events
 
-- Event listings with search and filtering  
-- Detailed event pages with speaker info, galleries, and highlights  
-- Registration links for events  
-- Types of events: webinars, workshops, seminars, competitions  
+### Community
+- **Join IEEE** page with global sign-up + IEEE GUB onboarding
+- **Projects** showcase with tag filters
+- **Opportunities** for volunteering and committees
+- **Resources** hub for slides, recordings, and highlights
 
 ### Executive Team
-
-- Dynamic directory sorted by year and chapter  
-- Member profiles with social links and roles  
-- Filters for Student Branch (SB), Computer Society (CS), and Power & Energy Society (PES)  
-- Year-based navigation (2021–2025)  
-- Member detail modals with full information  
+- Directory sorted by year and chapter
+- Filters for Student Branch (SB), Computer Society (CS), and Power & Energy Society (PES)
+- Member detail modals with full information
 
 ### Gallery
+- Masonry/grid views with pagination
+- Lightbox for photos
+- Search and category filtering
 
-- Photo grid using masonry layout  
-- Lightbox view for individual images  
-- Pagination for better navigation  
-- Responsive across devices  
+### Contact & Partnership
+- General contact form (email delivery)
+- Partnership inquiry form with CSRF protection
 
-### Theme & Design
+### Chatbot
+- AI assistant powered by Gemini
+- Answers based on local JSON data
 
-- Toggle between dark and light mode with system preference detection  
-- Fully responsive design for mobile, tablet, and desktop  
-- Built with Tailwind CSS and custom animations  
-- Follows accessibility standards  
+## Tech Stack
+
+- Next.js 15 (App Router)
+- React 19
+- Tailwind CSS 4
+- Framer Motion
+- next-themes
+- Vercel Analytics
 
 ## Getting Started
 
 ### Prerequisites
-
-- Node.js version 18 or higher  
-- npm  
+- Node.js 18+
+- npm
 
 ### Installation
 
@@ -56,46 +65,71 @@ git clone https://github.com/MDATIK-3/IEEEWebsite
 cd IEEEWebsite
 npm install
 npm run dev
-````
+```
 
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
+Then open `http://localhost:3000` in your browser.
 
-## Tech Stack
+## Environment Variables
 
-* Next.js 15.3.4 (App Router)
-* React 19.0.0
-* Tailwind CSS 4.0
-* Animations: Framer Motion
-* Theme: next-themes
-* Analytics: Vercel Analytics
-* Deployment: Vercel
+Create a `.env` file in the project root. These are used by the API routes:
+
+```bash
+# Chatbot (Gemini)
+GEMINI_API_KEY= use_your_api_key
+GEMINI_MODEL=gemini-2.5-flash
+
+# Contact + Partnership email
+EMAIL_HOST=
+EMAIL_PORT=587
+EMAIL_SECURE=false
+EMAIL_USER=
+EMAIL_PASSWORD=
+EMAIL_TO=
+
+# GitHub contributors (optional)
+NEXT_PUBLIC_GITHUB_TOKEN=
+```
+
+Notes:
+- If `GEMINI_API_KEY` is missing, the chatbot will return a configuration error.
+- If email settings are missing, contact/partnership forms will fail.
+- If `NEXT_PUBLIC_GITHUB_TOKEN` is missing/invalid, the developer page will show local cached team info without contribution counts.
+
+## Data Files (Content Source)
+
+Update JSON files in `src/data/` to manage site content:
+
+- `eventData.json` � events, speakers, galleries, resources
+- `executiveData.json` � leadership directory
+- `photos.json` � gallery photos
+- `acievement.json` � achievements
+- `collaboration.json` � collaborations
+- `FAQ.json` � FAQ items
+- `moderatorsMessages.json` � moderator messages
+- `projects.json` � project showcase
+- `opportunities.json` � volunteer opportunities
+- `membership.json` � join page content and fees
+- `spotlights.json` � member spotlights
+- `ContributionRoles.json` � developer roles
 
 ## Customization
 
-### Adding Events
+### Add / Update Events
+1. Edit `src/data/eventData.json`
+2. Add images under `public/images/`
 
-1. Add event data to `src/data/eventData.json`
-2. Add corresponding images to `public/images/`
-3. Events will automatically appear
-
-### Adding Team Members
-
-1. Update `src/data/executiveData.json`
-2. Upload member photos to `public/images/`
-3. Assign to the correct year and chapter
+### Add / Update Team Members
+1. Edit `src/data/executiveData.json`
+2. Upload images to `public/images/`
 
 ### Styling
-
-* Global styles: `src/app/globals.css`
-* Tailwind configuration: `tailwind.config.js`
-* Component-level styling within JSX files
+- Global styles: `src/app/globals.css`
+- Tailwind classes are used inside components
 
 ## Contributing
 
-### Steps
-
 1. Fork the repository
-2. Create a new branch:
+2. Create a branch:
 
 ```bash
 git checkout -b feature/your-feature-name
@@ -104,18 +138,11 @@ git checkout -b feature/your-feature-name
 3. Make and test your changes
 4. Submit a pull request
 
-### Guidelines
-
-* Use the provided ESLint configuration
-* Follow React and Next.js best practices
-* Maintain responsive design
-* Ensure accessibility
-
 ## Contact
 
-* Website: [ieeegub.vercel.app](https://ieeegub.vercel.app/)
-* Facebook: [IEEE Student Branch GUB](https://www.facebook.com/ieeesbgub/)
-* For other inquiries, use the feedback form on the website
+- Website: https://ieeegub.vercel.app/
+- Facebook: https://www.facebook.com/ieeesbgub/
+- For inquiries, use the contact form on the site.
 
 ## License
 
@@ -123,8 +150,7 @@ Maintained by IEEE Student Branch, Green University of Bangladesh.
 
 ## Acknowledgments
 
-* Green University of Bangladesh
-* IEEE Organization
-* All contributors
-* Executive Committee
-
+- Green University of Bangladesh
+- IEEE Organization
+- All contributors
+- Executive Committee
