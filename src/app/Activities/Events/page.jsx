@@ -106,7 +106,7 @@ const CalendarView = ({ events }) => {
                     <div>
                       <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">{event.eventName}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-300">
-                        {event.eventType} • {event.time || "Time TBA"}
+                        {event.eventType} - {event.time || "Time TBA"}
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
                         {event.locationLabel || event.eventArea || "Location TBA"}

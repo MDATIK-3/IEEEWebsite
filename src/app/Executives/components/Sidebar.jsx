@@ -16,9 +16,9 @@ const Sidebar = ({
   };
 
   return (
-    <aside className="sticky top-14 hidden h-screen w-1/5 overflow-y-auto border-r border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 lg:block">
+    <aside className="sticky top-22 hidden h-[calc(100vh-6rem)] w-[280px] overflow-y-auto rounded-3xl border border-emerald-100 bg-white/80 p-6 shadow-xl backdrop-blur dark:border-emerald-900/50 dark:bg-slate-900/80 dark:text-gray-200 lg:block">
       <div className="mb-8">
-        <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold text-gray-800 dark:text-gray-300">
+        <h2 className="mb-6 flex items-center gap-2 text-2xl font-semibold text-emerald-700 dark:text-emerald-200">
           <Filter className="h-6 w-6 text-emerald-600" /> Filters
         </h2>
 
@@ -33,10 +33,10 @@ const Sidebar = ({
             id="year-select"
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-700 focus:border-transparent focus:ring-2 focus:ring-emerald-500 transition-all dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+            className="w-full rounded-xl border border-emerald-200 bg-white px-3 py-2 text-gray-700 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-200 transition-all dark:border-emerald-800 dark:bg-slate-800 dark:text-gray-200"
           >
             {years.map((year) => (
-              <option key={year} value={year} className="dark:bg-gray-800 dark:text-gray-300">
+              <option key={year} value={year} className="dark:bg-slate-800 dark:text-gray-200">
                 {year}
               </option>
             ))}
@@ -52,10 +52,10 @@ const Sidebar = ({
               <button
                 key={group}
                 onClick={() => setSelectedGroup(group)}
-                className={`flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 text-left
+                className={`flex w-full items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-300 text-left
                   ${selectedGroup === group
-                    ? "bg-emerald-600 shadow-md text-white transform scale-[1.02]"
-                    : "border border-gray-200 bg-gray-100 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-emerald-700 dark:hover:text-emerald-300"
+                    ? "bg-emerald-600 shadow-md text-white"
+                    : "border border-emerald-100 bg-white text-emerald-700 hover:bg-emerald-50 dark:border-emerald-800 dark:bg-slate-800 dark:text-emerald-200 dark:hover:bg-emerald-900/30"
                   }
                 `}
               >
@@ -65,7 +65,7 @@ const Sidebar = ({
                   className={`ml-auto rounded-full px-2 py-1 text-xs
                     ${selectedGroup === group
                       ? "bg-white/20"
-                      : "bg-gray-200 text-gray-500 dark:bg-gray-600 dark:text-gray-400"
+                      : "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-200"
                     }
                   `}
                 >

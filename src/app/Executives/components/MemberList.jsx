@@ -5,12 +5,12 @@ import { Search, BadgeCheck, GraduationCap } from 'lucide-react';
 const MemberList = ({ members, onMemberClick }) => {
     if (members.length === 0) {
         return (
-            <div className="text-center py-16 bg-white rounded-xl shadow-lg border border-gray-100">
-                <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                    <Search className="h-10 w-10 text-gray-400" />
+            <div className="text-center py-16 rounded-2xl border border-emerald-100 bg-white/80 shadow-sm dark:bg-slate-900/80 dark:border-emerald-900/50">
+                <div className="bg-emerald-50 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center dark:bg-emerald-900/30">
+                    <Search className="h-10 w-10 text-emerald-400" />
                 </div>
-                <h3 className="text-xl font-medium text-gray-800 mb-2">No members found</h3>
-                <p className="text-gray-600">Try adjusting your search or filter criteria.</p>
+                <h3 className="text-xl font-semibold text-emerald-700 dark:text-emerald-300 mb-2">No members found</h3>
+                <p className="text-gray-600 dark:text-gray-300">Try adjusting your search or filter criteria.</p>
             </div>
         );
     }
@@ -22,12 +22,12 @@ const MemberList = ({ members, onMemberClick }) => {
         <>
             {faculty.length > 0 && (
                 <div className="mb-12">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="p-3 bg-emerald-100 rounded-lg shadow-sm">
-                            <BadgeCheck className="h-6 w-6 text-green-500" />
+                    <div className="flex flex-wrap items-center gap-3 mb-6">
+                        <div className="p-3 bg-emerald-50 rounded-xl shadow-sm dark:bg-emerald-900/30">
+                            <BadgeCheck className="h-6 w-6 text-emerald-600" />
                         </div>
-                        <h2 className="text-3xl font-bold text-gray-800">Faculty Advisors</h2>
-                        <span className="bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-lg font-medium shadow-sm">
+                        <h2 className="text-3xl font-bold text-emerald-700 dark:text-emerald-300">Faculty Advisors</h2>
+                        <span className="bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-semibold shadow-sm dark:bg-emerald-900/40 dark:text-emerald-200">
                             {faculty.length}
                         </span>
                     </div>
@@ -46,12 +46,12 @@ const MemberList = ({ members, onMemberClick }) => {
 
             {students.length > 0 && (
                 <div>
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="p-3 bg-emerald-50 rounded-lg shadow-sm">
+                    <div className="flex flex-wrap items-center gap-3 mb-6">
+                        <div className="p-3 bg-emerald-50 rounded-xl shadow-sm dark:bg-emerald-900/30">
                             <GraduationCap className="h-6 w-6 text-emerald-600" />
                         </div>
-                        <h2 className="text-3xl font-bold text-gray-800">Student Executive Board</h2>
-                        <span className="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-lg font-medium shadow-sm">
+                        <h2 className="text-3xl font-bold text-emerald-700 dark:text-emerald-300">Student Executive Board</h2>
+                        <span className="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-semibold shadow-sm dark:bg-emerald-900/40 dark:text-emerald-200">
                             {students.length}
                         </span>
                     </div>

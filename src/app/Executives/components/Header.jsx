@@ -4,56 +4,40 @@ import { Award, Search, Filter } from "lucide-react";
 
 const Header = ({ searchTerm, setSearchTerm, onMobileFilterClick }) => {
     return (
-        <div className="mb-8 pb-8 rounded-2xl shadow-lg
-      bg-white border border-gray-200 text-gray-900
-      dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300"
-        >
-            <div className="p-8">
+        <div className="mb-10 mt-10 rounded-3xl border border-emerald-100 bg-white/80 text-gray-900 shadow-2xl backdrop-blur dark:bg-slate-900/80 dark:border-emerald-900/50 dark:text-gray-200">
+            <div className="px-6 py-10 sm:px-10">
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-6 border
-            bg-green-50 border-green-100 text-green-700
-            dark:bg-green-900 dark:border-green-700 dark:text-green-400"
-                    >
+                    <div className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-6 border border-emerald-100 bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:border-emerald-800 dark:text-emerald-200">
                         <Award className="h-5 w-5" />
-                        <span className="font-semibold">IEEE Green University</span>
+                        <span className="font-semibold">IEEE GUB Executive Council</span>
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight
-            text-gray-900 dark:text-gray-300"
-                    >
-                        Meet Our Visionary <br />
-                        <span className="text-green-600 dark:text-green-400">IEEE Executives</span>
+                    <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-emerald-700 dark:text-emerald-300">
+                        Meet the leaders behind IEEE GUB
                     </h1>
 
-                    <p className="text-lg max-w-2xl mx-auto leading-relaxed
-            text-gray-600 dark:text-gray-400"
-                    >
-                        Explore the dedicated individuals driving innovation and excellence in technology.
+                    <p className="text-lg max-w-2xl mx-auto leading-relaxed text-gray-600 dark:text-gray-300">
+                        Explore the faculty advisors and student executives guiding innovation, events, and community impact.
                     </p>
                 </div>
 
                 <div className="flex flex-col gap-4 items-center justify-center max-w-4xl mx-auto">
-                    {/* Filter Button - Mobile Only */}
                     <button
                         onClick={onMobileFilterClick}
-                        className="lg:hidden flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md transform hover:scale-105 active:scale-95 font-medium"
+                        className="lg:hidden flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-full hover:bg-emerald-700 transition-colors shadow-md font-semibold"
                     >
                         <Filter className="h-5 w-5" />
                         <span>Filters</span>
                     </button>
 
                     <div className="relative w-full">
-                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-emerald-400" />
                         <input
                             type="text"
                             placeholder="Search members by name, role, or department..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 border-2 rounded-xl shadow-sm
-                bg-white border-gray-200 text-gray-900 placeholder-gray-500
-                focus:ring-2 focus:ring-green-500 focus:border-green-500
-                transition-all
-                dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:placeholder-gray-400"
+                            className="w-full pl-12 pr-4 py-3 border rounded-full shadow-sm bg-white border-emerald-200 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 transition-all dark:bg-slate-800 dark:border-emerald-800 dark:text-gray-200 dark:placeholder-gray-400"
                         />
                     </div>
                 </div>

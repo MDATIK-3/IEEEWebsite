@@ -47,12 +47,12 @@ const MemberDetailModal: React.FC<MemberDetailModalProps> = ({ member, onClose }
       aria-labelledby="member-modal-title"
     >
       <div
-        className="relative max-w-lg w-full p-8 rounded-2xl shadow-2xl bg-white dark:bg-gray-800 animate-fade-in transition-all duration-300 transform scale-100 border border-gray-200 dark:border-gray-700"
+        className="relative max-w-lg w-full p-8 rounded-3xl shadow-2xl bg-white/95 dark:bg-slate-900/95 animate-fade-in transition-all duration-300 transform scale-100 border border-emerald-100 dark:border-emerald-900/50"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700 transition-all duration-200"
+          className="absolute top-4 right-4 p-2 rounded-full text-gray-500 hover:text-emerald-700 hover:bg-emerald-50 dark:text-gray-400 dark:hover:text-emerald-200 dark:hover:bg-emerald-900/30 transition-all duration-200"
           aria-label="Close modal"
         >
           <X className="h-5 w-5" />
@@ -72,7 +72,7 @@ const MemberDetailModal: React.FC<MemberDetailModalProps> = ({ member, onClose }
 
           <h3
             id="member-modal-title"
-            className="mb-2 text-2xl font-semibold text-gray-800 dark:text-gray-300"
+            className="mb-2 text-2xl font-semibold text-emerald-700 dark:text-emerald-200"
           >
             {member.name}
           </h3>

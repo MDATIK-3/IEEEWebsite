@@ -34,32 +34,34 @@ const ExecutivePage = () => {
   }
 
   return (
-    <div className="min-h-screen flex font-inter bg-gradient-to-br from-emerald-50 to-white dark:from-gray-900 dark:to-gray-950 transition-colors duration-300">
-      <Sidebar
-        years={years}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        executiveData={executiveData}
-        selectedGroup={selectedGroup}
-        setSelectedGroup={setSelectedGroup}
-      />
-
-      <main className="flex-1 mt-18 px-4 sm:px-6 lg:px-10 pb-10">
-        <Header
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          onMobileFilterClick={() => setShowMobileFilters(true)}
+    <div className="min-h-screen bg-gradient-to-br from-white via-emerald-50 to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
+      <div className="flex gap-6">
+        <Sidebar
+          years={years}
+          selectedYear={selectedYear}
+          setSelectedYear={setSelectedYear}
+          executiveData={executiveData}
+          selectedGroup={selectedGroup}
+          setSelectedGroup={setSelectedGroup}
         />
 
-        <Stats
-          members={filteredMembers}
-          facultyCount={faculty.length}
-          studentCount={students.length}
-          yearCount={years.length}
-        />
+        <main className="flex-1 px-4 sm:px-6 lg:px-10 py-10 lg:py-12">
+          <Header
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            onMobileFilterClick={() => setShowMobileFilters(true)}
+          />
 
-        <MemberList members={filteredMembers} onMemberClick={setSelectedMember} />
-      </main>
+          <Stats
+            members={filteredMembers}
+            facultyCount={faculty.length}
+            studentCount={students.length}
+            yearCount={years.length}
+          />
+
+          <MemberList members={filteredMembers} onMemberClick={setSelectedMember} />
+        </main>
+      </div>
 
       <MobileFilters
         show={showMobileFilters}

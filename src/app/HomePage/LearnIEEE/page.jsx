@@ -11,7 +11,6 @@ import {
   FaStar,
   FaGlobe,
   FaRocket,
-  FaCheckCircle,
   FaUsers,
   FaFlag,
   FaUniversity,
@@ -118,8 +117,8 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
   const tabs = ["about", "mission", "impact", "benefits"];
 
   return (
-    <section className=" min-h-screen w-full bg-gradient-to-br from-green-50 via-white to-emerald-50 py-4 px-3 sm:px-6">
-     <div className="mt-18 md:mt-0 w-full max-w-7xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-12 border border-white/20">
+    <section className="h-screen sm:mt-14 w-full bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950 py-4 px-3 sm:px-6">
+     <div className="mt-18 md:mt-0 w-full max-w-7xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-12 border border-white/20 dark:border-emerald-900/40">
 
         {/* Improved Header Section */}
         <div className="mb-8 sm:mb-12">
@@ -130,7 +129,7 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent leading-tight">
                 {content[language].title}
               </h1>
-              <p className="text-green-600 text-xs sm:text-sm md:text-base mt-1 sm:mt-2 font-medium">
+              <p className="text-green-600 dark:text-emerald-300 text-xs sm:text-sm md:text-base mt-1 sm:mt-2 font-medium">
                 {language === "en" 
                   ? "World's Largest Technical Professional Organization" 
                   : "বিশ্বের বৃহত্তম প্রযুক্তিগত পেশাদার সংগঠন"
@@ -139,14 +138,14 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
             </div>
 
             {/* Language Switch - Better responsive design */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-1 sm:p-2 border border-green-200 shadow-lg w-full sm:w-auto">
+            <div className="bg-white/90 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-1 sm:p-2 border border-green-200 dark:border-emerald-800 shadow-lg w-full sm:w-auto">
               <div className="flex gap-1 justify-center sm:justify-start">
                 <button
                   onClick={() => setLanguage("en")}
                   className={`px-3 sm:px-4 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 text-xs sm:text-sm ${
                     language === "en"
                       ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-md"
-                      : "text-gray-600 hover:bg-green-50 hover:text-green-700"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-green-50 dark:hover:bg-emerald-900/40 hover:text-green-700 dark:hover:text-emerald-200"
                   }`}
                 >
                   <span>🇺🇸</span>
@@ -157,7 +156,7 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
                   className={`px-3 sm:px-4 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 text-xs sm:text-sm ${
                     language === "bn"
                       ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-md"
-                      : "text-gray-600 hover:bg-green-50 hover:text-green-700"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-green-50 dark:hover:bg-emerald-900/40 hover:text-green-700 dark:hover:text-emerald-200"
                   }`}
                 >
                   <span>🇧🇩</span>
@@ -176,7 +175,7 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
                 className={`px-3 sm:px-4 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 text-xs sm:text-sm flex items-center gap-1 sm:gap-2 min-w-[80px] sm:min-w-[100px] justify-center flex-1 sm:flex-none ${
                   activeTab === tab
                     ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg transform scale-105"
-                    : "bg-white text-gray-600 hover:bg-green-50 hover:text-green-700 border border-green-100 shadow-sm"
+                    : "bg-white dark:bg-slate-900 text-gray-600 dark:text-gray-300 hover:bg-green-50 dark:hover:bg-emerald-900/40 hover:text-green-700 dark:hover:text-emerald-200 border border-green-100 dark:border-emerald-900 shadow-sm"
                 }`}
               >
                 {tab === "about" && <FaBookOpen className="text-xs sm:text-sm" />}
@@ -206,16 +205,16 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="min-h-[300px] sm:min-h-[400px]"
           >
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 border border-green-100 shadow-inner">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-900 dark:to-emerald-950 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 border border-green-100 dark:border-emerald-900 shadow-inner">
               {/* Content Header with Icon */}
-              <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-green-200">
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-green-200 dark:border-emerald-900">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
                   {activeTab === "about" && <FaBookOpen className="text-white text-sm sm:text-base md:text-lg" />}
                   {activeTab === "mission" && <FaRocket className="text-white text-sm sm:text-base md:text-lg" />}
                   {activeTab === "impact" && <FaGlobe className="text-white text-sm sm:text-base md:text-lg" />}
                   {activeTab === "benefits" && <FaStar className="text-white text-sm sm:text-base md:text-lg" />}
                 </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100">
                   {content[language][activeTab]?.title}
                 </h2>
               </div>
@@ -223,7 +222,7 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
               {/* About */}
               {activeTab === "about" && (
                 <motion.p 
-                  className="text-sm sm:text-base md:text-lg text-gray-700 whitespace-pre-line leading-relaxed"
+                  className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 whitespace-pre-line leading-relaxed"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
@@ -239,35 +238,35 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6 font-medium">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 font-medium">
                     {content[language][activeTab]?.description}
                   </p>
-                  <ul className="space-y-3 sm:space-y-4 text-gray-700 mb-6 sm:mb-8">
+                  <ul className="space-y-3 sm:space-y-4 text-gray-700 dark:text-gray-300 mb-6 sm:mb-8">
                     {content[language][activeTab].missionList.map(
                       (item, idx) => (
                         <motion.li 
                           key={idx} 
-                          className="flex items-start gap-3 sm:gap-4 p-2 sm:p-3 rounded-lg bg-white/50 border border-green-100"
+                          className="flex items-start gap-3 sm:gap-4 p-2 sm:p-3 rounded-lg bg-white/50 dark:bg-slate-900/60 border border-green-100 dark:border-emerald-900"
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.3 + idx * 0.1 }}
                         >
                           <span className="text-green-600 text-lg sm:text-xl mt-0.5 flex-shrink-0">{item.icon}</span>
-                          <span className="text-gray-700 text-sm sm:text-base">{item.text}</span>
+                          <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">{item.text}</span>
                         </motion.li>
                       )
                     )}
                   </ul>
-                  <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl border-l-4 border-green-500">
+                  <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-slate-900 dark:to-emerald-950 rounded-lg sm:rounded-xl border-l-4 border-green-500">
                     <div className="flex items-start gap-3 sm:gap-4">
                       <span className="text-green-600 text-xl sm:text-2xl flex-shrink-0">
                         {content[language][activeTab].vision.icon}
                       </span>
                       <div>
-                        <h3 className="font-bold text-green-700 mb-1 sm:mb-2 text-base sm:text-lg">
+                        <h3 className="font-bold text-green-700 dark:text-emerald-300 mb-1 sm:mb-2 text-base sm:text-lg">
                           {language === "en" ? "Our Vision" : "আমাদের ভিশন"}
                         </h3>
-                        <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
                           {content[language][activeTab].vision.text}
                         </p>
                       </div>
@@ -279,7 +278,7 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
               {/* Impact & Benefits */}
               {(activeTab === "impact" || activeTab === "benefits") && (
                 <motion.ul 
-                  className="space-y-3 sm:space-y-4 text-gray-700"
+                  className="space-y-3 sm:space-y-4 text-gray-700 dark:text-gray-300"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
@@ -287,13 +286,13 @@ Beyond research and standards, IEEE is deeply committed to education, mentorship
                   {content[language][activeTab].list.map((item, idx) => (
                     <motion.li 
                       key={idx} 
-                      className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/70 border border-green-100 shadow-sm hover:shadow-md transition-all duration-300"
+                      className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/70 dark:bg-slate-900/70 border border-green-100 dark:border-emerald-900 shadow-sm hover:shadow-md transition-all duration-300"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 + idx * 0.1 }}
                     >
                       <span className="text-green-600 text-lg sm:text-xl mt-0.5 flex-shrink-0">{item.icon}</span>
-                      <span className="text-gray-700 leading-relaxed text-sm sm:text-base">{item.text}</span>
+                      <span className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">{item.text}</span>
                     </motion.li>
                   ))}
                 </motion.ul>
