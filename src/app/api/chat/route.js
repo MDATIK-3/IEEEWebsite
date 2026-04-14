@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
-import path from 'path'
+import path from 'path';
 const DATA_DIR = path.join(process.cwd(), 'src/data');
 const MODEL_NAME = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 export const dynamic = 'force-dynamic';
