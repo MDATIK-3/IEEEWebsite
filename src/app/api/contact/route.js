@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import sanitizeHtml from 'sanitize-html';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -26,7 +27,7 @@ export async function POST(request) {
       );
     }
 
-    if (!email) {
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
       return NextResponse.json(
         { message: "Please provide a valid email address" },
         { status: 400, headers: { 'Cache-Control': 'no-store' } }
@@ -62,11 +63,11 @@ export async function POST(request) {
       `,
       html: `
         <h2>New message from your website contact form</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Name:</strong> ${sanitizeHtml(name)}</p>
+        <p><strong>Email:</strong> ${sanitizeHtml(email)}</p>
+        <p><strong>Subject:</strong> ${sanitizeHtml(subject)}</p>
         <h3>Message:</h3>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${sanitizeHtml(message.replace(/\n/g, '<br>'))}</p>
         <p><small>Timestamp: ${new Date().toISOString()}</small></p>
       `
     });

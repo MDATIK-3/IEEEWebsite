@@ -35,13 +35,13 @@ const buildCalendarDateString = (dateString, timeString) => {
 };
 
 const buildCalendarUrl = (event) => {
-  if (!event?.date || !event?.startTime || !event?.endTime) return null;
-  const startDate = buildLocalDate(event.date, event.startTime);
-  const endDate = buildLocalDate(event.date, event.endTime);
-  if (!startDate || !endDate) return null;
-  if (endDate <= startDate) {
-    endDate.setDate(endDate.getDate() + 1);
-  }
+  if (!event?.date || !event?.time) return null;
+  const startDate = buildLocalDate(event.date, event.time);
+  if (!startDate) return null;
+
+  const endDate = new Date(startDate);
+  endDate.setHours(endDate.getHours() + 1);
+
   const start = formatDateForCalendar(startDate);
   const end = formatDateForCalendar(endDate);
   const params = new URLSearchParams({
