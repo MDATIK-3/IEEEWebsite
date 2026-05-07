@@ -24,7 +24,7 @@ import { submitApplicationAction } from '@/app/actions/submitApplication';
 // --- PLACEHOLDER DATA FOR PAST LEADERS ---
 // You can easily change the names, roles, and quotes here later!
 const pastLeadersRow1 = [
-  { name: "Fahim Rahman", role: "Former Chair", img: "FR", quote: "IEEE GUB SB gave me the leadership edge I needed. It completely transformed my career trajectory!" },
+  { name: "Faysal Hossain Tomal", role: "Former Chair", img: "FR", quote: "IEEE GUB SB gave me the leadership edge I needed. It completely transformed my career trajectory!" },
   { name: "Sadia Islam", role: "Former Secretary", img: "SI", quote: "The global networking and mentorship here are unmatched. My best university experience." },
   { name: "Tanvir Hasan", role: "Former Treasurer", img: "TH", quote: "From organizing events to technical workshops, it prepared me for the real tech industry." },
 ];
@@ -162,7 +162,7 @@ const JoinPage = () => {
                 IEEE Student Branch - Green University of Bangladesh
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">
-                Join IEEE GUB and lead your tech journey
+                Join IEEE GUB and Shape Your Leadership journey
               </h1>
               <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg">
                 Become part of a global IEEE network while growing locally through IEEE GUB events, mentorship,
@@ -257,9 +257,9 @@ const JoinPage = () => {
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-300">
                 <Users className="h-4 w-4" /> Local Community
               </div>
-              <h3 className="text-4xl sm:text-5xl font-bold tracking-tight">Ready to join IEEE GUB?</h3>
+              <h3 className="text-4xl sm:text-5xl font-bold tracking-tight">Ready to join IEEE GUB Student Branch?</h3>
               <p className="text-lg text-slate-300 leading-relaxed">
-                Fill out this secure form to apply for local chapter opportunities. Ensure your CV is up to date.
+                Fill out this form to apply for local Student Branch and chapter opportunities. Ensure your CV is up to date.
               </p>
             </div>
 
@@ -312,10 +312,10 @@ const JoinPage = () => {
           </div>
 
           {/* RIGHT SIDE: Secure Floating Form Card */}
-          <form onSubmit={handleSubmit} className="relative z-10 w-full lg:w-[60%] space-y-6 bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-2xl text-gray-900 dark:text-gray-100">
+          <form onSubmit={handleSubmit} className="relative z-10 w-full lg:w-[90%] space-y-9 bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-2xl text-gray-900 dark:text-gray-100">
             
             <div className="border-b border-gray-100 dark:border-slate-800 pb-5 mb-5">
-              <h4 className="font-extrabold text-2xl text-gray-900 dark:text-white">Local Application</h4>
+              <h4 className="font-extrabold text-2xl text-gray-900 dark:text-white">Local Application Form</h4>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Fields marked with <span className="text-red-500 font-bold">*</span> are required.</p>
             </div>
             
@@ -341,7 +341,7 @@ const JoinPage = () => {
                 </label>
                 <input 
                   name="studentId" 
-                  placeholder="e.g. 211002001" 
+                  placeholder="e.g. 242002029" 
                   className="w-full p-3.5 border border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-emerald-500 outline-none transition-all" 
                   required 
                   inputMode="numeric"
@@ -359,7 +359,7 @@ const JoinPage = () => {
                 <input 
                   name="email" 
                   type="email"
-                  placeholder="e.g. john@student.gub.edu.bd" 
+                  placeholder="e.g. john@student.green.ac.bd" 
                   className="w-full p-3.5 border border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-emerald-500 outline-none transition-all" 
                   required 
                   disabled={isSubmitting}
@@ -372,7 +372,7 @@ const JoinPage = () => {
                 </label>
                 <input 
                   name="whatsapp" 
-                  placeholder="e.g. 01700000000" 
+                  placeholder="e.g. 015XXXXXXXX" 
                   className="w-full p-3.5 border border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-emerald-500 outline-none transition-all" 
                   required 
                   inputMode="numeric"
@@ -404,8 +404,8 @@ const JoinPage = () => {
                   name="cgpa" 
                   type="number" 
                   step="0.01" 
-                  min="0" max="4.00"
-                  placeholder="0.00 to 4.00" 
+                  min="3.00" max="4.00"
+                  placeholder="e.g. 3.80" 
                   className="w-full p-3.5 border border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-emerald-500 outline-none transition-all" 
                   required 
                   disabled={isSubmitting}
@@ -420,7 +420,7 @@ const JoinPage = () => {
                   name="credits" 
                   type="number" 
                   step="0.5" min="0"
-                  placeholder="e.g. 45" 
+                  placeholder="e.g. 35" 
                   className="w-full p-3.5 border border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-emerald-500 outline-none transition-all" 
                   required 
                   disabled={isSubmitting}
@@ -431,7 +431,7 @@ const JoinPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="space-y-1.5">
                 <label className="text-sm font-bold text-gray-700 dark:text-gray-300">
-                  Semester <span className="text-red-500">*</span>
+                  Current Semester <span className="text-red-500">*</span>
                 </label>
                 <select name="semester" required disabled={isSubmitting} className="w-full p-3.5 border border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-emerald-500 outline-none transition-all cursor-pointer">
                   <option value="">Select Semester</option>
@@ -470,12 +470,12 @@ const JoinPage = () => {
 
             <div className="space-y-1.5">
               <label className="text-sm font-bold text-gray-700 dark:text-gray-300">
-                Motivation to Join <span className="text-red-500">*</span>
+                Motivation to Join IEEE<span className="text-red-500">*</span>
               </label>
               <textarea 
                 name="motivation" 
                 rows="3"
-                placeholder="Briefly explain why you want to join IEEE GUB SB..." 
+                placeholder="Briefly explain why you want to join IEEE GUB Student Branch..." 
                 className="w-full p-3.5 border border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-emerald-500 outline-none transition-all resize-none" 
                 required 
                 disabled={isSubmitting}
@@ -485,7 +485,7 @@ const JoinPage = () => {
             {/* Custom File Upload UI */}
             <div className="space-y-1.5">
               <label className="text-sm font-bold text-gray-700 dark:text-gray-300">
-                Upload CV (PDF) <span className="text-red-500">*</span>
+                Upload Your CV (PDF) <span className="text-red-500">*</span>
               </label>
               <div className="relative group">
                 <input 
@@ -539,7 +539,7 @@ const JoinPage = () => {
                   Processing Upload...
                 </>
               ) : (
-                'Submit Secure Application'
+                'Submit Your Application'
               )}
             </button>
           </form>
