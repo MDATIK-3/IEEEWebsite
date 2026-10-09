@@ -91,11 +91,12 @@ export default function EventForm({ mode = 'create', eventId, initial = {} }) {
       <div className="mx-auto max-w-2xl px-4 py-10">
         <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-center dark:border-emerald-800/60 dark:bg-emerald-950/30">
           <h2 className="text-lg font-semibold text-emerald-800 dark:text-emerald-200">
-            Submitted for approval
+            Saved
           </h2>
           <p className="mt-1 text-sm text-emerald-700 dark:text-emerald-300/90">
-            Your {mode === 'edit' ? 'edit' : 'new event'} has been sent to the moderation queue. A
-            superadmin will review it before it goes live.
+            Your {mode === 'edit' ? 'changes have' : 'new event has'} been saved. Superadmin changes
+            go live immediately (scheduled by “Publish at”); data-entry submissions appear after a
+            superadmin approves them.
           </p>
           <div className="mt-4 flex justify-center gap-3">
             <Link

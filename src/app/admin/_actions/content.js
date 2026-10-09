@@ -54,17 +54,59 @@ export async function submitChange({ targetTable, targetId, action, proposedData
     }
 
     const supabase = createAdminClient();
+    const data = proposedData ?? {};
+
+    // Superadmins apply changes immediately (no self-approval step). This is
+    // what makes scheduling work for them: the row lands in the live table and
+    // publish_at + RLS control when it goes public.
+    if (a.role === 'superadmin') {
+      let appliedId = targetId ?? null;
+      if (action === 'create') {
+        const { data: inserted, error } = await supabase
+          .from(targetTable)
+          .insert(data)
+          .select('id')
+          .single();
+        if (error) throw new Error(error.message);
+        appliedId = inserted?.id ?? null;
+      } else {
+        const { error } = await supabase.from(targetTable).update(data).eq('id', targetId);
+        if (error) throw new Error(error.message);
+      }
+      // Record it as an auto-approved submission for the audit trail.
+      await supabase.from('content_submissions').insert({
+        target_table: targetTable,
+        target_id: appliedId,
+        action,
+        proposed_data: data,
+        status: 'approved',
+        submitted_by: a.userId,
+        reviewed_by: a.userId,
+        reviewed_at: new Date().toISOString(),
+      });
+      await supabase.from('audit_log').insert({
+        actor_id: a.userId,
+        action,
+        entity: targetTable,
+        entity_id: appliedId,
+        detail: { direct: true },
+      });
+      revalidateTag(tagFor(targetTable));
+      return { ok: true, applied: true };
+    }
+
+    // Data-entry: queue for superadmin approval.
     const { error } = await supabase.from('content_submissions').insert({
       target_table: targetTable,
       target_id: action === 'create' ? null : targetId,
       action,
-      proposed_data: proposedData ?? {},
+      proposed_data: data,
       status: 'pending',
       submitted_by: a.userId,
     });
     if (error) throw new Error(error.message);
 
-    return { ok: true };
+    return { ok: true, applied: false };
   } catch (e) {
     return { error: e?.message || 'Failed to submit change' };
   }
