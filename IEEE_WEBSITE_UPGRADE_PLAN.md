@@ -389,6 +389,27 @@ Projects/Opportunities/Resources pages, unused‑image purge, README/docs, final
 
 ---
 
+## Part G — SEO (best-practice technical SEO)
+
+> No code can *guarantee* a #1 Google ranking (that depends on content, backlinks, and competition). This maximizes ranking **potential** through technical SEO + Core Web Vitals.
+
+**Done (foundation):**
+- Root metadata: `metadataBase`, title template (`%s | IEEE SB GUB`), richer description/keywords, `alternates.canonical`, Open Graph + Twitter `summary_large_image` using a real image (was a 96×96 favicon), granular `robots` (`max-image-preview:large`, `max-snippet:-1`).
+- `app/robots.ts` → robots.txt (disallows `/admin`, `/api`, and the accidental `/HomePage` & `/components` routes); links the sitemap.
+- `app/sitemap.ts` → sitemap.xml for all canonical routes + every event detail page.
+- JSON-LD: Organization + WebSite in the root layout.
+- Viewport: removed `maximum-scale=1 / user-scalable=no` (Lighthouse accessibility + mobile-friendliness).
+- Core Web Vitals: static prerendering, image caching, and JSON-off-the-client (Parts A/B) are direct ranking signals.
+
+**Follow-ups:**
+- **Accidental routes:** `page.jsx` is used as a component filename inside non-route folders, so `/HomePage`, `/HomePage/About`, `/components/Shares/NavBar`, etc. are real, indexable routes with thin/duplicate content. Proper fix: rename those component files out of the route tree (e.g. `View.jsx`) and update imports — robots `disallow` is only a stopgap.
+- **Per-route metadata:** unique `metadata`/`generateMetadata` (title, description, canonical) for every public route — via a server `layout` where the page itself is a client component.
+- **Rich results:** Event JSON-LD on event detail pages (needs the same server/client split) and FAQPage JSON-LD on the FAQ section.
+- Generated branded OG image (`opengraph-image.tsx` via `next/og`) at 1200×630.
+- Post-launch: submit sitemap in Google Search Console; track Core Web Vitals in PageSpeed Insights.
+
+---
+
 ## Open decisions
 
 *Resolved 2026‑10‑09:*

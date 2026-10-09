@@ -5,41 +5,78 @@ import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/app/Theme/ThemeProvider.jsx";
 import './globals.css';
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ieeegub.vercel.app';
+
 export const metadata = {
-  metadataBase: new URL('https://ieeegub.vercel.app'),
-  title: 'IEEE SB Green University of Bangladesh',
-  description: 'Official website of IEEE Student Branch, Green University of Bangladesh',
-  keywords: ['IEEE', 'Green University', 'GUB', 'IEEE Student Branch', 'Bangladesh'],
-  authors: [{ name: 'IEEE GUB Team', url: 'https://ieeegub.vercel.app/' }],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'IEEE SB Green University of Bangladesh — IEEE GUB',
+    template: '%s | IEEE SB GUB',
+  },
+  description:
+    'Official website of the IEEE Student Branch at Green University of Bangladesh (IEEE GUB) — events, achievements, leadership, projects and opportunities in technology and innovation.',
+  keywords: ['IEEE', 'Green University', 'GUB', 'IEEE Student Branch', 'IEEE GUB', 'Bangladesh', 'technology', 'engineering', 'student branch'],
+  authors: [{ name: 'IEEE GUB Team', url: `${SITE_URL}/` }],
+  applicationName: 'IEEE SB GUB',
+  alternates: { canonical: '/' },
   icons: {
     icon: '/favicon/favicon-96x96.png',
     shortcut: '/favicon/favicon.ico',
     apple: '/favicon/apple-touch-icon.png',
   },
-  robots: 'index, follow',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   openGraph: {
     title: 'IEEE SB Green University of Bangladesh',
     description: 'Connect. Innovate. Lead. IEEE Student Branch of Green University of Bangladesh',
-    url: 'https://ieeegub.vercel.app',
+    url: SITE_URL,
     siteName: 'IEEE SB GUB',
-    images: [
-      {
-        url: '/favicon/favicon-96x96.png',
-        width: 1200,
-        height: 630,
-        alt: 'IEEE SB GUB Official Website',
-      },
-    ],
+    images: [{ url: '/images/hero.jpg', alt: 'IEEE SB Green University of Bangladesh' }],
     locale: 'en_US',
     type: 'website',
-  }
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IEEE SB Green University of Bangladesh',
+    description: 'Connect. Innovate. Lead. IEEE Student Branch of Green University of Bangladesh',
+    images: ['/images/hero.jpg'],
+  },
 };
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'IEEE Student Branch, Green University of Bangladesh',
+      alternateName: 'IEEE SB GUB',
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/IEEELogo.png`,
+      sameAs: ['https://www.facebook.com/ieeesbgub/'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'IEEE SB Green University of Bangladesh',
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({ children }) {
@@ -52,6 +89,10 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#10b981" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         <Providers>
