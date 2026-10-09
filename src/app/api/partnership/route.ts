@@ -18,12 +18,6 @@ const requiredEnvVars = [
   'EMAIL_TO',
 ];
 
-for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
-    throw new Error(`Missing required environment variable: ${envVar}`);
-  }
-}
-
 const transporter: Transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: parseInt(process.env.EMAIL_PORT || '587'),
@@ -71,6 +65,15 @@ const sanitizeInput = (input: string | undefined): string => {
 
 export async function POST(request: Request) {
   try {
+    const missingEnv = requiredEnvVars.find((v) => !process.env[v]);
+    if (missingEnv) {
+      console.error(`Partnership route misconfigured: missing ${missingEnv}`);
+      return NextResponse.json(
+        { message: 'Email service is not configured. Please try again later.' },
+        { status: 500, headers: { 'Cache-Control': 'no-store' } }
+      );
+    }
+
     if (!(await validateCsrfToken(request))) {
       return NextResponse.json(
         { message: 'Invalid CSRF token' },

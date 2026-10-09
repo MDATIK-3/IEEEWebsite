@@ -5,10 +5,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/app/Theme/ThemeProvider.jsx";
 import './globals.css';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-export const fetchCache = 'force-no-store';
-
 export const metadata = {
   title: 'IEEE SB Green University of Bangladesh',
   description: 'Official website of IEEE Student Branch, Green University of Bangladesh',
