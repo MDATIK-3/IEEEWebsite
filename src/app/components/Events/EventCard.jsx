@@ -1,0 +1,167 @@
+'use client'
+
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { IoMdTimer } from "react-icons/io";
+import { CiCalendar } from "react-icons/ci";
+import Link from "next/link";
+import { CalendarPlus, User } from 'lucide-react';
+import Image from 'next/image';
+import { buildCalendarUrl, buildLocalDate } from '@/app/utils/eventCalendar';
+
+const formatDate = (dateString) => {
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  } catch {
+    return dateString;
+  }
+};
+
+const EventCard = ({ event, onError, onSelect }) => {
+  if (!event) return null;
+
+  const { id, image, eventName, date, guest, time, startTime, endTime, locationLabel } = event;
+  const [countdown, setCountdown] = useState(null);
+  const [imageFailed, setImageFailed] = useState(false);
+  const imageSrc = image?.startsWith('/') ? image : `/${image || ''}`;
+  const calendarUrl = useMemo(() => buildCalendarUrl(event), [event]);
+  const startDate = useMemo(() => buildLocalDate(date, startTime), [date, startTime]);
+  const isUpcoming = useMemo(() => {
+    if (!startDate) return false;
+    return startDate > new Date();
+  }, [startDate]);
+
+  useEffect(() => {
+    if (!startDate || !calendarUrl || !isUpcoming) {
+      setCountdown(null);
+      return;
+    }
+    const updateCountdown = () => {
+      const now = new Date();
+      const diff = startDate - now;
+      if (diff <= 0) return setCountdown(null);
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+      setCountdown(`${d}d ${h}h ${m}m ${s}s`);
+    };
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [startDate, calendarUrl, isUpcoming]);
+
+  const handleClick = useCallback(() => {
+    try {
+      onSelect?.(event);
+      localStorage?.setItem('selectedEvent', JSON.stringify(event));
+    } catch (error) {
+      onError?.(error);
+    }
+  }, [event, onSelect, onError]);
+
+  const handleImageError = useCallback(() => {
+    setImageFailed(true);
+  }, []);
+
+  return (
+    <article
+      className="group relative w-full h-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl shadow-sm hover:shadow-xl hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-500 transform hover:scale-[1.025] hover:-translate-y-1 overflow-hidden"
+      role="article"
+    >
+      {image && (
+        <figure className="relative h-52 bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 overflow-hidden">
+          <Link href={`/Activities/Events/details/${id}`} onClick={handleClick} className="block w-full h-full">
+            <div className="relative w-full h-full overflow-hidden">
+              {!imageFailed ? (
+                <Image
+                  src={imageSrc}
+                  alt={eventName || 'Event image'}
+                  onError={handleImageError}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                  Image unavailable
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.05),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            </div>
+          </Link>
+
+          {countdown && isUpcoming && (
+            <div className="absolute top-3 right-3 flex items-center gap-1 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm border border-white/20 transform group-hover:scale-110 transition-transform duration-300">
+              <IoMdTimer className="text-sm animate-pulse" />
+              {countdown}
+            </div>
+          )}
+        </figure>
+      )}
+
+      <div className="p-6 flex flex-col gap-4">
+        <h2 className="text-xl font-semibold text-zinc-800 dark:text-zinc-100 line-clamp-2 transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+          {eventName || 'Untitled Event'}
+        </h2>
+        {guest && (
+          <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200 transition-colors w-full">
+            <div className="flex-shrink-0 p-1.5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full">
+              <User size={16} className="text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <div className="flex items-baseline min-w-0">
+              <span className="text-sm font-semibold whitespace-nowrap mr-1">Guest:</span>
+              <span className="text-sm truncate">{guest}</span>
+            </div>
+          </div>
+        )}
+
+
+        <div className="flex flex-wrap justify-between items-center gap-3 pt-4 mt-auto border-t border-zinc-200 dark:border-zinc-700">
+          {date && (
+            <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-2 rounded-lg group-hover:scale-105 transition-transform">
+              <CiCalendar className="text-lg text-emerald-600 dark:text-emerald-400" />
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
+                {formatDate(date)}
+              </span>
+            </div>
+          )}
+
+          {time && (
+            <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-2 rounded-lg group-hover:scale-105 transition-transform">
+              <IoMdTimer className="text-lg text-emerald-600 dark:text-emerald-400" />
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">{time}</span>
+            </div>
+          )}
+        </div>
+
+        {calendarUrl && startTime && endTime && isUpcoming && (
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            {locationLabel && (
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                {locationLabel}
+              </span>
+            )}
+            <a
+              href={calendarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-transform hover:scale-105"
+            >
+              <CalendarPlus className="h-4 w-4" />
+              Add to Calendar
+            </a>
+          </div>
+        )}
+      </div>
+    </article>
+  );
+};
+
+export default EventCard;

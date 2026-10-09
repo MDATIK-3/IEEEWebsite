@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "Md Atik",
+    "role": "IEEE CS Executive Member",
+    "quote": "IEEE GUB gave me a platform to grow, lead, and build a tech community that matters.",
+    "photo": "/images/default-avatar.png",
+    "socials": {
+      "facebook": "https://www.facebook.com/ieeesbgub/",
+      "linkedin": "https://www.linkedin.com/company/ieee-gub-student-branch/",
+      "github": "https://github.com/MDATIK-3"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Tanvir Hasan",
+    "role": "Event Operations Lead",
+    "quote": "From planning workshops to leading volunteers, I learned real-world leadership fast.",
+    "photo": "/images/default-avatar.png",
+    "socials": {
+      "facebook": "https://www.facebook.com/ieeesbgub/",
+      "linkedin": "https://www.linkedin.com/company/ieee-gub-student-branch/"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Faria Ahmed",
+    "role": "IEEE CS Chapter Coordinator",
+    "quote": "The community and mentorship here helped me find my path in software engineering.",
+    "photo": "/images/default-avatar.png",
+    "socials": {
+      "facebook": "https://www.facebook.com/ieeesbgub/",
+      "linkedin": "https://www.linkedin.com/company/ieee-gub-student-branch/"
+    }
+  }
+]

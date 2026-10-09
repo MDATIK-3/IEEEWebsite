@@ -1,0 +1,55 @@
+[
+  {
+    "id": 1,
+    "title": "Campus Smart Energy Dashboard",
+    "summary": "A real-time dashboard that visualizes lab and classroom energy usage to encourage sustainable habits.",
+    "tags": ["IoT", "Sustainability", "Data Viz"],
+    "year": 2025,
+    "status": "Active",
+    "team": ["IEEE PES", "IEEE SB"],
+    "links": [
+      { "label": "Demo", "url": "https://example.com/energy-dashboard" },
+      { "label": "Repo", "url": "https://github.com/example/energy-dashboard" }
+    ],
+    "coverImage": "/images/Event/1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "AI Study Buddy",
+    "summary": "A chatbot that helps first-year students with course planning, lab guidance, and campus resources.",
+    "tags": ["AI", "NLP", "Student Support"],
+    "year": 2024,
+    "status": "Completed",
+    "team": ["IEEE CS", "IEEE SB"],
+    "links": [
+      { "label": "Case Study", "url": "https://example.com/ai-study-buddy" }
+    ],
+    "coverImage": "/images/e1.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Disaster Response Drone Mapping",
+    "summary": "A lightweight mapping workflow using drones to assist local responders with rapid situational awareness.",
+    "tags": ["Robotics", "Mapping", "Community"],
+    "year": 2025,
+    "status": "Active",
+    "team": ["IEEE SB", "IEEE RAS"],
+    "links": [
+      { "label": "Overview", "url": "https://example.com/drone-mapping" }
+    ],
+    "coverImage": "/images/hero.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Women in Tech Mentorship Portal",
+    "summary": "A matching portal connecting mentors and mentees with structured learning tracks and events.",
+    "tags": ["Community", "Mentorship", "Web"],
+    "year": 2023,
+    "status": "Completed",
+    "team": ["IEEE WIE", "IEEE SB"],
+    "links": [
+      { "label": "Program Guide", "url": "https://example.com/wit-mentorship" }
+    ],
+    "coverImage": "/images/Event/15.jpg"
+  }
+]

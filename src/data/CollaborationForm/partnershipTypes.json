@@ -1,0 +1,42 @@
+[
+    {
+        "value": "event_sponsorship",
+        "label": "Event Sponsorship"
+    },
+    {
+        "value": "workshop_collaboration",
+        "label": "Workshop Collaboration"
+    },
+    {
+        "value": "research_partnership",
+        "label": "Research Partnership"
+    },
+    {
+        "value": "internship_program",
+        "label": "Internship Program"
+    },
+    {
+        "value": "mentorship_program",
+        "label": "Mentorship Program"
+    },
+    {
+        "value": "technology_partnership",
+        "label": "Technology Partnership"
+    },
+    {
+        "value": "academic_collaboration",
+        "label": "Academic Collaboration"
+    },
+    {
+        "value": "community_outreach",
+        "label": "Community Outreach"
+    },
+    {
+        "value": "competition_sponsorship",
+        "label": "Competition Sponsorship"
+    },
+    {
+        "value": "strategic_partnership",
+        "label": "Long-term Strategic Partnership"
+    }
+]
