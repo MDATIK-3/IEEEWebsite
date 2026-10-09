@@ -6,6 +6,7 @@ import { Providers } from "@/app/Theme/ThemeProvider.jsx";
 import './globals.css';
 
 export const metadata = {
+  metadataBase: new URL('https://ieeegub.vercel.app'),
   title: 'IEEE SB Green University of Bangladesh',
   description: 'Official website of IEEE Student Branch, Green University of Bangladesh',
   keywords: ['IEEE', 'Green University', 'GUB', 'IEEE Student Branch', 'Bangladesh'],

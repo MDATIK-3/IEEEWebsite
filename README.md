@@ -21,9 +21,6 @@ Official website for the IEEE Student Branch at Green University of Bangladesh (
 
 ### Community
 - **Join IEEE** page with global sign-up + IEEE GUB onboarding
-- **Projects** showcase with tag filters
-- **Opportunities** for volunteering and committees
-- **Resources** hub for slides, recordings, and highlights
 
 ### Executive Team
 - Directory sorted by year and chapter
@@ -106,8 +103,6 @@ Update JSON files in `src/data/` to manage site content:
 - `collaboration.json` � collaborations
 - `FAQ.json` � FAQ items
 - `moderatorsMessages.json` � moderator messages
-- `projects.json` � project showcase
-- `opportunities.json` � volunteer opportunities
 - `membership.json` � join page content and fees
 - `spotlights.json` � member spotlights
 - `ContributionRoles.json` � developer roles
