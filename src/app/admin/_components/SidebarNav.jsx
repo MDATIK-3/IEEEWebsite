@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, CalendarDays, FileCheck2, Mail, Users } from 'lucide-react';
+import { LayoutDashboard, CalendarDays, FileCheck2, Mail, Users, Megaphone } from 'lucide-react';
 import { cx } from '@/app/utils/cx';
 
 /** Map the serializable `icon` key (passed from the server layout) to an icon. */
 const ICONS = {
   dashboard: LayoutDashboard,
   events: CalendarDays,
+  announcements: Megaphone,
   submissions: FileCheck2,
   messages: Mail,
   users: Users,

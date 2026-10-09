@@ -47,6 +47,7 @@ export default async function AdminLayout({ children }) {
   const navItems = [
     { href: '/admin', label: 'Dashboard', icon: 'dashboard' },
     { href: '/admin/events', label: 'Events', icon: 'events' },
+    { href: '/admin/announcements', label: 'News', icon: 'announcements' },
     ...(isSuper ? [{ href: '/admin/submissions', label: 'Submissions', icon: 'submissions' }] : []),
     { href: '/admin/messages', label: 'Messages', icon: 'messages' },
     ...(isSuper ? [{ href: '/admin/users', label: 'Users', icon: 'users' }] : []),

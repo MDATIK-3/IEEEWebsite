@@ -2,6 +2,7 @@ import NavBar from './components/Shares/NavBar/page.jsx';
 import NewsTickerBar from './components/NewsTicker/NewsTickerBar.jsx';
 import Footer from './components/Shares/Footer/page.jsx';
 import ChatbotButton from './components/ChatbotButton/page.jsx';
+import HideOnAdmin from './components/HideOnAdmin.jsx';
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/app/Theme/ThemeProvider.jsx";
 import './globals.css';
@@ -97,11 +98,15 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Providers>
-          <NavBar />
-          <NewsTickerBar />
+          <HideOnAdmin>
+            <NavBar />
+            <NewsTickerBar />
+          </HideOnAdmin>
           <main className="flex-grow">{children}</main>
-          <ChatbotButton />
-          <Footer />
+          <HideOnAdmin>
+            <ChatbotButton />
+            <Footer />
+          </HideOnAdmin>
         </Providers>
         <Analytics />
       </body>
