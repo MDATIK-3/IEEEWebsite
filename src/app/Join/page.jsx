@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -12,9 +10,21 @@ import {
   Sparkles,
   Users,
 } from 'lucide-react';
-import membership from '@/data/membership.json';
+import { getMembership } from '@/lib/queries';
 
-const JoinPage = () => {
+export const revalidate = 86400;
+
+const JoinPage = async () => {
+  const row = await getMembership();
+  const membership = {
+    joinLink: row?.join_link,
+    localContactLink: row?.local_contact_link,
+    benefits: row?.benefits ?? [],
+    steps: row?.steps ?? [],
+    fees: row?.fees ?? [],
+    faqs: row?.faqs ?? [],
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br  from-white via-emerald-50 to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-16 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto space-y-12">

@@ -3,10 +3,9 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import achievement from '@/data/acievement.json';
 import BgColor from '@/app/components/BgColor';
 
-const AchieveCard = () => {
+const AchieveCard = ({ achievements = [] }) => {
   const [expandedCards, setExpandedCards] = useState({});
 
   const toggleDetails = (id) => {
@@ -23,7 +22,7 @@ const AchieveCard = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 py-8 max-w-7xl mx-auto items-start">
-      {achievement.map(({ id, year, program_name, details, image }) => {
+      {achievements.map(({ id, year, program_name, details, image }) => {
         const isExpanded = expandedCards[id];
         const imageSrc = image?.startsWith('/') ? image : `/${image || ''}`;
 

@@ -1,8 +1,9 @@
 import Link from "next/link";
 import ColabCard from "./ColabCard";
-import colabData from "@/data/collaboration.json";
+import { getCollaborations } from "@/lib/queries";
 
-const Feature = ({ showAll = false }) => {
+const Feature = async ({ showAll = false }) => {
+  const colabData = await getCollaborations();
   const sortedEvents = [...colabData].sort((a, b) => a.id - b.id);
   const displayedEvents = showAll ? sortedEvents : sortedEvents.slice(0, 8);
 

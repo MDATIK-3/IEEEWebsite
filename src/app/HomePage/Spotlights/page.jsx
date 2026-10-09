@@ -1,8 +1,8 @@
-'use client';
-
 import Image from 'next/image';
 import { Facebook, Github, Linkedin } from 'lucide-react';
-import spotlights from '@/data/spotlights.json';
+import { getSpotlights } from '@/lib/queries';
+
+export const revalidate = 86400;
 
 const socialIcons = {
   facebook: Facebook,
@@ -10,7 +10,9 @@ const socialIcons = {
   github: Github,
 };
 
-const Spotlights = () => {
+const Spotlights = async () => {
+  const spotlights = await getSpotlights();
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-20 px-6">
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-emerald-200/40 rounded-full blur-3xl" />

@@ -1,4 +1,5 @@
 import NavBar from './components/Shares/NavBar/page.jsx';
+import NewsTickerBar from './components/NewsTicker/NewsTickerBar.jsx';
 import Footer from './components/Shares/Footer/page.jsx';
 import ChatbotButton from './components/ChatbotButton/page.jsx';
 import { Analytics } from "@vercel/analytics/next";
@@ -97,6 +98,7 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>
           <NavBar />
+          <NewsTickerBar />
           <main className="flex-grow">{children}</main>
           <ChatbotButton />
           <Footer />

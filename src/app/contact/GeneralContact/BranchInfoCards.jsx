@@ -1,5 +1,5 @@
 import { Clock, Phone, Mail, Navigation } from "lucide-react";
-import contactInfo from "@/data/contactInfo.json";
+import { getContactInfo } from "@/lib/queries";
 
 const iconMap = {
   Phone,
@@ -8,7 +8,13 @@ const iconMap = {
   Navigation,
 };
 
-function BranchInfoCards() {
+async function BranchInfoCards() {
+  const rows = await getContactInfo();
+  const contactInfo = rows.map((row) => ({
+    ...row,
+    primary: row.primary_value,
+  }));
+
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 max-w-7xl mx-auto">
       {contactInfo.map((item, index) => {
