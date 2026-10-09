@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { cx } from '@/app/utils/cx';
 import { submitChange } from '../_actions/content';
+import ImageUploader from '../_components/ImageUploader';
 
 /** ISO timestamp -> value for <input type="datetime-local"> (local time). */
 function toLocalInput(value) {
@@ -208,18 +209,12 @@ export default function EventForm({ mode = 'create', eventId, initial = {} }) {
           />
         </div>
 
-        <div>
-          <label htmlFor="image_url" className={label}>
-            Image URL
-          </label>
-          <input
-            id="image_url"
-            name="image_url"
-            type="url"
-            defaultValue={initial.image_url || ''}
-            className={field}
-          />
-        </div>
+        <ImageUploader
+          name="image_url"
+          initialUrl={initial.image_url || ''}
+          folder="events"
+          label="Event image"
+        />
 
         <div>
           <label htmlFor="registration_link" className={label}>
