@@ -25,7 +25,9 @@ if (!url || !password) {
   process.exit(1);
 }
 const ref = new URL(url).hostname.split('.')[0];
-const sql = readFileSync(join(ROOT, 'supabase', 'migrations', '0001_init.sql'), 'utf8');
+const file = process.argv[2] || join('supabase', 'migrations', '0001_init.sql');
+console.log(`Pushing ${file} ...`);
+const sql = readFileSync(join(ROOT, file), 'utf8');
 
 const hosts = [
   { host: `db.${ref}.supabase.co`, port: 5432, user: 'postgres' },
