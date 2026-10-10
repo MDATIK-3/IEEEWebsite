@@ -10,9 +10,10 @@ import {
 } from "lucide-react";
 import SocialLink from "./SocialLink";
 import Image from "next/image";
+import { resolveImageSrc } from "@/app/utils/imageSrc";
 
 const MemberCard = ({ member, isFaculty = false, onClick }) => {
-  const safeSrc = member.img?.startsWith("/") ? member.img : `/${member.img}`;
+  const safeSrc = resolveImageSrc(member.img);
 
   return (
     <div

@@ -1,17 +1,28 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import { resolveImageSrc } from '@/app/utils/imageSrc';
 
 const SpeakerSection = ({ event }) => {
-    if (!event.speakers || event.speakers.length === 0) return null;
-
     const [expanded, setExpanded] = useState({});
+
+    if (!event.speakers || event.speakers.length === 0) return null;
 
     const toggleExpand = (index) => {
         setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
     };
 
-    const formatSrc = (src) => (src?.startsWith('/') ? src : `/${src}`);
+    const formatSrc = (src) => resolveImageSrc(src);
+
+    // Bio and role come from the speaker object (admin-managed, DB-driven). Older
+    // rows stored only two bios in guest_bio / special_guest_bio, so fall back to
+    // those by position to keep existing events rendering unchanged.
+    const bioFor = (speaker, index) =>
+        speaker?.bio ||
+        (index === 0 ? event.guestBio : index === 1 ? event.specialGuestBio : '') ||
+        '';
+    const roleFor = (speaker, index) =>
+        speaker?.designation || speaker?.role || (index === 0 ? 'Main Speaker' : 'Special Guest');
 
     return (
         <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 border border-green-100 dark:border-green-800 max-w-4xl mx-auto transition-colors duration-300">
@@ -21,7 +32,7 @@ const SpeakerSection = ({ event }) => {
 
             <div className="space-y-6 sm:space-y-8">
                 {event.speakers.map((speaker, index) => {
-                    const bio = index === 0 ? event.guestBio : event.specialGuestBio;
+                    const bio = bioFor(speaker, index);
                     const isExpanded = expanded[index] || false;
 
                     return (
@@ -48,7 +59,7 @@ const SpeakerSection = ({ event }) => {
                                     {speaker.name}
                                 </h3>
                                 <p className="text-green-600 dark:text-green-400 font-medium mb-3 text-sm sm:text-base transition-colors duration-300">
-                                    {index === 0 ? 'Main Speaker' : 'Special Guest'}
+                                    {roleFor(speaker, index)}
                                 </p>
 
                                 <p

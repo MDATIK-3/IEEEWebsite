@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next';
-import events from '@/data/eventData.json';
+import { getEventCards } from '@/lib/queries';
 
 const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://ieeegub.vercel.app';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/Executives',
     '/Gallery',
     '/Join',
+    '/LearnIEEE',
     '/Collaboration',
     '/contact/GeneralContact',
     '/contact/partnership',
@@ -24,14 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === '' ? 1 : 0.7,
   }));
 
-  const eventRoutes: MetadataRoute.Sitemap = (events as Array<{ id: number | string }>).map(
-    (e) => ({
-      url: `${base}/Activities/Events/details/${e.id}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    })
-  );
+  const events = (await getEventCards()) as Array<{ id: number | string }>;
+  const eventRoutes: MetadataRoute.Sitemap = events.map((e) => ({
+    url: `${base}/Activities/Events/details/${e.id}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
 
   return [...staticRoutes, ...eventRoutes];
 }

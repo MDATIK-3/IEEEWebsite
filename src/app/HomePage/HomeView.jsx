@@ -1,11 +1,11 @@
-import About from "./About/page";
-import HeroSection from "./HeroSection/page";
-import AllEvent from "./events/page";
-import ModeratorMessages from "./ModeratorMessages/page"
+import About from "./About/About";
+import HeroSection from "./HeroSection/HeroSection";
+import AllEvent from "./events/EventsPreview";
+import ModeratorMessages from "./ModeratorMessages/ModeratorMessages";
 import Feature from "./Feature/Feature";
-import AllPhoto from "./Gallery/page";
-import FAQ from "./FAQ/page";
-import Spotlights from "./Spotlights/page";
+import AllPhoto from "./Gallery/GalleryPreview";
+import FAQ from "./FAQ/FAQ";
+import Spotlights from "./Spotlights/Spotlights";
 
 function Page() {
     return (

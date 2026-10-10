@@ -1,9 +1,10 @@
 import ShimmerEffect from "@/app/components/ShimmerEffect";
 import Image from "next/image";
+import { resolveImageSrc } from "@/app/utils/imageSrc";
 
 const ColabCard = ({ event }) => {
   const { image, name } = event;
-  const imageSrc = image?.startsWith("/") ? image : `/${image || ""}`;
+  const imageSrc = resolveImageSrc(image);
 
   return (
     <div

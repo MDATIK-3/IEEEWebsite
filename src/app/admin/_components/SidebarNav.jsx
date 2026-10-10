@@ -2,7 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, CalendarDays, FileCheck2, Mail, Users, Megaphone } from 'lucide-react';
+import {
+  LayoutDashboard, CalendarDays, FileCheck2, Mail, Users, Megaphone,
+  GraduationCap, Trophy, Images, Handshake, Star, HelpCircle, Quote, BadgeCheck, Phone, Code2,
+} from 'lucide-react';
 import { cx } from '@/app/utils/cx';
 
 /** Map the serializable `icon` key (passed from the server layout) to an icon. */
@@ -10,6 +13,16 @@ const ICONS = {
   dashboard: LayoutDashboard,
   events: CalendarDays,
   announcements: Megaphone,
+  executives: GraduationCap,
+  achievements: Trophy,
+  gallery: Images,
+  collaborations: Handshake,
+  spotlights: Star,
+  moderators: Quote,
+  faqs: HelpCircle,
+  membership: BadgeCheck,
+  contactinfo: Phone,
+  contributors: Code2,
   submissions: FileCheck2,
   messages: Mail,
   users: Users,
@@ -45,6 +58,10 @@ export default function SidebarNav({ items = [], variant = 'sidebar' }) {
           <Link
             key={item.href}
             href={item.href}
+            // Admin routes are force-dynamic + auth-gated, so prefetching them
+            // is wasted work and, with many links in view, floods the network
+            // with repeated RSC (?_rsc=) requests. Fetch on click instead.
+            prefetch={false}
             aria-current={active ? 'page' : undefined}
             className={cx(
               'group flex items-center gap-3 rounded-lg text-sm font-medium transition-colors',

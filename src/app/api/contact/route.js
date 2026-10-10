@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import sanitizeHtml from 'sanitize-html';
+import { createAdminClient } from '@/lib/supabase/admin';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -46,6 +47,13 @@ export async function POST(request) {
         { message: "Message must be at least 10 characters long" },
         { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
+    }
+
+    // Persist to the admin inbox (non-fatal if it fails).
+    try {
+      await createAdminClient().from('contact_submissions').insert({ name, email, subject, message });
+    } catch (e) {
+      console.error('contact_submissions insert failed:', e);
     }
 
     await transporter.sendMail({

@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { Image as IconImage } from 'lucide-react';
+import { resolveImageSrc } from '@/app/utils/imageSrc';
 
 const GallerySection = ({ event, isPastEvent, onImageClick }) => {
   if (!isPastEvent || !Array.isArray(event.gallery) || event.gallery.length === 0) {
     return null;
   }
 
-  const formatSrc = (src) => (src?.startsWith('/') ? src : `/${src}`);
+  const formatSrc = (src) => resolveImageSrc(src);
 
   return (
     <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 border border-green-100 dark:border-green-800 transition-colors duration-300">

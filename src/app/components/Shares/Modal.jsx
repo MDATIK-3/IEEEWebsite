@@ -3,6 +3,7 @@
 import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
 import { X, ChevronLeft, ChevronRight, Calendar, Download } from "lucide-react";
 import Image from "next/image";
+import { resolveImageSrc } from "@/app/utils/imageSrc";
 
 const Modal = forwardRef(({ photos }, ref) => {
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -14,7 +15,7 @@ const Modal = forwardRef(({ photos }, ref) => {
       ? photo
       : photo.image
     : null;
-  const normalizedImageUrl = imageUrl?.startsWith("/") ? imageUrl : `/${imageUrl || ""}`;
+  const normalizedImageUrl = resolveImageSrc(imageUrl);
 
   const closeModal = () => setCurrentIndex(null);
   const prevPhoto = () =>

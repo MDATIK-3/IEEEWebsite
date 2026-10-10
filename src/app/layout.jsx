@@ -1,7 +1,7 @@
-import NavBar from './components/Shares/NavBar/page.jsx';
+import NavBar from './components/Shares/NavBar/NavBar.jsx';
 import NewsTickerBar from './components/NewsTicker/NewsTickerBar.jsx';
-import Footer from './components/Shares/Footer/page.jsx';
-import ChatbotButton from './components/ChatbotButton/page.jsx';
+import Footer from './components/Shares/Footer/Footer.jsx';
+import ChatbotButton from './components/ChatbotButton/ChatbotButton.jsx';
 import HideOnAdmin from './components/HideOnAdmin.jsx';
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/app/Theme/ThemeProvider.jsx";

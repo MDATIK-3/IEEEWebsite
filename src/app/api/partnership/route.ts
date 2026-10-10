@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
 import { randomBytes } from 'crypto';
 import { cookies } from 'next/headers';
+import { createAdminClient } from '@/lib/supabase/admin';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -322,6 +323,13 @@ Application submitted on: ${submissionDate}
 </div>
       `,
     });
+
+    // Persist to the admin inbox (non-fatal if it fails).
+    try {
+      await createAdminClient().from('partnership_submissions').insert({ data: body });
+    } catch (e) {
+      console.error('partnership_submissions insert failed:', e);
+    }
 
     const cookieStore = await cookies();
     cookieStore.delete('csrfToken');

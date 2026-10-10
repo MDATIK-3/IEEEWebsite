@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import EventsGrid from "@/app/components/Events/EventsGrid.jsx";
-import events from "@/data/eventData.json";
+import { getEventCards } from "@/lib/queries";
+import { toEventViews } from "@/app/utils/eventView";
 
-const EventsPreview = () => {
+const EventsPreview = async () => {
   const now = new Date();
+  const events = toEventViews(await getEventCards());
 
   const filteredEvents = events.filter((event) => {
     return event.eventName.toLowerCase().includes("".toLowerCase());

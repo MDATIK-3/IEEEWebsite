@@ -1,6 +1,20 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 import path from 'path';
+import {
+  getEvents,
+  getExecutives,
+  getAchievements,
+  getCollaborations,
+  getFaqs,
+  getModeratorMessages,
+  getSpotlights,
+  getGalleryPhotos,
+  getContactInfo,
+  getMembership,
+  getOrganizationTypes,
+  getPartnershipTypes,
+} from '@/lib/queries';
 const DATA_DIR = path.join(process.cwd(), 'src/data');
 const MODEL_NAME = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 export const dynamic = 'force-dynamic';
@@ -29,24 +43,78 @@ function getAllJsonFiles(dir) {
   return files;
 }
 
-function buildKnowledgeBase() {
-  const jsonFiles = getAllJsonFiles(DATA_DIR);
-  let knowledgeBase = '';
+async function buildKnowledgeBase() {
+  const sections = [];
+  const add = (label, data) => {
+    if (data == null) return;
+    if (Array.isArray(data) && data.length === 0) return;
+    sections.push(`### ${label}\n\n${JSON.stringify(data, null, 2)}\n\n---\n`);
+  };
 
-  for (const file of jsonFiles) {
+  // Primary source: the live database, via the same cached getters the public
+  // pages use (RLS limits this to published content).
+  try {
+    const [
+      events,
+      executives,
+      achievements,
+      collaborations,
+      faqsGeneral,
+      faqsMembership,
+      moderatorMessages,
+      spotlights,
+      gallery,
+      contactInfo,
+      membership,
+      organizationTypes,
+      partnershipTypes,
+    ] = await Promise.all([
+      getEvents(),
+      getExecutives(),
+      getAchievements(),
+      getCollaborations(),
+      getFaqs('general'),
+      getFaqs('membership'),
+      getModeratorMessages(),
+      getSpotlights(),
+      getGalleryPhotos(),
+      getContactInfo(),
+      getMembership(),
+      getOrganizationTypes(),
+      getPartnershipTypes(),
+    ]);
+    add('events', events);
+    add('executives', executives);
+    add('achievements', achievements);
+    add('collaborations', collaborations);
+    add('faqs', [...(faqsGeneral || []), ...(faqsMembership || [])]);
+    add('moderatorMessages', moderatorMessages);
+    add('spotlights', spotlights);
+    add('gallery', gallery);
+    add('contactInfo', contactInfo);
+    add('membership', membership);
+    add('organizationTypes', organizationTypes);
+    add('partnershipTypes', partnershipTypes);
+  } catch (error) {
+    console.warn('Knowledge base: failed to load database content', error);
+  }
+
+  // Fallback: any remaining static JSON not held in the database
+  // (e.g. registered.json, ContributionRoles.json).
+  for (const file of getAllJsonFiles(DATA_DIR)) {
     try {
       const data = JSON.parse(fs.readFileSync(file, 'utf-8'));
       const relativePath = path
         .relative(DATA_DIR, file)
         .replace('.json', '')
         .replace(/\\/g, '/');
-      knowledgeBase += `### ${relativePath}\n\n${JSON.stringify(data, null, 2)}\n\n---\n\n`;
+      add(relativePath, data);
     } catch (error) {
       console.warn(`Skipping invalid JSON file: ${file}`, error);
     }
   }
 
-  return knowledgeBase.trim();
+  return sections.join('\n').trim();
 }
 
 function getSmallTalkReply(query) {
@@ -114,7 +182,7 @@ Special Instructions:
 - If the user asks to "show photo" or similar, display the photo path from the data.
 
 Knowledge Base:
-${buildKnowledgeBase()}
+${await buildKnowledgeBase()}
 ${contextString}
 
 User Query: ${query}

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { CalendarPlus, User } from 'lucide-react';
 import Image from 'next/image';
 import { buildCalendarUrl, buildLocalDate } from '@/app/utils/eventCalendar';
+import { resolveImageSrc } from '@/app/utils/imageSrc';
 
 const formatDate = (dateString) => {
   try {
@@ -28,7 +29,7 @@ const EventCard = ({ event, onError, onSelect }) => {
   const { id, image, eventName, date, guest, time, startTime, endTime, locationLabel } = event;
   const [countdown, setCountdown] = useState(null);
   const [imageFailed, setImageFailed] = useState(false);
-  const imageSrc = image?.startsWith('/') ? image : `/${image || ''}`;
+  const imageSrc = resolveImageSrc(image);
   const calendarUrl = useMemo(() => buildCalendarUrl(event), [event]);
   const startDate = useMemo(() => buildLocalDate(date, startTime), [date, startTime]);
   const isUpcoming = useMemo(() => {

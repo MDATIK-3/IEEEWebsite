@@ -11,14 +11,25 @@ import { UploadCloud, X, Loader2, ImageIcon } from 'lucide-react';
  * resulting public URL in a hidden input named `name`, so existing FormData
  * submit logic reads it transparently (no URL typing needed).
  *
- * @param {{ name:string, initialUrl?:string, folder?:string, label?:string }} props
+ * `onChange` is optional: when provided it fires with the current URL whenever it
+ * changes (upload success or removal), so the uploader can also be driven inside
+ * controlled, dynamic lists (e.g. an event gallery or per-speaker photo) that
+ * build their arrays from React state instead of FormData.
+ *
+ * @param {{ name?:string, initialUrl?:string, folder?:string, label?:string, onChange?:(url:string)=>void }} props
  */
-export default function ImageUploader({ name, initialUrl = '', folder = 'misc', label = 'Image' }) {
+export default function ImageUploader({ name, initialUrl = '', folder = 'misc', label = 'Image', onChange }) {
   const [url, setUrl] = useState(initialUrl || '');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef(null);
+
+  // Update local state and notify any controlling parent.
+  function commitUrl(next) {
+    setUrl(next);
+    onChange?.(next);
+  }
 
   async function upload(file) {
     if (!file) return;
@@ -34,7 +45,7 @@ export default function ImageUploader({ name, initialUrl = '', folder = 'misc', 
       fd.append('folder', folder);
       const res = await uploadImage(fd);
       if (res?.error) setError(res.error);
-      else if (res?.url) setUrl(res.url);
+      else if (res?.url) commitUrl(res.url);
     } catch {
       setError('Upload failed. Please try again.');
     } finally {
@@ -50,8 +61,12 @@ export default function ImageUploader({ name, initialUrl = '', folder = 'misc', 
 
   return (
     <div>
-      <span className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">{label}</span>
-      <input type="hidden" name={name} value={url} readOnly />
+      {label ? (
+        <span className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
+          {label}
+        </span>
+      ) : null}
+      {name ? <input type="hidden" name={name} value={url} readOnly /> : null}
 
       {url ? (
         <div className="relative inline-block">
@@ -63,7 +78,7 @@ export default function ImageUploader({ name, initialUrl = '', folder = 'misc', 
           />
           <button
             type="button"
-            onClick={() => setUrl('')}
+            onClick={() => commitUrl('')}
             className="absolute -right-2 -top-2 rounded-full bg-red-600 p-1 text-white shadow hover:bg-red-500"
             aria-label="Remove image"
           >

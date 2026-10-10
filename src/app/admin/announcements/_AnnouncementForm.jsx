@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { cx } from '@/app/utils/cx';
-import { createAnnouncement, updateAnnouncement } from '../_actions/announcements';
+import { submitChange } from '../_actions/content';
 
 function toLocalInput(value) {
   if (!value) return '';
@@ -32,22 +32,43 @@ export default function AnnouncementForm({ mode = 'create', id, initial = {} }) 
     e.preventDefault();
     setError('');
     const fd = new FormData(e.currentTarget);
-    const data = {
-      title: fd.get('title'),
-      link_url: fd.get('link_url'),
-      link_label: fd.get('link_label'),
-      variant: fd.get('variant'),
-      priority: fd.get('priority'),
-      is_active: fd.get('is_active') === 'on',
-      starts_at: fromLocalInput(fd.get('starts_at')),
-      ends_at: fromLocalInput(fd.get('ends_at')),
-    };
-    if (!data.title?.toString().trim()) {
+    const title = (fd.get('title') || '').toString().trim();
+    if (!title) {
       setError('News text is required.');
       return;
     }
+
+    const startsAt = fromLocalInput(fd.get('starts_at'));
+    const endsAt = fromLocalInput(fd.get('ends_at'));
+    if (startsAt && endsAt && new Date(endsAt) <= new Date(startsAt)) {
+      setError('“Show until” must be after “Show from”.');
+      return;
+    }
+
+    const data = {
+      title,
+      link_url: (fd.get('link_url') || '').toString().trim() || null,
+      link_label: (fd.get('link_label') || '').toString().trim() || null,
+      variant: fd.get('variant') || 'info',
+      priority: Number(fd.get('priority')) || 0,
+      is_active: fd.get('is_active') === 'on',
+      // ends_at is nullable; null = no expiry.
+      ends_at: endsAt,
+    };
+    // starts_at: null = publish immediately. On create we omit it when empty so
+    // the row is valid even before migration 0003 makes the column nullable; on
+    // edit we send it (incl. null) so clearing the field takes effect.
+    if (mode === 'edit' || startsAt) {
+      data.starts_at = startsAt;
+    }
+
     setBusy(true);
-    const res = mode === 'edit' ? await updateAnnouncement(id, data) : await createAnnouncement(data);
+    const res = await submitChange({
+      targetTable: 'announcements',
+      targetId: mode === 'edit' ? id : null,
+      action: mode === 'edit' ? 'update' : 'create',
+      proposedData: data,
+    });
     setBusy(false);
     if (res?.error) {
       setError(res.error);
@@ -104,15 +125,22 @@ export default function AnnouncementForm({ mode = 'create', id, initial = {} }) 
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="starts_at" className={label}>Show from (optional)</label>
-            <input id="starts_at" name="starts_at" type="datetime-local" defaultValue={toLocalInput(initial.starts_at)} className={field} />
+        <div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="starts_at" className={label}>Show from (optional)</label>
+              <input id="starts_at" name="starts_at" type="datetime-local" defaultValue={toLocalInput(initial.starts_at)} className={field} />
+            </div>
+            <div>
+              <label htmlFor="ends_at" className={label}>Show until (optional)</label>
+              <input id="ends_at" name="ends_at" type="datetime-local" defaultValue={toLocalInput(initial.ends_at)} className={field} />
+            </div>
           </div>
-          <div>
-            <label htmlFor="ends_at" className={label}>Show until (optional)</label>
-            <input id="ends_at" name="ends_at" type="datetime-local" defaultValue={toLocalInput(initial.ends_at)} className={field} />
-          </div>
+          <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
+            The item appears automatically at “Show from” (leave empty to publish immediately) and
+            disappears at “Show until” (leave empty to keep it until you hide or delete it). Times use your
+            browser’s timezone.
+          </p>
         </div>
 
         <label className="flex items-center gap-3 rounded-lg border border-slate-200 p-4 dark:border-slate-700">

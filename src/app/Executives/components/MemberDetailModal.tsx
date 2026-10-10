@@ -11,14 +11,14 @@ import SocialLink from './SocialLink';
 import ProfileImage from './ProfileImage';
 import FacultyBadge from './FacultyBadge';
 import { MemberDetailModalProps } from './types';
+import { resolveImageSrc } from '@/app/utils/imageSrc';
 
 const MemberDetailModal: React.FC<MemberDetailModalProps> = ({ member, onClose }) => {
   const [imgSrc, setImgSrc] = useState<string>('https://placehold.co/200x200/e0e0e0/505050?text=Profile');
 
   useEffect(() => {
     if (member?.img) {
-      const imagePath = member.img.startsWith('/') ? member.img : `/${member.img}`;
-      setImgSrc(imagePath);
+      setImgSrc(resolveImageSrc(member.img));
     } else {
       setImgSrc('https://placehold.co/200x200/e0e0e0/505050?text=Profile');
     }

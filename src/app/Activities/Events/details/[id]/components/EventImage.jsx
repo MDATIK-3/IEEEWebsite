@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { resolveImageSrc } from "@/app/utils/imageSrc";
 
 const EventImage = ({ event }) => {
   if (!event.image) return null;
   return (
     <div className="rounded-2xl shadow-lg overflow-hidden border border-green-100">
       <Image
-        src={event.image?.startsWith('/') ? event.image : `/${event.image}`}
+        src={resolveImageSrc(event.image)}
         alt={event.eventName}
         width={800}
         height={450}

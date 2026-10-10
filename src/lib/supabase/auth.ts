@@ -1,4 +1,5 @@
 import 'server-only';
+import { cache } from 'react';
 import { createClient } from './server';
 
 export type AdminRole = 'superadmin' | 'data_entry';
@@ -12,8 +13,14 @@ export interface CurrentAdmin {
 /**
  * Resolve the signed-in admin from the request cookies, or null.
  * Reads admin_profiles under the user's own RLS (self-select policy).
+ *
+ * Wrapped in React `cache()` so it runs at most once per server request: the
+ * admin layout and the page it renders both need the current admin, and without
+ * this each would issue its own `auth.getUser()` (a network round-trip to the
+ * Supabase Auth server) plus an `admin_profiles` query. De-duping halves those
+ * auth calls on every admin navigation.
  */
-export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
+export const getCurrentAdmin = cache(async (): Promise<CurrentAdmin | null> => {
   const supabase = await createClient();
   const {
     data: { user },
@@ -33,7 +40,7 @@ export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
     fullName: profile.full_name ?? null,
     role: profile.role as AdminRole,
   };
-}
+});
 
 /** For server actions: throws if not an active admin. */
 export async function requireAdmin(): Promise<CurrentAdmin> {
