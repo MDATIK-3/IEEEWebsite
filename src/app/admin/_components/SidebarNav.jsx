@@ -48,7 +48,9 @@ export default function SidebarNav({ items = [], variant = 'sidebar' }) {
     <nav
       aria-label="Admin"
       className={cx(
-        mobile ? 'flex gap-1 px-2 py-2' : 'flex flex-1 flex-col gap-1 px-3 py-4'
+        mobile
+          ? 'flex gap-1 px-2 py-2'
+          : 'flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-3 py-4'
       )}
     >
       {items.map((item) => {
