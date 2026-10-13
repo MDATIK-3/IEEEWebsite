@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { getCurrentAdmin } from '@/lib/supabase/auth';
+import { getCurrentAdmin, isOwnerEmail } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import UsersManager from './_UsersManager';
 
@@ -21,10 +21,9 @@ export default async function UsersPage() {
     const { data: list } = await db.auth.admin.listUsers({ page: 1, perPage: 1000 });
     emailById = new Map((list?.users || []).map((u) => [u.id, u.email]));
   } catch {
-    /* listing users failed — show profiles without emails rather than crash */
   }
 
   const users = (profiles || []).map((p) => ({ ...p, email: emailById.get(p.id) || '—' }));
 
-  return <UsersManager users={users} meId={admin.userId} />;
+  return <UsersManager users={users} meId={admin.userId} meIsOwner={isOwnerEmail(admin.email)} />;
 }

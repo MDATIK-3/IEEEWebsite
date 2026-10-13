@@ -1,6 +1,6 @@
 'use server';
 
-import { requireSuperadmin } from '@/lib/supabase/auth';
+import { requireSuperadmin, isOwnerEmail } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
@@ -35,13 +35,26 @@ export async function createDataEntry({ fullName, email, password } = {}) {
   }
 }
 
-/** Superadmin sets a new password for any account. */
 export async function changeUserPassword(userId, password) {
   try {
-    await requireSuperadmin();
+    const me = await requireSuperadmin();
     const pass = (password || '').toString();
     if (pass.length < 8) return { error: 'Password must be at least 8 characters.' };
-    const { error } = await createAdminClient().auth.admin.updateUserById(userId, { password: pass });
+
+    const db = createAdminClient();
+    const { data: target } = await db
+      .from('admin_profiles')
+      .select('role')
+      .eq('id', userId)
+      .maybeSingle();
+
+    const targetIsSuper = target?.role === 'superadmin';
+    const isSelf = me.userId === userId;
+    if (targetIsSuper && !isSelf && !isOwnerEmail(me.email)) {
+      return { error: 'Only the site owner can change another superadmin’s password.' };
+    }
+
+    const { error } = await db.auth.admin.updateUserById(userId, { password: pass });
     if (error) return { error: error.message };
     return { ok: true };
   } catch {
@@ -49,7 +62,6 @@ export async function changeUserPassword(userId, password) {
   }
 }
 
-/** Superadmin toggles an account active/inactive (blocks sign-in via RLS/guards). */
 export async function setUserActive(userId, isActive) {
   try {
     const me = await requireSuperadmin();
@@ -65,7 +77,6 @@ export async function setUserActive(userId, isActive) {
   }
 }
 
-/** Superadmin deletes a data-entry account (not self, not other superadmins). */
 export async function deleteUser(userId) {
   try {
     const me = await requireSuperadmin();
