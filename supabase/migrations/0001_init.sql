@@ -15,11 +15,19 @@
 create extension if not exists pgcrypto;
 
 -- ---------------------------------------------------------------------
--- Enums
+-- Enums (idempotent: Postgres has no `create type if not exists`, so we
+-- swallow the duplicate_object error when the type is already present —
+-- lets this migration re-run cleanly on a persistent preview branch).
 -- ---------------------------------------------------------------------
-create type admin_role        as enum ('superadmin', 'data_entry');
-create type submission_action as enum ('create', 'update');
-create type submission_status as enum ('pending', 'approved', 'rejected');
+do $$ begin
+  create type admin_role        as enum ('superadmin', 'data_entry');
+exception when duplicate_object then null; end $$;
+do $$ begin
+  create type submission_action as enum ('create', 'update');
+exception when duplicate_object then null; end $$;
+do $$ begin
+  create type submission_status as enum ('pending', 'approved', 'rejected');
+exception when duplicate_object then null; end $$;
 
 -- ---------------------------------------------------------------------
 -- updated_at trigger helper
@@ -35,7 +43,7 @@ $$;
 -- ---------------------------------------------------------------------
 -- Admin accounts (extend auth.users)
 -- ---------------------------------------------------------------------
-create table admin_profiles (
+create table if not exists admin_profiles (
   id         uuid primary key references auth.users(id) on delete cascade,
   full_name  text,
   role       admin_role not null default 'data_entry',
@@ -65,7 +73,7 @@ $$;
 -- =====================================================================
 
 -- Events (+ scheduling via publish_at) ---------------------------------
-create table events (
+create table if not exists events (
   id                 bigserial primary key,
   title              text not null,
   description        text,
@@ -93,11 +101,12 @@ create table events (
   created_at         timestamptz not null default now(),
   updated_at         timestamptz not null default now()
 );
-create index events_visible_idx on events (is_published, publish_at, starts_at desc);
+create index if not exists events_visible_idx on events (is_published, publish_at, starts_at desc);
+drop trigger if exists events_updated on events;
 create trigger events_updated before update on events for each row execute function set_updated_at();
 
 -- Executives (flattened year -> committee -> group -> person) ----------
-create table executives (
+create table if not exists executives (
   id            bigserial primary key,
   year          int not null,
   committee     text not null,          -- SB | CS | MAIN | PES
@@ -113,11 +122,12 @@ create table executives (
   created_at    timestamptz not null default now(),
   updated_at    timestamptz not null default now()
 );
-create index executives_year_committee_idx on executives (year, committee, member_group);
+create index if not exists executives_year_committee_idx on executives (year, committee, member_group);
+drop trigger if exists executives_updated on executives;
 create trigger executives_updated before update on executives for each row execute function set_updated_at();
 
 -- Achievements ---------------------------------------------------------
-create table achievements (
+create table if not exists achievements (
   id bigserial primary key,
   year int,
   program_name text not null,
@@ -127,10 +137,11 @@ create table achievements (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+drop trigger if exists achievements_updated on achievements;
 create trigger achievements_updated before update on achievements for each row execute function set_updated_at();
 
 -- Collaborations -------------------------------------------------------
-create table collaborations (
+create table if not exists collaborations (
   id bigserial primary key,
   name text not null,
   organization text,
@@ -139,10 +150,11 @@ create table collaborations (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+drop trigger if exists collaborations_updated on collaborations;
 create trigger collaborations_updated before update on collaborations for each row execute function set_updated_at();
 
 -- FAQs (category distinguishes general vs membership) ------------------
-create table faqs (
+create table if not exists faqs (
   id bigserial primary key,
   category text not null default 'general',   -- general | membership
   question text not null,
@@ -152,10 +164,11 @@ create table faqs (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+drop trigger if exists faqs_updated on faqs;
 create trigger faqs_updated before update on faqs for each row execute function set_updated_at();
 
 -- Moderator / leadership messages ("messages from each person") --------
-create table moderator_messages (
+create table if not exists moderator_messages (
   id bigserial primary key,
   name text not null,
   title text,
@@ -166,10 +179,11 @@ create table moderator_messages (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+drop trigger if exists moderator_messages_updated on moderator_messages;
 create trigger moderator_messages_updated before update on moderator_messages for each row execute function set_updated_at();
 
 -- Member spotlights ----------------------------------------------------
-create table spotlights (
+create table if not exists spotlights (
   id bigserial primary key,
   name text not null,
   role text,
@@ -180,10 +194,11 @@ create table spotlights (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+drop trigger if exists spotlights_updated on spotlights;
 create trigger spotlights_updated before update on spotlights for each row execute function set_updated_at();
 
 -- Gallery photos -------------------------------------------------------
-create table gallery_photos (
+create table if not exists gallery_photos (
   id bigserial primary key,
   image text not null,
   name text,
@@ -192,10 +207,11 @@ create table gallery_photos (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+drop trigger if exists gallery_photos_updated on gallery_photos;
 create trigger gallery_photos_updated before update on gallery_photos for each row execute function set_updated_at();
 
 -- Contributors (merged with GitHub API at request time) ----------------
-create table contributors (
+create table if not exists contributors (
   id bigserial primary key,
   login text unique,                -- GitHub username (join key)
   name text,
@@ -210,18 +226,19 @@ create table contributors (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+drop trigger if exists contributors_updated on contributors;
 create trigger contributors_updated before update on contributors for each row execute function set_updated_at();
 
 -- Partnership-form lookups --------------------------------------------
-create table organization_types (
+create table if not exists organization_types (
   id bigserial primary key, value text not null unique, label text not null, sort_order int not null default 0
 );
-create table partnership_types (
+create table if not exists partnership_types (
   id bigserial primary key, value text not null unique, label text not null, sort_order int not null default 0
 );
 
 -- Contact info cards ---------------------------------------------------
-create table contact_info (
+create table if not exists contact_info (
   id bigserial primary key,
   icon text,                 -- lucide icon name
   title text not null,
@@ -231,7 +248,7 @@ create table contact_info (
 );
 
 -- Membership info (singleton row id=1; JSONB blobs) --------------------
-create table membership_info (
+create table if not exists membership_info (
   id int primary key default 1,
   join_link text,
   local_contact_link text,
@@ -242,6 +259,7 @@ create table membership_info (
   updated_at timestamptz not null default now(),
   constraint membership_singleton check (id = 1)
 );
+drop trigger if exists membership_info_updated on membership_info;
 create trigger membership_info_updated before update on membership_info for each row execute function set_updated_at();
 
 -- =====================================================================
@@ -249,7 +267,7 @@ create trigger membership_info_updated before update on membership_info for each
 -- =====================================================================
 
 -- Moderation queue: all data-entry creates/edits land here as 'pending'.
-create table content_submissions (
+create table if not exists content_submissions (
   id            bigserial primary key,
   target_table  text not null,                 -- e.g. 'events'
   target_id     bigint,                        -- null for 'create'
@@ -262,10 +280,10 @@ create table content_submissions (
   reviewed_at   timestamptz,
   review_note   text
 );
-create index content_submissions_status_idx on content_submissions (status, submitted_at desc);
+create index if not exists content_submissions_status_idx on content_submissions (status, submitted_at desc);
 
 -- Audit trail of privileged actions
-create table audit_log (
+create table if not exists audit_log (
   id bigserial primary key,
   actor_id uuid references admin_profiles(id),
   action text not null,                         -- approve|reject|delete|login|...
@@ -276,7 +294,7 @@ create table audit_log (
 );
 
 -- In-app notifications (admin bell + realtime)
-create table notifications (
+create table if not exists notifications (
   id bigserial primary key,
   recipient_id uuid references admin_profiles(id),   -- null => broadcast to a role
   recipient_role admin_role,
@@ -287,10 +305,10 @@ create table notifications (
   is_read boolean not null default false,
   created_at timestamptz not null default now()
 );
-create index notifications_recipient_idx on notifications (recipient_id, is_read, created_at desc);
+create index if not exists notifications_recipient_idx on notifications (recipient_id, is_read, created_at desc);
 
 -- News ticker items (public, time-windowed)
-create table announcements (
+create table if not exists announcements (
   id bigserial primary key,
   title text not null,
   body text,
@@ -304,22 +322,22 @@ create table announcements (
   created_by uuid references admin_profiles(id),
   created_at timestamptz not null default now()
 );
-create index announcements_active_idx on announcements (is_active, priority desc, starts_at desc);
+create index if not exists announcements_active_idx on announcements (is_active, priority desc, starts_at desc);
 
 -- Persisted inbound messages (previously email-only) -------------------
-create table contact_submissions (
+create table if not exists contact_submissions (
   id bigserial primary key,
   name text, email text, subject text, message text,
   status text not null default 'new',       -- new | read | resolved
   created_at timestamptz not null default now()
 );
-create table partnership_submissions (
+create table if not exists partnership_submissions (
   id bigserial primary key,
   data jsonb not null,
   status text not null default 'new',
   created_at timestamptz not null default now()
 );
-create table feedback (
+create table if not exists feedback (
   id bigserial primary key,
   name text, email text, rating int, message text, page text,
   status text not null default 'new',
@@ -352,49 +370,78 @@ alter table partnership_submissions enable row level security;
 alter table feedback              enable row level security;
 
 -- Admin profiles: self-read; superadmin reads all (writes via service role)
+drop policy if exists admin_profiles_self  on admin_profiles;
 create policy admin_profiles_self   on admin_profiles for select using (id = auth.uid());
+drop policy if exists admin_profiles_super on admin_profiles;
 create policy admin_profiles_super  on admin_profiles for select using (is_superadmin());
 
 -- Public content reads (writes happen only through the service-role client)
+drop policy if exists events_public      on events;
 create policy events_public     on events            for select using (is_published and (publish_at is null or publish_at <= now()));
+drop policy if exists execs_public       on executives;
 create policy execs_public      on executives        for select using (is_published);
+drop policy if exists achievements_pub   on achievements;
 create policy achievements_pub  on achievements      for select using (is_published);
+drop policy if exists collaborations_pub on collaborations;
 create policy collaborations_pub on collaborations   for select using (is_published);
+drop policy if exists faqs_pub           on faqs;
 create policy faqs_pub          on faqs              for select using (is_published);
+drop policy if exists modmsg_pub         on moderator_messages;
 create policy modmsg_pub        on moderator_messages for select using (is_published);
+drop policy if exists spotlights_pub     on spotlights;
 create policy spotlights_pub    on spotlights        for select using (is_published);
+drop policy if exists gallery_pub        on gallery_photos;
 create policy gallery_pub       on gallery_photos    for select using (is_published);
+drop policy if exists contributors_pub   on contributors;
 create policy contributors_pub  on contributors      for select using (true);
+drop policy if exists orgtypes_pub       on organization_types;
 create policy orgtypes_pub      on organization_types for select using (true);
+drop policy if exists ptypes_pub         on partnership_types;
 create policy ptypes_pub        on partnership_types for select using (true);
+drop policy if exists contactinfo_pub    on contact_info;
 create policy contactinfo_pub   on contact_info      for select using (is_published);
+drop policy if exists membership_pub     on membership_info;
 create policy membership_pub    on membership_info   for select using (true);
+drop policy if exists announcements_pub  on announcements;
 create policy announcements_pub on announcements     for select
   using (is_active and (starts_at is null or starts_at <= now()) and (ends_at is null or ends_at >= now()));
 
 -- Moderation queue: submit, edit-own-pending, read-own, superadmin all. NO delete policy.
+drop policy if exists subs_insert_self        on content_submissions;
 create policy subs_insert_self        on content_submissions for insert with check (submitted_by = auth.uid() and is_admin());
+drop policy if exists subs_update_own_pending on content_submissions;
 create policy subs_update_own_pending on content_submissions for update
   using (submitted_by = auth.uid() and status = 'pending')
   with check (submitted_by = auth.uid() and status = 'pending');
+drop policy if exists subs_update_super       on content_submissions;
 create policy subs_update_super       on content_submissions for update using (is_superadmin());
+drop policy if exists subs_select             on content_submissions;
 create policy subs_select             on content_submissions for select using (submitted_by = auth.uid() or is_superadmin());
 
 -- Audit log: superadmin read only (inserts via service role)
+drop policy if exists audit_read_super on audit_log;
 create policy audit_read_super on audit_log for select using (is_superadmin());
 
 -- Notifications: recipients read & mark-read their own
+drop policy if exists notif_select on notifications;
 create policy notif_select on notifications for select
   using (recipient_id = auth.uid() or recipient_role = current_admin_role());
+drop policy if exists notif_update on notifications;
 create policy notif_update on notifications for update
   using (recipient_id = auth.uid()) with check (recipient_id = auth.uid());
 
 -- Inbound forms: anyone may submit; only admins may read
+drop policy if exists contact_insert on contact_submissions;
 create policy contact_insert on contact_submissions for insert with check (true);
+drop policy if exists contact_read   on contact_submissions;
 create policy contact_read   on contact_submissions for select using (is_admin());
+drop policy if exists partner_insert on partnership_submissions;
 create policy partner_insert on partnership_submissions for insert with check (true);
+drop policy if exists partner_read   on partnership_submissions;
 create policy partner_read   on partnership_submissions for select using (is_admin());
+drop policy if exists feedback_insert on feedback;
 create policy feedback_insert on feedback for insert with check (true);
+drop policy if exists feedback_read   on feedback;
 create policy feedback_read   on feedback for select using (is_admin());
 
 -- =====================================================================
