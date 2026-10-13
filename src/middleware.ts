@@ -25,11 +25,13 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
-
+  // getClaims() verifies the session JWT *locally* (via the project's JWKS) when
+  // asymmetric signing keys are enabled, so this gate costs no network round-trip
+  // on the hot path. It only calls the Auth server when the token is missing or
+  // actually needs refreshing, where it also persists refreshed cookies via
+  // setAll above — keeping sessions alive exactly as getUser() did.
+  const { data, error } = await supabase.auth.getClaims();
+  const user = data?.claims ?? null;
 
   if (error) {
     for (const { name } of request.cookies.getAll()) {

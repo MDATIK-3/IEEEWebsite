@@ -1,14 +1,21 @@
 import NextLink from 'next/link';
 
 /**
- * Admin-wide drop-in for `next/link` that disables prefetch by default.
+ * Admin-wide drop-in for `next/link`.
  *
- * Every /admin/* route is `force-dynamic` and auth-gated, so Next.js's default
- * viewport prefetching is wasted work: as links scroll into view it floods the
- * network with repeated RSC (`?_rsc=`) requests for pages that still have to be
- * re-fetched on click. Routing all admin links through this wrapper kills that
- * in every case, while a caller can still opt back in with `prefetch`.
+ * Admin routes are all `force-dynamic`. We previously forced `prefetch={false}`
+ * here because, with no loading boundary, auto-prefetch re-downloaded the whole
+ * dynamic payload for every link in view — the `?_rsc=` flood. That also meant
+ * every click was a cold round-trip, which made navigation feel slow.
+ *
+ * Now that `admin/loading.jsx` exists, Next's *default* (auto) prefetch stops at
+ * that lightweight loading boundary and caches it (~30s): hovering/scrolling
+ * warms a route cheaply, and a click shows the skeleton instantly. So we use
+ * Next's default prefetch and let any caller override per-link with `prefetch`.
+ *
+ * (Avoid `prefetch={true}` on these routes — that forces a full dynamic
+ * prefetch and brings the flood back.)
  */
-export default function Link({ prefetch = false, ...props }) {
-  return <NextLink prefetch={prefetch} {...props} />;
+export default function Link(props) {
+  return <NextLink {...props} />;
 }

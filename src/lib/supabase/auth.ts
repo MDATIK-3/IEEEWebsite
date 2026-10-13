@@ -16,27 +16,31 @@ export interface CurrentAdmin {
  *
  * Wrapped in React `cache()` so it runs at most once per server request: the
  * admin layout and the page it renders both need the current admin, and without
- * this each would issue its own `auth.getUser()` (a network round-trip to the
- * Supabase Auth server) plus an `admin_profiles` query. De-duping halves those
- * auth calls on every admin navigation.
+ * this each would re-run the identity check plus an `admin_profiles` query.
+ *
+ * Identity comes from `getClaims()`, which verifies the session JWT locally (via
+ * the project's JWKS) when asymmetric signing keys are enabled — no network
+ * round-trip to the Auth server on the hot path. The authoritative gate is still
+ * robust: the request already passed the middleware auth check, forged tokens
+ * fail signature verification, and we re-check `admin_profiles.is_active` below,
+ * so deactivating an admin takes effect immediately regardless of token expiry.
  */
 export const getCurrentAdmin = cache(async (): Promise<CurrentAdmin | null> => {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return null;
+  const { data } = await supabase.auth.getClaims();
+  const claims = data?.claims;
+  if (!claims?.sub) return null;
 
   const { data: profile } = await supabase
     .from('admin_profiles')
     .select('role, full_name, is_active')
-    .eq('id', user.id)
+    .eq('id', claims.sub)
     .maybeSingle();
 
   if (!profile || !profile.is_active) return null;
   return {
-    userId: user.id,
-    email: user.email ?? null,
+    userId: claims.sub,
+    email: claims.email ?? null,
     fullName: profile.full_name ?? null,
     role: profile.role as AdminRole,
   };
