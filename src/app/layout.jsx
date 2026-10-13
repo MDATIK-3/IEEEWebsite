@@ -59,6 +59,24 @@ export const viewport = {
   initialScale: 1,
 };
 
+// Dev-only: the "ResizeObserver loop completed with undelivered notifications"
+// browser warning is harmless (the spec just defers observations to the next
+// frame), but Next.js's dev error overlay catches it as a window `error` event
+// and then hammers /__nextjs_original-stack-frames trying to symbolicate a
+// stack that doesn't exist — an endless request flood on pages with animated /
+// transitioning layout. We swallow only that one message, before Next's client
+// runtime registers its handler (this runs during initial HTML parse, so our
+// listener is first and stopImmediatePropagation keeps the overlay from seeing
+// it). Real errors are untouched, and nothing ships to production.
+const RESIZE_OBSERVER_OVERLAY_FIX = `(function(){
+  if (typeof window === 'undefined') return;
+  var MSGS = ['ResizeObserver loop completed with undelivered notifications', 'ResizeObserver loop limit exceeded'];
+  var isRo = function(m){ return typeof m === 'string' && MSGS.some(function(s){ return m.indexOf(s) !== -1; }); };
+  window.addEventListener('error', function(e){
+    if (isRo(e && e.message)) { e.stopImmediatePropagation(); e.preventDefault(); }
+  }, true);
+})();`;
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -85,6 +103,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {process.env.NODE_ENV !== 'production' && (
+          <script dangerouslySetInnerHTML={{ __html: RESIZE_OBSERVER_OVERLAY_FIX }} />
+        )}
         <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />

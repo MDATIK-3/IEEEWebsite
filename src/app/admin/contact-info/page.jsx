@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/app/admin/_components/Link';
 import { Phone, Mail, Clock, Navigation } from 'lucide-react';
 import { requireAdmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';

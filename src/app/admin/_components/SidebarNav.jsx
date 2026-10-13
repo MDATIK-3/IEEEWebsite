@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/app/admin/_components/Link';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, CalendarDays, FileCheck2, Mail, Users, Megaphone,
@@ -60,10 +60,6 @@ export default function SidebarNav({ items = [], variant = 'sidebar' }) {
           <Link
             key={item.href}
             href={item.href}
-            // Admin routes are force-dynamic + auth-gated, so prefetching them
-            // is wasted work and, with many links in view, floods the network
-            // with repeated RSC (?_rsc=) requests. Fetch on click instead.
-            prefetch={false}
             aria-current={active ? 'page' : undefined}
             className={cx(
               'group flex items-center gap-3 rounded-lg text-sm font-medium transition-colors',
