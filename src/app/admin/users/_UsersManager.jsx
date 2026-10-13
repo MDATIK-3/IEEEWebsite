@@ -89,7 +89,7 @@ function PasswordInline({ userId }) {
   );
 }
 
-export default function UsersManager({ users = [], meId }) {
+export default function UsersManager({ users = [], meId, meIsOwner = false }) {
   const router = useRouter();
 
   async function onDelete(u) {
@@ -130,6 +130,9 @@ export default function UsersManager({ users = [], meId }) {
             {users.map((u) => {
               const isSelf = u.id === meId;
               const isSuper = u.role === 'superadmin';
+              // Only the owner may change another superadmin's password;
+              // everyone keeps it for data-entry accounts and their own.
+              const canChangePassword = !isSuper || isSelf || meIsOwner;
               return (
                 <tr key={u.id} className="text-slate-800 dark:text-slate-200">
                   <td className="px-4 py-3">{u.full_name || '—'}</td>
@@ -146,7 +149,7 @@ export default function UsersManager({ users = [], meId }) {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center justify-end gap-2">
-                      <PasswordInline userId={u.id} />
+                      {canChangePassword ? <PasswordInline userId={u.id} /> : null}
                       {!isSelf && !isSuper ? (
                         <button type="button" onClick={() => onDelete(u)} className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40">
                           <Trash2 className="h-4 w-4" /> Delete
