@@ -1,11 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 
-/**
- * Protects /admin/* and refreshes the Supabase session cookie.
- * No-ops gracefully until Supabase env vars are configured, so the public
- * site runs normally before the backend is provisioned.
- */
+const SUPABASE_AUTH_COOKIE = /^sb-.*-auth-token/;
+
 export async function middleware(request: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -30,27 +27,41 @@ export async function middleware(request: NextRequest) {
 
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
+
+
+  if (error) {
+    for (const { name } of request.cookies.getAll()) {
+      if (SUPABASE_AUTH_COOKIE.test(name)) {
+        response.cookies.set(name, '', { maxAge: 0, path: '/' });
+      }
+    }
+  }
 
   const path = request.nextUrl.pathname;
   const isLogin = path === '/admin/login';
+
+  const withCookies = (redirect: NextResponse) => {
+    response.cookies.getAll().forEach((cookie) => redirect.cookies.set(cookie));
+    return redirect;
+  };
 
   if (!user && !isLogin) {
     const redirect = request.nextUrl.clone();
     redirect.pathname = '/admin/login';
     redirect.searchParams.set('next', path);
-    return NextResponse.redirect(redirect);
+    return withCookies(NextResponse.redirect(redirect));
   }
   if (user && isLogin) {
     const redirect = request.nextUrl.clone();
     redirect.pathname = '/admin';
-    return NextResponse.redirect(redirect);
+    return withCookies(NextResponse.redirect(redirect));
   }
 
   return response;
 }
 
 export const config = {
-  // Only guard the admin area; public routes skip middleware entirely.
   matcher: ['/admin/:path*'],
 };
