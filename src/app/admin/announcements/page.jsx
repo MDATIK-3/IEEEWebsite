@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/app/admin/_components/Link';
 import { redirect } from 'next/navigation';
 import { Plus } from 'lucide-react';
 import { getCurrentAdmin } from '@/lib/supabase/auth';
@@ -68,7 +68,6 @@ export default async function AnnouncementsPage() {
         </div>
         <Link
           href="/admin/announcements/new"
-          prefetch={false}
           className="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
         >
           <Plus className="h-4 w-4" /> New
@@ -115,7 +114,6 @@ export default async function AnnouncementsPage() {
                       <div className="flex items-center justify-end gap-3">
                         <Link
                           href={`/admin/announcements/${a.id}/edit`}
-                          prefetch={false}
                           className="rounded-md px-2 py-1 text-sm font-medium text-emerald-700 transition hover:bg-emerald-50 dark:text-emerald-300 dark:hover:bg-emerald-950/40"
                         >
                           Edit

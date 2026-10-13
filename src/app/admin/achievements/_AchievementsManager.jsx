@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
+import Link from '@/app/admin/_components/Link';
 import { Search, RotateCcw, Trophy } from 'lucide-react';
 import { cx } from '@/app/utils/cx';
 import { resolveImageSrc } from '@/app/utils/imageSrc';

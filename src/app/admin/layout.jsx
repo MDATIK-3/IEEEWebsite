@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/app/admin/_components/Link';
 import { ShieldCheck } from 'lucide-react';
 import { getCurrentAdmin } from '@/lib/supabase/auth';
 import { cx } from '@/app/utils/cx';

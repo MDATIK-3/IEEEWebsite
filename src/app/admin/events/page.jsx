@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/app/admin/_components/Link';
 import { requireAdmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import DeleteEventButton from './_EventRowActions';

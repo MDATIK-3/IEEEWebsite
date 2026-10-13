@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from '@/app/admin/_components/Link';
 import { Plus, Trash2 } from 'lucide-react';
 import { cx } from '@/app/utils/cx';
 import { submitChange } from '../_actions/content';
