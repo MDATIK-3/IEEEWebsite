@@ -1,4 +1,4 @@
-# IEEE Green University of Bangladesh — Official Website
+# IEEE Green University of Bangladesh - Official Website
 
 The official website of the **IEEE Student Branch at Green University of Bangladesh (IEEE GUB)**. It showcases events, achievements, leadership, gallery, and membership opportunities, and is powered by a full content-management backend with a role-based admin panel, an approval workflow, scheduled publishing, and a live news ticker.
 
