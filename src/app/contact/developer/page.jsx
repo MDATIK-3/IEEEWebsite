@@ -1,6 +1,14 @@
 import DeveloperCard from "./component/DeveloperCard";
 import BgColor from "@/app/components/BgColor";
 import ThreeBackgrounds from "./component/ThreeBackgrounds";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Meet the Developers",
+  description:
+    "The team behind the IEEE GUB website — the developers and contributors of the IEEE Student Branch at Green University of Bangladesh.",
+  path: "/contact/developer",
+});
 
 
 const Page = () => {

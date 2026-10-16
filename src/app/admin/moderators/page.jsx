@@ -3,20 +3,34 @@ import { redirect } from 'next/navigation';
 import { Plus } from 'lucide-react';
 import { getCurrentAdmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
+import Pagination from '@/app/admin/_components/Pagination';
+import { parsePage, pageRange, pageCount, buildQuery } from '@/app/admin/_lib/pagination';
 import ModeratorRowActions from './_RowActions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function ModeratorsPage() {
+export default async function ModeratorsPage({ searchParams }) {
   const admin = await getCurrentAdmin();
   if (!admin) redirect('/admin/login');
   const isSuper = admin.role === 'superadmin';
 
-  const { data: rows } = await createAdminClient()
+  const sp = (await searchParams) ?? {};
+  const page = parsePage(sp.page);
+  const { from, to } = pageRange(page);
+
+  const { data: rows, count } = await createAdminClient()
     .from('moderator_messages')
-    .select('*')
+    .select('id, name, title, image, message, sort_order, is_published', { count: 'exact' })
     .order('sort_order', { ascending: true })
-    .order('created_at', { ascending: true });
+    .order('created_at', { ascending: true })
+    .range(from, to);
+
+  const total = count ?? 0;
+  const pages = pageCount(total);
+  if (total > 0 && page > pages) {
+    const qs = buildQuery(sp, { page: pages > 1 ? pages : undefined });
+    redirect(qs ? `/admin/moderators?${qs}` : '/admin/moderators');
+  }
 
   const items = rows || [];
 
@@ -110,6 +124,8 @@ export default async function ModeratorsPage() {
           </table>
         </div>
       )}
+
+      <Pagination basePath="/admin/moderators" query={sp} page={page} total={total} />
     </div>
   );
 }

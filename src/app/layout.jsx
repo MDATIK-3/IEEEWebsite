@@ -81,12 +81,28 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
+      '@type': ['Organization', 'EducationalOrganization'],
       '@id': `${SITE_URL}/#organization`,
       name: 'IEEE Student Branch, Green University of Bangladesh',
-      alternateName: 'IEEE SB GUB',
+      alternateName: ['IEEE SB GUB', 'IEEE GUB'],
       url: SITE_URL,
-      logo: `${SITE_URL}/images/IEEELogo.png`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/images/IEEELogo.png`,
+      },
+      image: `${SITE_URL}/images/hero.jpg`,
+      description:
+        'The IEEE Student Branch at Green University of Bangladesh (IEEE GUB) — a student community advancing technology and innovation through events, workshops, competitions and leadership opportunities.',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Dhaka',
+        addressCountry: 'BD',
+      },
+      parentOrganization: {
+        '@type': 'CollegeOrUniversity',
+        name: 'Green University of Bangladesh',
+        url: 'https://green.edu.bd/',
+      },
       sameAs: ['https://www.facebook.com/ieeesbgub/'],
     },
     {
@@ -94,6 +110,8 @@ const jsonLd = {
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: 'IEEE SB Green University of Bangladesh',
+      alternateName: 'IEEE GUB',
+      inLanguage: 'en',
       publisher: { '@id': `${SITE_URL}/#organization` },
     },
   ],

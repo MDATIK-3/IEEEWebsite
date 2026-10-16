@@ -1,27 +1,71 @@
 'use client';
 
 import { useState } from 'react';
+import { UserCheck, X } from 'lucide-react';
 import Link from '@/app/admin/_components/Link';
 import { cx } from '@/app/utils/cx';
 import { submitChange } from '../_actions/content';
 import ImageUploader from '../_components/ImageUploader';
+import { field, label } from '../_components/formStyles';
 import { COMMITTEES, GROUPS } from './_meta';
+import MemberPicker from './_MemberPicker';
 
-const field =
-  'w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100';
-const label = 'mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300';
+/** The person-level fields a member reuse prefills. Position fields are left alone. */
+function personFrom(initial = {}) {
+  return {
+    name: initial.name || '',
+    img: initial.img || '',
+    email: (initial.email || '').replace(/^mailto:/i, ''),
+    facebook: initial.facebook || '',
+    linkedin: initial.linkedin || '',
+  };
+}
 
 /**
  * Shared create/edit form for executive committee members. On submit it does NOT
  * write the live table directly; it files the change into the moderation queue
  * via `submitChange` (superadmins apply immediately, data-entry goes to review).
  *
- * @param {{ mode: 'create'|'edit', executiveId?: number|string, initial?: object }} props
+ * In create mode, `members` powers a reuse picker (`MemberPicker`) so an existing
+ * person can be added to a new branch/position without re-typing their details.
+ *
+ * @param {{ mode: 'create'|'edit', executiveId?: number|string, initial?: object, members?: object[] }} props
  */
-export default function ExecutiveForm({ mode = 'create', executiveId, initial = {} }) {
+export default function ExecutiveForm({ mode = 'create', executiveId, initial = {}, members = [] }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  // Person-level fields are controlled so the reuse picker can prefill them.
+  const [person, setPerson] = useState(() => personFrom(initial));
+  // Name of the member currently reused (for the "filled from" chip), and a
+  // nonce that remounts the ImageUploader so it re-reads the new photo.
+  const [reusedFrom, setReusedFrom] = useState('');
+  const [imgNonce, setImgNonce] = useState(0);
+
+  const canReuse = mode === 'create' && members.length > 0;
+
+  function setField(key, value) {
+    setPerson((p) => ({ ...p, [key]: value }));
+  }
+
+  function applyMember(m) {
+    setPerson({
+      name: m.name || '',
+      img: m.img || '',
+      email: (m.email || '').replace(/^mailto:/i, ''),
+      facebook: m.facebook || '',
+      linkedin: m.linkedin || '',
+    });
+    setReusedFrom(m.name || '');
+    setImgNonce((n) => n + 1);
+  }
+
+  function clearReuse() {
+    setPerson(personFrom());
+    setReusedFrom('');
+    setImgNonce((n) => n + 1);
+  }
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -143,6 +187,26 @@ export default function ExecutiveForm({ mode = 'create', executiveId, initial = 
       </header>
 
       <form onSubmit={onSubmit} className="space-y-5">
+        {canReuse ? <MemberPicker members={members} onPick={applyMember} /> : null}
+
+        {reusedFrom ? (
+          <div className="flex items-center justify-between gap-3 rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm dark:border-emerald-900/50 dark:bg-emerald-950/30">
+            <span className="flex items-center gap-2 text-emerald-800 dark:text-emerald-200">
+              <UserCheck className="h-4 w-4 flex-none" aria-hidden="true" />
+              Reusing details from <strong className="font-semibold">{reusedFrom}</strong>. Set the
+              new position below.
+            </span>
+            <button
+              type="button"
+              onClick={clearReuse}
+              className="inline-flex flex-none items-center gap-1 rounded px-2 py-1 text-xs font-medium text-emerald-700 transition hover:bg-emerald-100 dark:text-emerald-300 dark:hover:bg-emerald-900/40"
+            >
+              <X className="h-3.5 w-3.5" aria-hidden="true" />
+              Clear
+            </button>
+          </div>
+        ) : null}
+
         {/* Classification: which year / committee / group this member belongs to. */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
@@ -216,7 +280,14 @@ export default function ExecutiveForm({ mode = 'create', executiveId, initial = 
           <label htmlFor="name" className={label}>
             Name <span className="text-red-500">*</span>
           </label>
-          <input id="name" name="name" type="text" defaultValue={initial.name || ''} className={field} />
+          <input
+            id="name"
+            name="name"
+            type="text"
+            value={person.name}
+            onChange={(e) => setField('name', e.target.value)}
+            className={field}
+          />
         </div>
 
         <div>
@@ -234,10 +305,12 @@ export default function ExecutiveForm({ mode = 'create', executiveId, initial = 
         </div>
 
         <ImageUploader
+          key={`img-${imgNonce}`}
           name="img"
-          initialUrl={initial.img || ''}
+          initialUrl={person.img}
           folder="executives"
           label="Photo"
+          onChange={(url) => setField('img', url)}
         />
 
         {/* Social / contact links. */}
@@ -251,7 +324,8 @@ export default function ExecutiveForm({ mode = 'create', executiveId, initial = 
               name="email"
               type="email"
               placeholder="name@example.com"
-              defaultValue={(initial.email || '').replace(/^mailto:/i, '')}
+              value={person.email}
+              onChange={(e) => setField('email', e.target.value)}
               className={field}
             />
           </div>
@@ -265,7 +339,8 @@ export default function ExecutiveForm({ mode = 'create', executiveId, initial = 
               name="linkedin"
               type="url"
               placeholder="https://linkedin.com/in/…"
-              defaultValue={initial.linkedin || ''}
+              value={person.linkedin}
+              onChange={(e) => setField('linkedin', e.target.value)}
               className={field}
             />
           </div>
@@ -279,7 +354,8 @@ export default function ExecutiveForm({ mode = 'create', executiveId, initial = 
               name="facebook"
               type="url"
               placeholder="https://facebook.com/…"
-              defaultValue={initial.facebook || ''}
+              value={person.facebook}
+              onChange={(e) => setField('facebook', e.target.value)}
               className={field}
             />
           </div>

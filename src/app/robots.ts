@@ -7,8 +7,6 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      // /HomePage and /components are accidental routes (component files named
-      // page.jsx) — keep them out of the index until they're renamed.
       disallow: ['/admin', '/api', '/HomePage', '/components'],
     },
     sitemap: `${base}/sitemap.xml`,

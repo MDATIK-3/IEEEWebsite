@@ -1,11 +1,8 @@
 'use client';
 
 import { Calendar, MapPin, Users, User, Share2 } from 'lucide-react';
-import registeredData from "@/data/registered.json";
 
 const EventInfoCard = ({ event, formatDate, isPastEvent, handleShare, isSharing }) => {
-  const totalRegistered = registeredData.length;
-
   return (
     <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 border border-green-100 dark:border-green-800 sticky top-20 transition-colors duration-300">
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
@@ -30,17 +27,15 @@ const EventInfoCard = ({ event, formatDate, isPastEvent, handleShare, isSharing 
           </div>
         </div>
 
-        <div className="flex items-start gap-3">
-          <Users className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
-          <div>
-            <p className="font-medium text-gray-900 dark:text-gray-100">
-              {isPastEvent ? 'Participants' : 'Current Registrations'}
-            </p>
-            <p className="text-gray-600 dark:text-gray-300">
-              {isPastEvent ? `${event.participant} attendees` : `${50 + totalRegistered} participants registered`}
-            </p>
+        {isPastEvent && (
+          <div className="flex items-start gap-3">
+            <Users className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+            <div>
+              <p className="font-medium text-gray-900 dark:text-gray-100">Participants</p>
+              <p className="text-gray-600 dark:text-gray-300">{event.participant} attendees</p>
+            </div>
           </div>
-        </div>
+        )}
 
 
         <div className="flex items-start gap-3">

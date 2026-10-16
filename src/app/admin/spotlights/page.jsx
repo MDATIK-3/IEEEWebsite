@@ -3,19 +3,33 @@ import { redirect } from 'next/navigation';
 import { Plus } from 'lucide-react';
 import { getCurrentAdmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
+import Pagination from '@/app/admin/_components/Pagination';
+import { parsePage, pageRange, pageCount, buildQuery } from '@/app/admin/_lib/pagination';
 import SpotlightRowActions from './_RowActions';
 
 export const dynamic = 'force-dynamic';
 
-export default async function SpotlightsPage() {
+export default async function SpotlightsPage({ searchParams }) {
   const admin = await getCurrentAdmin();
   if (!admin) redirect('/admin/login');
   const isSuper = admin.role === 'superadmin';
 
-  const { data: rows } = await createAdminClient()
+  const sp = (await searchParams) ?? {};
+  const page = parsePage(sp.page);
+  const { from, to } = pageRange(page);
+
+  const { data: rows, count } = await createAdminClient()
     .from('spotlights')
-    .select('*')
-    .order('id', { ascending: true });
+    .select('id, name, role, photo, quote, is_published', { count: 'exact' })
+    .order('id', { ascending: true })
+    .range(from, to);
+
+  const total = count ?? 0;
+  const pages = pageCount(total);
+  if (total > 0 && page > pages) {
+    const qs = buildQuery(sp, { page: pages > 1 ? pages : undefined });
+    redirect(qs ? `/admin/spotlights?${qs}` : '/admin/spotlights');
+  }
 
   const items = rows || [];
 
@@ -107,6 +121,8 @@ export default async function SpotlightsPage() {
           </table>
         </div>
       )}
+
+      <Pagination basePath="/admin/spotlights" query={sp} page={page} total={total} />
     </div>
   );
 }

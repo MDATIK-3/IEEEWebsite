@@ -1,6 +1,8 @@
 import { redirect } from 'next/navigation';
 import { requireSuperadmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
+import Pagination from '@/app/admin/_components/Pagination';
+import { parsePage, pageRange, pageCount, buildQuery } from '@/app/admin/_lib/pagination';
 import Review from './_Review';
 
 export const dynamic = 'force-dynamic';
@@ -19,19 +21,31 @@ const actionBadge = {
   update: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
 };
 
-export default async function SubmissionsPage() {
+export default async function SubmissionsPage({ searchParams }) {
   try {
     await requireSuperadmin();
   } catch {
     redirect('/admin');
   }
 
+  const sp = (await searchParams) ?? {};
+  const page = parsePage(sp.page);
+  const { from, to } = pageRange(page);
+
   const supabase = createAdminClient();
-  const { data: submissions, error } = await supabase
+  const { data: submissions, count, error } = await supabase
     .from('content_submissions')
-    .select('*')
+    .select('*', { count: 'exact' })
     .eq('status', 'pending')
-    .order('submitted_at', { ascending: false });
+    .order('submitted_at', { ascending: false })
+    .range(from, to);
+
+  const total = count ?? 0;
+  const pages = pageCount(total);
+  if (total > 0 && page > pages) {
+    const qs = buildQuery(sp, { page: pages > 1 ? pages : undefined });
+    redirect(qs ? `/admin/submissions?${qs}` : '/admin/submissions');
+  }
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
@@ -48,7 +62,7 @@ export default async function SubmissionsPage() {
         </p>
       ) : null}
 
-      {!error && (!submissions || submissions.length === 0) ? (
+      {!error && total === 0 ? (
         <div className="rounded-xl border border-dashed border-slate-300 py-16 text-center text-slate-500 dark:border-slate-700 dark:text-slate-400">
           No pending submissions. You are all caught up.
         </div>
@@ -82,6 +96,8 @@ export default async function SubmissionsPage() {
           </section>
         ))}
       </div>
+
+      <Pagination basePath="/admin/submissions" query={sp} page={page} total={total} />
     </div>
   );
 }

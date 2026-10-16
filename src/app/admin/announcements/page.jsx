@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import { Plus } from 'lucide-react';
 import { getCurrentAdmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
+import Pagination from '@/app/admin/_components/Pagination';
+import { parsePage, pageRange, pageCount, buildQuery } from '@/app/admin/_lib/pagination';
 import AnnouncementRowActions from './_RowActions';
 
 export const dynamic = 'force-dynamic';
@@ -43,16 +45,28 @@ const TONES = {
   slate: 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400',
 };
 
-export default async function AnnouncementsPage() {
+export default async function AnnouncementsPage({ searchParams }) {
   const admin = await getCurrentAdmin();
   if (!admin) redirect('/admin/login');
   const isSuper = admin.role === 'superadmin';
 
-  const { data: rows } = await createAdminClient()
+  const sp = (await searchParams) ?? {};
+  const page = parsePage(sp.page);
+  const { from, to } = pageRange(page);
+
+  const { data: rows, count } = await createAdminClient()
     .from('announcements')
-    .select('*')
+    .select('id, title, is_active, starts_at, ends_at, priority', { count: 'exact' })
     .order('priority', { ascending: false })
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false })
+    .range(from, to);
+
+  const total = count ?? 0;
+  const pages = pageCount(total);
+  if (total > 0 && page > pages) {
+    const qs = buildQuery(sp, { page: pages > 1 ? pages : undefined });
+    redirect(qs ? `/admin/announcements?${qs}` : '/admin/announcements');
+  }
 
   const items = rows || [];
   const now = Date.now();
@@ -128,6 +142,8 @@ export default async function AnnouncementsPage() {
           </table>
         </div>
       )}
+
+      <Pagination basePath="/admin/announcements" query={sp} page={page} total={total} />
     </div>
   );
 }

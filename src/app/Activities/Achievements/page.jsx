@@ -1,6 +1,14 @@
 import AchieveCard from "./Components/AchieveCard";
 import AchieveHeader from "./Components/AchieveHeader";
 import { getAchievements } from "@/lib/queries";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Achievements",
+  description:
+    "Awards, recognitions and milestones earned by the members and volunteers of the IEEE Student Branch at Green University of Bangladesh (IEEE GUB).",
+  path: "/Activities/Achievements",
+});
 
 export const revalidate = 86400;
 
