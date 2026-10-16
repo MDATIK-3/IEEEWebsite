@@ -3,9 +3,11 @@ import ColabCard from "./ColabCard";
 import { getCollaborations } from "@/lib/queries";
 
 const Feature = async ({ showAll = false }) => {
+  // getCollaborations() already returns rows in the admin-controlled order
+  // (sort_order asc, then id asc as a stable tiebreak). Keep that order — the
+  // old `.sort((a, b) => a.id - b.id)` re-sorted by id and discarded sort_order.
   const colabData = await getCollaborations();
-  const sortedEvents = [...colabData].sort((a, b) => a.id - b.id);
-  const displayedEvents = showAll ? sortedEvents : sortedEvents.slice(0, 8);
+  const displayedEvents = showAll ? colabData : colabData.slice(0, 8);
 
   return (
     <section

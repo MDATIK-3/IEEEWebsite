@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Trash2 } from 'lucide-react';
 import { cx } from '@/app/utils/cx';
+import Pagination from '@/app/admin/_components/Pagination';
+import { buildQuery } from '@/app/admin/_lib/pagination';
 import { setMessageStatus, deleteMessage } from '../_actions/messages';
 
+const BASE = '/admin/messages';
 const STATUS_OPTIONS = ['new', 'read', 'resolved'];
 
 function StatusPill({ status }) {
@@ -48,9 +50,8 @@ function Row({ kind, id, header, sub, body, status, isSuper, onStatus, onDelete 
   );
 }
 
-export default function MessagesClient({ isSuper, contact, partnership, feedback }) {
+export default function MessagesClient({ isSuper, tab = 'contact', counts = {}, rows = [], page = 1, total = 0, query = {} }) {
   const router = useRouter();
-  const [tab, setTab] = useState('contact');
 
   async function onStatus(kind, id, status) {
     const r = await setMessageStatus(kind, id, status);
@@ -64,10 +65,15 @@ export default function MessagesClient({ isSuper, contact, partnership, feedback
     router.refresh();
   }
 
+  function goTab(key) {
+    const qs = buildQuery({ tab: key });
+    router.push(qs ? `${BASE}?${qs}` : BASE, { scroll: false });
+  }
+
   const tabs = [
-    ['contact', 'Contact', contact.length],
-    ['partnership', 'Partnership', partnership.length],
-    ['feedback', 'Feedback', feedback.length],
+    ['contact', 'Contact', counts.contact ?? 0],
+    ['partnership', 'Partnership', counts.partnership ?? 0],
+    ['feedback', 'Feedback', counts.feedback ?? 0],
   ];
 
   return (
@@ -82,7 +88,7 @@ export default function MessagesClient({ isSuper, contact, partnership, feedback
           <button
             key={key}
             type="button"
-            onClick={() => setTab(key)}
+            onClick={() => goTab(key)}
             className={cx(
               '-mb-px border-b-2 px-4 py-2 text-sm font-medium transition',
               tab === key
@@ -96,40 +102,32 @@ export default function MessagesClient({ isSuper, contact, partnership, feedback
       </div>
 
       <div className="space-y-3">
+        {rows.length === 0 ? <Empty /> : null}
+
         {tab === 'contact' &&
-          (contact.length === 0 ? (
-            <Empty />
-          ) : (
-            contact.map((m) => (
-              <Row key={m.id} kind="contact" id={m.id} status={m.status} isSuper={isSuper} onStatus={onStatus} onDelete={onDelete}
-                header={m.subject || '(no subject)'} sub={`${m.name || 'Anonymous'} · ${m.email || ''} · ${new Date(m.created_at).toLocaleString()}`} body={m.message} />
-            ))
+          rows.map((m) => (
+            <Row key={m.id} kind="contact" id={m.id} status={m.status} isSuper={isSuper} onStatus={onStatus} onDelete={onDelete}
+              header={m.subject || '(no subject)'} sub={`${m.name || 'Anonymous'} · ${m.email || ''} · ${new Date(m.created_at).toLocaleString()}`} body={m.message} />
           ))}
 
         {tab === 'partnership' &&
-          (partnership.length === 0 ? (
-            <Empty />
-          ) : (
-            partnership.map((m) => {
-              const d = m.data || {};
-              return (
-                <Row key={m.id} kind="partnership" id={m.id} status={m.status} isSuper={isSuper} onStatus={onStatus} onDelete={onDelete}
-                  header={d.organizationName || '(organization)'} sub={`${d.contactPerson || ''} · ${d.email || ''} · ${d.partnershipType || ''}`}
-                  body={d.projectDescription || JSON.stringify(d, null, 2)} />
-              );
-            })
-          ))}
+          rows.map((m) => {
+            const d = m.data || {};
+            return (
+              <Row key={m.id} kind="partnership" id={m.id} status={m.status} isSuper={isSuper} onStatus={onStatus} onDelete={onDelete}
+                header={d.organizationName || '(organization)'} sub={`${d.contactPerson || ''} · ${d.email || ''} · ${d.partnershipType || ''}`}
+                body={d.projectDescription || JSON.stringify(d, null, 2)} />
+            );
+          })}
 
         {tab === 'feedback' &&
-          (feedback.length === 0 ? (
-            <Empty />
-          ) : (
-            feedback.map((m) => (
-              <Row key={m.id} kind="feedback" id={m.id} status={m.status} isSuper={isSuper} onStatus={onStatus} onDelete={onDelete}
-                header={`${m.name || 'Anonymous'}${m.rating ? ` · ${m.rating}★` : ''}`} sub={`${m.email || ''} · ${m.page || ''} · ${new Date(m.created_at).toLocaleString()}`} body={m.message} />
-            ))
+          rows.map((m) => (
+            <Row key={m.id} kind="feedback" id={m.id} status={m.status} isSuper={isSuper} onStatus={onStatus} onDelete={onDelete}
+              header={`${m.name || 'Anonymous'}${m.rating ? ` · ${m.rating}★` : ''}`} sub={`${m.email || ''} · ${m.page || ''} · ${new Date(m.created_at).toLocaleString()}`} body={m.message} />
           ))}
       </div>
+
+      <Pagination basePath={BASE} query={query} page={page} total={total} />
     </div>
   );
 }

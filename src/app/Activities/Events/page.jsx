@@ -1,6 +1,14 @@
 import EventsPageClient from "./EventsPageClient";
 import { getEventCards } from "@/lib/queries";
 import { toEventViews } from "@/app/utils/eventView";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Events",
+  description:
+    "Upcoming and past events, workshops, seminars and competitions hosted by the IEEE Student Branch at Green University of Bangladesh (IEEE GUB).",
+  path: "/Activities/Events",
+});
 
 // Match the cached getter's revalidate window; admin writes call
 // revalidateTag(TAGS.events) to refresh this page instantly.

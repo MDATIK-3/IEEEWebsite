@@ -70,7 +70,7 @@ This is a production [Next.js](https://nextjs.org) (App Router) application back
 | **Chatbot** | AI assistant powered by Google Gemini |
 | **News ticker** | Site-wide announcements bar (priority-ordered, time-windowed) |
 
-Built-in SEO: `sitemap.ts`, `robots.ts`, `manifest.json`, light/dark theming, and Vercel Analytics.
+Built-in SEO: `sitemap.ts`, `robots.ts`, `site.webmanifest`, light/dark theming, and Vercel Analytics.
 
 ### Admin Panel (`/admin`)
 
@@ -178,7 +178,7 @@ Built-in SEO: `sitemap.ts`, `robots.ts`, `manifest.json`, light/dark theming, an
     │   ├── hooks/ · utils/ · Theme/
     │   ├── sitemap.ts · robots.ts · layout.jsx · not-found.jsx
     │   └── globals.css
-    ├── data/                   # Static lookups still used (registered.json, ContributionRoles.json)
+    ├── data/                   # Static lookups still used (ContributionRoles.json)
     └── lib/
         ├── queries.ts          # Cached public data access
         └── supabase/           # public · server · client · admin · auth

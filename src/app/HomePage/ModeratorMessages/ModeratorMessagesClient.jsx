@@ -7,9 +7,18 @@ import { motion } from 'framer-motion';
 export default function ModeratorMessagesClient({ moderators = [] }) {
   const [activeCard, setActiveCard] = useState(null);
 
-  const chairperson = moderators.find(mod => mod.id === 3);
-  const director = moderators.find(mod => mod.id === 1);
-  const lecturers = moderators.filter(mod => mod.id !== 1 && mod.id !== 3);
+  // Cards follow the admin-controlled order (sort_order asc; see
+  // getModeratorMessages() and /admin/moderators, which states "Cards are
+  // ordered by the order value (low to high)"). The first person is featured in
+  // the large card at the top; everyone else fills the grid below, in order.
+  //
+  // Previously these were pinned to hardcoded primary-key ids (3 = chairperson,
+  // 1 = director). After the move to Supabase the ids are bigserial and no
+  // longer happen to be 1/3, so `director` became undefined and the grid's
+  // `[director, ...lecturers].map(p => p.id)` threw "Cannot read properties of
+  // undefined (reading 'id')". Driving the layout off order fixes both the
+  // crash and the ignored sort_order.
+  const [chairperson, ...rest] = moderators;
 
   const cardVariants = {
     hidden: {
@@ -138,6 +147,7 @@ export default function ModeratorMessagesClient({ moderators = [] }) {
           </motion.p>
         </motion.div>
 
+        {chairperson && (
         <motion.div
           className={`group w-full max-w-4xl mx-auto mb-20 rounded-2xl p-8 border shadow-md cursor-pointer
             ${activeCard === chairperson?.id ? 'border-green-500 shadow-lg' : 'border-gray-200 dark:border-gray-700'}
@@ -195,6 +205,7 @@ export default function ModeratorMessagesClient({ moderators = [] }) {
             </motion.div>
           </div>
         </motion.div>
+        )}
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -203,7 +214,7 @@ export default function ModeratorMessagesClient({ moderators = [] }) {
           whileInView="visible"
           viewport={{ once: false, amount: 0.1 }}
         >
-          {[director, ...lecturers].map((person, index) => (
+          {rest.map((person, index) => (
             <motion.div
               key={person.id}
               className={`group rounded-2xl p-6 border shadow-sm cursor-pointer

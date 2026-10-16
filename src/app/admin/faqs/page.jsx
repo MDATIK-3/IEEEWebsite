@@ -1,6 +1,9 @@
+import { redirect } from 'next/navigation';
 import Link from '@/app/admin/_components/Link';
 import { requireAdmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
+import Pagination from '@/app/admin/_components/Pagination';
+import { parsePage, pageRange, pageCount, buildQuery } from '@/app/admin/_lib/pagination';
 import DeleteFaqButton from './_RowActions';
 
 export const dynamic = 'force-dynamic';
@@ -20,15 +23,27 @@ function PublishState({ published }) {
   );
 }
 
-export default async function FaqsAdminPage() {
+export default async function FaqsAdminPage({ searchParams }) {
   const admin = await requireAdmin();
   const isSuper = admin.role === 'superadmin';
 
+  const sp = (await searchParams) ?? {};
+  const page = parsePage(sp.page);
+  const { from, to } = pageRange(page);
+
   const supabase = createAdminClient();
-  const { data: faqs, error } = await supabase
+  const { data: faqs, count, error } = await supabase
     .from('faqs')
-    .select('*')
-    .order('sort_order', { ascending: true });
+    .select('id, question, category, sort_order, is_published', { count: 'exact' })
+    .order('sort_order', { ascending: true })
+    .range(from, to);
+
+  const total = count ?? 0;
+  const pages = pageCount(total);
+  if (total > 0 && page > pages) {
+    const qs = buildQuery(sp, { page: pages > 1 ? pages : undefined });
+    redirect(qs ? `/admin/faqs?${qs}` : '/admin/faqs');
+  }
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
@@ -53,7 +68,7 @@ export default async function FaqsAdminPage() {
         </p>
       ) : null}
 
-      {!error && (!faqs || faqs.length === 0) ? (
+      {!error && total === 0 ? (
         <div className="rounded-xl border border-dashed border-slate-300 py-16 text-center text-slate-500 dark:border-slate-700 dark:text-slate-400">
           No FAQs yet. Create your first one.
         </div>
@@ -105,6 +120,8 @@ export default async function FaqsAdminPage() {
           </table>
         </div>
       ) : null}
+
+      <Pagination basePath="/admin/faqs" query={sp} page={page} total={total} />
     </div>
   );
 }

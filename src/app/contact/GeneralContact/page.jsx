@@ -4,6 +4,14 @@ import ContactForm from "./ContactForm"
 import WhyJoinIEEE from "./WhyJoinIEEE"
 import MapSection from "./MapSection"
 import { ToastProvider } from "./Components/ToastProvider"
+import { pageMetadata } from "@/lib/seo"
+
+export const metadata = pageMetadata({
+  title: "Contact Us",
+  description:
+    "Get in touch with the IEEE Student Branch at Green University of Bangladesh. Find our location, contact details and send us a message.",
+  path: "/contact/GeneralContact",
+})
 
 const page = () => {
   return (

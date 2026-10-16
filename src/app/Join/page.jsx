@@ -11,6 +11,14 @@ import {
   Users,
 } from 'lucide-react';
 import { getMembership } from '@/lib/queries';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Join IEEE GUB',
+  description:
+    'Become a member of the IEEE Student Branch at Green University of Bangladesh. See the benefits, fees and step-by-step guide to joining IEEE GUB.',
+  path: '/Join',
+});
 
 export const revalidate = 86400;
 

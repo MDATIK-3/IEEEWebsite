@@ -100,7 +100,7 @@ async function buildKnowledgeBase() {
   }
 
   // Fallback: any remaining static JSON not held in the database
-  // (e.g. registered.json, ContributionRoles.json).
+  // (e.g. ContributionRoles.json).
   for (const file of getAllJsonFiles(DATA_DIR)) {
     try {
       const data = JSON.parse(fs.readFileSync(file, 'utf-8'));

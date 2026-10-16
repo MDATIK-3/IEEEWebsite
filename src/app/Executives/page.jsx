@@ -1,5 +1,13 @@
 import { getExecutives } from '@/lib/queries';
 import ExecutivesClient from './ExecutivesClient';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Executive Committee',
+  description:
+    'Meet the faculty advisors, office bearers and student leaders of the IEEE Student Branch and its chapters at Green University of Bangladesh (IEEE GUB).',
+  path: '/Executives',
+});
 
 // Match the cached getter's revalidate window; admin writes call
 // revalidateTag(TAGS.executives) to refresh this page instantly.

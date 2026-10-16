@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { UserPlus, KeyRound, Trash2, Check } from 'lucide-react';
 import { cx } from '@/app/utils/cx';
+import Pagination from '@/app/admin/_components/Pagination';
 import { createDataEntry, changeUserPassword, deleteUser, setUserActive } from '../_actions/users';
 
 const field =
@@ -89,7 +90,7 @@ function PasswordInline({ userId }) {
   );
 }
 
-export default function UsersManager({ users = [], meId, meIsOwner = false }) {
+export default function UsersManager({ users = [], meId, meIsOwner = false, page = 1, total = 0, query = {} }) {
   const router = useRouter();
 
   async function onDelete(u) {
@@ -163,6 +164,8 @@ export default function UsersManager({ users = [], meId, meIsOwner = false }) {
           </tbody>
         </table>
       </div>
+
+      <Pagination basePath="/admin/users" query={query} page={page} total={total} />
     </div>
   );
 }

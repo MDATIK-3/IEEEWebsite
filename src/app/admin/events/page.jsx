@@ -1,6 +1,9 @@
+import { redirect } from 'next/navigation';
 import Link from '@/app/admin/_components/Link';
 import { requireAdmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
+import Pagination from '@/app/admin/_components/Pagination';
+import { parsePage, pageRange, pageCount, buildQuery } from '@/app/admin/_lib/pagination';
 import DeleteEventButton from './_EventRowActions';
 
 export const dynamic = 'force-dynamic';
@@ -41,15 +44,27 @@ function PublishState({ event }) {
   );
 }
 
-export default async function EventsAdminPage() {
+export default async function EventsAdminPage({ searchParams }) {
   const admin = await requireAdmin();
   const isSuper = admin.role === 'superadmin';
 
+  const sp = (await searchParams) ?? {};
+  const page = parsePage(sp.page);
+  const { from, to } = pageRange(page);
+
   const supabase = createAdminClient();
-  const { data: events, error } = await supabase
+  const { data: events, count, error } = await supabase
     .from('events')
-    .select('*')
-    .order('starts_at', { ascending: false, nullsFirst: false });
+    .select('id, title, event_type, starts_at, is_published, publish_at', { count: 'exact' })
+    .order('starts_at', { ascending: false, nullsFirst: false })
+    .range(from, to);
+
+  const total = count ?? 0;
+  const pages = pageCount(total);
+  if (total > 0 && page > pages) {
+    const qs = buildQuery(sp, { page: pages > 1 ? pages : undefined });
+    redirect(qs ? `/admin/events?${qs}` : '/admin/events');
+  }
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
@@ -74,7 +89,7 @@ export default async function EventsAdminPage() {
         </p>
       ) : null}
 
-      {!error && (!events || events.length === 0) ? (
+      {!error && total === 0 ? (
         <div className="rounded-xl border border-dashed border-slate-300 py-16 text-center text-slate-500 dark:border-slate-700 dark:text-slate-400">
           No events yet. Create your first one.
         </div>
@@ -124,6 +139,8 @@ export default async function EventsAdminPage() {
           </table>
         </div>
       ) : null}
+
+      <Pagination basePath="/admin/events" query={sp} page={page} total={total} />
     </div>
   );
 }
