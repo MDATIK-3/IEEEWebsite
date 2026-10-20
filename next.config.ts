@@ -26,13 +26,11 @@ const nextConfig: NextConfig = {
         hostname: 'i.imgur.com',
       },
     ],
-    deviceSizes: [320, 420, 768, 1024, 1200],
+    deviceSizes: [320, 420, 540, 640, 768, 1024, 1200],
     imageSizes: [16, 32, 48, 64, 96],
+    minimumCacheTTL: 31536000,
   },
   experimental: {
-    // critters/optimizeCss inlines critical CSS for the production build only.
-    // Running it under `next dev` just slows local compiles, so scope it to
-    // production (NODE_ENV is 'development' during `next dev`).
     optimizeCss: process.env.NODE_ENV === 'production',
     serverActions: {
       bodySizeLimit: '10mb',

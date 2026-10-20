@@ -59,7 +59,7 @@ export default function HeroCard() {
                     src={image}
                     alt="Technology Innovation"
                     fill
-                    sizes="(max-width: 640px) 100vw, 640px"
+                    sizes="(max-width: 640px) 100vw, 540px"
                     priority={index === 0}
                     loading={index === 0 ? 'eager' : 'lazy'}
                     className="object-cover"
