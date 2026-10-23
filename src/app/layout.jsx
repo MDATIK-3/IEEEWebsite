@@ -3,6 +3,7 @@ import NewsTickerBar from './components/NewsTicker/NewsTickerBar.jsx';
 import Footer from './components/Shares/Footer/Footer.jsx';
 import ChatbotButton from './components/ChatbotButton/ChatbotButton.jsx';
 import HideOnAdmin from './components/HideOnAdmin.jsx';
+import ServiceWorkerRegister from './components/ServiceWorkerRegister.jsx';
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/app/Theme/ThemeProvider.jsx";
 import './globals.css';
@@ -147,6 +148,7 @@ export default function RootLayout({ children }) {
             <Footer />
           </HideOnAdmin>
         </Providers>
+        <ServiceWorkerRegister />
         <Analytics />
       </body>
     </html>
