@@ -1,0 +1,38 @@
+name: "Advanced CodeQL config"
+
+# Use both extended security queries and code-quality queries.
+# Prefix with '+' to *combine* with the matrix `queries:` input instead of
+# overriding it.
+queries:
+  - uses: security-extended
+  - uses: security-and-quality
+
+# Ignore test fixtures, vendored code and build output.
+paths-ignore:
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/vendor/**"
+  - "**/test/**"
+  - "**/tests/**"
+  - "**/__tests__/**"
+  - "**/*.test.*"
+  - "**/*.spec.*"
+
+# Only scan source-relevant folders (adjust to your repo).
+paths:
+  - "src"
+  - "lib"
+  - "packages"
+  - ".github/workflows"
+
+# Optional: additional query packs / model packs to pull in.
+# packs:
+#   javascript-typescript:
+#     - "codeql/javascript-queries:codeql-suites/javascript-security-extended.qls"
+#     - "codeql/javascript-queries:codeql-suites/javascript-code-quality.qls"
+
+# Optional: add custom query filters / disable specific rules.
+# query-filters:
+#   - exclude:
+#       id: js/unused-local-variable
