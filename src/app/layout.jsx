@@ -4,6 +4,7 @@ import Footer from './components/Shares/Footer/Footer.jsx';
 import ChatbotButton from './components/ChatbotButton/ChatbotButton.jsx';
 import HideOnAdmin from './components/HideOnAdmin.jsx';
 import ServiceWorkerRegister from './components/ServiceWorkerRegister.jsx';
+import PageViewTracker from './components/PageViewTracker.jsx';
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/app/Theme/ThemeProvider.jsx";
 import './globals.css';
@@ -60,15 +61,6 @@ export const viewport = {
   initialScale: 1,
 };
 
-// Dev-only: the "ResizeObserver loop completed with undelivered notifications"
-// browser warning is harmless (the spec just defers observations to the next
-// frame), but Next.js's dev error overlay catches it as a window `error` event
-// and then hammers /__nextjs_original-stack-frames trying to symbolicate a
-// stack that doesn't exist — an endless request flood on pages with animated /
-// transitioning layout. We swallow only that one message, before Next's client
-// runtime registers its handler (this runs during initial HTML parse, so our
-// listener is first and stopImmediatePropagation keeps the overlay from seeing
-// it). Real errors are untouched, and nothing ships to production.
 const RESIZE_OBSERVER_OVERLAY_FIX = `(function(){
   if (typeof window === 'undefined') return;
   var MSGS = ['ResizeObserver loop completed with undelivered notifications', 'ResizeObserver loop limit exceeded'];
@@ -149,6 +141,7 @@ export default function RootLayout({ children }) {
           </HideOnAdmin>
         </Providers>
         <ServiceWorkerRegister />
+        <PageViewTracker />
         <Analytics />
       </body>
     </html>

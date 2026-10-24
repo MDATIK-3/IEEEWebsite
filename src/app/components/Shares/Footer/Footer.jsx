@@ -17,12 +17,12 @@ import Contributors from "./Contributors";
 const Footer = () => {
   const customLinks = [
     { label: "Join IEEE", href: "/Join" },
-    { label: "Projects", href: "/Projects" },
-    { label: "Opportunities", href: "/Opportunities" },
-    { label: "Resources", href: "/Resources" },
     { label: "Events", href: "/Activities/Events" },
+    { label: "Achievements", href: "/Activities/Achievements" },
     { label: "Executives", href: "/Executives" },
     { label: "Gallery", href: "/Gallery" },
+    { label: "Learn IEEE", href: "/LearnIEEE" },
+    { label: "Collaboration", href: "/Collaboration" },
     { label: "Contact", href: "/contact/GeneralContact" },
   ];
 

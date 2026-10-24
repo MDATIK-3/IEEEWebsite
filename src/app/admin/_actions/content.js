@@ -4,6 +4,7 @@ import { revalidateTag } from 'next/cache';
 import { requireAdmin, requireSuperadmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { TAGS } from '@/lib/queries';
+import { cleanRichText } from '@/lib/sanitizeHtml';
 
 /**
  * Server actions for the content moderation workflow.
@@ -39,6 +40,35 @@ function tagFor(table) {
   return TABLE_TO_TAG[table] || table;
 }
 
+// Fields that hold admin-authored rich text (HTML from the WYSIWYG editor).
+// `fields` are top-level string columns; `arrays` are jsonb array columns whose
+// objects carry a rich-text field. Everything here is sanitized on write so the
+// live tables (and content_submissions) only ever store safe markup.
+const RICH_TEXT = {
+  events: { fields: ['description'], arrays: [{ path: 'speakers', fields: ['bio'] }] },
+  achievements: { fields: ['details'], arrays: [] },
+};
+
+function sanitizeProposed(table, data) {
+  const spec = RICH_TEXT[table];
+  if (!spec || !data || typeof data !== 'object') return data;
+  const out = { ...data };
+  for (const f of spec.fields || []) {
+    if (f in out) out[f] = cleanRichText(out[f]);
+  }
+  for (const arr of spec.arrays || []) {
+    if (Array.isArray(out[arr.path])) {
+      out[arr.path] = out[arr.path].map((item) => {
+        if (!item || typeof item !== 'object') return item;
+        const copy = { ...item };
+        for (const f of arr.fields) if (f in copy) copy[f] = cleanRichText(copy[f]);
+        return copy;
+      });
+    }
+  }
+  return out;
+}
+
 /**
  * Data-entry (or superadmin) submits a create/update into the moderation queue.
  * @param {{ targetTable: string, targetId?: number|string|null, action: 'create'|'update', proposedData: object }} input
@@ -54,7 +84,7 @@ export async function submitChange({ targetTable, targetId, action, proposedData
     }
 
     const supabase = createAdminClient();
-    const data = proposedData ?? {};
+    const data = sanitizeProposed(targetTable, proposedData ?? {});
 
     // Superadmins apply changes immediately (no self-approval step). This is
     // what makes scheduling work for them: the row lands in the live table and
@@ -132,7 +162,10 @@ export async function approveSubmission(id, override) {
     if (!sub) throw new Error('Submission not found');
     if (sub.status !== 'pending') throw new Error('This submission has already been reviewed');
 
-    const data = override && typeof override === 'object' ? override : sub.proposed_data;
+    const data = sanitizeProposed(
+      sub.target_table,
+      override && typeof override === 'object' ? override : sub.proposed_data
+    );
 
     // Apply to the live table (service role bypasses RLS).
     let appliedId = sub.target_id ?? null;

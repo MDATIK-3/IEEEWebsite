@@ -47,7 +47,7 @@ export default async function AdminLayout({ children }) {
   const navItems = [
     { href: '/admin', label: 'Dashboard', icon: 'dashboard' },
     { href: '/admin/events', label: 'Events', icon: 'events' },
-    { href: '/admin/announcements', label: 'News', icon: 'announcements' },
+    { href: '/admin/announcements', label: 'News Highlighter', icon: 'announcements' },
     { href: '/admin/executives', label: 'Executives', icon: 'executives' },
     { href: '/admin/achievements', label: 'Achievements', icon: 'achievements' },
     { href: '/admin/gallery', label: 'Gallery', icon: 'gallery' },

@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { resolveImageSrc } from '@/app/utils/imageSrc';
+import RichText from '@/app/_components/RichText';
 
 const SpeakerSection = ({ event }) => {
     const [expanded, setExpanded] = useState({});
@@ -33,6 +34,9 @@ const SpeakerSection = ({ event }) => {
             <div className="space-y-6 sm:space-y-8">
                 {event.speakers.map((speaker, index) => {
                     const bio = bioFor(speaker, index);
+                    // Length of the readable text (tags stripped) decides whether the
+                    // bio needs a Read more / Show less toggle.
+                    const plain = bio.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
                     const isExpanded = expanded[index] || false;
 
                     return (
@@ -62,15 +66,17 @@ const SpeakerSection = ({ event }) => {
                                     {roleFor(speaker, index)}
                                 </p>
 
-                                <p
-                                    className={`text-gray-600 dark:text-slate-300 leading-relaxed transition-all duration-300 text-sm sm:text-base ${isExpanded ? '' : 'line-clamp-3 sm:line-clamp-2'
+                                <div
+                                    className={`transition-all duration-300 ${isExpanded ? '' : 'max-h-24 overflow-hidden'
                                         }`}
-                                    style={{ whiteSpace: 'pre-line' }}
                                 >
-                                    {bio}
-                                </p>
+                                    <RichText
+                                        html={bio}
+                                        className="text-gray-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base"
+                                    />
+                                </div>
 
-                                {bio && bio.length > 150 && (
+                                {plain.length > 150 && (
                                     <button
                                         onClick={() => toggleExpand(index)}
                                         className="mt-3 inline-flex items-center gap-1 px-3 py-1.5 bg-green-50 dark:bg-green-900 hover:bg-green-100 dark:hover:bg-green-800 text-green-700 dark:text-green-300 font-medium text-sm rounded-md transition-all duration-200 hover:shadow-sm border border-green-200 dark:border-green-700 hover:border-green-300 dark:hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 dark:focus:ring-green-400"

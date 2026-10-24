@@ -2,6 +2,7 @@
 
 import { Plus, Trash2 } from 'lucide-react';
 import ImageUploader from '../_components/ImageUploader';
+import RichTextEditor from '../_components/RichTextEditor';
 import { field, label } from '../_components/formStyles';
 
 /**
@@ -85,12 +86,11 @@ export default function SpeakersSection({ speakers, onAdd, onUpdate, onRemove })
                 />
               </div>
               <div className="mt-3">
-                <label className={label}>Bio</label>
-                <textarea
-                  rows={3}
+                <RichTextEditor
+                  label="Bio"
                   value={s.bio}
-                  onChange={(e) => onUpdate(s._id, { bio: e.target.value })}
-                  className={field}
+                  onChange={(html) => onUpdate(s._id, { bio: html })}
+                  minHeight={110}
                 />
               </div>
             </div>

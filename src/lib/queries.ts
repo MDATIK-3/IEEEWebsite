@@ -208,7 +208,6 @@ export interface TickerItem {
   title: string;
   href: string | null;
   variant: string;
-  /** ISO string; the client hides the item the moment this passes. */
   endsAt: string | null;
 }
 
@@ -221,24 +220,12 @@ function toTickerItem(a: any): TickerItem {
   };
 }
 
-/**
- * Items for the news ticker: ONLY admin-managed announcements (active + within
- * their date window, enforced by RLS). No auto-pulled events — the bar shows
- * exactly what admins set in /admin/announcements, and stays hidden when empty.
- *
- * Cached (see `getAnnouncements`) — used for the initial server render.
- */
 export async function getTickerItems(): Promise<TickerItem[]> {
   const announcements = await getAnnouncements();
   return announcements.map(toTickerItem);
 }
 
-/**
- * Uncached, request-time view of the ticker for the polling route handler
- * (`/api/announcements/ticker`). RLS on the anon client evaluates the schedule
- * window against the database `now()`, so scheduled items go live / expire on
- * time without waiting on the ISR/full-route cache of a statically rendered page.
- */
+
 export async function getTickerItemsLive(): Promise<TickerItem[]> {
   const { data, error } = await sb
     .from('announcements')

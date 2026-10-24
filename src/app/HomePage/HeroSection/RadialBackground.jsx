@@ -34,6 +34,9 @@ export default function RadialBackground() {
         .animate-float {
           animation: float 25s ease-in-out infinite;
         }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-float { animation: none; }
+        }
       `}</style>
     </>
   );

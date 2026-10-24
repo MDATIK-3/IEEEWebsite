@@ -73,36 +73,69 @@ export default function ThreeBackground() {
             targetX = (e.clientX / window.innerWidth - 0.5) * 2;
             targetY = (e.clientY / window.innerHeight - 0.5) * 2;
         };
-        window.addEventListener('mousemove', onMouseMove);
 
+        // Respect the user's reduced-motion preference: render a single static
+        // frame instead of an endless animation loop (saves CPU/battery and
+        // avoids distracting motion for users who opted out).
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        let frameId = 0;
+        let disposed = false;
         const clock = new THREE.Clock();
         const animate = () => {
+            if (disposed) return;
             const delta = clock.getDelta();
             mouseX += (targetX - mouseX) * 0.05;
             mouseY += (targetY - mouseY) * 0.05;
             particles.rotation.y += 0.2 * delta + mouseX * 0.01;
             particles.rotation.x += 0.1 * delta + mouseY * 0.01;
             renderer.render(scene, camera);
-            requestAnimationFrame(animate);
+            frameId = requestAnimationFrame(animate);
         };
-        animate();
+
+        // Pause the loop while the tab is hidden; resume on return. No point
+        // burning the GPU on a background tab, and it stops the drift from
+        // accumulating into a large jump when the tab regains focus.
+        const start = () => {
+            if (disposed || frameId) return;
+            clock.getDelta(); // discard the gap accrued while paused
+            frameId = requestAnimationFrame(animate);
+        };
+        const stop = () => {
+            cancelAnimationFrame(frameId);
+            frameId = 0;
+        };
+        const onVisibility = () => (document.hidden ? stop() : start());
+
+        if (reduceMotion) {
+            renderer.render(scene, camera); // one static frame, no loop
+        } else {
+            window.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('visibilitychange', onVisibility);
+            start();
+        }
 
         const onResize = () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+            if (reduceMotion) renderer.render(scene, camera);
         };
         window.addEventListener('resize', onResize);
 
+        const mount = mountRef.current;
         return () => {
+            disposed = true;
+            stop();
             window.removeEventListener('resize', onResize);
             window.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('visibilitychange', onVisibility);
             colorSchemeQuery.removeEventListener('change', applyThemeColors);
             geometry.dispose();
             material.dispose();
             renderer.dispose();
-            if (mountRef.current?.contains(renderer.domElement)) {
-                mountRef.current.removeChild(renderer.domElement);
+            if (mount?.contains(renderer.domElement)) {
+                mount.removeChild(renderer.domElement);
             }
         };
     }, []);

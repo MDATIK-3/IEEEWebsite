@@ -10,6 +10,8 @@ import {
 } from 'lucide-react';
 import { requireAdmin } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { getDashboardAnalytics } from '@/lib/analytics';
+import AnalyticsPanel from './_analytics/AnalyticsPanel';
 
 // Reads the session cookie + hits the DB per request — never prerender.
 export const dynamic = 'force-dynamic';
@@ -34,13 +36,26 @@ export default async function AdminDashboardPage() {
   const isSuper = admin.role === 'superadmin';
   const supabase = createAdminClient();
 
-  const [events, pending, contact, feedback, announcements] = await Promise.all([
-    countOf(supabase, 'events'),
-    countOf(supabase, 'content_submissions', (q) => q.eq('status', 'pending')),
-    countOf(supabase, 'contact_submissions'),
-    countOf(supabase, 'feedback'),
-    countOf(supabase, 'announcements'),
-  ]);
+  // Everything the dashboard needs in a single parallel batch — including the
+  // superadmin "recent submissions" list, which used to run as an extra
+  // sequential round-trip after this block.
+  const [events, pending, contact, feedback, announcements, analytics, recentRes] =
+    await Promise.all([
+      countOf(supabase, 'events'),
+      countOf(supabase, 'content_submissions', (q) => q.eq('status', 'pending')),
+      countOf(supabase, 'contact_submissions'),
+      countOf(supabase, 'feedback'),
+      countOf(supabase, 'announcements'),
+      getDashboardAnalytics(),
+      isSuper
+        ? supabase
+            .from('content_submissions')
+            .select('id, target_table, action, submitted_at')
+            .eq('status', 'pending')
+            .order('submitted_at', { ascending: false })
+            .limit(5)
+        : Promise.resolve({ data: [] }),
+    ]);
 
   const stats = [
     { label: 'Events', value: events, href: '/admin/events', icon: CalendarDays },
@@ -59,16 +74,7 @@ export default async function AdminDashboardPage() {
     { label: 'Announcements', value: announcements, href: '/admin/announcements', icon: Megaphone },
   ];
 
-  let recent = [];
-  if (isSuper) {
-    const { data } = await supabase
-      .from('content_submissions')
-      .select('id, target_table, action, submitted_at')
-      .eq('status', 'pending')
-      .order('submitted_at', { ascending: false })
-      .limit(5);
-    recent = data || [];
-  }
+  const recent = recentRes?.data || [];
 
   return (
     <div className="mx-auto max-w-6xl">
@@ -79,7 +85,13 @@ export default async function AdminDashboardPage() {
         </p>
       </div>
 
-      {/* Stat cards */}
+      {/* Visitor analytics */}
+      <AnalyticsPanel analytics={analytics} />
+
+      {/* Content stat cards */}
+      <div className="mb-3 mt-8 flex items-center gap-2">
+        <h2 className="text-base font-semibold">Content</h2>
+      </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {stats.map((stat) => (
           <Link

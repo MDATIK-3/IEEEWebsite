@@ -5,6 +5,7 @@ import Link from '@/app/admin/_components/Link';
 import { cx } from '@/app/utils/cx';
 import { submitChange } from '../_actions/content';
 import ImageUploader from '../_components/ImageUploader';
+import RichTextEditor from '../_components/RichTextEditor';
 
 const field =
   'w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100';
@@ -22,6 +23,9 @@ export default function AchievementForm({ mode = 'create', achievementId, initia
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  // Rich-text details — controlled by state (sanitized on save in the action).
+  const [details, setDetails] = useState(initial.details || '');
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -55,7 +59,7 @@ export default function AchievementForm({ mode = 'create', achievementId, initia
     const proposedData = {
       year,
       program_name,
-      details: text('details'),
+      details: details || null,
       image: text('image'),
       sort_order: int('sort_order') ?? 0,
       is_published: fd.get('is_published') === 'on',
@@ -163,16 +167,11 @@ export default function AchievementForm({ mode = 'create', achievementId, initia
         </div>
 
         <div>
-          <label htmlFor="details" className={label}>
-            Details
-          </label>
-          <textarea
-            id="details"
-            name="details"
-            rows={5}
-            placeholder="Describe the achievement, the recognition received, and who was involved."
-            defaultValue={initial.details || ''}
-            className={cx(field, 'resize-y')}
+          <RichTextEditor
+            label="Details"
+            value={details}
+            onChange={setDetails}
+            help="Describe the achievement, the recognition received, and who was involved."
           />
         </div>
 

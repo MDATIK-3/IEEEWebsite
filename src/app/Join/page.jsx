@@ -189,22 +189,22 @@ const JoinPage = async () => {
               href: '/Activities/Events',
             },
             {
-              title: 'Projects',
-              description: 'Work on real projects with teams and mentors.',
-              icon: <GraduationCap className="h-5 w-5" />,
-              href: '/Projects',
-            },
-            {
-              title: 'Opportunities',
-              description: 'Volunteer, lead, and build your leadership portfolio.',
-              icon: <Users className="h-5 w-5" />,
-              href: '/Opportunities',
-            },
-            {
-              title: 'Resources',
-              description: 'Access slides, recordings, and highlights.',
+              title: 'Achievements',
+              description: 'See the awards, recognitions, and milestones our members earn.',
               icon: <BadgeCheck className="h-5 w-5" />,
-              href: '/Resources',
+              href: '/Activities/Achievements',
+            },
+            {
+              title: 'Leadership',
+              description: 'Volunteer, lead teams, and build your leadership portfolio.',
+              icon: <Users className="h-5 w-5" />,
+              href: '/Executives',
+            },
+            {
+              title: 'Learn IEEE',
+              description: 'Explore membership benefits, resources, and how to get the most out of IEEE.',
+              icon: <GraduationCap className="h-5 w-5" />,
+              href: '/LearnIEEE',
             },
           ].map((item) => (
             <Link

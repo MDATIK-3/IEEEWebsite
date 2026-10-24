@@ -5,6 +5,7 @@ import Link from '@/app/admin/_components/Link';
 import { cx } from '@/app/utils/cx';
 import { submitChange } from '../_actions/content';
 import ImageUploader from '../_components/ImageUploader';
+import RichTextEditor from '../_components/RichTextEditor';
 import { field, label } from '../_components/formStyles';
 import SpeakersSection from './_SpeakersSection';
 import GallerySection from './_GallerySection';
@@ -46,6 +47,10 @@ export default function EventForm({ mode = 'create', eventId, initial = {} }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  // Rich-text body — TipTap is controlled by React state (not FormData), like
+  // the repeatable sections below. Sanitized on save in the server action.
+  const [description, setDescription] = useState(initial.description || '');
 
   // Featured Speakers — stored in events.speakers (jsonb). Bio lives on each
   // speaker object now; existing rows kept bios in guest_bio / special_guest_bio,
@@ -113,7 +118,7 @@ export default function EventForm({ mode = 'create', eventId, initial = {} }) {
 
     const proposedData = {
       title,
-      description: text('description'),
+      description: description || null,
       event_type: text('event_type'),
       organizer: text('organizer'),
       starts_at: fromLocalInput(fd.get('starts_at')),
@@ -204,15 +209,11 @@ export default function EventForm({ mode = 'create', eventId, initial = {} }) {
         </div>
 
         <div>
-          <label htmlFor="description" className={label}>
-            Description
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            rows={4}
-            defaultValue={initial.description || ''}
-            className={field}
+          <RichTextEditor
+            label="Description"
+            value={description}
+            onChange={setDescription}
+            help="Use the toolbar for headings, bold, lists and links."
           />
         </div>
 

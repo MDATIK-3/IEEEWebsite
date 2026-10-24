@@ -10,6 +10,11 @@ const DEFAULT_REFRESH_MS = 60_000; // bounds how soon a scheduled item appears
 const MAX_TIMEOUT_MS = 2_147_000_000; // setTimeout caps at ~24.8 days
 const SCROLL_SPEED = 70; // px/sec — constant crawl speed regardless of item count
 
+// Style options an admin can pick per item (see /admin/announcements). Each one
+// maps to a distinct pill colour below (.nt-v-*); anything unknown falls back to
+// "info" so a bad value can never produce an arbitrary class name.
+const VARIANTS = new Set(["info", "event", "alert", "warning", "success"]);
+
 // Measure synchronously before paint on the client; fall back to a no-op effect
 // during SSR so React doesn't warn about useLayoutEffect on the server.
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -27,8 +32,9 @@ function normalize(list) {
 
 function Cells({ list, keyPrefix }) {
   return list.map((item, i) => {
+    const variant = VARIANTS.has(item.variant) ? item.variant : "info";
     const body = (
-      <span className="nt-item">
+      <span className={cx("nt-item", `nt-v-${variant}`)}>
         <span className="nt-dot" aria-hidden="true" />
         <span className="nt-title">{item.title}</span>
       </span>
@@ -234,11 +240,24 @@ export default function NewsTicker({
            as one continuous pass rather than appearing twice side by side. */
         .nt-copy { display: inline-flex; align-items: center; min-width: var(--nt-copy-min, 0); }
         .nt-cell { display: inline-flex; align-items: center; }
-        /* Equal top/bottom padding makes the bar grow with the font and keeps
-           the text vertically centred at any size. */
-        .nt-item { display: inline-flex; align-items: center; gap: .5rem; white-space: nowrap; line-height: 1; padding-left: 1rem; padding-block: .5rem; }
+        /* Each item is a rounded pill whose colour reflects the admin-chosen
+           Style (variant). Symmetric padding keeps the pill centred and lets the
+           bar grow with the font size. */
+        .nt-item {
+          display: inline-flex; align-items: center; gap: .45rem; white-space: nowrap; line-height: 1;
+          padding: .3rem .8rem; border-radius: 9999px;
+          background: var(--nt-chip, rgba(255,255,255,.12));
+          box-shadow: inset 0 0 0 1px var(--nt-ring, rgba(255,255,255,.2));
+        }
+        /* Variant → pill colour. "info" is a subtle glassy neutral (the default);
+           the rest are solid, each legible with white text on the red bar. */
+        .nt-v-info    { --nt-chip: rgba(255,255,255,.12); --nt-ring: rgba(255,255,255,.26); }
+        .nt-v-event   { --nt-chip: #7c3aed; --nt-ring: rgba(255,255,255,.3); }
+        .nt-v-alert   { --nt-chip: #111827; --nt-ring: rgba(255,255,255,.3); }
+        .nt-v-warning { --nt-chip: #b45309; --nt-ring: rgba(255,255,255,.3); }
+        .nt-v-success { --nt-chip: #047857; --nt-ring: rgba(255,255,255,.3); }
         .nt-title { white-space: nowrap; font-weight: 500; }
-        .nt-dot { display: inline-block; width: .4rem; height: .4rem; border-radius: 9999px; background: rgba(255,255,255,.85); flex: none; }
+        .nt-dot { display: inline-block; width: .4rem; height: .4rem; border-radius: 9999px; background: rgba(255,255,255,.9); flex: none; }
         .nt-sep { display: inline-block; width: 1px; height: .9rem; margin-inline: 1rem; background: #fff; opacity: .35; }
         .nt-link { color: inherit; text-decoration: none; }
         .nt-link:hover .nt-title { text-decoration: underline; }

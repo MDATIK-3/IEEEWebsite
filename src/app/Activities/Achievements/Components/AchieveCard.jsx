@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import BgColor from '@/app/components/BgColor';
 import { resolveImageSrc } from '@/app/utils/imageSrc';
+import RichText from '@/app/_components/RichText';
 
 const AchieveCard = ({ achievements = [] }) => {
   const [expandedCards, setExpandedCards] = useState({});
@@ -16,7 +17,9 @@ const AchieveCard = ({ achievements = [] }) => {
     }));
   };
 
-  const getPreview = (text) => {
+  const getPreview = (html) => {
+    // Strip any HTML so the collapsed preview never shows a broken partial tag.
+    const text = (html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
     const words = text.split(' ');
     return words.slice(0, 9).join(' ') + (words.length > 9 ? '...' : '');
   };
@@ -61,9 +64,11 @@ const AchieveCard = ({ achievements = [] }) => {
                 {program_name}
               </h3>
 
-              <p className="text-gray-600 dark:text-gray-300 text-base">
-                {isExpanded ? details : getPreview(details)}
-              </p>
+              {isExpanded ? (
+                <RichText html={details} className="text-gray-600 dark:text-gray-300 text-base" />
+              ) : (
+                <p className="text-gray-600 dark:text-gray-300 text-base">{getPreview(details)}</p>
+              )}
 
               <button
                 onClick={() => toggleDetails(id)}

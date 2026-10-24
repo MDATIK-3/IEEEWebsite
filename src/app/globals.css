@@ -262,3 +262,109 @@ html:not(.dark) body {
     opacity: 1;
   }
 }
+
+/* Accessibility & low-end-device performance: stop the always-on decorative
+   loops for users who ask for reduced motion. The animated gradient keeps its
+   final gradient fill, just frozen; shimmer/float settle in place. One-shot
+   entrance animations (modals, mobile filters) are left alone — they are brief
+   and finish in the visible state. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer,
+  .animate-gradient-x,
+  .animate-float-slow,
+  .advanced-animated-gradient {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   Rich text — shared by the admin WYSIWYG editor surface and the
+   public render of admin-authored HTML (event description, speaker
+   bios, news articles). Low-specificity :where() rules so a caller's
+   text-color utility still wins, while headings/lists/links recover
+   the formatting Tailwind's preflight reset strips.
+   ============================================================ */
+.richtext {
+  line-height: 1.7;
+}
+.richtext :where(p) {
+  margin: 0 0 0.75em;
+}
+.richtext :where(p):last-child {
+  margin-bottom: 0;
+}
+.richtext :where(h1, h2, h3) {
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1.2em 0 0.5em;
+}
+.richtext :where(h1):first-child,
+.richtext :where(h2):first-child,
+.richtext :where(h3):first-child {
+  margin-top: 0;
+}
+.richtext :where(h1) {
+  font-size: 1.5em;
+}
+.richtext :where(h2) {
+  font-size: 1.3em;
+}
+.richtext :where(h3) {
+  font-size: 1.1em;
+}
+.richtext :where(ul, ol) {
+  margin: 0 0 0.75em;
+  padding-left: 1.5em;
+}
+.richtext :where(ul) {
+  list-style: disc;
+}
+.richtext :where(ol) {
+  list-style: decimal;
+}
+.richtext :where(li) {
+  margin: 0.2em 0;
+}
+.richtext :where(li) :where(p) {
+  margin: 0;
+}
+.richtext :where(a) {
+  color: #047857;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.dark .richtext :where(a) {
+  color: #34d399;
+}
+.richtext :where(strong) {
+  font-weight: 700;
+}
+.richtext :where(em) {
+  font-style: italic;
+}
+.richtext :where(blockquote) {
+  border-left: 3px solid #10b981;
+  padding-left: 1em;
+  margin: 0 0 0.75em;
+  font-style: italic;
+  opacity: 0.9;
+}
+.richtext :where(code) {
+  background: rgba(100, 116, 139, 0.18);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.richtext :where(hr) {
+  border: 0;
+  border-top: 1px solid rgba(100, 116, 139, 0.35);
+  margin: 1em 0;
+}
+
+/* TipTap editor surface */
+.ProseMirror:focus {
+  outline: none;
+}
+.ProseMirror > :first-child {
+  margin-top: 0;
+}

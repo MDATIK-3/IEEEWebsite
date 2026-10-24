@@ -1,6 +1,6 @@
 'use server';
 
-import { requireSuperadmin, isOwnerEmail } from '@/lib/supabase/auth';
+import { requireSuperadmin, isOwnerEmail, revalidateAdminProfile } from '@/lib/supabase/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
@@ -71,6 +71,8 @@ export async function setUserActive(userId, isActive) {
       .update({ is_active: !!isActive })
       .eq('id', userId);
     if (error) return { error: error.message };
+    // Access checks read a cached profile; refresh it so (de)activation is immediate.
+    revalidateAdminProfile(userId);
     return { ok: true };
   } catch {
     return { error: 'Could not update the account.' };
@@ -86,6 +88,7 @@ export async function deleteUser(userId) {
     if (prof?.role === 'superadmin') return { error: 'Cannot delete a superadmin account.' };
     const { error } = await db.auth.admin.deleteUser(userId); // cascades to admin_profiles
     if (error) return { error: error.message };
+    revalidateAdminProfile(userId); // drop any cached profile for the deleted user
     return { ok: true };
   } catch {
     return { error: 'Could not delete the account.' };
