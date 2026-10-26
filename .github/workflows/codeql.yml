@@ -1,0 +1,231 @@
+# Advanced CodeQL workflow
+# -----------------------
+# Highlights over the default template:
+#   • Concurrency control (cancel redundant PR runs)
+#   • Path filters (skip docs-only changes)
+#   • Manual + scheduled + merge_group + workflow_dispatch triggers
+#   • Least-privilege permissions at workflow and job level
+#   • Per-language runtime setup steps (Node, Go, Java, Python)
+#   • Query packs: security-extended + security-and-quality
+#   • dependency-caching for compiled/package-managed languages
+#   • RAM/thread tuning for the analyzer
+#   • SARIF artifact upload (retained even if analysis fails)
+#   • Job summary with per-language results
+name: "CodeQL Advanced"
+
+on:
+  push:
+    branches: [ "main", "release/**" ]
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.txt"
+      - "docs/**"
+      - ".github/ISSUE_TEMPLATE/**"
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
+  schedule:
+    - cron: '29 17 * * 6'
+  merge_group:
+  workflow_dispatch:
+
+# Cancel superseded runs on PRs, but always let pushes finish.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# Default to read-only; the analyze job grants what it needs.
+permissions: read-all
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    # Use macOS for Swift, larger runners for compiled languages if available.
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || (matrix.language == 'c-cpp' && 'ubuntu-latest-8-cores') || 'ubuntu-latest' }}
+    timeout-minutes: ${{ (matrix.language == 'swift' && 180) || 360 }}
+
+    permissions:
+      security-events: write   # required to upload SARIF
+      packages: read           # required to fetch internal/private CodeQL packs
+      actions: read            # required for private-repo workflows
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: actions
+            build-mode: none
+            queries: security-extended
+          - language: javascript-typescript
+            build-mode: none
+            queries: security-and-quality
+
+          # ---- Uncomment and configure for compiled / additional languages ----
+          # - language: python
+          #   build-mode: none
+          #   queries: security-and-quality
+          # - language: go
+          #   build-mode: autobuild
+          #   queries: security-extended
+          # - language: java-kotlin
+          #   build-mode: autobuild
+          #   queries: security-and-quality
+          # - language: c-cpp
+          #   build-mode: manual
+          #   queries: security-extended
+          # - language: csharp
+          #   build-mode: autobuild
+          #   queries: security-and-quality
+          # - language: ruby
+          #   build-mode: none
+          #   queries: security-extended
+          # - language: rust
+          #   build-mode: none
+          #   queries: security-extended
+          # - language: swift
+          #   build-mode: autobuild
+          #   queries: security-extended
+          #
+          # Supported 'language' values:
+          #   actions, c-cpp, csharp, go, java-kotlin,
+          #   javascript-typescript, python, ruby, rust, swift
+          #
+          # Supported 'build-mode' values:
+          #   none | autobuild | manual
+
+    steps:
+      # --------------------------------------------------------------------
+      # Checkout
+      # --------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          # Set to 0 if you need full git history for blame/baseline queries.
+          fetch-depth: 1
+
+      # --------------------------------------------------------------------
+      # Per-language setup (only runs for the language being analyzed)
+      # Uncomment the setup steps for languages you enable in the matrix.
+      # --------------------------------------------------------------------
+      - name: Setup Node.js
+        if: matrix.language == 'javascript-typescript'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # - name: Setup Python
+      #   if: matrix.language == 'python'
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.12'
+      #     cache: 'pip'
+
+      # - name: Setup Go
+      #   if: matrix.language == 'go'
+      #   uses: actions/setup-go@v5
+      #   with:
+      #     go-version: 'stable'
+      #     cache: true
+
+      # - name: Setup Java
+      #   if: matrix.language == 'java-kotlin'
+      #   uses: actions/setup-java@v4
+      #   with:
+      #     distribution: 'temurin'
+      #     java-version: '21'
+      #     cache: 'gradle'   # or 'maven'
+
+      # - name: Setup .NET
+      #   if: matrix.language == 'csharp'
+      #   uses: actions/setup-dotnet@v4
+      #   with:
+      #     dotnet-version: '8.0.x'
+
+      # - name: Setup Ruby
+      #   if: matrix.language == 'ruby'
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     bundler-cache: true
+
+      # - name: Setup Rust
+      #   if: matrix.language == 'rust'
+      #   uses: dtolnay/rust-toolchain@stable
+
+      # --------------------------------------------------------------------
+      # Initialize CodeQL
+      # --------------------------------------------------------------------
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          # Per-language query pack. Overrides any queries in the config file
+          # unless you prefix the config file entry with '+'.
+          queries: ${{ matrix.queries }}
+          config-file: ./.github/codeql/codeql-config.yml
+          # Speeds up repeated analyses by reusing dependency downloads.
+          dependency-caching: true
+        env:
+          # Enables experimental query packs / features (optional).
+          CODEQL_ENABLE_EXPERIMENTAL_FEATURES: true
+
+      # --------------------------------------------------------------------
+      # Build (only for build-mode: manual)
+      # --------------------------------------------------------------------
+      - name: Run manual build steps
+        if: matrix.build-mode == 'manual'
+        shell: bash
+        run: |
+          echo 'Manual build mode requested for ${{ matrix.language }}.'
+          echo 'Replace this block with your real build commands, for example:'
+          echo '  make bootstrap'
+          echo '  make release'
+          exit 1
+
+      # --------------------------------------------------------------------
+      # Analyze
+      # --------------------------------------------------------------------
+      - name: Perform CodeQL Analysis
+        id: analyze
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"
+          upload: always              # upload SARIF even on partial failure
+          output: sarif-results
+          # add-snippets: true        # include code snippets in SARIF
+          # wait-for-processing: true # block until GitHub finishes processing
+        env:
+          # Tune the analyzer for larger runners. Remove on standard runners.
+          CODEQL_ACTION_EXTRA_OPTIONS: '{"database":{"analyze":["--ram=8192","--threads=4"]}}'
+
+      # --------------------------------------------------------------------
+      # Artifacts & summary
+      # --------------------------------------------------------------------
+      - name: Upload SARIF artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeql-sarif-${{ matrix.language }}
+          path: sarif-results
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "### CodeQL Analysis — \`${{ matrix.language }}\`"
+            echo ""
+            echo "| Field | Value |"
+            echo "| --- | --- |"
+            echo "| Language | \`${{ matrix.language }}\` |"
+            echo "| Build mode | \`${{ matrix.build-mode }}\` |"
+            echo "| Query pack | \`${{ matrix.queries }}\` |"
+            echo "| Runner | \`${{ runner.os }}\` |"
+            echo "| Commit | \`${{ github.sha }}\` |"
+          } >> "$GITHUB_STEP_SUMMARY"
