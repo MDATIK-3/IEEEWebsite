@@ -13,7 +13,8 @@ export default function InstallAppButton() {
   useEffect(() => {
     const standalone =
       window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone === true;
+      window.navigator.standalone === true ||
+      window.__pwaInstalled === true;
     if (standalone) {
       setInstalled(true);
       return;
@@ -25,19 +26,21 @@ export default function InstallAppButton() {
       (/Macintosh/.test(ua) && window.navigator.maxTouchPoints > 1);
     if (ios) setIsIOS(true);
 
-    const onBeforeInstall = (e) => {
-      e.preventDefault(); 
-      setDeferredPrompt(e);
-    };
+    // Chrome fires `beforeinstallprompt` once, and it often fires before this
+    // component mounts. An early capture script in the document head stashes the
+    // event on `window` and notifies us, so we never miss the native prompt.
+    if (window.__deferredInstallPrompt) setDeferredPrompt(window.__deferredInstallPrompt);
+
+    const onAvailable = () => setDeferredPrompt(window.__deferredInstallPrompt || null);
     const onInstalled = () => {
       setInstalled(true);
       setDeferredPrompt(null);
     };
 
-    window.addEventListener("beforeinstallprompt", onBeforeInstall);
+    window.addEventListener("pwa-install-available", onAvailable);
     window.addEventListener("appinstalled", onInstalled);
     return () => {
-      window.removeEventListener("beforeinstallprompt", onBeforeInstall);
+      window.removeEventListener("pwa-install-available", onAvailable);
       window.removeEventListener("appinstalled", onInstalled);
     };
   }, []);
@@ -54,11 +57,14 @@ export default function InstallAppButton() {
 
   const handleClick = async () => {
     // Best path: native install dialog (Android / Desktop Chrome, Edge).
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
+    const promptEvent = deferredPrompt || window.__deferredInstallPrompt;
+    if (promptEvent) {
+      promptEvent.prompt();
+      const { outcome } = await promptEvent.userChoice;
       if (outcome === "accepted") setInstalled(true);
-      setDeferredPrompt(null); // a prompt can only be used once
+      // A prompt can only be used once.
+      setDeferredPrompt(null);
+      window.__deferredInstallPrompt = null;
       return;
     }
     // Fallback: show manual steps for the current platform.

@@ -61,6 +61,22 @@ export const viewport = {
   initialScale: 1,
 };
 
+// Capture the install prompt before React hydrates. Chrome fires
+// `beforeinstallprompt` once and often early; stashing it on `window` lets
+// InstallAppButton offer the native one-tap install even if it mounts later.
+const PWA_INSTALL_CAPTURE = `(function(){
+  if (typeof window === 'undefined') return;
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    window.__deferredInstallPrompt = e;
+    window.dispatchEvent(new Event('pwa-install-available'));
+  });
+  window.addEventListener('appinstalled', function(){
+    window.__deferredInstallPrompt = null;
+    window.__pwaInstalled = true;
+  });
+})();`;
+
 const RESIZE_OBSERVER_OVERLAY_FIX = `(function(){
   if (typeof window === 'undefined') return;
   var MSGS = ['ResizeObserver loop completed with undelivered notifications', 'ResizeObserver loop limit exceeded'];
@@ -114,6 +130,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: PWA_INSTALL_CAPTURE }} />
         {process.env.NODE_ENV !== 'production' && (
           <script dangerouslySetInnerHTML={{ __html: RESIZE_OBSERVER_OVERLAY_FIX }} />
         )}
